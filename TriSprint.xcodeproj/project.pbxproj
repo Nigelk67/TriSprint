@@ -14,6 +14,7 @@
 		9BF12FE6273D725A00A94588 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF12FE5273D725A00A94588 /* Persistence.swift */; };
 		9BF12FE9273D725A00A94588 /* TriSprint.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BF12FE7273D725A00A94588 /* TriSprint.xcdatamodeld */; };
 		9BF12FF0273D74C000A94588 /* PersonaliseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF12FEF273D74C000A94588 /* PersonaliseView.swift */; };
+		9BF12FF2273D819900A94588 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF12FF1273D819900A94588 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		9BF12FE5273D725A00A94588 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		9BF12FE8273D725A00A94588 /* TriSprint.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TriSprint.xcdatamodel; sourceTree = "<group>"; };
 		9BF12FEF273D74C000A94588 /* PersonaliseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonaliseView.swift; sourceTree = "<group>"; };
+		9BF12FF1273D819900A94588 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				9BF12FEF273D74C000A94588 /* PersonaliseView.swift */,
 				9BF12FE0273D725A00A94588 /* Assets.xcassets */,
 				9BF12FE5273D725A00A94588 /* Persistence.swift */,
+				9BF12FF1273D819900A94588 /* Extensions.swift */,
 				9BF12FE7273D725A00A94588 /* TriSprint.xcdatamodeld */,
 				9BF12FE2273D725A00A94588 /* Preview Content */,
 			);
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BF12FE6273D725A00A94588 /* Persistence.swift in Sources */,
+				9BF12FF2273D819900A94588 /* Extensions.swift in Sources */,
 				9BF12FE9273D725A00A94588 /* TriSprint.xcdatamodeld in Sources */,
 				9BF12FDF273D725900A94588 /* ContentView.swift in Sources */,
 				9BF12FF0273D74C000A94588 /* PersonaliseView.swift in Sources */,

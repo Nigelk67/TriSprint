@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct PersonaliseView: View {
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Image("Photo_swim")
+                .resizable()
+                .ignoresSafeArea()
+                .aspectRatio(contentMode: .fill)
+            Color((.systemBackground))
+                .ignoresSafeArea()
+                .opacity(0.8)
+        VStack {
+            Text("Personalise Your Plan")
+                .foregroundColor(Color.accentButton).font(.system(size: 32, weight: .semibold, design: .default))
+                .padding(.vertical)
+        Spacer()
+        }
+        }
     }
 }
 
