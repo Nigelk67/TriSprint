@@ -28,6 +28,9 @@ extension Color {
 extension UserDefaults {
     enum Keys: String, CaseIterable {
         case pList = "Plist"
+        case first = "First"
+        case fitnessLevel = "FitnessLevel"
+        case trainingDays = "TrainingDays"
     }
     
 }
