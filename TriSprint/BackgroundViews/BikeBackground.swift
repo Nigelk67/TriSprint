@@ -13,7 +13,7 @@ struct BikeBackground: View {
         Image("Photo_bike")
             .resizable()
             .ignoresSafeArea()
-            .aspectRatio(contentMode: .fill)
+            .scaledToFill()
         Color((.systemBackground))
             .ignoresSafeArea()
             .opacity(0.8)

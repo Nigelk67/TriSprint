@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PersonaliseView: View {
+struct TrainingDaysView: View {
     
     let numberOfDays = ["3","4","5"]
     @State private var daysSelected = ""
@@ -16,7 +16,7 @@ struct PersonaliseView: View {
     var body: some View {
         
             ZStack {
-                SwimBackground()
+                RunBackground()
                 VStack {
                     Spacer()
                     Text("Personalise Your Plan")
@@ -49,28 +49,31 @@ struct PersonaliseView: View {
         .background(Color.white)
         .opacity(0.7)
         .cornerRadius(8)
-        .padding(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 40))
-        
+        .padding(.horizontal,20)
     }
     
     private var buttonsView: some View {
         VStack {
             ForEach(numberOfDays, id: \.self) { num in
-                NavigationLink(destination: FirstTriathlonView(), isActive: $nextScreen) {
                 Button {
                     daysSelected = num
-                    print("Nige: Set PList here?")
-                    nextScreen.toggle()
+                    
+                    UserDefaults.standard.set(num, forKey: UserDefaults.Keys.trainingDays.rawValue)
+                    
+                    UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
                 } label: {
                     Text(num)
                         .foregroundColor(Color.mainText)
                         .font(.system(.title, design: .rounded))
+                        .frame(maxWidth: .infinity)
                 }
                 .modifier(GreenButton())
+                .padding(.leading, 10)
+                .padding(.trailing, 10)
                 }
             }
             .padding()
-        }
+        //}
     }
     
 }
@@ -78,6 +81,6 @@ struct PersonaliseView: View {
 
 struct PersonaliseView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonaliseView()
+        TrainingDaysView()
     }
 }
