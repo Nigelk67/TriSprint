@@ -18,10 +18,18 @@ struct PersonaliseView: View {
             Color((.systemBackground))
                 .ignoresSafeArea()
                 .opacity(0.8)
-        VStack {
+            
+            VStack {
             Text("Personalise Your Plan")
                 .foregroundColor(Color.accentButton).font(.system(size: 32, weight: .semibold, design: .default))
                 .padding(.vertical)
+                Spacer()
+            Text("How many days per week can you train?")
+                .foregroundColor(Color.mainText).font(.system(size: 24, weight: .semibold, design: .default))
+                .padding(.vertical)
+                .multilineTextAlignment(.center)
+                
+            
         Spacer()
         }
         }
