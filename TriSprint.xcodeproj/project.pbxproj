@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B286770273EBB6100E856F0 /* 3Day.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B28676F273EBB6100E856F0 /* 3Day.plist */; };
+		9B286772273EBC3700E856F0 /* 4Day.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B286771273EBC3700E856F0 /* 4Day.plist */; };
+		9B286774273EBCC500E856F0 /* 5Day.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B286773273EBCC500E856F0 /* 5Day.plist */; };
 		9BF12FDD273D725900A94588 /* TriSprintApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF12FDC273D725900A94588 /* TriSprintApp.swift */; };
 		9BF12FDF273D725900A94588 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF12FDE273D725900A94588 /* ContentView.swift */; };
 		9BF12FE1273D725A00A94588 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BF12FE0273D725A00A94588 /* Assets.xcassets */; };
@@ -25,6 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B28676F273EBB6100E856F0 /* 3Day.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 3Day.plist; sourceTree = "<group>"; };
+		9B286771273EBC3700E856F0 /* 4Day.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 4Day.plist; sourceTree = "<group>"; };
+		9B286773273EBCC500E856F0 /* 5Day.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 5Day.plist; sourceTree = "<group>"; };
 		9BF12FD9273D725900A94588 /* TriSprint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TriSprint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BF12FDC273D725900A94588 /* TriSprintApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriSprintApp.swift; sourceTree = "<group>"; };
 		9BF12FDE273D725900A94588 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +124,9 @@
 		9BF12FFE273E7F0B00A94588 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				9B28676F273EBB6100E856F0 /* 3Day.plist */,
+				9B286771273EBC3700E856F0 /* 4Day.plist */,
+				9B286773273EBCC500E856F0 /* 5Day.plist */,
 				9BF12FF1273D819900A94588 /* Extensions.swift */,
 				9BF12FFF273E7F2200A94588 /* CustomStyling.swift */,
 			);
@@ -183,7 +192,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BF12FE4273D725A00A94588 /* Preview Assets.xcassets in Resources */,
+				9B286774273EBCC500E856F0 /* 5Day.plist in Resources */,
 				9BF12FE1273D725A00A94588 /* Assets.xcassets in Resources */,
+				9B286772273EBC3700E856F0 /* 4Day.plist in Resources */,
+				9B286770273EBB6100E856F0 /* 3Day.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
