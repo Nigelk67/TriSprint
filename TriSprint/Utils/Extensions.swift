@@ -24,3 +24,10 @@ extension Color {
         Color("MainText")
     }
 }
+
+extension UserDefaults {
+    enum Keys: String, CaseIterable {
+        case pList = "Plist"
+    }
+    
+}
