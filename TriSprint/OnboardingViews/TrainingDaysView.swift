@@ -12,7 +12,7 @@ struct TrainingDaysView: View {
     let numberOfDays = ["3","4","5"]
     @State private var daysSelected = ""
     @State private var nextScreen = false
-    //@ObservedObject var trainingPlanVm = TrainingPlanArrayViewModel()
+    @ObservedObject var trainingPlanVm = TrainingPlanArrayViewModel()
     
     var body: some View {
         
@@ -59,7 +59,7 @@ struct TrainingDaysView: View {
                 Button {
                     daysSelected = num
                     UserDefaults.standard.set(num, forKey: UserDefaults.Keys.trainingDays.rawValue)
-//                    trainingPlanVm.fetchPlanArray(name: num)
+                    trainingPlanVm.fetchPlanArray(name: num)
                     UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
                 } label: {
                     Text(num)

@@ -25,6 +25,18 @@ extension Color {
     }
 }
 
+extension Image {
+    static var trainingRide: Image {
+        Image("Training_Ride")
+    }
+    static var trainingRun: Image {
+        Image("Training_Run")
+    }
+    static var trainingSwim: Image {
+        Image("Training_Swim")
+    }
+}
+
 extension UserDefaults {
     enum Keys: String, CaseIterable {
         case pList = "Plist"
@@ -33,4 +45,21 @@ extension UserDefaults {
         case trainingDays = "TrainingDays"
     }
     
+}
+
+enum TrainingImageNames: String {
+    case trainingSwim = "Training_Swim"
+    case trainingRide = "Training_Ride"
+    case trainingRun = "Training_Run"
+    case brickBikeRun = "Brick_BikeRun"
+    case brickSwimBike = "Brick_SwimBike"
+    case brickSwimRun = "Brick_SwimRun"
+    case trainingFull = "Training_Full"
+}
+
+enum Sessions: String {
+    case swim = "Swim"
+    case ride = "Ride"
+    case run = "Run"
+    case brick = "RideRun"
 }
