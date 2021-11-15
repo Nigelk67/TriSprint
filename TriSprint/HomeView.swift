@@ -9,29 +9,43 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var nextScreen = false
-    @ObservedObject var trainingVm = TrainingPlanArrayViewModel()
+    //@ObservedObject var trainingVm = TrainingPlanArrayViewModel()
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Plan.day, ascending: true)], animation: .default)
+    private var plans: FetchedResults<Plan>
+    
     var body: some View {
         
         VStack {
             Spacer()
-        Button {
-            nextScreen.toggle()
-        } label: {
-            Text("Next Screen")
-                .font(.system(size: 32, weight: .semibold, design: .rounded))
+            Button {
+                nextScreen.toggle()
+            } label: {
+                Text("Next Screen")
+                    .font(.system(size: 32, weight: .semibold, design: .rounded))
+            }
+            Spacer()
+            
+            Button {
+                plans.forEach { plan in
+                    viewContext.delete(plan)
+                }
+                do {
+                    try viewContext.save()
+                } catch {
+                    print("Failed to delete all plans", error)
+                }
+            } label: {
+                Text("Delete All Plans")
+                    .font(.system(size: 32, weight: .semibold, design: .rounded))
+            }
+            Spacer()
+                .fullScreenCover(isPresented: $nextScreen) {
+                    FirstTriathlonView()
+                }
         }
-        Spacer()
-        Button {
-            print("Nige: training plan = \(trainingVm.trainingPlan)")
-        } label: {
-            Text("Print Plan")
-                .font(.system(size: 32, weight: .semibold, design: .rounded))
-        }
-        Spacer()
-        .fullScreenCover(isPresented: $nextScreen) {
-            FirstTriathlonView()
-        }
-    }
+       
     }
 }
 

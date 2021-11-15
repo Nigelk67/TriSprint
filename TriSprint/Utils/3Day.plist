@@ -4,19 +4,17 @@
 <array>
     <dict>
           <key>week</key>
-          <string>1</string>
+          <integer>1</integer>
           <key>phase</key>
           <string>Base</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>1</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Swim</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
           <string>30</string>
-          <key>swimheartrate</key>
-          <string>Zone 2</string>
           <key>swimrpe</key>
           <string>3</string>
           <key>swimdescription</key>
@@ -35,25 +33,13 @@ Take the rest that you feel like you need between reps.
 - Fc swim, focus on exhaling
 - Fc - 1&amp;3 breathing every 2 to your weak side 
 - Fc - focus on exhaling</string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string></string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -62,42 +48,28 @@ Take the rest that you feel like you need between reps.
     </dict>
     <dict>
           <key>week</key>
-          <string>1</string>
+          <integer>1</integer>
           <key>phase</key>
           <string>Base</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>2</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Ride</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
-          <string></string>
-          <key>ridedistance</key>
           <string></string>
           <key>ridetime</key>
           <string>50</string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
-          <string>Zone 2</string>
           <key>riderpe</key>
           <string>4</string>
-          <key>rideftp</key>
-          <string>0.75</string>
           <key>ridedescription</key>
           <string></string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -106,43 +78,29 @@ Take the rest that you feel like you need between reps.
     </dict>
     <dict>
           <key>week</key>
-          <string>1</string>
+          <integer>1</integer>
           <key>phase</key>
           <string>Base</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>3</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Run</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
-          <string></string>
-          <key>rundistance</key>
           <string></string>
           <key>runtime</key>
           <string>20</string>
-          <key>runheartrate</key>
-          <string>Zone 2</string>
           <key>runrpe</key>
           <string>3</string>
           <key>rundescription</key>
@@ -150,19 +108,17 @@ Take the rest that you feel like you need between reps.
     </dict>
     <dict>
           <key>week</key>
-          <string>2</string>
+          <integer>2</integer>
           <key>phase</key>
           <string>Base</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>4</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Swim</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
           <string>30</string>
-          <key>swimheartrate</key>
-          <string>Zone 2</string>
           <key>swimrpe</key>
           <string>3</string>
           <key>swimdescription</key>
@@ -173,25 +129,13 @@ Repeat for 50 mins. 10 x 25m of each:
 - Pull R:20 
 - Pull and paddles R:30
 - Pull R: 1 min</string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string></string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -200,35 +144,25 @@ Repeat for 50 mins. 10 x 25m of each:
     </dict>
     <dict>
           <key>week</key>
-          <string>2</string>
+          <integer>2</integer>
           <key>phase</key>
           <string>Base</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>5</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Ride</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
           <string>60</string>
-          <key>ridecadence</key>
-          <string>55</string>
-          <key>rideheartrate</key>
-          <string>Zone 4</string>
           <key>riderpe</key>
           <string>7</string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string>10 mins easy warm up
 4 mins - start easy, get faster every minute to raise HR
@@ -237,11 +171,7 @@ Main Set - 40 mins as:
 6 mins BIG GEAR - HIGH RESISTANCE @ 55 RPM / 2 mins recoveries
 
 Cool down 10 mins</string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -250,43 +180,29 @@ Cool down 10 mins</string>
     </dict>
     <dict>
           <key>week</key>
-          <string>2</string>
+          <integer>2</integer>
           <key>phase</key>
           <string>Base</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>6</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Run</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
-          <string></string>
-          <key>rundistance</key>
           <string></string>
           <key>runtime</key>
           <string>30</string>
-          <key>runheartrate</key>
-          <string>Zone 2</string>
           <key>runrpe</key>
           <string>3</string>
           <key>rundescription</key>
@@ -294,19 +210,17 @@ Cool down 10 mins</string>
     </dict>
     <dict>
           <key>week</key>
-          <string>3</string>
+          <integer>3</integer>
           <key>phase</key>
           <string>Base</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>7</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Swim</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
           <string>45</string>
-          <key>swimheartrate</key>
-          <string>Zone 2</string>
           <key>swimrpe</key>
           <string>4</string>
           <key>swimdescription</key>
@@ -323,25 +237,13 @@ Take the rest that you feel like you need between reps
 - 10m doggy paddle (pull buoy) 15m swim 
 - Fc pull 
 - 10m scull (pull buoy) 15m swim</string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string></string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -350,35 +252,25 @@ Take the rest that you feel like you need between reps
     </dict>
     <dict>
           <key>week</key>
-          <string>3</string>
+          <integer>3</integer>
           <key>phase</key>
           <string>Base</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>8</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Ride</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
           <string>60</string>
-          <key>ridecadence</key>
-          <string>55</string>
-          <key>rideheartrate</key>
-          <string>Zone 4</string>
           <key>riderpe</key>
           <string>7</string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string>10 mins easy warm up
 4 mins - start easy, get faster every minute to raise HR
@@ -387,11 +279,7 @@ Main Set - 40 mins as:
 3 mins BIG GEAR - HIGH RESISTANCE @ 55 RPM / 2 mins recoveries
 
 Cool down 10 mins</string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -400,43 +288,29 @@ Cool down 10 mins</string>
     </dict>
     <dict>
           <key>week</key>
-          <string>3</string>
+          <integer>3</integer>
           <key>phase</key>
           <string>Base</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>9</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Run</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
-          <string></string>
-          <key>rundistance</key>
           <string></string>
           <key>runtime</key>
           <string>45</string>
-          <key>runheartrate</key>
-          <string>Zone 4</string>
           <key>runrpe</key>
           <string>7</string>
           <key>rundescription</key>
@@ -444,19 +318,17 @@ Cool down 10 mins</string>
     </dict>
     <dict>
           <key>week</key>
-          <string>4</string>
+          <integer>4</integer>
           <key>phase</key>
           <string>Base</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>10</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Swim</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
           <string>45</string>
-          <key>swimheartrate</key>
-          <string>Zone 2</string>
           <key>swimrpe</key>
           <string>4</string>
           <key>swimdescription</key>
@@ -477,25 +349,13 @@ Take the rest that you feel like you need between reps
 - Fc fins
 - 6 kicks on side / 3 arm pulls/ 6 kicks on side
 - Fc fins</string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string></string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -504,35 +364,25 @@ Take the rest that you feel like you need between reps
     </dict>
     <dict>
           <key>week</key>
-          <string>4</string>
+          <integer>4</integer>
           <key>phase</key>
           <string>Base</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>11</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Ride</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
           <string>60</string>
-          <key>ridecadence</key>
-          <string>55</string>
-          <key>rideheartrate</key>
-          <string>Zone 4</string>
           <key>riderpe</key>
           <string>7</string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string>10 mins easy warm up
 4 mins - start easy, get faster every minute to raise HR
@@ -541,11 +391,7 @@ Main Set - 40 mins as:
 4 mins BIG GEAR - HIGH RESISTANCE @ 55 RPM / 2 mins recoveries
 
 Cool down 10 mins</string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -554,43 +400,29 @@ Cool down 10 mins</string>
     </dict>
     <dict>
           <key>week</key>
-          <string>4</string>
+          <integer>4</integer>
           <key>phase</key>
           <string>Base</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>12</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Run</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
-          <string></string>
-          <key>rundistance</key>
           <string></string>
           <key>runtime</key>
           <string>45</string>
-          <key>runheartrate</key>
-          <string>Zone 2</string>
           <key>runrpe</key>
           <string>3</string>
           <key>rundescription</key>
@@ -598,19 +430,17 @@ Cool down 10 mins</string>
     </dict>
     <dict>
           <key>week</key>
-          <string>5</string>
+          <integer>5</integer>
           <key>phase</key>
           <string>Build</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>13</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Swim</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
           <string>60</string>
-          <key>swimheartrate</key>
-          <string>Zone 4</string>
           <key>swimrpe</key>
           <string>7</string>
           <key>swimdescription</key>
@@ -629,25 +459,13 @@ Take the rest that you feel like you need between reps.
 - Fc swim, focus on exhaling
 - Fc - 1&amp;3 breathing every 2 to your weak side 
 - Fc - focus on exhaling</string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string></string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -656,42 +474,28 @@ Take the rest that you feel like you need between reps.
     </dict>
     <dict>
           <key>week</key>
-          <string>5</string>
+          <integer>5</integer>
           <key>phase</key>
           <string>Build</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>14</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Ride</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
-          <string></string>
-          <key>ridedistance</key>
           <string></string>
           <key>ridetime</key>
           <string>75</string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
-          <string>Zone 2</string>
           <key>riderpe</key>
           <string>3</string>
-          <key>rideftp</key>
-          <string>0.65</string>
           <key>ridedescription</key>
           <string></string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -700,43 +504,29 @@ Take the rest that you feel like you need between reps.
     </dict>
     <dict>
           <key>week</key>
-          <string>5</string>
+          <integer>5</integer>
           <key>phase</key>
           <string>Build</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>15</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Run</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
-          <string></string>
-          <key>rundistance</key>
           <string></string>
           <key>runtime</key>
           <string>45</string>
-          <key>runheartrate</key>
-          <string>Zone 2</string>
           <key>runrpe</key>
           <string>3</string>
           <key>rundescription</key>
@@ -744,19 +534,17 @@ Take the rest that you feel like you need between reps.
     </dict>
     <dict>
           <key>week</key>
-          <string>6</string>
+          <integer>6</integer>
           <key>phase</key>
           <string>Build</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>16</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Swim</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
           <string>60</string>
-          <key>swimheartrate</key>
-          <string>Zone 2</string>
           <key>swimrpe</key>
           <string>3</string>
           <key>swimdescription</key>
@@ -767,25 +555,13 @@ Repeat for 50 mins. 12 x 25m of each:
 - Pull R:20 
 - Pull and paddles R:30
 - Pull R: 1 min</string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string></string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -794,35 +570,25 @@ Repeat for 50 mins. 12 x 25m of each:
     </dict>
     <dict>
           <key>week</key>
-          <string>6</string>
+          <integer>6</integer>
           <key>phase</key>
           <string>Build</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>17</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Ride</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
           <string>60</string>
-          <key>ridecadence</key>
-          <string>65</string>
-          <key>rideheartrate</key>
-          <string>Zone 4</string>
           <key>riderpe</key>
           <string>7</string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string>10 mins easy warm up
 4 mins - start easy, get faster every minute to raise HR
@@ -831,11 +597,7 @@ Main Set - 40 mins as:
 4 mins BIG GEAR - HIGH RESISTANCE @ 65 RPM / 2 mins recoveries
 
 Cool down 10 mins</string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -844,43 +606,29 @@ Cool down 10 mins</string>
     </dict>
     <dict>
           <key>week</key>
-          <string>6</string>
+          <integer>6</integer>
           <key>phase</key>
           <string>Build</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>18</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Run</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
-          <string></string>
-          <key>rundistance</key>
           <string></string>
           <key>runtime</key>
           <string>60</string>
-          <key>runheartrate</key>
-          <string>Zone 4</string>
           <key>runrpe</key>
           <string>7</string>
           <key>rundescription</key>
@@ -888,19 +636,17 @@ Cool down 10 mins</string>
     </dict>
     <dict>
           <key>week</key>
-          <string>7</string>
+          <integer>7</integer>
           <key>phase</key>
           <string>Build</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>19</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Swim</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
           <string>45</string>
-          <key>swimheartrate</key>
-          <string>Zone 4</string>
           <key>swimrpe</key>
           <string>7</string>
           <key>swimdescription</key>
@@ -917,25 +663,13 @@ Take the rest that you feel like you need between reps
 - 10m doggy paddle (pull buoy) 15m swim 
 - Fc pull 
 - 10m scull (pull buoy) 15m swim</string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string></string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -944,42 +678,28 @@ Take the rest that you feel like you need between reps
     </dict>
     <dict>
           <key>week</key>
-          <string>7</string>
+          <integer>7</integer>
           <key>phase</key>
           <string>Build</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>20</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Ride</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
-          <string></string>
-          <key>ridedistance</key>
           <string></string>
           <key>ridetime</key>
           <string>90</string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
-          <string>Zone 2</string>
           <key>riderpe</key>
           <string>3</string>
-          <key>rideftp</key>
-          <string>0.65</string>
           <key>ridedescription</key>
           <string></string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -988,43 +708,29 @@ Take the rest that you feel like you need between reps
     </dict>
     <dict>
           <key>week</key>
-          <string>7</string>
+          <integer>7</integer>
           <key>phase</key>
           <string>Build</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>21</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Run</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
-          <string></string>
-          <key>rundistance</key>
           <string></string>
           <key>runtime</key>
           <string>45</string>
-          <key>runheartrate</key>
-          <string>Zone 2</string>
           <key>runrpe</key>
           <string>3</string>
           <key>rundescription</key>
@@ -1032,19 +738,17 @@ Take the rest that you feel like you need between reps
     </dict>
     <dict>
           <key>week</key>
-          <string>8</string>
+          <integer>8</integer>
           <key>phase</key>
           <string>Build</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>22</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Swim</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
           <string>60</string>
-          <key>swimheartrate</key>
-          <string>Zone 4</string>
           <key>swimrpe</key>
           <string>7</string>
           <key>swimdescription</key>
@@ -1065,25 +769,13 @@ Take the rest that you feel like you need between reps
 - Fc fins
 - 6 kicks on side / 3 arm pulls/ 6 kicks on side
 - Fc fins</string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string></string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -1092,35 +784,25 @@ Take the rest that you feel like you need between reps
     </dict>
     <dict>
           <key>week</key>
-          <string>8</string>
+          <integer>8</integer>
           <key>phase</key>
           <string>Build</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>23</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Ride</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
           <string>60</string>
-          <key>ridecadence</key>
-          <string>65</string>
-          <key>rideheartrate</key>
-          <string>Zone 4</string>
           <key>riderpe</key>
           <string>7</string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string>10 mins easy warm up
 4 mins - start easy, get faster every minute to raise HR
@@ -1129,11 +811,7 @@ Main Set - 40 mins as:
 5 mins BIG GEAR - HIGH RESISTANCE @ 65 RPM / 2 mins recoveries
 
 Cool down 10 mins</string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -1142,43 +820,29 @@ Cool down 10 mins</string>
     </dict>
     <dict>
           <key>week</key>
-          <string>8</string>
+          <integer>8</integer>
           <key>phase</key>
           <string>Build</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>24</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Run</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
-          <string></string>
-          <key>rundistance</key>
           <string></string>
           <key>runtime</key>
           <string>60</string>
-          <key>runheartrate</key>
-          <string>Zone 4</string>
           <key>runrpe</key>
           <string>7</string>
           <key>rundescription</key>
@@ -1186,19 +850,17 @@ Cool down 10 mins</string>
     </dict>
     <dict>
           <key>week</key>
-          <string>9</string>
+          <integer>9</integer>
           <key>phase</key>
           <string>Race</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>25</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Swim</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
           <string>60</string>
-          <key>swimheartrate</key>
-          <string>Zone 4</string>
           <key>swimrpe</key>
           <string>7</string>
           <key>swimdescription</key>
@@ -1209,25 +871,13 @@ Repeat for 50 mins. 16 x 25m of each:
 - Pull R:20 
 - Pull and paddles R:30
 - Pull R: 1 min</string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string></string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -1236,43 +886,29 @@ Repeat for 50 mins. 16 x 25m of each:
     </dict>
     <dict>
           <key>week</key>
-          <string>9</string>
+          <integer>9</integer>
           <key>phase</key>
           <string>Race</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>26</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>RideRun</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
           <string>60</string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
-          <string>Zone 2</string>
           <key>riderpe</key>
           <string>4</string>
-          <key>rideftp</key>
-          <string>0.7</string>
           <key>ridedescription</key>
-          <string></string>
-          <key>rundistance</key>
           <string></string>
           <key>runtime</key>
           <string>10</string>
-          <key>runheartrate</key>
-          <string>Zone 2</string>
           <key>runrpe</key>
           <string>3</string>
           <key>rundescription</key>
@@ -1280,43 +916,29 @@ Repeat for 50 mins. 16 x 25m of each:
     </dict>
     <dict>
           <key>week</key>
-          <string>9</string>
+          <integer>9</integer>
           <key>phase</key>
           <string>Race</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>27</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Run</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
-          <string></string>
-          <key>rundistance</key>
           <string></string>
           <key>runtime</key>
           <string>45</string>
-          <key>runheartrate</key>
-          <string>Zone 2</string>
           <key>runrpe</key>
           <string>3</string>
           <key>rundescription</key>
@@ -1324,42 +946,28 @@ Repeat for 50 mins. 16 x 25m of each:
     </dict>
     <dict>
           <key>week</key>
-          <string>10</string>
+          <integer>10</integer>
           <key>phase</key>
           <string>Race</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>28</string>
-          <key>swimdistance</key>
-          <string>0.75</string>
+          <key>session</key>
+          <string>Swim</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
           <string>60</string>
-          <key>swimheartrate</key>
-          <string>Zone 4</string>
           <key>swimrpe</key>
           <string>7</string>
           <key>swimdescription</key>
           <string>OPEN WATER SWIM - check wetsuit and acclimatise.</string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string></string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -1368,45 +976,31 @@ Repeat for 50 mins. 16 x 25m of each:
     </dict>
     <dict>
           <key>week</key>
-          <string>10</string>
+          <integer>10</integer>
           <key>phase</key>
           <string>Race</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>29</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Ride</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
           <string>60</string>
-          <key>ridecadence</key>
-          <string>100</string>
-          <key>rideheartrate</key>
-          <string>Zone 5</string>
           <key>riderpe</key>
           <string>9</string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string>10 mins easy warm up
 4 mins - start easy, get faster every minute to raise HR
 
 Main Set - 6 x 3 mins R: 3 mins </string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -1415,43 +1009,29 @@ Main Set - 6 x 3 mins R: 3 mins </string>
     </dict>
     <dict>
           <key>week</key>
-          <string>10</string>
+          <integer>10</integer>
           <key>phase</key>
           <string>Race</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>30</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>RideRun</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
           <string>90</string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
-          <string>Zone 2</string>
           <key>riderpe</key>
           <string>4</string>
-          <key>rideftp</key>
-          <string>0.75</string>
           <key>ridedescription</key>
-          <string></string>
-          <key>rundistance</key>
           <string></string>
           <key>runtime</key>
           <string>20</string>
-          <key>runheartrate</key>
-          <string>Zone 2</string>
           <key>runrpe</key>
           <string>3</string>
           <key>rundescription</key>
@@ -1459,43 +1039,29 @@ Main Set - 6 x 3 mins R: 3 mins </string>
     </dict>
     <dict>
           <key>week</key>
-          <string>11</string>
+          <integer>11</integer>
           <key>phase</key>
           <string>Race</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>31</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Run</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
-          <string></string>
-          <key>rundistance</key>
           <string></string>
           <key>runtime</key>
           <string>60</string>
-          <key>runheartrate</key>
-          <string>Zone 4</string>
           <key>runrpe</key>
           <string>7</string>
           <key>rundescription</key>
@@ -1503,19 +1069,17 @@ Main Set - 6 x 3 mins R: 3 mins </string>
     </dict>
     <dict>
           <key>week</key>
-          <string>11</string>
+          <integer>11</integer>
           <key>phase</key>
           <string>Race</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>32</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Swim</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
           <string>60</string>
-          <key>swimheartrate</key>
-          <string>Zone 2</string>
           <key>swimrpe</key>
           <string>3</string>
           <key>swimdescription</key>
@@ -1526,25 +1090,13 @@ Repeat for 50 mins. 16 x 25m of each:
 - Pull R:20 
 - Pull and paddles R:30
 - Pull R: 1 min</string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string></string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -1553,45 +1105,31 @@ Repeat for 50 mins. 16 x 25m of each:
     </dict>
     <dict>
           <key>week</key>
-          <string>11</string>
+          <integer>11</integer>
           <key>phase</key>
           <string>Race</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>33</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Ride</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
           <string>60</string>
-          <key>ridecadence</key>
-          <string>90</string>
-          <key>rideheartrate</key>
-          <string>Zone 4</string>
           <key>riderpe</key>
           <string>8</string>
-          <key>rideftp</key>
-          <string>1.05</string>
           <key>ridedescription</key>
           <string>10 mins easy warm up
 4 mins - start easy, get faster every minute to raise HR
 
 Main Set - 8 x 4mins R:2 mins </string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -1600,43 +1138,29 @@ Main Set - 8 x 4mins R:2 mins </string>
     </dict>
     <dict>
           <key>week</key>
-          <string>12</string>
+          <integer>12</integer>
           <key>phase</key>
           <string>Race</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>34</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Run</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
-          <string></string>
-          <key>rundistance</key>
           <string></string>
           <key>runtime</key>
           <string>45</string>
-          <key>runheartrate</key>
-          <string>Zone 2</string>
           <key>runrpe</key>
           <string>3</string>
           <key>rundescription</key>
@@ -1644,42 +1168,28 @@ Main Set - 8 x 4mins R:2 mins </string>
     </dict>
     <dict>
           <key>week</key>
-          <string>12</string>
+          <integer>12</integer>
           <key>phase</key>
           <string>Race</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>35</string>
-          <key>swimdistance</key>
-          <string>0.75</string>
+          <key>session</key>
+          <string>Swim</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
           <string>60</string>
-          <key>swimheartrate</key>
-          <string>Zone 4</string>
           <key>swimrpe</key>
           <string>7</string>
           <key>swimdescription</key>
           <string>OPEN WATER SWIM </string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string></string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -1688,43 +1198,29 @@ Main Set - 8 x 4mins R:2 mins </string>
     </dict>
     <dict>
           <key>week</key>
-          <string>12</string>
+          <integer>12</integer>
           <key>phase</key>
           <string>Race</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>36</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>RideRun</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
           <string>60</string>
-          <key>ridecadence</key>
-          <string>55</string>
-          <key>rideheartrate</key>
-          <string>Zone 4</string>
           <key>riderpe</key>
           <string>4</string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
-          <string></string>
-          <key>rundistance</key>
           <string></string>
           <key>runtime</key>
           <string>20</string>
-          <key>runheartrate</key>
-          <string>Zone 2</string>
           <key>runrpe</key>
           <string>3</string>
           <key>rundescription</key>
@@ -1732,42 +1228,28 @@ Main Set - 8 x 4mins R:2 mins </string>
     </dict>
     <dict>
           <key>week</key>
-          <string>13</string>
+          <integer>13</integer>
           <key>phase</key>
           <string>Race</string>
-          <key>key</key>
-          <string></string>
           <key>day</key>
           <string>37</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Swim</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
           <string>30</string>
-          <key>swimheartrate</key>
-          <string>Zone 2</string>
           <key>swimrpe</key>
           <string>3</string>
           <key>swimdescription</key>
           <string>Easy fc</string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string></string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -1776,42 +1258,28 @@ Main Set - 8 x 4mins R:2 mins </string>
     </dict>
     <dict>
           <key>week</key>
-          <string>13</string>
+          <integer>13</integer>
           <key>phase</key>
           <string>Race</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>38</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Ride</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
-          <string></string>
-          <key>ridedistance</key>
           <string></string>
           <key>ridetime</key>
           <string>40</string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
-          <string>Zone 2</string>
           <key>riderpe</key>
           <string>3</string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
           <string></string>
-          <key>rundistance</key>
-          <string></string>
           <key>runtime</key>
-          <string></string>
-          <key>runheartrate</key>
           <string></string>
           <key>runrpe</key>
           <string></string>
@@ -1820,43 +1288,29 @@ Main Set - 8 x 4mins R:2 mins </string>
     </dict>
     <dict>
           <key>week</key>
-          <string>13</string>
+          <integer>13</integer>
           <key>phase</key>
           <string>Race</string>
-          <key>key</key>
-          <string>1</string>
           <key>day</key>
           <string>39</string>
-          <key>swimdistance</key>
-          <string></string>
+          <key>session</key>
+          <string>Run</string>
+          <key>completed</key>
+          <string>0</string>
           <key>swimtime</key>
-          <string></string>
-          <key>swimheartrate</key>
           <string></string>
           <key>swimrpe</key>
           <string></string>
           <key>swimdescription</key>
           <string></string>
-          <key>ridedistance</key>
-          <string></string>
           <key>ridetime</key>
-          <string></string>
-          <key>ridecadence</key>
-          <string></string>
-          <key>rideheartrate</key>
           <string></string>
           <key>riderpe</key>
           <string></string>
-          <key>rideftp</key>
-          <string></string>
           <key>ridedescription</key>
-          <string></string>
-          <key>rundistance</key>
           <string></string>
           <key>runtime</key>
           <string>20</string>
-          <key>runheartrate</key>
-          <string>Zone 2</string>
           <key>runrpe</key>
           <string>3</string>
           <key>rundescription</key>

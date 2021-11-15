@@ -1,5 +1,5 @@
 //
-//  Plan.swift
+//  TrainingPlan.swift
 //  TriSprint
 //
 //  Created by Nigel Karan on 13.11.21.
@@ -7,10 +7,12 @@
 
 import SwiftUI
 
-struct Plan {
-    let week: String
+struct TrainingPlan {
+    let week: Int
     let day: String
     let phase: String
+    let session: String
+    let completed: Int
     let swimTime: String
     let swimRpe: String
     let swimDescription: String
@@ -22,9 +24,11 @@ struct Plan {
     let runDescription: String
     
     init(dictionary: [String: Any]) {
-        self.week = dictionary["week"] as? String ?? ""
+        self.week = dictionary["week"] as? Int ?? 0
         self.day = dictionary["day"] as? String ?? ""
         self.phase = dictionary["phase"] as? String ?? ""
+        self.session = dictionary["session"] as? String ?? ""
+        self.completed = dictionary["completed"] as? Int ?? 0
         self.swimTime = dictionary["swimtime"] as? String ?? ""
         self.swimRpe = dictionary["swimrpe"] as? String ?? ""
         self.swimDescription = dictionary["swimdescription"] as? String ?? ""
