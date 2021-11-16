@@ -49,17 +49,27 @@ extension UserDefaults {
 
 enum TrainingImageNames: String {
     case trainingSwim = "Training_Swim"
+    case trainingSwimCompleted = "Training_Swim_Complete"
     case trainingRide = "Training_Ride"
+    case trainingRideCompleted = "Training_Ride_Complete"
     case trainingRun = "Training_Run"
+    case trainingRunCompleted = "Training_Run_Complete"
     case brickBikeRun = "Brick_BikeRun"
+    case bikeRunCompleted = "Brick_BikeRun_Complete"
     case brickSwimBike = "Brick_SwimBike"
+    case swimBikeCompleted = "Brick_SwimBike_Complete"
     case brickSwimRun = "Brick_SwimRun"
+    case swimRunCompleted = "Brick_SwimRun_Complete"
     case trainingFull = "Training_Full"
+    case fullCompleted = "Training_Full_Complete"
 }
 
 enum Sessions: String {
     case swim = "Swim"
     case ride = "Ride"
     case run = "Run"
-    case brick = "RideRun"
+    case rideRun = "RideRun"
+    case swimRide = "SwimRide"
+    case swimRun = "SwimRun"
+    case full = "Full"
 }

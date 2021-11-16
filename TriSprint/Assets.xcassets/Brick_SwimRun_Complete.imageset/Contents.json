@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "Brick_SwimRun_Complete.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Brick_SwimRun_Complete@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Brick_SwimRun_Complete@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

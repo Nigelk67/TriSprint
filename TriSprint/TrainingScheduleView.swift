@@ -66,7 +66,7 @@ struct WeekView: View {
                         Button {
                             print("Nige: image button pressed")
                         } label: {
-                            let imageName = scheduleVm.setImageNames(session: plan.session ?? "")
+                            let imageName = scheduleVm.setImageNames(session: plan.session ?? "", completed: plan.completed)
                             Image(imageName)
                                 .opacity(0.8)
                         }
