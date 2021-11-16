@@ -32,13 +32,11 @@ struct TrainingScheduleView: View {
                                 }
                             }
                         } else {
-                            Text("No Plans")
+                            NoPlansView()
                         }
                     }
                 }
                 .navigationBarHidden(true)
-                //.navigationTitle("")
-//                .navigationBarTitleDisplayMode(.inline)
             }
         }
     }
