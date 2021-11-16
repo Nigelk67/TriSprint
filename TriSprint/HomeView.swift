@@ -12,7 +12,7 @@ struct HomeView: View {
     //@ObservedObject var trainingVm = TrainingPlanArrayViewModel()
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Plan.day, ascending: true)], animation: .default)
+        sortDescriptors: [NSSortDescriptor(keyPath: \Plan.week, ascending: true)], animation: .default)
     private var plans: FetchedResults<Plan>
     
     var body: some View {
