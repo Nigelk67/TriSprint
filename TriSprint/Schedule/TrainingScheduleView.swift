@@ -14,6 +14,8 @@ struct TrainingScheduleView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Plan.week, ascending: true)], animation: .default)
     private var plans: FetchedResults<Plan>
     let weeks = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+    @State private var showDetailView = false
+    
     
     var body: some View {
         
@@ -32,55 +34,17 @@ struct TrainingScheduleView: View {
                                 }
                             }
                         } else {
-                            Text("No Plans")
+                            Spacer()
+                            NoPlansView()
                         }
                     }
                 }
                 .navigationBarHidden(true)
-                //.navigationTitle("")
-//                .navigationBarTitleDisplayMode(.inline)
             }
         }
     }
 }
 
-struct WeekView: View {
-    
-    var plans: FetchedResults<Plan>
-    var week: Int
-    @ObservedObject var scheduleVm = ScheduleViewModel()
-    
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-        HStack {
-            ForEach(plans) { plan in
-                if plan.week == week {
-                    VStack {
-                        HStack {
-                            Text("Day")
-                            Text(plan.day ?? "")
-                        }
-                        .foregroundColor(Color.mainText)
-                        .font(.subheadline)
-                        
-                        Button {
-                            print("Nige: image button pressed")
-                        } label: {
-                            let imageName = scheduleVm.setImageNames(session: plan.session ?? "", completed: plan.completed)
-                            Image(imageName)
-                                .opacity(0.8)
-                        }
-                    }
-                    .padding(.horizontal,5)
-                    .padding(.bottom,30)
-                    
-                }
-            }
-            }
-        }
-        .padding(.leading,10)
-    }
-}
 
 struct SectionHeaderView: View {
     var week: Int16

@@ -18,6 +18,7 @@ class TrainingPlanArrayViewModel: ObservableObject {
         var array: NSArray?
         array = NSArray(contentsOfFile: path!)
         trainingPlan = array as! [Dictionary<String, Any>]
+        
         savePlanToCoreData(trainingPlan: trainingPlan)
     }
     
@@ -54,15 +55,4 @@ class TrainingPlanArrayViewModel: ObservableObject {
 
     }
 }
-//Button(action: {
-//    let context = PersistenceController.shared.container.viewContext
-//    let transaction = CardTransaction(context: context)
-//    transaction.name = self.name
-//    transaction.timestamp = self.date
-//    transaction.amount = Float(self.amount) ?? 0
-//    transaction.photoData = self.photoData
-//    transaction.card = self.card
-//    transaction.categories = self.selectedCategories as NSSet
-//
-//    do {
-//        try context.save()
+
