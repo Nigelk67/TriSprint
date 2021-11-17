@@ -22,6 +22,44 @@ import SwiftUI
 //
 //    }
 //}
+//                    .font(.footnote)
+//                    .padding(EdgeInsets(top: 4, leading: 6, bottom: 4, trailing: 6))
+//                    .foregroundColor(Color.white)
+//                    .background(Color.accentButton)
+//                    .cornerRadius(40)
+
+struct ReallySmallGreenButton: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.system(size: 12))
+            .padding(EdgeInsets(top: 4, leading: 6, bottom: 4, trailing: 6))
+            .foregroundColor(Color.white)
+            .background(Color.accentButton)
+            .cornerRadius(40)
+    }
+}
+
+struct SmallGreenButton: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.footnote)
+            .padding(EdgeInsets(top: 4, leading: 6, bottom: 4, trailing: 6))
+            .foregroundColor(Color.white)
+            .background(Color.accentButton)
+            .cornerRadius(40)
+    }
+}
+
+struct RedButton: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.headline)
+            .padding(EdgeInsets(top: 4, leading: 6, bottom: 4, trailing: 6))
+            .foregroundColor(Color.white)
+            .background(Color.mainButton)
+            .cornerRadius(20)
+    }
+}
 
 struct GreenButton: ViewModifier {
     func body(content: Content) -> some View {
@@ -33,4 +71,5 @@ struct GreenButton: ViewModifier {
             .cornerRadius(3)
     }
 }
+
 

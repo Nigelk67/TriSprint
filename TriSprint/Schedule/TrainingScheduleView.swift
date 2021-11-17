@@ -17,6 +17,7 @@ struct TrainingScheduleView: View {
     @State private var showDetailView = false
     
     
+    
     var body: some View {
         
         NavigationView {
@@ -43,6 +44,7 @@ struct TrainingScheduleView: View {
             }
         }
     }
+    
 }
 
 
