@@ -8,69 +8,37 @@
 import SwiftUI
 
 struct DetailContentView: View {
-
+    
     @Binding var plan: Plan
-    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
+        
         ZStack {
-            BikeBackground()
+            BackgroundView(plan: $plan)
+            
             VStack {
-                cancelButton
-                Text("Day: 5")
-                    .foregroundColor(Color.mainText)
-                    .font(.title)
+                CancelButton()
+                DayView(day: plan.day ?? "")
                 Spacer()
                 ScrollView {
                     VStack {
                         HStack {
-                            skipButton
-                            enterManuallyButton
+                            SkipButton()
+                            EnterManuallyButton()
                         }
-                        
                         HStack {
-                            Image("Training_Full")
-                                .padding(.horizontal,10)
+                            ImageDetailView(session: plan.session ?? "", completed: plan.completed)
                             Spacer()
-                            VStack {
-                                Text("Time")
-                                    .foregroundColor(Color.mainText)
-                                    .font(.title3)
-                                    .padding(.bottom,4)
-                                    
-                                HStack(alignment: .firstTextBaseline) {
-                                    Text("222")
-                                        .foregroundColor(Color.mainText)
-                                        .font(.largeTitle)
-                                        .fontWeight(.semibold)
-                                    Text("mins")
-                                        .foregroundColor(Color.mainText)
-                                        .font(.caption)
-                                        .padding(.horizontal,-6)
-                                }
-                            }
+                            setTime()
                             Spacer()
-                            VStack {
-                                Text("RPE")
-                                    .foregroundColor(Color.mainText)
-                                    .font(.title3)
-                                    .padding(.bottom,4)
-                                Text("6")
-                                    .foregroundColor(Color.mainText)
-                                    .font(.largeTitle)
-                                    .fontWeight(.semibold)
-                            }
-                            .padding()
+                            setRpe()
                         }
                         .padding(.horizontal,0)
                         .padding(.vertical,20)
                         
-                        Text("This is where the description and drills for the session would go,This is where the description and drills for the session would go,This is where the description and drills for the session would go,This is where the description and drills for the session would go")
-                            .foregroundColor(Color.mainText)
-                            .font(.title3)
-                            .multilineTextAlignment(.leading)
-                            .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
-                        letsGoButton
+                        setDescription()
+                        
+                        LetsGoButton()
                             .padding(.bottom)
                     }
                     .frame(width: 350)
@@ -80,59 +48,65 @@ struct DetailContentView: View {
             }
         }
     }
-    private var cancelButton: some View {
-        HStack {
-        Button(action: {
-            presentationMode.wrappedValue.dismiss()
-        }, label: {
-            Text("Cancel")
-        })
-            //Spacer()
+    private func setTime() -> TimeView {
+        if plan.session == Sessions.swim.rawValue {
+            let time = plan.swimTime
+            return TimeView(minutes: time ?? "")
+        } else if plan.session == Sessions.ride.rawValue {
+            let time = plan.rideTime
+            return TimeView(minutes: time ?? "")
+        } else if plan.session == Sessions.run.rawValue {
+            let time = plan.runTime
+            return TimeView(minutes: time ?? "")
         }
+        return TimeView(minutes: "")
     }
     
-    private var enterManuallyButton: some View {
-        HStack {
-            Spacer()
-            Button {
-                print("Nige: Enter Manually")
-            } label: {
-                Text("Enter Manually")
-                    .modifier(SmallGreenButton())
-            }
-            .padding(.top)
-            .padding(.trailing)
+    private func setRpe() -> RpeView {
+        if plan.session == Sessions.swim.rawValue {
+            let rpe = plan.swimRpe
+            return RpeView(rpe: rpe ?? "")
+        } else if plan.session == Sessions.ride.rawValue {
+            let rpe = plan.rideRpe
+            return RpeView(rpe: rpe ?? "")
+        } else if plan.session == Sessions.run.rawValue {
+            let rpe = plan.runRpe ?? ""
+            return RpeView(rpe: rpe)
         }
+        return RpeView(rpe: "")
     }
     
-    private var skipButton: some View {
-        HStack {
-            Button {
-                print("Nige: Skip button pressed")
-            } label: {
-                Text("Skip Session")
-                    .modifier(ReallySmallGreenButton())
-            }
-            .padding(.top)
-            .padding(.leading)
-            Spacer()
+    private func setDescription() -> DescriptionView {
+        if plan.session == Sessions.swim.rawValue {
+            let desc = plan.swimDescription
+            return DescriptionView(description: desc ?? "")
+        } else if plan.session == Sessions.ride.rawValue {
+            let desc = plan.rideDescription
+            return DescriptionView(description: desc ?? "")
+        } else if plan.session == Sessions.run.rawValue {
+            let desc = plan.runDescription
+            return DescriptionView(description: desc ?? "")
         }
+        return DescriptionView(description: "")
     }
-    private var letsGoButton: some View {
-        HStack {
-            Spacer()
-            Button {
-                print("Nige: Let's go button pressed")
-            } label: {
-                Text("Let's Go!")
-                    .modifier(RedButton())
-            }
-            .padding(.top)
-            .padding(.trailing)
-        }
-    }
+    
     
 }
+
+struct BackgroundView: View {
+    @Binding var plan: Plan
+    @ViewBuilder
+    var body: some View {
+        if plan.session == Sessions.swim.rawValue {
+            SwimBackground()
+        } else if plan.session == Sessions.ride.rawValue {
+            BikeBackground()
+        } else if plan.session == Sessions.run.rawValue {
+            RunBackground()
+        }
+    }
+}
+
 
 struct DetailContentView_Previews: PreviewProvider {
     static var previews: some View {

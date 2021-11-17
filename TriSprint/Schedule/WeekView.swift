@@ -41,16 +41,18 @@ struct WeekView: View {
                                 Image(imageName)
                             }
                             .fullScreenCover(isPresented: $showBrickDetailView) {
-                                TrainingDetailView(plan: $selectedPlan)
+                                Text("BRICK VIEW??")
+                                //TrainingDetailView(plan: $selectedPlan)
+                                //DetailContentView(plan: $selectedPlan)
                             }
                             .fullScreenCover(isPresented: $showSwimDetailView) {
-                                TrainingDetailView(plan: $selectedPlan)
+                                DetailContentView(plan: $selectedPlan)
                             }
                             .fullScreenCover(isPresented: $showRideDetailView) {
-                                TrainingDetailView(plan: $selectedPlan)
+                                DetailContentView(plan: $selectedPlan)
                             }
                             .fullScreenCover(isPresented: $showRunDetailView) {
-                                TrainingDetailView(plan: $selectedPlan)
+                                DetailContentView(plan: $selectedPlan)
                             }
                         }
                         .padding(.horizontal, 5)
