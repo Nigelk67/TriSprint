@@ -20,6 +20,7 @@
 		9BE3C07A2744ED15009E1ED3 /* DetailContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3C0792744ED15009E1ED3 /* DetailContentView.swift */; };
 		9BE3C07E27453132009E1ED3 /* DetailViewButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3C07D27453132009E1ED3 /* DetailViewButtons.swift */; };
 		9BE3C0802745378E009E1ED3 /* DetailViewComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3C07F2745378E009E1ED3 /* DetailViewComponents.swift */; };
+		9BE3C082274546EA009E1ED3 /* BrickDetailContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3C081274546EA009E1ED3 /* BrickDetailContentView.swift */; };
 		9BF12FDD273D725900A94588 /* TriSprintApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF12FDC273D725900A94588 /* TriSprintApp.swift */; };
 		9BF12FDF273D725900A94588 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF12FDE273D725900A94588 /* ContentView.swift */; };
 		9BF12FE1273D725A00A94588 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BF12FE0273D725A00A94588 /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		9BE3C0792744ED15009E1ED3 /* DetailContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContentView.swift; sourceTree = "<group>"; };
 		9BE3C07D27453132009E1ED3 /* DetailViewButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewButtons.swift; sourceTree = "<group>"; };
 		9BE3C07F2745378E009E1ED3 /* DetailViewComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewComponents.swift; sourceTree = "<group>"; };
+		9BE3C081274546EA009E1ED3 /* BrickDetailContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickDetailContentView.swift; sourceTree = "<group>"; };
 		9BF12FD9273D725900A94588 /* TriSprint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TriSprint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BF12FDC273D725900A94588 /* TriSprintApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriSprintApp.swift; sourceTree = "<group>"; };
 		9BF12FDE273D725900A94588 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				9BE3C0792744ED15009E1ED3 /* DetailContentView.swift */,
 				9BE3C07D27453132009E1ED3 /* DetailViewButtons.swift */,
 				9BE3C07F2745378E009E1ED3 /* DetailViewComponents.swift */,
+				9BE3C081274546EA009E1ED3 /* BrickDetailContentView.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				9BF12FE9273D725A00A94588 /* TriSprint.xcdatamodeld in Sources */,
 				9BF12FF7273E702400A94588 /* RunBackground.swift in Sources */,
 				9BF12FDF273D725900A94588 /* ContentView.swift in Sources */,
+				9BE3C082274546EA009E1ED3 /* BrickDetailContentView.swift in Sources */,
 				9BF12FF0273D74C000A94588 /* TrainingDaysView.swift in Sources */,
 				9B28677D273FDC7100E856F0 /* MainView.swift in Sources */,
 				9BF12FF5273E6D1500A94588 /* SwimBackground.swift in Sources */,

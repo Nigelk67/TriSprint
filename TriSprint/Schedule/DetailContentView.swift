@@ -15,9 +15,7 @@ struct DetailContentView: View {
         
         ZStack {
             BackgroundView(plan: $plan)
-            
             VStack {
-                CancelButton()
                 DayView(day: plan.day ?? "")
                 Spacer()
                 ScrollView {
@@ -45,6 +43,7 @@ struct DetailContentView: View {
                     .background(Color.white.opacity(0.5))
                     .cornerRadius(20)
                 }
+                CancelButton()
             }
         }
     }
@@ -93,19 +92,7 @@ struct DetailContentView: View {
     
 }
 
-struct BackgroundView: View {
-    @Binding var plan: Plan
-    @ViewBuilder
-    var body: some View {
-        if plan.session == Sessions.swim.rawValue {
-            SwimBackground()
-        } else if plan.session == Sessions.ride.rawValue {
-            BikeBackground()
-        } else if plan.session == Sessions.run.rawValue {
-            RunBackground()
-        }
-    }
-}
+
 
 
 struct DetailContentView_Previews: PreviewProvider {

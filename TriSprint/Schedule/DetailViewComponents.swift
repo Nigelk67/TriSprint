@@ -7,6 +7,22 @@
 
 import SwiftUI
 
+struct BackgroundView: View {
+    @Binding var plan: Plan
+    @ViewBuilder
+    var body: some View {
+        if plan.session == Sessions.swim.rawValue {
+            SwimBackground()
+        } else if plan.session == Sessions.ride.rawValue {
+            BikeBackground()
+        } else if plan.session == Sessions.run.rawValue {
+            RunBackground()
+        } else {
+            RunBackground()
+        }
+    }
+}
+
 struct ImageDetailView: View {
     @ObservedObject private var scheduleVm = ScheduleViewModel()
     @State var session: String

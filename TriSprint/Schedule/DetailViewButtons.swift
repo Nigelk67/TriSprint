@@ -61,9 +61,15 @@ struct CancelButton: View {
             Button(action: {
                 presentationMode.wrappedValue.dismiss()
             }, label: {
-                Text("Cancel")
+                Image(systemName: "return")
+                    .font(.system(size: 26))
+                    .foregroundColor(Color.mainButton)
             })
+            Spacer()
         }
+        .padding(.leading,70)
+        .padding(.bottom,20)
+        .padding(.top,20)
     }
     
 }
