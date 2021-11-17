@@ -14,6 +14,10 @@ struct WeekView: View {
     @State private var showDetailView = false
     @ObservedObject var scheduleVm = ScheduleViewModel()
     @State private var selectedPlan = Plan(entity: Plan.entity(), insertInto: nil)
+    @State private var showBrickDetailView = false
+    @State private var showSwimDetailView = false
+    @State private var showRideDetailView = false
+    @State private var showRunDetailView = false
     
     var body: some View {
         
@@ -31,12 +35,21 @@ struct WeekView: View {
                             
                             Button {
                                 selectedPlan = plan
-                                showDetailView.toggle()
+                                setDetailView(session: plan.session ?? "")
                             } label: {
                                 let imageName = scheduleVm.setImageNames(session: plan.session ?? "", completed: plan.completed)
                                 Image(imageName)
                             }
-                            .fullScreenCover(isPresented: $showDetailView) {
+                            .fullScreenCover(isPresented: $showBrickDetailView) {
+                                TrainingDetailView(plan: $selectedPlan)
+                            }
+                            .fullScreenCover(isPresented: $showSwimDetailView) {
+                                TrainingDetailView(plan: $selectedPlan)
+                            }
+                            .fullScreenCover(isPresented: $showRideDetailView) {
+                                TrainingDetailView(plan: $selectedPlan)
+                            }
+                            .fullScreenCover(isPresented: $showRunDetailView) {
                                 TrainingDetailView(plan: $selectedPlan)
                             }
                         }
@@ -47,49 +60,36 @@ struct WeekView: View {
             }
         }
         .padding(.leading, 10)
-//        ScrollView(.horizontal, showsIndicators: false) {
-//            HStack {
-//                ForEach(plans) { plan in
-//                    if plan.week == week {
-//                        VStack {
-//                            HStack {
-//                                Text("Day")
-//                                Text(plan.day ?? "")
-//                            }
-//                            .foregroundColor(Color.mainText)
-//                            .font(.subheadline)
-//
-//                            Button {
-//                                selectedPlan = plan
-//                                showDetailView.toggle()
-//                            } label: {
-//                                //Text("HERE")
-//                                //                                let imageName = scheduleVm.setImageNames(session: plan.session ?? "", completed: plan.completed)
-//                                //                                Image(imageName)
-//                                //                                    .opacity(0.8)
-//                            }
-//                            .fullScreenCover(isPresented: $showDetailView) {
-//                                TrainingDetailView(plan: $selectedPlan)
-//                            }
-//                        }
-//                        .padding(.horizontal,5)
-//                        .padding(.bottom,30)
-//
-//                    }
-//                    // else {}
-//                }
-//            }
-//        }
-//        .padding(.leading,10)
+        
+    }
+    private func setDetailView(session: String) {
+        if session == Sessions.rideRun.rawValue {
+            showBrickDetailView = true
+            showSwimDetailView = false
+            showRideDetailView = false
+            showRunDetailView = false
+        } else if session == Sessions.swim.rawValue {
+            showBrickDetailView = false
+            showSwimDetailView = true
+            showRideDetailView = false
+            showRunDetailView = false
+        } else if session == Sessions.ride.rawValue {
+            showBrickDetailView = false
+            showSwimDetailView = false
+            showRideDetailView = true
+            showRunDetailView = false
+        } else if session == Sessions.run.rawValue {
+            showBrickDetailView = false
+            showSwimDetailView = false
+            showRideDetailView = false
+            showRunDetailView = true
+        } else {
+            // All False
+        }
+      
     }
 }
 
 
 
 
-
-//struct WeekView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WeekView(plans: , week: )
-//    }
-//}

@@ -62,5 +62,8 @@ class ScheduleViewModel: ObservableObject {
         }
         return imageName
     }
+    
+    
+    
 }
 
