@@ -21,38 +21,8 @@ struct MapView: View {
                 
                 //MAPVIEW HERE
                 
-                HStack(alignment: .bottom) {
-                    Text("Target Time:")
-                        .font(.title3)
-                        .foregroundColor(Color.mainText)
-                    if plan.session == Sessions.ride.rawValue {
-                        Text(plan.rideTime ?? "")
-                            .foregroundColor(Color.mainText)
-                            .font(.title)
-                    } else {
-                        Text(plan.runTime ?? "")
-                            .foregroundColor(Color.mainText)
-                            .font(.title)
-                    }
-                    Text("mins")
-                        .foregroundColor(Color.mainText)
-                        .padding(.leading,-5)
-                }
+                TargetStack(plan: $plan)
                 
-                HStack {
-                    Text("Target RPE:")
-                        .font(.title3)
-                        .foregroundColor(Color.mainText)
-                    if plan.session == Sessions.ride.rawValue {
-                        Text(plan.rideRpe ?? "")
-                            .foregroundColor(Color.mainText)
-                            .font(.title)
-                    } else {
-                        Text(plan.runRpe ?? "")
-                            .foregroundColor(Color.mainText)
-                            .font(.title)
-                    }
-                }
                 HStack {
                     Text("Time:")
                         .font(.title3)
@@ -78,45 +48,8 @@ struct MapView: View {
                         .font(.title)
                 }
                 
-                HStack {
-                    Button {
-                        print("Nige: Pause button pressed")
-                    } label: {
-                        Text("Pause")
-                            .frame(width: 80, height: 40, alignment: .center)
-                            .font(.system(size: 18, weight: .semibold, design: .rounded))
-                            .background(Color.gray)
-                            .foregroundColor(Color.mainText)
-                            .cornerRadius(5)
-                            //.padding(.leading,30)
-                    }
-                    Spacer()
-                    Button {
-                        print("Nige: Start button pressed")
-                    } label: {
-                        Text("Start")
-                            .frame(width: 80, height: 40, alignment: .center)
-                            .font(.system(size: 18, weight: .semibold, design: .rounded))
-                            .background(Color.accentButton)
-                            .foregroundColor(Color.mainText)
-                            .cornerRadius(5)
-                    }
-                    Spacer()
-                    Button {
-                        print("Nige: Stop button pressed")
-                    } label: {
-                        Text("Stop")
-                            .frame(width: 80, height: 40, alignment: .center)
-                            .font(.system(size: 18, weight: .semibold, design: .rounded))
-                            .background(Color.red)
-                            .foregroundColor(Color.mainText)
-                            .cornerRadius(5)
-                            //.padding(.trailing,30)
-                    }
-                    
-                }
-                .frame(width: 350)
-                .padding(.vertical, 30)
+                TrackingButtons()
+                
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
@@ -126,6 +59,96 @@ struct MapView: View {
                 }
             }
         }
+    }
+    
+   
+}
+
+struct TargetStack: View {
+    
+    @Binding var plan: Plan
+    
+    var body: some View {
+        HStack(alignment: .firstTextBaseline) {
+            Text("Target Time:")
+                .font(.system(size: 16))
+                .foregroundColor(Color.mainText)
+            if plan.session == Sessions.ride.rawValue {
+                Text(plan.rideTime ?? "")
+                    .foregroundColor(Color.mainText)
+                    .font(.title)
+            } else {
+                Text(plan.runTime ?? "")
+                    .foregroundColor(Color.mainText)
+                    .font(.title)
+            }
+            Text("mins")
+                .foregroundColor(Color.mainText)
+                .font(.system(size: 12))
+                .padding(.leading,-4)
+        //}
+        Spacer()
+       // HStack(alignment: .firstTextBaseline) {
+            Text("Target RPE:")
+                .font(.system(size: 16))
+                .foregroundColor(Color.mainText)
+            if plan.session == Sessions.ride.rawValue {
+                Text(plan.rideRpe ?? "")
+                    .foregroundColor(Color.mainText)
+                    .font(.title)
+            } else {
+                Text(plan.runRpe ?? "")
+                    .foregroundColor(Color.mainText)
+                    .font(.title)
+            }
+        }
+        .frame(width: 350, height: 50, alignment: .center)
+        
+    }
+}
+
+struct TrackingButtons: View {
+    var body: some View {
+        HStack {
+            Button {
+                print("Nige: Pause button pressed")
+            } label: {
+                Text("Pause")
+                    .frame(width: 80, height: 40, alignment: .center)
+                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+                    .background(Color.gray)
+                    .foregroundColor(Color.mainText)
+                    .cornerRadius(5)
+                    //.padding(.leading,30)
+            }
+            Spacer()
+            Button {
+                print("Nige: Start button pressed")
+            } label: {
+                Text("Start")
+                    .frame(width: 80, height: 40, alignment: .center)
+                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+                    .background(Color.accentButton)
+                    .foregroundColor(Color.mainText)
+                    .cornerRadius(5)
+            }
+            Spacer()
+            Button {
+                print("Nige: Stop button pressed")
+            } label: {
+                Text("Stop")
+                    .frame(width: 80, height: 40, alignment: .center)
+                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+                    .background(Color.red)
+                    .foregroundColor(Color.mainText)
+                    .cornerRadius(5)
+                    //.padding(.trailing,30)
+            }
+            
+        }
+        .frame(width: 350)
+        .padding(.vertical, 30)
+        
     }
 }
 
