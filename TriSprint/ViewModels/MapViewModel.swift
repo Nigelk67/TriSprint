@@ -51,6 +51,8 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         checkLocationAuth()
     }
     
+   
+    
 //    private func mapRegion() -> MKCoordinateRegion? {
 //
 //        guard let locations = ride?.locations,locations.count > 0 else { return nil }

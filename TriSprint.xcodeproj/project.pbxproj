@@ -24,6 +24,7 @@
 		9BE3C08527465EEC009E1ED3 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3C08427465EEB009E1ED3 /* MapView.swift */; };
 		9BE3C087274695E6009E1ED3 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3C086274695E6009E1ED3 /* MapViewModel.swift */; };
 		9BE3C0952746B1DE009E1ED3 /* FormatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3C0942746B1DE009E1ED3 /* FormatDisplay.swift */; };
+		9BE3C0972746B872009E1ED3 /* UnitConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3C0962746B872009E1ED3 /* UnitConverter.swift */; };
 		9BF12FDD273D725900A94588 /* TriSprintApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF12FDC273D725900A94588 /* TriSprintApp.swift */; };
 		9BF12FDF273D725900A94588 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF12FDE273D725900A94588 /* ContentView.swift */; };
 		9BF12FE1273D725A00A94588 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BF12FE0273D725A00A94588 /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		9BE3C08427465EEB009E1ED3 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		9BE3C086274695E6009E1ED3 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		9BE3C0942746B1DE009E1ED3 /* FormatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatDisplay.swift; sourceTree = "<group>"; };
+		9BE3C0962746B872009E1ED3 /* UnitConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConverter.swift; sourceTree = "<group>"; };
 		9BF12FD9273D725900A94588 /* TriSprint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TriSprint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BF12FDC273D725900A94588 /* TriSprintApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriSprintApp.swift; sourceTree = "<group>"; };
 		9BF12FDE273D725900A94588 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				9BF12FF1273D819900A94588 /* Extensions.swift */,
 				9BF12FFF273E7F2200A94588 /* CustomStyling.swift */,
 				9BE3C0942746B1DE009E1ED3 /* FormatDisplay.swift */,
+				9BE3C0962746B872009E1ED3 /* UnitConverter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				9BE3C082274546EA009E1ED3 /* BrickDetailContentView.swift in Sources */,
 				9BE3C08527465EEC009E1ED3 /* MapView.swift in Sources */,
 				9BF12FF0273D74C000A94588 /* TrainingDaysView.swift in Sources */,
+				9BE3C0972746B872009E1ED3 /* UnitConverter.swift in Sources */,
 				9B28677D273FDC7100E856F0 /* MainView.swift in Sources */,
 				9BF12FF5273E6D1500A94588 /* SwimBackground.swift in Sources */,
 				9B286777273FC3BD00E856F0 /* TrainingArrayViewModel.swift in Sources */,
