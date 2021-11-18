@@ -73,3 +73,12 @@ enum Sessions: String {
     case swimRun = "SwimRun"
     case full = "Full"
 }
+
+extension HorizontalAlignment {
+    private enum HCenterAlignment: AlignmentID {
+        static func defaultValue(in dimensions: ViewDimensions) -> CGFloat {
+            return dimensions[HorizontalAlignment.center]
+        }
+    }
+    static let hCentered = HorizontalAlignment(HCenterAlignment.self)
+}
