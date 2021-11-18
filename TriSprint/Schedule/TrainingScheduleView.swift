@@ -20,7 +20,7 @@ struct TrainingScheduleView: View {
     
     var body: some View {
         
-        NavigationView {
+        //NavigationView {
             ZStack {
                 SwimBackground()
                 VStack {
@@ -40,9 +40,11 @@ struct TrainingScheduleView: View {
                         }
                     }
                 }
-                .navigationBarHidden(true)
+                .navigationTitle("Training Schedule")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarHidden(false)
             }
-        }
+        //}
     }
     
 }

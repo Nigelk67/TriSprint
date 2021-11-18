@@ -39,15 +39,19 @@ struct SkipButton: View {
     }
 }
 struct LetsGoButton: View {
+    @State var isDisabled: Bool = true
+    @State var showMapView: Bool
     var body: some View {
         HStack {
             Spacer()
             Button {
-                print("Nige: Let's go button pressed")
+                print("LetsGo button showMapView = \(showMapView)")
+                showMapView.toggle()
             } label: {
                 Text("Let's Go!")
-                    .modifier(RedButton())
+                    .modifier(RedButton(isSwim: $isDisabled))
             }
+            .disabled(isDisabled ? true : false)
             .padding(.top)
             .padding(.trailing)
         }
@@ -55,19 +59,19 @@ struct LetsGoButton: View {
 }
 
 struct CancelButton: View {
-    @Environment(\.presentationMode) var presentationMode
+    var presentationMode : Binding<PresentationMode>
     var body: some View {
         HStack {
             Button(action: {
-                presentationMode.wrappedValue.dismiss()
+                self.presentationMode.wrappedValue.dismiss()
             }, label: {
-                Image(systemName: "return")
-                    .font(.system(size: 26))
+                Image(systemName: "chevron.backward")
+                    .font(.system(size: 34))
                     .foregroundColor(Color.mainButton)
             })
             Spacer()
         }
-        .padding(.leading,70)
+        .padding(.leading,10)
         .padding(.bottom,20)
         .padding(.top,20)
     }

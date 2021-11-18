@@ -10,20 +10,29 @@ import SwiftUI
 struct BrickDetailContentView: View {
     
     @Binding var plan: Plan
+    @State private var showMapView: Bool = false
+    @Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
-        ZStack {
-            BackgroundView(plan: $plan)
-            VStack {
-                DayView(day: plan.day ?? "")
-                Spacer()
-                ScrollView {
-                    RideStack(plan: $plan)
-                    RunStack(plan: $plan)
+        NavigationView {
+            ZStack {
+                BackgroundView(plan: $plan)
+                VStack {
+                    DayView(day: plan.day ?? "")
+                        .padding(.vertical, 30)
+                    Spacer()
+                    ScrollView {
+                        RideStack(plan: $plan, showMapView: $showMapView)
+                        RunStack(plan: $plan, showMapView: showMapView)
+                    }
                 }
-                CancelButton()
             }
-            
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    CancelButton(presentationMode: presentationMode)
+                }
+            }
         }
         
     }
@@ -31,6 +40,7 @@ struct BrickDetailContentView: View {
 
 struct RideStack: View {
     @Binding var plan: Plan
+    @Binding var showMapView: Bool
     var body: some View {
         VStack {
             HStack {
@@ -50,8 +60,14 @@ struct RideStack: View {
             
             DescriptionView(description: plan.rideDescription ?? "")
             
-            LetsGoButton()
-                .padding(.bottom)
+            if plan.session == Sessions.swim.rawValue {
+                LetsGoButton(isDisabled: true, showMapView: showMapView)
+                    .padding(.bottom)
+            } else {
+                LetsGoButton(isDisabled: false, showMapView: showMapView)
+                    .padding(.bottom)
+            }
+    
         }
         .frame(width: 350)
         .background(Color.white.opacity(0.5))
@@ -61,6 +77,7 @@ struct RideStack: View {
 
 struct RunStack: View {
     @Binding var plan: Plan
+    @State var showMapView: Bool
     var body: some View {
         VStack {
             HStack {
@@ -80,8 +97,13 @@ struct RunStack: View {
             
             DescriptionView(description: plan.runDescription ?? "")
             
-            LetsGoButton()
-                .padding(.bottom)
+            if plan.session == Sessions.swim.rawValue {
+                LetsGoButton(isDisabled: true, showMapView: showMapView)
+                    .padding(.bottom)
+            } else {
+                LetsGoButton(isDisabled: false, showMapView: showMapView)
+                    .padding(.bottom)
+            }
         }
         .frame(width: 350)
         .background(Color.white.opacity(0.5))

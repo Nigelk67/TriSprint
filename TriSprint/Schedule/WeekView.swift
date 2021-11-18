@@ -20,7 +20,7 @@ struct WeekView: View {
     @State private var showRunDetailView = false
     
     var body: some View {
-        
+       
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 ForEach(plans) { plan in

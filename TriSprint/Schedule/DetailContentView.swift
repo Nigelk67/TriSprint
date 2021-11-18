@@ -10,14 +10,20 @@ import SwiftUI
 struct DetailContentView: View {
     
     @Binding var plan: Plan
+    @State private var showMapView = false
+    @Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
-        
+        NavigationView {
         ZStack {
             BackgroundView(plan: $plan)
+            
             VStack {
+                //CancelButton(presentationMode: presentationMode)
                 DayView(day: plan.day ?? "")
-                Spacer()
+                    .padding(.vertical, 30)
+                    
+                
                 ScrollView {
                     VStack {
                         HStack {
@@ -36,15 +42,26 @@ struct DetailContentView: View {
                         
                         setDescription()
                         
-                        LetsGoButton()
-                            .padding(.bottom)
+                        NavigationLink(destination: MapView(plan: $plan), isActive: $showMapView) { EmptyView()}
+                        if plan.session == Sessions.swim.rawValue {
+                            LetsGoButton(isDisabled: true, showMapView: showMapView)
+                                .padding(.bottom)
+                        } else {
+                            LetsGoButton(isDisabled: false, showMapView: showMapView)
+                                .padding(.bottom)
+                        }
                     }
                     .frame(width: 350)
                     .background(Color.white.opacity(0.5))
                     .cornerRadius(20)
                 }
-                CancelButton()
             }
+        }.navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        CancelButton(presentationMode: presentationMode)
+                    }
+                }
         }
     }
     private func setTime() -> TimeView {
