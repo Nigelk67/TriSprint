@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 extension Color {
     static var accentButton: Color {
@@ -81,4 +82,33 @@ extension HorizontalAlignment {
         }
     }
     static let hCentered = HorizontalAlignment(HCenterAlignment.self)
+}
+
+enum MapDetails {
+    static let startingLocation = CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054)
+    static let startingSpan = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+}
+
+
+extension UnitSpeed {
+    class var secondsPerMeter: UnitSpeed {
+        return UnitSpeed(symbol: "sec/mtr", converter: UnitConverterPace(coefficient: 1))
+    }
+    
+    class var minutesPerKilometer: UnitSpeed {
+        return UnitSpeed(symbol: "min/km", converter: UnitConverterPace(coefficient: 60 / 1000))
+    }
+    
+    class var minutesPerMile: UnitSpeed {
+        return UnitSpeed(symbol: "min/mi", converter: UnitConverterPace(coefficient: 60 / 1609.34))
+    }
+    
+    class var milesPerHour: UnitSpeed {
+        return UnitSpeed(symbol: "mi/hr", converter: UnitConverterInverse(coefficient: 1609.34 / 3600))
+    }
+    
+    class var kilometersPerHour: UnitSpeed {
+        return UnitSpeed(symbol: "km/hr", converter: UnitConverterInverse(coefficient: 1000 / 3600))
+    }
+    
 }
