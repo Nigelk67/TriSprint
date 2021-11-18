@@ -61,10 +61,10 @@ struct RideStack: View {
             DescriptionView(description: plan.rideDescription ?? "")
             
             if plan.session == Sessions.swim.rawValue {
-                LetsGoButton(isDisabled: true, showMapView: showMapView)
+                LetsGoButton(isDisabled: true, showMapView: $showMapView)
                     .padding(.bottom)
             } else {
-                LetsGoButton(isDisabled: false, showMapView: showMapView)
+                LetsGoButton(isDisabled: false, showMapView: $showMapView)
                     .padding(.bottom)
             }
     
@@ -98,10 +98,10 @@ struct RunStack: View {
             DescriptionView(description: plan.runDescription ?? "")
             
             if plan.session == Sessions.swim.rawValue {
-                LetsGoButton(isDisabled: true, showMapView: showMapView)
+                LetsGoButton(isDisabled: true, showMapView: $showMapView)
                     .padding(.bottom)
             } else {
-                LetsGoButton(isDisabled: false, showMapView: showMapView)
+                LetsGoButton(isDisabled: false, showMapView: $showMapView)
                     .padding(.bottom)
             }
         }

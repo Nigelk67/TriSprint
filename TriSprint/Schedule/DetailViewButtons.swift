@@ -40,7 +40,7 @@ struct SkipButton: View {
 }
 struct LetsGoButton: View {
     @State var isDisabled: Bool = true
-    @State var showMapView: Bool
+    @Binding var showMapView: Bool
     var body: some View {
         HStack {
             Spacer()

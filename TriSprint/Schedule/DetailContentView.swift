@@ -44,10 +44,10 @@ struct DetailContentView: View {
                         
                         NavigationLink(destination: MapView(plan: $plan), isActive: $showMapView) { EmptyView()}
                         if plan.session == Sessions.swim.rawValue {
-                            LetsGoButton(isDisabled: true, showMapView: showMapView)
+                            LetsGoButton(isDisabled: true, showMapView: $showMapView)
                                 .padding(.bottom)
                         } else {
-                            LetsGoButton(isDisabled: false, showMapView: showMapView)
+                            LetsGoButton(isDisabled: false, showMapView: $showMapView)
                                 .padding(.bottom)
                         }
                     }
@@ -56,7 +56,9 @@ struct DetailContentView: View {
                     .cornerRadius(20)
                 }
             }
-        }.navigationBarTitleDisplayMode(.inline)
+        }
+        .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         CancelButton(presentationMode: presentationMode)
