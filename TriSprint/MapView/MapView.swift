@@ -6,22 +6,29 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct MapView: View {
     
     @Binding var plan: Plan
+    @StateObject private var mapVm = MapViewModel()
     @Environment(\.presentationMode) private var presentationMode
+    
+    
     var body: some View {
         
         ZStack {
             BackgroundView(plan: $plan)
             VStack {
-                DayView(day: plan.day ?? "5")
-                    .padding(.bottom, 30)
+//                DayView(day: plan.day ?? "5")
+//                    .padding(.bottom, 10)
+                TargetStack(plan: $plan)
                 
                 //MAPVIEW HERE
+                Map(coordinateRegion: $mapVm.region, showsUserLocation: true)
+                    .accentColor(Color.mainButton)
                 
-                TargetStack(plan: $plan)
+                
                 
                 HStack {
                     Text("Time:")
@@ -53,10 +60,14 @@ struct MapView: View {
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Day: \(plan.day ?? "")")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     CancelButton(presentationMode: presentationMode)
                 }
+            }
+            .onAppear {
+                mapVm.checkIfLocationServicesIsEnabled()
             }
         }
     }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 extension Color {
     static var accentButton: Color {
@@ -81,4 +82,9 @@ extension HorizontalAlignment {
         }
     }
     static let hCentered = HorizontalAlignment(HCenterAlignment.self)
+}
+
+enum MapDetails {
+    static let startingLocation = CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054)
+    static let startingSpan = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
 }
