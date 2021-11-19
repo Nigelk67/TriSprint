@@ -7,20 +7,34 @@
 
 import SwiftUI
 import MapKit
+import Combine
 
 struct MapView: View {
     
     @Binding var plan: Plan
     @StateObject private var mapVm = MapViewModel()
     @Environment(\.presentationMode) private var presentationMode
-    
+//    @State private var locationList: [CLLocation] = []
     @State private var timeText: String = "00:00:00"
     @State private var distanceText: String = "0"
     @State private var paceText: String = "0"
     @State private var measure: String = "metric"
-    @State private var distance = Measurement(value: 0, unit: UnitLength.meters)
+//    @State private var distance = Measurement(value: 0, unit: UnitLength.meters)
     @State private var secs = 0
     @State private var timer: Timer?
+    @State private var isPaused: Bool = false
+    @State private var hasStarted: Bool = false
+    let userDefaults = UserDefaults.standard
+    let mapView = MKMapView()
+    
+    @State private var region = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.startingSpan)
+    @ObservedObject private var locationManager = LocationManager()
+    @State private var cancellable: AnyCancellable?
+    private func setCurrentLocation() {
+        cancellable = locationManager.$location.sink { location in
+            region = MKCoordinateRegion(center: location?.coordinate ?? CLLocationCoordinate2D(), span: MapDetails.startingSpan)
+        }
+    }
     
     var body: some View {
         
@@ -28,12 +42,20 @@ struct MapView: View {
             BackgroundView(plan: $plan)
             
             VStack {
-
+                
                 TargetStack(plan: $plan)
                 
-                Map(coordinateRegion: $mapVm.region, showsUserLocation: true)
-                    .accentColor(Color.mainButton)
-           
+                if locationManager.location != nil {
+                    Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: nil)
+                        .accentColor(Color.mainButton)
+                }
+                //
+                //                MapUIView(region: mapVm.region, lineCoordinates: lineCoords               )
+                //                    .accentColor(Color.mainButton)
+                //
+                //                Map(coordinateRegion: $mapVm.region, showsUserLocation: true)
+                //                    .accentColor(Color.mainButton)
+                
                 HStack {
                     Text("Time:")
                         .font(.title3)
@@ -54,7 +76,7 @@ struct MapView: View {
                     Text("Speed:")
                         .font(.title3)
                         .foregroundColor(Color.mainText)
-                    Text("10.45")
+                    Text(paceText)
                         .foregroundColor(Color.mainText)
                         .font(.title)
                 }
@@ -70,12 +92,69 @@ struct MapView: View {
                     CancelButton(presentationMode: presentationMode)
                 }
             }
-            .onAppear {
-                mapVm.checkIfLocationServicesIsEnabled()
-            }
+        }
+        .onAppear {
+            mapVm.checkIfLocationServicesIsEnabled()
+            setCurrentLocation()
         }
     }
     
+    private var trackingButtons: some View {
+        //var body: some View {
+        HStack {
+            Button {
+                pauseRide()
+            } label: {
+                Text(isPaused ? "Continue" : "Pause")
+                    .frame(width: 90, height: 40, alignment: .center)
+                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+                    .background(hasStarted ? Color.accentButton : Color.gray)
+                    .foregroundColor(Color.mainText)
+                    .cornerRadius(5)
+                //.padding(.leading,30)
+            }
+            .disabled(hasStarted ? false : true)
+            Spacer()
+            
+            Button {
+                hasStarted = true
+                start()
+                
+            } label: {
+                Text("Start")
+                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+            }.buttonStyle(StartButton(hasStarted: hasStarted))
+                .disabled(hasStarted ? true : false)
+            Spacer()
+            Button {
+                print("Nige: Stop button pressed")
+            } label: {
+                Text("Stop")
+                    .frame(width: 90, height: 40, alignment: .center)
+                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+                    .background(Color.red)
+                    .foregroundColor(Color.mainText)
+                    .cornerRadius(5)
+                //.padding(.trailing,30)
+            }
+            
+        }
+        .frame(width: 350)
+        .padding(.vertical, 30)
+        
+    }
+    
+    private func start() {
+        //mapView.removeOverlays(mapView.overlays)
+        secs = 0
+        locationManager.distance = Measurement(value: 0, unit: UnitLength.meters)
+        locationManager.locationList.removeAll()
+        updateDisplay()
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (_) in
+            self.eachSecond()
+        })
+        //startLocationUpdates()
+    }
     
     private func eachSecond() {
         secs += 1
@@ -83,70 +162,41 @@ struct MapView: View {
     }
     private func updateDisplay() {
         if self.measure == "metric" {
-            let formattedDistance = FormatDisplay.distanceInKm(distance)
+            let formattedDistance = FormatDisplay.distanceInKm(locationManager.distance)
             let formattedTime = FormatDisplay.time(secs)
-            let formattedPace = FormatDisplay.pace(distance: distance, seconds: secs, outputUnit: UnitSpeed.minutesPerKilometer)
+            let formattedPace = FormatDisplay.pace(distance: locationManager.distance, seconds: secs, outputUnit: UnitSpeed.minutesPerKilometer)
             distanceText = "\(formattedDistance)"
             timeText = "\(formattedTime)"
             paceText = "\(formattedPace)"
         } else {
-            let formattedDistance = FormatDisplay.distance(distance)
+            let formattedDistance = FormatDisplay.distance(locationManager.distance)
             let formattedTime = FormatDisplay.time(secs)
-            let formattedPace = FormatDisplay.pace(distance: distance, seconds: secs, outputUnit: UnitSpeed.minutesPerMile)
+            let formattedPace = FormatDisplay.pace(distance: locationManager.distance, seconds: secs, outputUnit: UnitSpeed.minutesPerMile)
             distanceText = "\(formattedDistance)"
             timeText = "\(formattedTime)"
             paceText = "\(formattedPace)"
         }
         
     }
-    private var trackingButtons: some View {
-        //var body: some View {
-            HStack {
-                Button {
-                    print("Nige: Pause button pressed")
-                    
-                } label: {
-                    Text("Pause")
-                        .frame(width: 80, height: 40, alignment: .center)
-                        .font(.system(size: 18, weight: .semibold, design: .rounded))
-                        .background(Color.gray)
-                        .foregroundColor(Color.mainText)
-                        .cornerRadius(5)
-                        //.padding(.leading,30)
-                }
-                Spacer()
-                Button {
-                    print("Nige: Start button pressed")
-                    updateDisplay()
-                    timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (_) in
-                        self.eachSecond()
-                    })
-                } label: {
-                    Text("Start")
-                        .frame(width: 80, height: 40, alignment: .center)
-                        .font(.system(size: 18, weight: .semibold, design: .rounded))
-                        .background(Color.accentButton)
-                        .foregroundColor(Color.mainText)
-                        .cornerRadius(5)
-                }
-                Spacer()
-                Button {
-                    print("Nige: Stop button pressed")
-                } label: {
-                    Text("Stop")
-                        .frame(width: 80, height: 40, alignment: .center)
-                        .font(.system(size: 18, weight: .semibold, design: .rounded))
-                        .background(Color.red)
-                        .foregroundColor(Color.mainText)
-                        .cornerRadius(5)
-                        //.padding(.trailing,30)
-                }
-                
-            }
-            .frame(width: 350)
-            .padding(.vertical, 30)
+    
+    private func refreshDisplay() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (_) in
+            self.eachSecond()
+        })
+    }
+    
+    private func pauseRide() {
+        if isPaused == false {
+            isPaused = true
+            timer?.invalidate()
+            userDefaults.set(secs, forKey: "pausedSeconds")
+        } else if isPaused == true {
+            isPaused = false
+            refreshDisplay()
             
         }
+    }
+    
    
 }
 
@@ -191,6 +241,8 @@ struct TargetStack: View {
         .frame(width: 350, height: 50, alignment: .center)
     }
 }
+
+
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {

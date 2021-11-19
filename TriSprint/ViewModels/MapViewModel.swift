@@ -5,7 +5,7 @@
 //  Created by Nigel Karan on 18.11.21.
 //
 
-import Foundation
+import SwiftUI
 import CoreLocation
 import MapKit
 
@@ -15,6 +15,8 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     //@Published var region = MKCoordinateRegion()
     var locationManager: CLLocationManager?
     var ride: Ride?
+    var run: Run?
+    
     
     func checkIfLocationServicesIsEnabled() {
         if CLLocationManager.locationServicesEnabled() {
@@ -51,7 +53,18 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         checkLocationAuth()
     }
     
-   
+    func startLocationUpdates() {
+        if let locationManager = locationManager {
+            locationManager.delegate = self
+            locationManager.activityType = .fitness
+            locationManager.distanceFilter = 10
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+//    let polyline = MKPolyline(coordinates: lineCoordinates, count: lineCoordinates.count)
+    
+
     
 //    private func mapRegion() -> MKCoordinateRegion? {
 //
@@ -78,3 +91,5 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 //    }
     
 }
+
+
