@@ -17,6 +17,7 @@ class LocationManager: NSObject, ObservableObject {
     @Published var locationList: [CLLocation] = []
     private let mapView = MKMapView()
     
+    
     override init() {
         super.init()
         
@@ -28,6 +29,11 @@ class LocationManager: NSObject, ObservableObject {
         
         
     }
+    
+    func stopLocationUpdates() {
+        locationManager.stopUpdatingLocation()
+    }
+    
 }
 
 extension LocationManager: CLLocationManagerDelegate {

@@ -54,6 +54,12 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         checkLocationAuth()
     }
     
+    func stopLocationUpdates() {
+        if let locationManager = locationManager {
+            locationManager.stopUpdatingLocation()
+        }
+    }
+    
     func startLocationUpdates() {
         if let locationManager = locationManager {
             locationManager.delegate = self
