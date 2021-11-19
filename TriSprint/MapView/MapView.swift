@@ -7,7 +7,6 @@
 
 import SwiftUI
 import MapKit
-import Combine
 
 struct MapView: View {
     
@@ -16,8 +15,8 @@ struct MapView: View {
     @Environment(\.presentationMode) private var presentationMode
 //    @State private var locationList: [CLLocation] = []
     @State private var timeText: String = "00:00:00"
-    @State private var distanceText: String = "0"
-    @State private var paceText: String = "0"
+    @State private var distanceText: String = "0.00"
+    @State private var paceText: String = "0.00"
     @State private var measure: String = "metric"
 //    @State private var distance = Measurement(value: 0, unit: UnitLength.meters)
     @State private var secs = 0
@@ -25,16 +24,17 @@ struct MapView: View {
     @State private var isPaused: Bool = false
     @State private var hasStarted: Bool = false
     let userDefaults = UserDefaults.standard
-    let mapView = MKMapView()
-    
-    @State private var region = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.startingSpan)
     @ObservedObject private var locationManager = LocationManager()
-    @State private var cancellable: AnyCancellable?
-    private func setCurrentLocation() {
-        cancellable = locationManager.$location.sink { location in
-            region = MKCoordinateRegion(center: location?.coordinate ?? CLLocationCoordinate2D(), span: MapDetails.startingSpan)
-        }
-    }
+//    let mapView = MKMapView()
+    
+//    @State private var region = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.startingSpan)
+//    @ObservedObject private var locationManager = LocationManager()
+//    @State private var cancellable: AnyCancellable?
+//    private func setCurrentLocation() {
+//        cancellable = locationManager.$location.sink { location in
+//            region = MKCoordinateRegion(center: location?.coordinate ?? CLLocationCoordinate2D(), span: MapDetails.startingSpan)
+//        }
+//    }
     
     var body: some View {
         
@@ -44,41 +44,33 @@ struct MapView: View {
             VStack {
                 
                 TargetStack(plan: $plan)
-                
-                if locationManager.location != nil {
-                    Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: nil)
-                        .accentColor(Color.mainButton)
-                }
-                //
-                //                MapUIView(region: mapVm.region, lineCoordinates: lineCoords               )
-                //                    .accentColor(Color.mainButton)
-                //
-                //                Map(coordinateRegion: $mapVm.region, showsUserLocation: true)
-                //                    .accentColor(Color.mainButton)
+            
+                Map(coordinateRegion: $mapVm.region, interactionModes: .all, showsUserLocation: true, userTrackingMode: nil)
+                    .accentColor(Color.mainButton)
                 
                 HStack {
                     Text("Time:")
-                        .font(.title3)
+                        .font(.body)
                         .foregroundColor(Color.mainText)
                     Text(timeText)
-                        .foregroundColor(Color.mainText)
-                        .font(Font.monospacedDigit(.title)())
+                        .foregroundColor(Color.mainButton)
+                        .font(Font.monospacedDigit(.title3)())
                 }
                 HStack {
                     Text("Distance:")
-                        .font(.title3)
+                        .font(.body)
                         .foregroundColor(Color.mainText)
                     Text(distanceText)
-                        .foregroundColor(Color.mainText)
-                        .font(Font.monospacedDigit(.title)())
+                        .foregroundColor(Color.mainButton)
+                        .font(Font.monospacedDigit(.title3)())
                 }
                 HStack {
                     Text("Speed:")
-                        .font(.title3)
+                        .font(.body)
                         .foregroundColor(Color.mainText)
                     Text(paceText)
-                        .foregroundColor(Color.mainText)
-                        .font(.title)
+                        .foregroundColor(Color.mainButton)
+                        .font(Font.monospacedDigit(.title3)())
                 }
                 
                 trackingButtons
@@ -95,7 +87,7 @@ struct MapView: View {
         }
         .onAppear {
             mapVm.checkIfLocationServicesIsEnabled()
-            setCurrentLocation()
+            //setCurrentLocation()
         }
     }
     
@@ -122,9 +114,10 @@ struct MapView: View {
                 
             } label: {
                 Text("Start")
-                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+                    .font(.system(size: 32, weight: .medium, design: .rounded))
             }.buttonStyle(StartButton(hasStarted: hasStarted))
                 .disabled(hasStarted ? true : false)
+                .opacity(hasStarted ? 0.5 : 1)
             Spacer()
             Button {
                 print("Nige: Stop button pressed")
@@ -147,8 +140,8 @@ struct MapView: View {
     private func start() {
         //mapView.removeOverlays(mapView.overlays)
         secs = 0
-        locationManager.distance = Measurement(value: 0, unit: UnitLength.meters)
-        locationManager.locationList.removeAll()
+        mapVm.distance = Measurement(value: 0, unit: UnitLength.meters)
+        mapVm.locationList.removeAll()
         updateDisplay()
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (_) in
             self.eachSecond()
@@ -212,11 +205,11 @@ struct TargetStack: View {
             if plan.session == Sessions.ride.rawValue {
                 Text(plan.rideTime ?? "")
                     .foregroundColor(Color.mainText)
-                    .font(.title)
+                    .font(.title3)
             } else {
                 Text(plan.runTime ?? "")
                     .foregroundColor(Color.mainText)
-                    .font(.title)
+                    .font(.title3)
             }
             Text("mins")
                 .foregroundColor(Color.mainText)
@@ -231,11 +224,11 @@ struct TargetStack: View {
             if plan.session == Sessions.ride.rawValue {
                 Text(plan.rideRpe ?? "")
                     .foregroundColor(Color.mainText)
-                    .font(.title)
+                    .font(.title3)
             } else {
                 Text(plan.runRpe ?? "")
                     .foregroundColor(Color.mainText)
-                    .font(.title)
+                    .font(.title3)
             }
         }
         .frame(width: 350, height: 50, alignment: .center)
