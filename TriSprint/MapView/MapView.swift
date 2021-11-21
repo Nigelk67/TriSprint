@@ -72,7 +72,6 @@ struct MapView: View {
         }
         .onAppear {
             mapVm.checkIfLocationServicesIsEnabled()
-            print("Nige: MapView plan = \(plan.session ?? "")")
             setDrillsText()
         }
     }

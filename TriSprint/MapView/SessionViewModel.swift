@@ -86,45 +86,45 @@ class SessionViewModel: ObservableObject {
     
     func saveSession(session: String) {
         showSpinner()
-//        let context = PersistenceController.shared.container.viewContext
-//        if session == Sessions.ride.rawValue {
-//            let newRide = Ride(context: context)
-//            newRide.distance = locationManager.distance.value
-//            newRide.duration = Int16(secs)
-//            newRide.timestamp = Date()
-//            for location in locationManager.locationList {
-//                let locationObject = Location(context: context)
-//                locationObject.timestamp = location.timestamp
-//                locationObject.latitude = location.coordinate.latitude
-//                locationObject.longitude = location.coordinate.longitude
-//                newRide.addToLocations(locationObject)
-//            }
-//            do {
-//                try context.save()
-//            } catch {
-//                print("Error saving ride to CoreData", error)
-//            }
-//            ride = newRide
-//
-//        } else if session == Sessions.run.rawValue {
-//            let newRun = Run(context: context)
-//            newRun.distance = locationManager.distance.value
-//            newRun.duration = Int16(secs)
-//            newRun.timestamp = Date()
-//            for location in locationManager.locationList {
-//                let locationObject = Location(context: context)
-//                locationObject.timestamp = location.timestamp
-//                locationObject.latitude = location.coordinate.latitude
-//                locationObject.longitude = location.coordinate.longitude
-//                newRun.addToLocations(locationObject)
-//            }
-//            do {
-//                try context.save()
-//            } catch {
-//                print("Error saving run to CoreData", error)
-//            }
-//            run = newRun
-//        }
+        let context = PersistenceController.shared.container.viewContext
+        if session == Sessions.ride.rawValue {
+            let newRide = Ride(context: context)
+            newRide.distance = locationManager.distance.value
+            newRide.duration = Int16(secs)
+            newRide.timestamp = Date()
+            for location in locationManager.locationList {
+                let locationObject = Location(context: context)
+                locationObject.timestamp = location.timestamp
+                locationObject.latitude = location.coordinate.latitude
+                locationObject.longitude = location.coordinate.longitude
+                newRide.addToLocations(locationObject)
+            }
+            do {
+                try context.save()
+            } catch {
+                print("Error saving ride to CoreData", error)
+            }
+            ride = newRide
+
+        } else if session == Sessions.run.rawValue {
+            let newRun = Run(context: context)
+            newRun.distance = locationManager.distance.value
+            newRun.duration = Int16(secs)
+            newRun.timestamp = Date()
+            for location in locationManager.locationList {
+                let locationObject = Location(context: context)
+                locationObject.timestamp = location.timestamp
+                locationObject.latitude = location.coordinate.latitude
+                locationObject.longitude = location.coordinate.longitude
+                newRun.addToLocations(locationObject)
+            }
+            do {
+                try context.save()
+            } catch {
+                print("Error saving run to CoreData", error)
+            }
+            run = newRun
+        }
         
     }
     
