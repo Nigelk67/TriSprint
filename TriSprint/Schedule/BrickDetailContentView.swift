@@ -60,6 +60,8 @@ struct RideStack: View {
             
             DescriptionView(description: plan.rideDescription ?? "")
             
+            NavigationLink(destination: MapView(plan: $plan, targetTime: plan.rideTime ?? "", targetRpe: plan.rideRpe ?? "", targetDesc: plan.rideDescription ?? ""), isActive: $showMapView) { EmptyView()}
+            
             if plan.session == Sessions.swim.rawValue {
                 LetsGoButton(isDisabled: true, showMapView: $showMapView)
                     .padding(.bottom)
@@ -96,6 +98,8 @@ struct RunStack: View {
             .padding(.vertical,20)
             
             DescriptionView(description: plan.runDescription ?? "")
+            
+            NavigationLink(destination: MapView(plan: $plan, targetTime: plan.runTime ?? "", targetRpe: plan.runRpe ?? "", targetDesc: plan.runDescription ?? ""), isActive: $showMapView) { EmptyView()}
             
             if plan.session == Sessions.swim.rawValue {
                 LetsGoButton(isDisabled: true, showMapView: $showMapView)

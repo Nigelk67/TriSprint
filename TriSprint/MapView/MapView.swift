@@ -11,44 +11,26 @@ import MapKit
 struct MapView: View {
     
     @Binding var plan: Plan
+    @State var targetTime = ""
+    @State var targetRpe = ""
+    @State var targetDesc = ""
+    
     @StateObject private var mapVm = MapViewModel()
+    @StateObject private var sessionVm = SessionViewModel()
+    @ObservedObject private var scheduleVm = ScheduleViewModel()
     @Environment(\.presentationMode) private var presentationMode
-//    @State private var locationList: [CLLocation] = []
-    @State private var timeText: String = "00:00:00"
-    @State private var distanceText: String = "0.00"
-    @State private var paceText: String = "0.00"
-    @State private var measure: String = "metric"
-//    @State private var distance = Measurement(value: 0, unit: UnitLength.meters)
-    @State private var secs = 0
-    @State private var timer: Timer?
-    @State private var isPaused: Bool = false
     @State private var hasStarted: Bool = false
-    @State private var isSaving: Bool = false
-    @State private var showConfirmationPopup: Bool = false
-    let userDefaults = UserDefaults.standard
-    @ObservedObject private var locationManager = LocationManager()
     @State private var shouldShowStopActions = false
-    @State private var ride: Ride?
-    @State private var run: Run?
-//    let mapView = MKMapView()
-    
-//    @State private var region = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.startingSpan)
-//    @ObservedObject private var locationManager = LocationManager()
-//    @State private var cancellable: AnyCancellable?
-//    private func setCurrentLocation() {
-//        cancellable = locationManager.$location.sink { location in
-//            region = MKCoordinateRegion(center: location?.coordinate ?? CLLocationCoordinate2D(), span: MapDetails.startingSpan)
-//        }
-//    }
-    
+    @State private var showDrillsPopup = false
+    @State private var drills: String = "No drills"
+
     var body: some View {
         
         ZStack {
             BackgroundView(plan: $plan)
             
             VStack {
-                
-                TargetStack(plan: $plan)
+                TargetStack(plan: $plan, targetTime: $targetTime, targetRpe: $targetRpe, showDrillsPopup: $showDrillsPopup)
             
                 Map(coordinateRegion: $mapVm.region, interactionModes: .all, showsUserLocation: true, userTrackingMode: nil)
                     .accentColor(Color.mainButton)
@@ -56,11 +38,17 @@ struct MapView: View {
                 trackingMeasures
 
                 trackingButtons
-                
             }
-            .alert(isPresented: $showConfirmationPopup) {
+            
+            VStack {
+                if showDrillsPopup {
+                    DrillsView(plan: $plan, targetDescription: $targetDesc)
+                }
+            }.animation(.default)
+            
+            .alert(isPresented: $sessionVm.showConfirmationPopup) {
                 Alert(title: Text("SAVED!"), message: Text("This session has been saved"), dismissButton: .default(Text("OK"), action: {
-                    print("Nige: back to Schedule")
+                    UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
                 }))
             }
             .navigationBarBackButtonHidden(true)
@@ -70,29 +58,33 @@ struct MapView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     CancelButton(presentationMode: presentationMode)
                 }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    ShowDrillsButton(showDrillsPopup: $showDrillsPopup)
+                }
             }
-            
-            if isSaving {
+
+            if sessionVm.isSaving {
                 withAnimation {
                     LoadingView()
                 }
             }
-            
+                
         }
         .onAppear {
             mapVm.checkIfLocationServicesIsEnabled()
+            setDrillsText()
         }
     }
     
     
-    //MARK: Private Views
+    //MARK: SubViews
     private var trackingMeasures: some View {
         VStack {
             HStack {
                 Text("Time:")
                     .font(.body)
                     .foregroundColor(Color.mainText)
-                Text(timeText)
+                Text(sessionVm.timeText)
                     .foregroundColor(Color.mainButton)
                     .font(Font.monospacedDigit(.title3)())
             }
@@ -100,7 +92,7 @@ struct MapView: View {
                 Text("Distance:")
                     .font(.body)
                     .foregroundColor(Color.mainText)
-                Text(distanceText)
+                Text(sessionVm.distanceText)
                     .foregroundColor(Color.mainButton)
                     .font(Font.monospacedDigit(.title3)())
             }
@@ -108,7 +100,7 @@ struct MapView: View {
                 Text("Speed:")
                     .font(.body)
                     .foregroundColor(Color.mainText)
-                Text(paceText)
+                Text(sessionVm.paceText)
                     .foregroundColor(Color.mainButton)
                     .font(Font.monospacedDigit(.title3)())
             }
@@ -119,9 +111,9 @@ struct MapView: View {
     private var trackingButtons: some View {
         HStack {
             Button {
-                pauseSession()
+                sessionVm.pauseSession()
             } label: {
-                Text(isPaused ? "Continue" : "Pause")
+                Text(sessionVm.isPaused ? "Continue" : "Pause")
                     .frame(width: 90, height: 40, alignment: .center)
                     .font(.system(size: 18, weight: .semibold, design: .rounded))
                     .background(hasStarted ? Color.accentButton : Color.gray)
@@ -135,7 +127,6 @@ struct MapView: View {
             Button {
                 hasStarted = true
                 start()
-                
             } label: {
                 Text("Start")
                     .font(.system(size: 32, weight: .medium, design: .rounded))
@@ -162,14 +153,15 @@ struct MapView: View {
                       message: Text("You can"),
                       buttons: [
                         .default(Text("Finish & Save This Session"), action: {
-                            sesssionStopped()
-                            saveSession(session: plan.session ?? "")
-//                            self.saveRide()
+                            hasStarted = false
+                            sessionVm.sesssionStopped()
+                            sessionVm.saveSession(session: plan.session ?? "")
 //                            self.performSegue(withIdentifier: "toRideDetailsVC", sender: nil)
                         }),
                         .destructive(Text("Discard This Session"),
                                      action: {
-                                         sesssionStopped()
+                                         hasStarted = false
+                                         sessionVm.sesssionStopped()
                                      }),
                         .cancel(Text("Carry On!"))
                       ]
@@ -182,119 +174,38 @@ struct MapView: View {
     }
     
     //MARK: Functions:
+    
+    private func setDrillsText() {
+        if plan.session == Sessions.run.rawValue {
+            drills = plan.runDescription ?? "No drills for this session"
+        } else {
+            drills = plan.rideDescription ?? "No drills for this session"
+        }
+    }
+    
     private func start() {
-        secs = 0
+        sessionVm.secs = 0
         mapVm.distance = Measurement(value: 0, unit: UnitLength.meters)
         mapVm.locationList.removeAll()
-        updateDisplay()
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (_) in
-            self.eachSecond()
-        })
-        
-    }
-    
-    private func eachSecond() {
-        secs += 1
-        updateDisplay()
-    }
-    
-    private func updateDisplay() {
-        if self.measure == "metric" {
-            let formattedDistance = FormatDisplay.distanceInKm(locationManager.distance)
-            let formattedTime = FormatDisplay.time(secs)
-            let formattedPace = FormatDisplay.pace(distance: locationManager.distance, seconds: secs, outputUnit: UnitSpeed.minutesPerKilometer)
-            distanceText = "\(formattedDistance)"
-            timeText = "\(formattedTime)"
-            paceText = "\(formattedPace)"
-        } else {
-            let formattedDistance = FormatDisplay.distance(locationManager.distance)
-            let formattedTime = FormatDisplay.time(secs)
-            let formattedPace = FormatDisplay.pace(distance: locationManager.distance, seconds: secs, outputUnit: UnitSpeed.minutesPerMile)
-            distanceText = "\(formattedDistance)"
-            timeText = "\(formattedTime)"
-            paceText = "\(formattedPace)"
-        }
-    }
-    
-    private func refreshDisplay() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (_) in
-            self.eachSecond()
+        sessionVm.updateDisplay()
+        sessionVm.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (_) in
+            sessionVm.eachSecond()
         })
     }
-    
-    private func pauseSession() {
-        if isPaused == false {
-            isPaused = true
-            timer?.invalidate()
-            userDefaults.set(secs, forKey: "pausedSeconds")
-        } else if isPaused == true {
-            isPaused = false
-            refreshDisplay()
-        }
-    }
-    
-    private func sesssionStopped() {
-        hasStarted = false
-        locationManager.stopLocationUpdates()
-        resetLabels()
-        timer?.invalidate()
-    }
-    
-    private func saveSession(session: String) {
-        showSpinner()
-//        let context = PersistenceController.shared.container.viewContext
-//        if session == Sessions.ride.rawValue {
-//            let newRide = Ride(context: context)
-//            newRide.distance = locationManager.distance.value
-//            newRide.duration = Int16(secs)
-//            newRide.timestamp = Date()
-//            for location in locationManager.locationList {
-//                let locationObject = Location(context: context)
-//                locationObject.timestamp = location.timestamp
-//                locationObject.latitude = location.coordinate.latitude
-//                locationObject.longitude = location.coordinate.longitude
-//                newRide.addToLocations(locationObject)
-//            }
-//            do {
-//                try context.save()
-//            } catch {
-//                print("Error saving ride to CoreData", error)
-//            }
-//            ride = newRide
-//
-//        } else if session == Sessions.run.rawValue {
-//            let newRun = Run(context: context)
-//            newRun.distance = locationManager.distance.value
-//            newRun.duration = Int16(secs)
-//            newRun.timestamp = Date()
-//            for location in locationManager.locationList {
-//                let locationObject = Location(context: context)
-//                locationObject.timestamp = location.timestamp
-//                locationObject.latitude = location.coordinate.latitude
-//                locationObject.longitude = location.coordinate.longitude
-//                newRun.addToLocations(locationObject)
-//            }
-//            do {
-//                try context.save()
-//            } catch {
-//                print("Error saving run to CoreData", error)
-//            }
-//            run = newRun
-//        }
-        
-    }
-   
-    private func resetLabels() {
-        timeText = "00:00:00"
-        distanceText = "0.00"
-        paceText = "0.00"
-    }
-    
-    private func showSpinner() {
-        isSaving = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            isSaving = false
-            showConfirmationPopup = true
+}
+
+struct ShowDrillsButton: View {
+    @Binding var showDrillsPopup: Bool
+    var body: some View {
+        VStack {
+            Button(action: {
+                showDrillsPopup.toggle()
+            }, label: {
+                Image(systemName: "ellipsis.bubble")
+                    .font(.system(size: 20))
+                    .foregroundColor(Color.mainButton)
+            })
+                
         }
     }
 }
@@ -302,14 +213,29 @@ struct MapView: View {
 struct TargetStack: View {
     
     @Binding var plan: Plan
-    
+    @Binding var targetTime: String
+    @Binding var targetRpe: String
+    @ObservedObject private var scheduleVm = ScheduleViewModel()
+    @Binding var showDrillsPopup: Bool
     var body: some View {
-        HStack(alignment: .firstTextBaseline) {
+        HStack(alignment: .center) {
+            
+            let imageName = scheduleVm.setImageNames(session: plan.session ?? "", completed: plan.completed)
+            Image(imageName)
+                .resizable()
+                .scaledToFit()
+                .padding(.top,5)
+            Spacer()
+            
             Text("Target Time:")
                 .font(.system(size: 16))
                 .foregroundColor(Color.mainText)
             if plan.session == Sessions.ride.rawValue {
                 Text(plan.rideTime ?? "")
+                    .foregroundColor(Color.mainText)
+                    .font(.title3)
+            } else if plan.session == Sessions.rideRun.rawValue {
+                Text(targetTime)
                     .foregroundColor(Color.mainText)
                     .font(.title3)
             } else {
@@ -321,14 +247,19 @@ struct TargetStack: View {
                 .foregroundColor(Color.mainText)
                 .font(.system(size: 12))
                 .padding(.leading,-4)
-        //}
-        Spacer()
-       // HStack(alignment: .firstTextBaseline) {
+            //}
+            Spacer()
+            
+            // HStack(alignment: .firstTextBaseline) {
             Text("Target RPE:")
                 .font(.system(size: 16))
                 .foregroundColor(Color.mainText)
             if plan.session == Sessions.ride.rawValue {
                 Text(plan.rideRpe ?? "")
+                    .foregroundColor(Color.mainText)
+                    .font(.title3)
+            } else if plan.session == Sessions.rideRun.rawValue {
+                Text(targetRpe)
                     .foregroundColor(Color.mainText)
                     .font(.title3)
             } else {

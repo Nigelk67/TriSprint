@@ -23,6 +23,10 @@ struct MainView: View {
                 .tabItem {
                     Text("Schedule")
                 }
+            ActivityView()
+                .tabItem {
+                    Text("Activity")
+                }
         }.accentColor(Color.mainButton)
             
     
