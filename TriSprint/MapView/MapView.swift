@@ -11,6 +11,10 @@ import MapKit
 struct MapView: View {
     
     @Binding var plan: Plan
+    @State var targetTime = ""
+    @State var targetRpe = ""
+    @State var targetDesc = ""
+    
     @StateObject private var mapVm = MapViewModel()
     @StateObject private var sessionVm = SessionViewModel()
     @ObservedObject private var scheduleVm = ScheduleViewModel()
@@ -19,8 +23,6 @@ struct MapView: View {
     @State private var shouldShowStopActions = false
     @State private var showDrillsPopup = false
     @State private var drills: String = "No drills"
-//    @State private var ride: Ride?
-//    @State private var run: Run?
 
     var body: some View {
         
@@ -28,8 +30,7 @@ struct MapView: View {
             BackgroundView(plan: $plan)
             
             VStack {
-                
-                TargetStack(plan: $plan, showDrillsPopup: $showDrillsPopup)
+                TargetStack(plan: $plan, targetTime: $targetTime, targetRpe: $targetRpe, showDrillsPopup: $showDrillsPopup)
             
                 Map(coordinateRegion: $mapVm.region, interactionModes: .all, showsUserLocation: true, userTrackingMode: nil)
                     .accentColor(Color.mainButton)
@@ -37,11 +38,11 @@ struct MapView: View {
                 trackingMeasures
 
                 trackingButtons
-                
             }
+            
             VStack {
                 if showDrillsPopup {
-                    DrillsView(plan: $plan)
+                    DrillsView(plan: $plan, targetDescription: $targetDesc)
                 }
             }.animation(.default)
             
@@ -50,7 +51,6 @@ struct MapView: View {
                     UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
                 }))
             }
-            
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Day: \(plan.day ?? "")")
@@ -62,10 +62,7 @@ struct MapView: View {
                     ShowDrillsButton(showDrillsPopup: $showDrillsPopup)
                 }
             }
-//            .alert(isPresented: $showDrillsPopup) {
-//                Alert(title: Text("Session Drills"), message: Text(drills), dismissButton: .default(Text("OK"), action: {}))
-//            }
-            
+
             if sessionVm.isSaving {
                 withAnimation {
                     LoadingView()
@@ -75,6 +72,7 @@ struct MapView: View {
         }
         .onAppear {
             mapVm.checkIfLocationServicesIsEnabled()
+            print("Nige: MapView plan = \(plan.session ?? "")")
             setDrillsText()
         }
     }
@@ -216,6 +214,8 @@ struct ShowDrillsButton: View {
 struct TargetStack: View {
     
     @Binding var plan: Plan
+    @Binding var targetTime: String
+    @Binding var targetRpe: String
     @ObservedObject private var scheduleVm = ScheduleViewModel()
     @Binding var showDrillsPopup: Bool
     var body: some View {
@@ -233,6 +233,10 @@ struct TargetStack: View {
                 .foregroundColor(Color.mainText)
             if plan.session == Sessions.ride.rawValue {
                 Text(plan.rideTime ?? "")
+                    .foregroundColor(Color.mainText)
+                    .font(.title3)
+            } else if plan.session == Sessions.rideRun.rawValue {
+                Text(targetTime)
                     .foregroundColor(Color.mainText)
                     .font(.title3)
             } else {
@@ -253,6 +257,10 @@ struct TargetStack: View {
                 .foregroundColor(Color.mainText)
             if plan.session == Sessions.ride.rawValue {
                 Text(plan.rideRpe ?? "")
+                    .foregroundColor(Color.mainText)
+                    .font(.title3)
+            } else if plan.session == Sessions.rideRun.rawValue {
+                Text(targetRpe)
                     .foregroundColor(Color.mainText)
                     .font(.title3)
             } else {

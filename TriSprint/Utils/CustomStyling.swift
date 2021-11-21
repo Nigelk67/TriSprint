@@ -13,7 +13,7 @@ struct StartButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(width: 100, height: 100)
-            .background(hasStarted ? Color.gray : Color.accentButton)
+            .background(hasStarted ? Color.gray : Color.green)
             .foregroundColor(Color.mainText)
             .clipShape(Circle())
     }

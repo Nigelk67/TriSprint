@@ -45,7 +45,6 @@ struct LetsGoButton: View {
         HStack {
             Spacer()
             Button {
-                print("LetsGo button showMapView = \(showMapView)")
                 showMapView.toggle()
             } label: {
                 Text("Let's Go!")

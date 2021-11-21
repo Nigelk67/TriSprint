@@ -11,7 +11,7 @@ struct DrillsView: View {
     
     @Binding var plan: Plan
     let noDrillsText = "No drills for this session"
-    
+    @Binding var targetDescription: String
     var body: some View {
         
         ZStack {
@@ -49,6 +49,12 @@ struct DrillsView: View {
                     .font(.system(size: 18, weight: .regular, design: .rounded))
                     .multilineTextAlignment(.center)
             }
+
+        } else if plan.session == Sessions.rideRun.rawValue {
+            Text(targetDescription)
+                .foregroundColor(Color.mainText)
+                .font(.system(size: 18, weight: .regular, design: .rounded))
+                .multilineTextAlignment(.center)
             
         } else {
             if plan.runDescription == "" {
@@ -70,6 +76,6 @@ struct DrillsView: View {
 
 struct DrillsView_Previews: PreviewProvider {
     static var previews: some View {
-        DrillsView(plan: .constant(Plan()))
+        DrillsView(plan: .constant(Plan()), targetDescription: .constant(""))
     }
 }
