@@ -43,6 +43,7 @@
 		9BF13000273E7F2200A94588 /* CustomStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF12FFF273E7F2200A94588 /* CustomStyling.swift */; };
 		9BF13002273EA6C500A94588 /* FitnessLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF13001273EA6C500A94588 /* FitnessLevelView.swift */; };
 		9BFC7AFC2748F7BE003C942B /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7AFB2748F7BE003C942B /* SessionViewModel.swift */; };
+		9BFC7AFE274A7225003C942B /* DrillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7AFD274A7225003C942B /* DrillsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		9BF12FFF273E7F2200A94588 /* CustomStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStyling.swift; sourceTree = "<group>"; };
 		9BF13001273EA6C500A94588 /* FitnessLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessLevelView.swift; sourceTree = "<group>"; };
 		9BFC7AFB2748F7BE003C942B /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
+		9BFC7AFD274A7225003C942B /* DrillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrillsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 				9BE3C08427465EEB009E1ED3 /* MapView.swift */,
 				9BE3C09A2747BDF7009E1ED3 /* LocationManager.swift */,
 				9BFC7AFB2748F7BE003C942B /* SessionViewModel.swift */,
+				9BFC7AFD274A7225003C942B /* DrillsView.swift */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				9BE3C082274546EA009E1ED3 /* BrickDetailContentView.swift in Sources */,
 				9BE3C08527465EEC009E1ED3 /* MapView.swift in Sources */,
 				9BF12FF0273D74C000A94588 /* TrainingDaysView.swift in Sources */,
+				9BFC7AFE274A7225003C942B /* DrillsView.swift in Sources */,
 				9BE3C0972746B872009E1ED3 /* UnitConverter.swift in Sources */,
 				9B28677D273FDC7100E856F0 /* MainView.swift in Sources */,
 				9BF12FF5273E6D1500A94588 /* SwimBackground.swift in Sources */,

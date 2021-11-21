@@ -24,16 +24,6 @@ class SessionViewModel: ObservableObject {
     @State private var ride: Ride?
     @State private var run: Run?
     
-//    func start() {
-//        secs = 0
-//        mapVm.distance = Measurement(value: 0, unit: UnitLength.meters)
-//        mapVm.locationList.removeAll()
-//        updateDisplay()
-//        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (_) in
-//            self.eachSecond()
-//        })
-//    }
-    
     func sesssionStopped() {
         locationManager.stopLocationUpdates()
         resetLabels()
@@ -79,13 +69,6 @@ class SessionViewModel: ObservableObject {
             refreshDisplay()
         }
     }
-    
-//    func sesssionStopped() {
-//        hasStarted = false
-//        locationManager.stopLocationUpdates()
-//        resetLabels()
-//        timer?.invalidate()
-//    }
     
     func resetLabels() {
         timeText = "00:00:00"
@@ -144,4 +127,5 @@ class SessionViewModel: ObservableObject {
 //        }
         
     }
+    
 }

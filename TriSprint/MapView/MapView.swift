@@ -13,9 +13,12 @@ struct MapView: View {
     @Binding var plan: Plan
     @StateObject private var mapVm = MapViewModel()
     @StateObject private var sessionVm = SessionViewModel()
+    @ObservedObject private var scheduleVm = ScheduleViewModel()
     @Environment(\.presentationMode) private var presentationMode
     @State private var hasStarted: Bool = false
     @State private var shouldShowStopActions = false
+    @State private var showDrillsPopup = false
+    @State private var drills: String = "No drills"
 //    @State private var ride: Ride?
 //    @State private var run: Run?
 
@@ -26,7 +29,7 @@ struct MapView: View {
             
             VStack {
                 
-                TargetStack(plan: $plan)
+                TargetStack(plan: $plan, showDrillsPopup: $showDrillsPopup)
             
                 Map(coordinateRegion: $mapVm.region, interactionModes: .all, showsUserLocation: true, userTrackingMode: nil)
                     .accentColor(Color.mainButton)
@@ -36,11 +39,18 @@ struct MapView: View {
                 trackingButtons
                 
             }
+            VStack {
+                if showDrillsPopup {
+                    DrillsView(plan: $plan)
+                }
+            }.animation(.default)
+            
             .alert(isPresented: $sessionVm.showConfirmationPopup) {
                 Alert(title: Text("SAVED!"), message: Text("This session has been saved"), dismissButton: .default(Text("OK"), action: {
-                    print("Nige: back to Schedule")
+                    UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
                 }))
             }
+            
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Day: \(plan.day ?? "")")
@@ -48,22 +58,29 @@ struct MapView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     CancelButton(presentationMode: presentationMode)
                 }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    ShowDrillsButton(showDrillsPopup: $showDrillsPopup)
+                }
             }
+//            .alert(isPresented: $showDrillsPopup) {
+//                Alert(title: Text("Session Drills"), message: Text(drills), dismissButton: .default(Text("OK"), action: {}))
+//            }
             
             if sessionVm.isSaving {
                 withAnimation {
                     LoadingView()
                 }
             }
-            
+                
         }
         .onAppear {
             mapVm.checkIfLocationServicesIsEnabled()
+            setDrillsText()
         }
     }
     
     
-    //MARK: Private Views
+    //MARK: SubViews
     private var trackingMeasures: some View {
         VStack {
             HStack {
@@ -160,6 +177,15 @@ struct MapView: View {
     }
     
     //MARK: Functions:
+    
+    private func setDrillsText() {
+        if plan.session == Sessions.run.rawValue {
+            drills = plan.runDescription ?? "No drills for this session"
+        } else {
+            drills = plan.rideDescription ?? "No drills for this session"
+        }
+    }
+    
     private func start() {
         sessionVm.secs = 0
         mapVm.distance = Measurement(value: 0, unit: UnitLength.meters)
@@ -171,12 +197,37 @@ struct MapView: View {
     }
 }
 
+struct ShowDrillsButton: View {
+    @Binding var showDrillsPopup: Bool
+    var body: some View {
+        VStack {
+            Button(action: {
+                showDrillsPopup.toggle()
+            }, label: {
+                Image(systemName: "ellipsis.bubble")
+                    .font(.system(size: 20))
+                    .foregroundColor(Color.mainButton)
+            })
+                
+        }
+    }
+}
+
 struct TargetStack: View {
     
     @Binding var plan: Plan
-    
+    @ObservedObject private var scheduleVm = ScheduleViewModel()
+    @Binding var showDrillsPopup: Bool
     var body: some View {
-        HStack(alignment: .firstTextBaseline) {
+        HStack(alignment: .center) {
+            
+            let imageName = scheduleVm.setImageNames(session: plan.session ?? "", completed: plan.completed)
+            Image(imageName)
+                .resizable()
+                .scaledToFit()
+                .padding(.top,5)
+            Spacer()
+            
             Text("Target Time:")
                 .font(.system(size: 16))
                 .foregroundColor(Color.mainText)
@@ -193,9 +244,10 @@ struct TargetStack: View {
                 .foregroundColor(Color.mainText)
                 .font(.system(size: 12))
                 .padding(.leading,-4)
-        //}
-        Spacer()
-       // HStack(alignment: .firstTextBaseline) {
+            //}
+            Spacer()
+            
+            // HStack(alignment: .firstTextBaseline) {
             Text("Target RPE:")
                 .font(.system(size: 16))
                 .foregroundColor(Color.mainText)
