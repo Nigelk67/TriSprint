@@ -46,6 +46,7 @@
 		9BFC7AFE274A7225003C942B /* DrillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7AFD274A7225003C942B /* DrillsView.swift */; };
 		9BFC7B03274A9C6F003C942B /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B02274A9C6F003C942B /* ActivityView.swift */; };
 		9BFC7B05274A9CB9003C942B /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B04274A9CB9003C942B /* ActivityViewModel.swift */; };
+		9BFC7B0F274BDBC6003C942B /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B0E274BDBC6003C942B /* Ride.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +90,7 @@
 		9BFC7AFD274A7225003C942B /* DrillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrillsView.swift; sourceTree = "<group>"; };
 		9BFC7B02274A9C6F003C942B /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		9BFC7B04274A9CB9003C942B /* ActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewModel.swift; sourceTree = "<group>"; };
+		9BFC7B0E274BDBC6003C942B /* Ride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				9B28677A273FD7F300E856F0 /* TrainingPlan.swift */,
+				9BFC7B0E274BDBC6003C942B /* Ride.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				9BF12FE9273D725A00A94588 /* TriSprint.xcdatamodeld in Sources */,
 				9BFC7B03274A9C6F003C942B /* ActivityView.swift in Sources */,
 				9BF12FF7273E702400A94588 /* RunBackground.swift in Sources */,
+				9BFC7B0F274BDBC6003C942B /* Ride.swift in Sources */,
 				9BF12FDF273D725900A94588 /* ContentView.swift in Sources */,
 				9BE3C082274546EA009E1ED3 /* BrickDetailContentView.swift in Sources */,
 				9BE3C08527465EEC009E1ED3 /* MapView.swift in Sources */,

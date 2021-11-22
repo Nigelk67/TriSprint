@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ActivityView: View {
   
+    @ObservedObject var activityVm = ActivityViewModel()
+    
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Ride.timestamp, ascending: true)], animation: .default)
@@ -36,7 +38,9 @@ struct ActivityView: View {
                         }
                     } else {
                         Spacer()
-                        NoPlansView()
+                        VStack {
+                            Text("No Activity yet")
+                        }
                     }
                 }
             }
@@ -44,11 +48,11 @@ struct ActivityView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(false)
         }
-       
     }
 }
 
 struct RidesView: View {
+    @ObservedObject var activityVm = ActivityViewModel()
     let ride: Ride
 //    init(ride: Ride) {
 //        self.ride = ride
@@ -57,12 +61,35 @@ struct RidesView: View {
 //    var fetchRequest: FetchRequest<Ride>
     
     var body: some View {
+        VStack(alignment: .center) {
+            HStack {
+                Text("\(activityVm.dateText)")
+                    .padding(.horizontal)
+                Spacer()
+            }
+            HStack {
+                Image(activityVm.imageName)
+                    .padding(.leading, 15)
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Time: \(activityVm.timeText)")
+                    Text("Distance: \(activityVm.distanceText)")
+                    Text("Pace: \(activityVm.paceText)")
+                }
+                .padding(.leading, 15)
+            }
+        }
+        .frame(width: 350, height: 200, alignment: .leading)
+        .background(Color.white.opacity(0.9)
+                        .shadow(color: .blue, radius: 15, x: 10, y: 0))
+        .cornerRadius(20)
         
-        VStack {
-            Text("\(ride.duration)")
+        
+        
+        
+        .onAppear {
+            activityVm.updateRides(ride: ride)
         }
     }
-    
 }
 
 struct ActivityView_Previews: PreviewProvider {

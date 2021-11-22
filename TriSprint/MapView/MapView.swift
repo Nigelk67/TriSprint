@@ -24,6 +24,7 @@ struct MapView: View {
     @State private var shouldShowStopActions = false
     @State private var showDrillsPopup = false
     @State private var drills: String = "No drills"
+    let measure = "metric"
 
     var body: some View {
         
@@ -162,7 +163,7 @@ struct MapView: View {
                             }
                             hasStarted = false
                             sessionVm.sesssionStopped()
-                            sessionVm.saveSession(session: session)
+                            sessionVm.saveSession(session: session, measure: measure)
 //                            self.performSegue(withIdentifier: "toRideDetailsVC", sender: nil)
                         }),
                         .destructive(Text("Discard This Session"),
