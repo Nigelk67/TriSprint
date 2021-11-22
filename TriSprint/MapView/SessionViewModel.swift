@@ -84,12 +84,28 @@ class SessionViewModel: ObservableObject {
         }
     }
     
-    func saveSession(session: String) {
-        showSpinner()
+    func markPlanComplete(plan: Plan) {
         let context = PersistenceController.shared.container.viewContext
+        plan.completed = 1
+        do {
+            try context.save()
+        } catch {
+            print("Error saving plan completed", error)
+        }
+    }
+    
+    func saveSession(session: String, measure: String) {
+        showSpinner()
+        
+        let context = PersistenceController.shared.container.viewContext
+        
         if session == Sessions.ride.rawValue {
             let newRide = Ride(context: context)
-            newRide.distance = locationManager.distance.value
+            if measure == "metric" {
+                newRide.distance = locationManager.distance.value
+            } else {
+                newRide.distance = locationManager.distance.value * 1.609
+            }
             newRide.duration = Int16(secs)
             newRide.timestamp = Date()
             for location in locationManager.locationList {
@@ -125,7 +141,7 @@ class SessionViewModel: ObservableObject {
             }
             run = newRun
         }
-        
+
     }
     
 }

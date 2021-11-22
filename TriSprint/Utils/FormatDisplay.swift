@@ -13,6 +13,14 @@ struct FormatDisplay {
         return FormatDisplay.distance(distanceMeasurement)
     }
     
+    static func kmDistance(_ distance: Double) -> String {
+        let formatter = MeasurementFormatter()
+        formatter.unitOptions = [.providedUnit]
+        let distanceKm = Measurement(value: distance, unit: UnitLength.kilometers)
+        formatter.unitStyle = .short
+        return formatter.string(from: (distanceKm/1000))
+    }
+    
     static func distanceInKm(_ distance: Measurement<UnitLength>) -> String {
         let formatter = MeasurementFormatter()
         formatter.unitOptions = [.providedUnit]
@@ -44,10 +52,10 @@ struct FormatDisplay {
         return formatter.string(from: speed.converted(to: outputUnit))
     }
     
-    static func speed(distance: Measurement<UnitLength>, seconds: Int, outputUnit: UnitSpeed) -> String {
+    static func speed(distance: Double, seconds: Int16, outputUnit: UnitSpeed) -> String {
         let formatter = MeasurementFormatter()
         formatter.unitOptions = [.providedUnit]
-        let speedMagnitude = seconds != 0 ? distance.value / Double(seconds) : 0
+        let speedMagnitude = seconds != 0 ? distance / Double(seconds) : 0
         let speed = Measurement(value: speedMagnitude, unit: UnitSpeed.metersPerSecond)
         return formatter.string(from: speed.converted(to: outputUnit))
     }
