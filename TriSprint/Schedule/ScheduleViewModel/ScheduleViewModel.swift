@@ -21,6 +21,7 @@ class ScheduleViewModel: ObservableObject {
             }
             
         case .ride:
+            print("Nige: setImages func - completed Ride = \(completed)")
             if completed == 1 {
                 imageName = TrainingImageNames.trainingRideCompleted.rawValue
             } else {

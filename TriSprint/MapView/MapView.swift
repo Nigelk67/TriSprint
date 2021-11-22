@@ -14,6 +14,7 @@ struct MapView: View {
     @State var targetTime = ""
     @State var targetRpe = ""
     @State var targetDesc = ""
+    @State var session = ""
     
     @StateObject private var mapVm = MapViewModel()
     @StateObject private var sessionVm = SessionViewModel()
@@ -48,6 +49,7 @@ struct MapView: View {
             
             .alert(isPresented: $sessionVm.showConfirmationPopup) {
                 Alert(title: Text("SAVED!"), message: Text("This session has been saved"), dismissButton: .default(Text("OK"), action: {
+                    sessionVm.markPlanComplete(plan: plan)
                     UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
                 }))
             }
@@ -153,9 +155,14 @@ struct MapView: View {
                       message: Text("You can"),
                       buttons: [
                         .default(Text("Finish & Save This Session"), action: {
+                            if plan.session == Sessions.rideRun.rawValue {
+                                session = session
+                            } else {
+                                session = plan.session ?? ""
+                            }
                             hasStarted = false
                             sessionVm.sesssionStopped()
-                            sessionVm.saveSession(session: plan.session ?? "")
+                            sessionVm.saveSession(session: session)
 //                            self.performSegue(withIdentifier: "toRideDetailsVC", sender: nil)
                         }),
                         .destructive(Text("Discard This Session"),

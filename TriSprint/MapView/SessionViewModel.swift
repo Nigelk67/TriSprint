@@ -84,6 +84,16 @@ class SessionViewModel: ObservableObject {
         }
     }
     
+    func markPlanComplete(plan: Plan) {
+        let context = PersistenceController.shared.container.viewContext
+        plan.completed = 1
+        do {
+            try context.save()
+        } catch {
+            print("Error saving plan completed", error)
+        }
+    }
+    
     func saveSession(session: String) {
         showSpinner()
         let context = PersistenceController.shared.container.viewContext
@@ -125,7 +135,7 @@ class SessionViewModel: ObservableObject {
             }
             run = newRun
         }
-        
+
     }
     
 }
