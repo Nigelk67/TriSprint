@@ -9,10 +9,10 @@ import SwiftUI
 
 class ActivityViewModel: ObservableObject {
     @Published var measure: String = "metr"
-    @Published var distanceText = "0.00"
-    @Published var timeText = "0.00"
-    @Published var paceText = "0.00"
-    @Published var dateText = ""
+    @Published var rideDistanceText = "0.00"
+    @Published var rideTimeText = "0.00"
+    @Published var ridePaceText = "0.00"
+    @Published var rideDateText = ""
     @Published var imageName = TrainingImageNames.trainingFull.rawValue                                                
     //var ridePosts = [RidePost]()
     //@Environment(\.managedObjectContext) private var viewContext
@@ -26,6 +26,10 @@ class ActivityViewModel: ObservableObject {
 //        print("Nige: ride posts = \(ridePosts)")
 //    }
     
+    func updateRuns(activity: AnyClass) {
+        
+    }
+    
     func updateRides(ride: Ride) {
         imageName = TrainingImageNames.trainingRide.rawValue
         if self.measure == "metric" {
@@ -33,19 +37,19 @@ class ActivityViewModel: ObservableObject {
             let formattedTime = FormatDisplay.time(Int(ride.duration))
             let formattedPace = FormatDisplay.speed(distance: ride.distance, seconds: ride.duration, outputUnit: UnitSpeed.minutesPerKilometer)
             let formattedDate = FormatDisplay.date(ride.timestamp)
-            distanceText = "\(formattedDistance)"
-            timeText = "\(formattedTime)"
-            paceText = "\(formattedPace)"
-            dateText = "\(formattedDate)"
+            rideDistanceText = "\(formattedDistance)"
+            rideTimeText = "\(formattedTime)"
+            ridePaceText = "\(formattedPace)"
+            rideDateText = "\(formattedDate)"
         } else {
             let formattedDistance = FormatDisplay.distance((ride.distance))
             let formattedTime = FormatDisplay.time(Int(ride.duration))
             let formattedPace = FormatDisplay.speed(distance: ride.distance, seconds: ride.duration, outputUnit: UnitSpeed.minutesPerMile)
             let formattedDate = FormatDisplay.date(ride.timestamp)
-            distanceText = "\(formattedDistance)"
-            timeText = "\(formattedTime)"
-            paceText = "\(formattedPace)"
-            dateText = "\(formattedDate)"
+            rideDistanceText = "\(formattedDistance)"
+            rideTimeText = "\(formattedTime)"
+            ridePaceText = "\(formattedPace)"
+            rideDateText = "\(formattedDate)"
         }
     }
     

@@ -27,13 +27,16 @@ struct ActivityView: View {
         ZStack {
             SwimBackground()
             VStack {
+                GeometryReader { fullView in
                 ScrollView() {
                     if !rides.isEmpty {
-                        
                         LazyVStack {
                             Spacer()
                             ForEach(rides) { ride in
                                 RidesView(ride: ride)
+                                    .frame(width: fullView.size.width - 40, height: 200, alignment: .center)
+                                    .padding(.bottom,20)
+                                    .shadow(color: .gray, radius: 4, x: 5, y: 5)
                             }
                         }
                     } else {
@@ -49,47 +52,48 @@ struct ActivityView: View {
             .navigationBarHidden(false)
         }
     }
+    }
 }
 
 struct RidesView: View {
     @ObservedObject var activityVm = ActivityViewModel()
     let ride: Ride
-//    init(ride: Ride) {
-//        self.ride = ride
-//        fetchRequest = FetchRequest<Ride>(entity: Ride.entity(), sortDescriptors: [.init(key: "timestamp", ascending: false)], predicate: .init(format: "ride == %@", self.ride))
-//    }
-//    var fetchRequest: FetchRequest<Ride>
     
     var body: some View {
-        VStack(alignment: .center) {
+        
+        VStack() {
+            
             HStack {
-                Text("\(activityVm.dateText)")
-                    .padding(.horizontal)
+                Spacer()
+                Text("\(activityVm.rideDateText)")
                 Spacer()
             }
-            HStack {
-                Image(activityVm.imageName)
-                    .padding(.leading, 15)
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Time: \(activityVm.timeText)")
-                    Text("Distance: \(activityVm.distanceText)")
-                    Text("Pace: \(activityVm.paceText)")
+            .background(Color.accentButton.opacity(0.3))
+            
+            VStack(alignment: .center) {
+                HStack {
+                    Image(activityVm.imageName)
+                        .padding()
+                    
+                    Spacer()
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Time: \(activityVm.rideTimeText)")
+                        Text("Distance: \(activityVm.rideDistanceText)")
+                        Text("Pace: \(activityVm.ridePaceText)")
+                    }
+                    .padding()
+                    Spacer()
                 }
-                .padding(.leading, 15)
             }
+            .background(Color.accentButton)
+            .cornerRadius(20)
         }
-        .frame(width: 350, height: 200, alignment: .leading)
-        .background(Color.white.opacity(0.9)
-                        .shadow(color: .blue, radius: 15, x: 10, y: 0))
-        .cornerRadius(20)
-        
-        
-        
-        
         .onAppear {
             activityVm.updateRides(ride: ride)
+            
         }
     }
+                    
 }
 
 struct ActivityView_Previews: PreviewProvider {
