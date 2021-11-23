@@ -11,6 +11,7 @@ struct DetailContentView: View {
     
     @Binding var plan: Plan
     @State private var showMapView = false
+    @State private var showManualEntryView = false
     @Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
@@ -19,7 +20,6 @@ struct DetailContentView: View {
             BackgroundView(plan: $plan)
             
             VStack {
-                //CancelButton(presentationMode: presentationMode)
                 DayView(day: plan.day ?? "")
                     .padding(.vertical, 30)
                     
@@ -28,7 +28,7 @@ struct DetailContentView: View {
                     VStack {
                         HStack {
                             SkipButton()
-                            EnterManuallyButton()
+                            EnterManuallyButton(showManualEnterView: $showManualEntryView)
                         }
                         HStack {
                             ImageDetailView(session: plan.session ?? "", completed: plan.completed)
@@ -42,7 +42,10 @@ struct DetailContentView: View {
                         
                         setDescription()
                         
-                        NavigationLink(destination: MapView(plan: $plan), isActive: $showMapView) { EmptyView()}
+                        NavigationLink(destination: EnterManualView(plan: $plan), isActive: $showManualEntryView) { EmptyView() }
+                        
+                        NavigationLink(destination: MapView(plan: $plan), isActive: $showMapView) { EmptyView() }
+                        
                         if plan.session == Sessions.swim.rawValue {
                             LetsGoButton(isDisabled: true, showMapView: $showMapView)
                                 .padding(.bottom)

@@ -11,6 +11,7 @@ struct FirstTriathlonView: View {
     
     @State private var selection: String? = ""
     @State private var nextScreen = false
+    //@Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
         
@@ -27,8 +28,14 @@ struct FirstTriathlonView: View {
                     selectionView
                     Spacer()
                     Spacer()
+                        //.navigationBarBackButtonHidden(true)
                         .navigationTitle("")
-                    
+                        .navigationBarTitleDisplayMode(.inline)
+//                                .toolbar {
+//                                    ToolbarItem(placement: .navigationBarLeading) {
+//                                        CancelButton(presentationMode: presentationMode)
+//                                    }
+//                                }
                 }
                 
             }

@@ -1,22 +1,19 @@
 //
-//  PersonaliseView.swift
+//  MetricView.swift
 //  TriSprint
 //
-//  Created by Nigel Karan on 11.11.21.
+//  Created by Nigel Karan on 23.11.21.
 //
 
 import SwiftUI
 
-struct TrainingDaysView: View {
+struct MetricView: View {
     
-    let numberOfDays = ["3","4","5"]
-    @State private var daysSelected = ""
+    @State private var measurements = ["Kilometers","Miles"]
     @State private var nextScreen = false
-    @ObservedObject var trainingPlanVm = TrainingPlanArrayViewModel()
     //@Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
-        
         ZStack {
             RunBackground()
             VStack {
@@ -29,23 +26,22 @@ struct TrainingDaysView: View {
                 selectionView
                 Spacer()
                 Spacer()
-                    //.navigationBarBackButtonHidden(true)   
+                    //.navigationBarBackButtonHidden(true)
                     .navigationTitle("")
                     .navigationBarTitleDisplayMode(.inline)
-//                    .toolbar {
-//                        ToolbarItem(placement: .navigationBarLeading) {
-//                            CancelButton(presentationMode: presentationMode)
-//                        }
-//                    }
+//                            .toolbar {
+//                                ToolbarItem(placement: .navigationBarLeading) {
+//                                    CancelButton(presentationMode: presentationMode)
+//                                }
+//                            }
             }
         }
-        
-        
+       
     }
     
     private var selectionView: some View {
         VStack {
-            Text("How many days per week can you train?")
+            Text("What do you prefer to work in?")
                 .foregroundColor(Color.mainText)
                 .font(.system(.title2, design: .rounded))
                 .padding(.vertical)
@@ -58,37 +54,33 @@ struct TrainingDaysView: View {
         .background(Color.white)
         .opacity(0.7)
         .cornerRadius(8)
-        .padding(.horizontal,20)
+        .padding(.horizontal, 20)
     }
     
     private var buttonsView: some View {
         VStack {
-            ForEach(numberOfDays, id: \.self) { num in
+            ForEach(measurements, id: \.self) { measure in
+                NavigationLink(destination: TrainingDaysView(), isActive: $nextScreen) {
                 Button {
-                    daysSelected = num
-                    UserDefaults.standard.set(num, forKey: UserDefaults.Keys.trainingDays.rawValue)
-                    trainingPlanVm.fetchPlanArray(name: num)
-                    UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                    UserDefaults.standard.set(measure, forKey: UserDefaults.Keys.measure.rawValue)
+                    nextScreen.toggle()
                 } label: {
-                    Text(num)
+                    Text(measure)
                         .foregroundColor(Color.mainText)
                         .font(.system(.title, design: .rounded))
                         .frame(maxWidth: .infinity)
                 }
                 .modifier(GreenButton())
-                .padding(.leading, 10)
-                .padding(.trailing, 10)
+                .padding(.horizontal, 10)
                 }
             }
             .padding()
-        //}
+        }
     }
-    
 }
 
-
-struct PersonaliseView_Previews: PreviewProvider {
+struct MetricView_Previews: PreviewProvider {
     static var previews: some View {
-        TrainingDaysView()
+        MetricView()
     }
 }

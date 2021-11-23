@@ -26,6 +26,12 @@ extension Color {
     }
 }
 
+extension View {
+    func dismissKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+    
 extension Image {
     static var trainingRide: Image {
         Image("Training_Ride")
@@ -44,6 +50,7 @@ extension UserDefaults {
         case first = "First"
         case fitnessLevel = "FitnessLevel"
         case trainingDays = "TrainingDays"
+        case measure = "Measure"
     }
     
 }
@@ -79,6 +86,11 @@ enum Activity: String, CaseIterable {
     case swim = "Swim"
     case ride = "Ride"
     case run = "Run"
+}
+
+enum Measure: String, CaseIterable {
+    case kilometers = "Kilometers"
+    case miles = "Miles"
 }
 
 extension HorizontalAlignment {

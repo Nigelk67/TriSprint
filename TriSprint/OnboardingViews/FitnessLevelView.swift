@@ -12,6 +12,7 @@ struct FitnessLevelView: View {
     let fitnessLevels = ["Good","Average","Non-existent"]
     @State private var fitnessLevel = ""
     @State private var nextScreen = false
+    //@Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
         ZStack {
@@ -26,7 +27,14 @@ struct FitnessLevelView: View {
                 selectionView
                 Spacer()
                 Spacer()
+                    //.navigationBarBackButtonHidden(true)
                     .navigationTitle("")
+                    .navigationBarTitleDisplayMode(.inline)
+//                            .toolbar {
+//                                ToolbarItem(placement: .navigationBarLeading) {
+//                                    CancelButton(presentationMode: presentationMode)
+//                                }
+//                            }
             }
         }
     }
@@ -46,13 +54,13 @@ struct FitnessLevelView: View {
         .background(Color.white)
         .opacity(0.7)
         .cornerRadius(8)
-        .padding(.horizontal, 50)
+        .padding(.horizontal, 20)
     }
     
     private var buttonsView: some View {
         VStack {
             ForEach(fitnessLevels, id: \.self) { level in
-                NavigationLink(destination: TrainingDaysView(), isActive: $nextScreen) {
+                NavigationLink(destination: MetricView(), isActive: $nextScreen) {
                 Button {
                     fitnessLevel = level
                     UserDefaults.standard.set(level, forKey: UserDefaults.Keys.fitnessLevel.rawValue)

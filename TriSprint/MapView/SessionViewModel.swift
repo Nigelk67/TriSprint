@@ -16,7 +16,7 @@ class SessionViewModel: ObservableObject {
     @Published var timeText: String = "00:00:00"
     @Published var distanceText: String = "0.00"
     @Published var paceText: String = "0.00"
-    @Published var measure: String = "metric"
+    @Published var measure: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.measure.rawValue) ?? ""
     @Published var isPaused: Bool = false
     @Published var isSaving: Bool = false
     @Published var showConfirmationPopup: Bool = false
@@ -36,7 +36,7 @@ class SessionViewModel: ObservableObject {
     }
     
     func updateDisplay() {
-        if self.measure == "metric" {
+        if self.measure == "Kilometers" {
             let formattedDistance = FormatDisplay.distanceInKm(locationManager.distance)
             let formattedTime = FormatDisplay.time(secs)
             let formattedPace = FormatDisplay.pace(distance: locationManager.distance, seconds: secs, outputUnit: UnitSpeed.minutesPerKilometer)
@@ -101,7 +101,7 @@ class SessionViewModel: ObservableObject {
         
         if session == Sessions.ride.rawValue {
             let newRide = Ride(context: context)
-            if measure == "metric" {
+            if measure == "Kilometers" {
                 newRide.distance = locationManager.distance.value
             } else {
                 newRide.distance = locationManager.distance.value * 1.609
