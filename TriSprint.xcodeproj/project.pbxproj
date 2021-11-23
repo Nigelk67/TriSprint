@@ -47,6 +47,11 @@
 		9BFC7B03274A9C6F003C942B /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B02274A9C6F003C942B /* ActivityView.swift */; };
 		9BFC7B05274A9CB9003C942B /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B04274A9CB9003C942B /* ActivityViewModel.swift */; };
 		9BFC7B0F274BDBC6003C942B /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B0E274BDBC6003C942B /* Ride.swift */; };
+		9BFC7B11274CF630003C942B /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B10274CF630003C942B /* Run.swift */; };
+		9BFC7B13274CF64B003C942B /* Swim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B12274CF64B003C942B /* Swim.swift */; };
+		9BFC7B15274CF7C2003C942B /* RidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B14274CF7C2003C942B /* RidesView.swift */; };
+		9BFC7B17274CF826003C942B /* RunsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B16274CF826003C942B /* RunsView.swift */; };
+		9BFC7B19274CF876003C942B /* SwimsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B18274CF876003C942B /* SwimsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +96,11 @@
 		9BFC7B02274A9C6F003C942B /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		9BFC7B04274A9CB9003C942B /* ActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewModel.swift; sourceTree = "<group>"; };
 		9BFC7B0E274BDBC6003C942B /* Ride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
+		9BFC7B10274CF630003C942B /* Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
+		9BFC7B12274CF64B003C942B /* Swim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swim.swift; sourceTree = "<group>"; };
+		9BFC7B14274CF7C2003C942B /* RidesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RidesView.swift; sourceTree = "<group>"; };
+		9BFC7B16274CF826003C942B /* RunsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunsView.swift; sourceTree = "<group>"; };
+		9BFC7B18274CF876003C942B /* SwimsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +137,8 @@
 			children = (
 				9B28677A273FD7F300E856F0 /* TrainingPlan.swift */,
 				9BFC7B0E274BDBC6003C942B /* Ride.swift */,
+				9BFC7B10274CF630003C942B /* Run.swift */,
+				9BFC7B12274CF64B003C942B /* Swim.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -251,6 +263,9 @@
 			children = (
 				9BFC7B02274A9C6F003C942B /* ActivityView.swift */,
 				9BFC7B04274A9CB9003C942B /* ActivityViewModel.swift */,
+				9BFC7B14274CF7C2003C942B /* RidesView.swift */,
+				9BFC7B16274CF826003C942B /* RunsView.swift */,
+				9BFC7B18274CF876003C942B /* SwimsView.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -328,7 +343,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BFC7B17274CF826003C942B /* RunsView.swift in Sources */,
 				9BF12FE6273D725A00A94588 /* Persistence.swift in Sources */,
+				9BFC7B11274CF630003C942B /* Run.swift in Sources */,
 				9BF12FF2273D819900A94588 /* Extensions.swift in Sources */,
 				9BE3C09B2747BDF7009E1ED3 /* LocationManager.swift in Sources */,
 				9BF12FF9273E705000A94588 /* BikeBackground.swift in Sources */,
@@ -351,11 +368,14 @@
 				9B28677D273FDC7100E856F0 /* MainView.swift in Sources */,
 				9BF12FF5273E6D1500A94588 /* SwimBackground.swift in Sources */,
 				9B286777273FC3BD00E856F0 /* TrainingArrayViewModel.swift in Sources */,
+				9BFC7B15274CF7C2003C942B /* RidesView.swift in Sources */,
 				9BE3C087274695E6009E1ED3 /* MapViewModel.swift in Sources */,
 				9BFC7B05274A9CB9003C942B /* ActivityViewModel.swift in Sources */,
 				9BF12FDD273D725900A94588 /* TriSprintApp.swift in Sources */,
 				9B3DA3252742B403009AB522 /* ScheduleViewModel.swift in Sources */,
+				9BFC7B13274CF64B003C942B /* Swim.swift in Sources */,
 				9B28677F273FDCCE00E856F0 /* TrainingScheduleView.swift in Sources */,
+				9BFC7B19274CF876003C942B /* SwimsView.swift in Sources */,
 				9BE3C09D27480F72009E1ED3 /* LoadingView.swift in Sources */,
 				9BF12FFD273E7A6300A94588 /* FirstTriathlonView.swift in Sources */,
 				9BF13000273E7F2200A94588 /* CustomStyling.swift in Sources */,

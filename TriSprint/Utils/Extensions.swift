@@ -75,6 +75,12 @@ enum Sessions: String {
     case full = "Full"
 }
 
+enum Activity: String, CaseIterable {
+    case swim = "Swim"
+    case ride = "Ride"
+    case run = "Run"
+}
+
 extension HorizontalAlignment {
     private enum HCenterAlignment: AlignmentID {
         static func defaultValue(in dimensions: ViewDimensions) -> CGFloat {
