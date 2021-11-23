@@ -52,6 +52,9 @@
 		9BFC7B15274CF7C2003C942B /* RidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B14274CF7C2003C942B /* RidesView.swift */; };
 		9BFC7B17274CF826003C942B /* RunsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B16274CF826003C942B /* RunsView.swift */; };
 		9BFC7B19274CF876003C942B /* SwimsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B18274CF876003C942B /* SwimsView.swift */; };
+		9BFC7B1C274D1610003C942B /* EnterManualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B1B274D1610003C942B /* EnterManualView.swift */; };
+		9BFC7B1E274D3EAA003C942B /* NumbersValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B1D274D3EAA003C942B /* NumbersValidation.swift */; };
+		9BFC7B20274D45FF003C942B /* MetricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B1F274D45FF003C942B /* MetricView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +104,9 @@
 		9BFC7B14274CF7C2003C942B /* RidesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RidesView.swift; sourceTree = "<group>"; };
 		9BFC7B16274CF826003C942B /* RunsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunsView.swift; sourceTree = "<group>"; };
 		9BFC7B18274CF876003C942B /* SwimsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimsView.swift; sourceTree = "<group>"; };
+		9BFC7B1B274D1610003C942B /* EnterManualView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterManualView.swift; sourceTree = "<group>"; };
+		9BFC7B1D274D3EAA003C942B /* NumbersValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersValidation.swift; sourceTree = "<group>"; };
+		9BFC7B1F274D45FF003C942B /* MetricView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +125,7 @@
 			children = (
 				9BF12FFC273E7A6300A94588 /* FirstTriathlonView.swift */,
 				9BF13001273EA6C500A94588 /* FitnessLevelView.swift */,
+				9BFC7B1F274D45FF003C942B /* MetricView.swift */,
 				9BF12FEF273D74C000A94588 /* TrainingDaysView.swift */,
 			);
 			path = OnboardingViews;
@@ -196,6 +203,7 @@
 				9B28676E273EB37B00E856F0 /* OnboardingViews */,
 				9B286775273FC3A100E856F0 /* TrainingViewModel */,
 				9BC943072743B21500D57EF5 /* Schedule */,
+				9BFC7B1A274D15EC003C942B /* ManualAdd */,
 				9BE3C08327465ECB009E1ED3 /* MapView */,
 				9BFC7B01274A9BF0003C942B /* Activity */,
 				9B286779273FD77100E856F0 /* Model */,
@@ -238,6 +246,7 @@
 				9BF12FFF273E7F2200A94588 /* CustomStyling.swift */,
 				9BE3C0942746B1DE009E1ED3 /* FormatDisplay.swift */,
 				9BE3C0962746B872009E1ED3 /* UnitConverter.swift */,
+				9BFC7B1D274D3EAA003C942B /* NumbersValidation.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -268,6 +277,14 @@
 				9BFC7B18274CF876003C942B /* SwimsView.swift */,
 			);
 			path = Activity;
+			sourceTree = "<group>";
+		};
+		9BFC7B1A274D15EC003C942B /* ManualAdd */ = {
+			isa = PBXGroup;
+			children = (
+				9BFC7B1B274D1610003C942B /* EnterManualView.swift */,
+			);
+			path = ManualAdd;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,6 +377,7 @@
 				9BF12FF7273E702400A94588 /* RunBackground.swift in Sources */,
 				9BFC7B0F274BDBC6003C942B /* Ride.swift in Sources */,
 				9BF12FDF273D725900A94588 /* ContentView.swift in Sources */,
+				9BFC7B1E274D3EAA003C942B /* NumbersValidation.swift in Sources */,
 				9BE3C082274546EA009E1ED3 /* BrickDetailContentView.swift in Sources */,
 				9BE3C08527465EEC009E1ED3 /* MapView.swift in Sources */,
 				9BF12FF0273D74C000A94588 /* TrainingDaysView.swift in Sources */,
@@ -377,10 +395,12 @@
 				9B28677F273FDCCE00E856F0 /* TrainingScheduleView.swift in Sources */,
 				9BFC7B19274CF876003C942B /* SwimsView.swift in Sources */,
 				9BE3C09D27480F72009E1ED3 /* LoadingView.swift in Sources */,
+				9BFC7B20274D45FF003C942B /* MetricView.swift in Sources */,
 				9BF12FFD273E7A6300A94588 /* FirstTriathlonView.swift in Sources */,
 				9BF13000273E7F2200A94588 /* CustomStyling.swift in Sources */,
 				9B28677B273FD7F300E856F0 /* TrainingPlan.swift in Sources */,
 				9BE3C0952746B1DE009E1ED3 /* FormatDisplay.swift in Sources */,
+				9BFC7B1C274D1610003C942B /* EnterManualView.swift in Sources */,
 				9BE3C07E27453132009E1ED3 /* DetailViewButtons.swift in Sources */,
 				9BE3C0802745378E009E1ED3 /* DetailViewComponents.swift in Sources */,
 			);

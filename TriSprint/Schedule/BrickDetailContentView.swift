@@ -11,6 +11,7 @@ struct BrickDetailContentView: View {
     
     @Binding var plan: Plan
     @State private var showMapView: Bool = false
+    @State private var showManualEntryView: Bool = false
     @Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
@@ -22,8 +23,8 @@ struct BrickDetailContentView: View {
                         .padding(.vertical, 30)
                     Spacer()
                     ScrollView {
-                        RideStack(plan: $plan, showMapView: $showMapView)
-                        RunStack(plan: $plan, showMapView: showMapView)
+                        RideStack(plan: $plan, showMapView: $showMapView, showManualEntryView: $showManualEntryView)
+                        RunStack(plan: $plan, showMapView: showMapView, showManualEntryView: $showManualEntryView)
                     }
                 }
             }
@@ -41,11 +42,12 @@ struct BrickDetailContentView: View {
 struct RideStack: View {
     @Binding var plan: Plan
     @Binding var showMapView: Bool
+    @Binding var showManualEntryView: Bool
     var body: some View {
         VStack {
             HStack {
                 SkipButton()
-                EnterManuallyButton()
+                EnterManuallyButton(showManualEnterView: $showManualEntryView)
             }
             HStack {
                 Image(TrainingImageNames.trainingRide.rawValue)
@@ -59,6 +61,8 @@ struct RideStack: View {
             .padding(.vertical,20)
             
             DescriptionView(description: plan.rideDescription ?? "")
+            
+            NavigationLink(destination: EnterManualView(plan: $plan), isActive: $showManualEntryView) { EmptyView() }
             
             NavigationLink(destination: MapView(plan: $plan, targetTime: plan.rideTime ?? "", targetRpe: plan.rideRpe ?? "", targetDesc: plan.rideDescription ?? "", session: "Ride"), isActive: $showMapView) { EmptyView()}
             
@@ -80,11 +84,12 @@ struct RideStack: View {
 struct RunStack: View {
     @Binding var plan: Plan
     @State var showMapView: Bool
+    @Binding var showManualEntryView: Bool
     var body: some View {
         VStack {
             HStack {
                 SkipButton()
-                EnterManuallyButton()
+                EnterManuallyButton(showManualEnterView: $showManualEntryView)
             }
             HStack {
                 Image(TrainingImageNames.trainingRun.rawValue)
@@ -99,6 +104,7 @@ struct RunStack: View {
             
             DescriptionView(description: plan.runDescription ?? "")
             
+            NavigationLink(destination: EnterManualView(plan: $plan), isActive: $showManualEntryView) { EmptyView() }             
             NavigationLink(destination: MapView(plan: $plan, targetTime: plan.runTime ?? "", targetRpe: plan.runRpe ?? "", targetDesc: plan.runDescription ?? "", session: "Run"), isActive: $showMapView) { EmptyView()}
             
             if plan.session == Sessions.swim.rawValue {

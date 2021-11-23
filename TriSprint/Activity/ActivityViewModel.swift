@@ -8,7 +8,7 @@
 import SwiftUI
 
 class ActivityViewModel: ObservableObject {
-    @Published var measure: String = "metr"
+    @Published var measure: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.measure.rawValue) ?? ""
     @Published var rideDistanceText = "0.00"
     @Published var rideTimeText = "0.00"
     @Published var ridePaceText = "0.00"
@@ -26,7 +26,7 @@ class ActivityViewModel: ObservableObject {
     
     func updateRides(ride: Ride) {
         imageName = TrainingImageNames.trainingRide.rawValue
-        if self.measure == "metric" {
+        if self.measure == "Kilometers" {
             let formattedDistance = FormatDisplay.kmDistance(ride.distance)
             let formattedTime = FormatDisplay.time(Int(ride.duration))
             let formattedPace = FormatDisplay.speed(distance: ride.distance, seconds: ride.duration, outputUnit: UnitSpeed.minutesPerKilometer)
@@ -51,7 +51,7 @@ class ActivityViewModel: ObservableObject {
 
 func updateRuns(run: Run) {
     imageName = TrainingImageNames.trainingRun.rawValue
-    if self.measure == "metric" {
+    if self.measure == "Kilometers" {
         let formattedDistance = FormatDisplay.kmDistance(run.distance)
         let formattedTime = FormatDisplay.time(Int(run.duration))
         let formattedPace = FormatDisplay.speed(distance: run.distance, seconds: run.duration, outputUnit: UnitSpeed.minutesPerKilometer)
@@ -74,7 +74,7 @@ func updateRuns(run: Run) {
 
     func updateSwims(swim: Swim) {
         imageName = TrainingImageNames.trainingSwim.rawValue
-        if self.measure == "metric" {
+        if self.measure == "Kilometers" {
             let formattedDistance = FormatDisplay.kmDistance(swim.distance)
             let formattedTime = FormatDisplay.time(Int(swim.duration))
             let formattedPace = FormatDisplay.speed(distance: swim.distance, seconds: swim.duration, outputUnit: UnitSpeed.minutesPerKilometer)

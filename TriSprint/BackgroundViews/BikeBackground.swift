@@ -10,14 +10,14 @@ import SwiftUI
 struct BikeBackground: View {
     var body: some View {
         ZStack {
-        Image("Photo_bike")
-            .resizable()
-            .ignoresSafeArea()
-            .scaledToFill()
-        Color((.systemBackground))
-            .ignoresSafeArea()
-            .opacity(0.8)
-    }
+            Image("Photo_bike")
+                .resizable()
+                .ignoresSafeArea()
+                .scaledToFill()
+            Color((.systemBackground))
+                .ignoresSafeArea()
+                .opacity(0.8)
+        }
     }
 }
 

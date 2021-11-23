@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct EnterManuallyButton: View {
+    @Binding var showManualEnterView: Bool
     var body: some View {
         HStack {
             Spacer()
             Button {
-                print("Nige: Enter Manually")
+                showManualEnterView.toggle()
             } label: {
                 Text("Enter Manually")
                     .modifier(SmallGreenButton())
