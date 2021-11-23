@@ -13,6 +13,13 @@ struct MainView: View {
 //        UITabBar.appearance().backgroundColor = UIColor(Color.black)
 //    }
     
+    init() {
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.mainButton)
+        UISegmentedControl.appearance().backgroundColor = UIColor(Color.accentButton)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
+        
+    }
+    
     var body: some View {
         TabView {
             HomeView()

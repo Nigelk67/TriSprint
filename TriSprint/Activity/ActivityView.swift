@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ActivityView: View {
-  
+    
     @ObservedObject var activityVm = ActivityViewModel()
+    @State private var session: Activity = .swim
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
@@ -25,72 +26,82 @@ struct ActivityView: View {
     var body: some View {
         
         ZStack {
-            SwimBackground()
+            switch session {
+            case .swim:
+                SwimBackground()
+            case .ride:
+                BikeBackground()
+            case .run:
+                RunBackground()
+            }
+            
             VStack {
-                ScrollView() {
-                    if !rides.isEmpty {
-                        
+                Picker("Activity", selection: $session) {
+                    ForEach(Activity.allCases, id: \.self) {
+                        Text($0.rawValue)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding()
+                
+                scrollView
+                
+                .navigationTitle("Training Schedule")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarHidden(false)
+            }
+        }
+    }
+    
+    
+    private var scrollView: some View {
+        GeometryReader { fullView in
+            ScrollView() {
+                if !rides.isEmpty || !swims.isEmpty || !runs.isEmpty {
+                    switch session {
+                    case .swim:
+                        LazyVStack {
+                            Spacer()
+                            ForEach(swims) { swim in
+                                SwimsView(swim: swim)
+                                    .frame(width: fullView.size.width - 40, height: 200, alignment: .center)
+                                    .padding(.bottom,20)
+                                    .shadow(color: .gray, radius: 4, x: 5, y: 5)
+                            }
+                        }
+                    case .ride:
                         LazyVStack {
                             Spacer()
                             ForEach(rides) { ride in
                                 RidesView(ride: ride)
+                                    .frame(width: fullView.size.width - 40, height: 200, alignment: .center)
+                                    .padding(.bottom,20)
+                                    .shadow(color: .gray, radius: 4, x: 5, y: 5)
                             }
                         }
-                    } else {
-                        Spacer()
-                        VStack {
-                            Text("No Activity yet")
+                    case .run:
+                        LazyVStack {
+                            Spacer()
+                            ForEach(runs) { run in
+                                RunsView(run: run)
+                                    .frame(width: fullView.size.width - 40, height: 200, alignment: .center)
+                                    .padding(.bottom,20)
+                                    .shadow(color: .gray, radius: 4, x: 5, y: 5)
+                            }
                         }
+                    }
+                } else {
+                    Spacer()
+                    VStack {
+                        Text("No Activity yet")
                     }
                 }
             }
-            .navigationTitle("Training Schedule")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarHidden(false)
         }
     }
 }
 
-struct RidesView: View {
-    @ObservedObject var activityVm = ActivityViewModel()
-    let ride: Ride
-//    init(ride: Ride) {
-//        self.ride = ride
-//        fetchRequest = FetchRequest<Ride>(entity: Ride.entity(), sortDescriptors: [.init(key: "timestamp", ascending: false)], predicate: .init(format: "ride == %@", self.ride))
-//    }
-//    var fetchRequest: FetchRequest<Ride>
-    
-    var body: some View {
-        VStack(alignment: .center) {
-            HStack {
-                Text("\(activityVm.dateText)")
-                    .padding(.horizontal)
-                Spacer()
-            }
-            HStack {
-                Image(activityVm.imageName)
-                    .padding(.leading, 15)
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Time: \(activityVm.timeText)")
-                    Text("Distance: \(activityVm.distanceText)")
-                    Text("Pace: \(activityVm.paceText)")
-                }
-                .padding(.leading, 15)
-            }
-        }
-        .frame(width: 350, height: 200, alignment: .leading)
-        .background(Color.white.opacity(0.9)
-                        .shadow(color: .blue, radius: 15, x: 10, y: 0))
-        .cornerRadius(20)
-        
-        
-        
-        
-        .onAppear {
-            activityVm.updateRides(ride: ride)
-        }
-    }
-}
+
 
 struct ActivityView_Previews: PreviewProvider {
     static var previews: some View {
