@@ -30,6 +30,7 @@ struct RunsView: View {
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Time: \(activityVm.runTimeText)")
                         Text("Distance: \(activityVm.runDistanceText)")
+                        Text("Speed: \(activityVm.runSpeedText)")
                         Text("Pace: \(activityVm.runPaceText)")
                     }
                     .padding()

@@ -13,6 +13,7 @@ struct TrainingDaysView: View {
     @State private var daysSelected = ""
     @State private var nextScreen = false
     @ObservedObject var trainingPlanVm = TrainingPlanArrayViewModel()
+    @State private var showConfirmationPopup: Bool = false
     //@Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
@@ -38,6 +39,12 @@ struct TrainingDaysView: View {
 //                        }
 //                    }
             }
+            .alert(isPresented: $showConfirmationPopup) {
+                Alert(title: Text("SAVED!"), message: Text("We've personalised your plan!\nYou'll see it in your Schedule"), dismissButton: .default(Text("OK"), action: {
+                    UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                }))
+            }
+            
         }
         
         
@@ -68,7 +75,7 @@ struct TrainingDaysView: View {
                     daysSelected = num
                     UserDefaults.standard.set(num, forKey: UserDefaults.Keys.trainingDays.rawValue)
                     trainingPlanVm.fetchPlanArray(name: num)
-                    UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                    showConfirmationPopup = true
                 } label: {
                     Text(num)
                         .foregroundColor(Color.mainText)

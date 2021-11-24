@@ -29,6 +29,7 @@ struct SwimsView: View {
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Time: \(activityVm.swimTimeText)")
                         Text("Distance: \(activityVm.swimDistanceText)")
+                        Text("Speed: \(activityVm.swimSpeedText)")
                         Text("Pace: \(activityVm.swimPaceText)")
                     }
                     .padding()
