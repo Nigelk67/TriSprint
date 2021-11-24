@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct EnterManualView: View {
     
@@ -14,7 +15,9 @@ struct EnterManualView: View {
     @State private var targetTime = ""
     @ObservedObject private var actualTime = NumbersOnly()
     @ObservedObject private var actualDistance = NumbersOnly()
+    @StateObject private var sessionVm = SessionViewModel()
     @State private var isKilometres = true
+    @State private var isTyping = false
     @State private var pace = ""
     
     var body: some View {
@@ -41,32 +44,35 @@ struct EnterManualView: View {
                     VStack {
                         targetView
                         textFieldView
-                        
+                        paceCalcView
+                        Spacer()
+                        saveButton
                         Spacer()
                     }
-                    
-                    Button {
-                        print("Save button pressed")
-                    } label: {
-                        Text("SAVE")
-                            .foregroundColor(Color.mainText)
-                            .font(.system(size: 35, weight: .medium, design: .rounded))
+                }
+                if sessionVm.isSaving {
+                    withAnimation {
+                        LoadingView(loadingText: "Saving..")
                     }
-                    .modifier(GreenButton())
                 }
             }
             .onTapGesture {
                 dismissKeyboard()
             }
+            .alert(isPresented: $sessionVm.showConfirmationPopup) {
+                Alert(title: Text("SAVED!"), message: Text("This session has been saved"), dismissButton: .default(Text("OK"), action: {
+                    sessionVm.markPlanComplete(plan: plan)
+                    UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                }))
+            }
         }
         .onAppear {
             setTarget()
-            if UserDefaults.Keys.measure.rawValue == "Kilometers" {
+            if UserDefaults.standard.string(forKey: UserDefaults.Keys.measure.rawValue) == "Kilometers" {
                 isKilometres = true
             } else {
                 isKilometres = false
             }
-            
         }
     }
     
@@ -116,29 +122,57 @@ struct EnterManualView: View {
                     .foregroundColor(Color.mainText)
                     .font(.system(size: 18, weight: .regular, design: .rounded))
                 Spacer()
-                TextField("Enter distance", text: $actualDistance.value)
+                TextField("Enter distance", text: $actualDistance.value, onEditingChanged: { isTyping in
+                    if isTyping {
+                    } else {
+                        let paceStr = calculatePace(time: actualTime.value, distance: actualDistance.value)
+                        self.pace = paceStr
+                    }
+                })
                     .frame(width: 150, height: 100, alignment: .center)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .foregroundColor(Color.mainText)
                     .keyboardType(.decimalPad)
+                
             }
             .padding(.horizontal, 40)
         }
     }
     
     private var paceCalcView: some View {
-        VStack {
         HStack {
-            Text(isKilometres ? "Mins / km" : "Mins / mile")
-                .foregroundColor(Color.mainText)
-                .font(.system(size: 18, weight: .regular, design: .rounded))
-            Spacer()
+            HStack {
+                Text(isKilometres ? "Mins / km" : "Mins / mile")
+                    .foregroundColor(Color.mainText)
+                    .font(.system(size: 18, weight: .regular, design: .rounded))
+                    .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 0))
+                Spacer()
+            }
             Text(pace)
                 .foregroundColor(Color.mainText)
-                .font(.system(size: 26, weight: .regular, design: .rounded))
+                .font(.system(size: 20, weight: .regular, design: .rounded))
+                .padding(.trailing, 20)
         }
+        .background(Color.accentButton.opacity(0.2))
         .padding(.horizontal, 40)
+        .padding(.top, 40)
+    }
+
+    private var saveButton: some View {
+        Button {
+            sessionVm.saveManualSession(session: plan.session ?? "", measure: isKilometres ? Measure.kilometers.rawValue : Measure.miles.rawValue, distance: actualDistance.value, duration: actualTime.value)
+        } label: {
+            Text("Save")
+                .foregroundColor(Color.mainText)
+                .font(.system(size: 35, weight: .medium, design: .rounded))
         }
+        .modifier(GreenButton())
+    }
+    
+    private func calculatePace(time: String, distance: String) -> String {
+        let paceDble = (Double(time) ?? 0) / (Double(distance) ?? 0)
+        let paceStr = String(format: "%.2f", paceDble)
+        return paceStr
     }
     
     private func setTarget() {

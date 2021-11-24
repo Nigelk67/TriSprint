@@ -13,12 +13,21 @@ struct FormatDisplay {
         return FormatDisplay.distance(distanceMeasurement)
     }
     
+    static func distanceInMiles(_ distance: Double) -> String {
+        let formatter = MeasurementFormatter()
+        formatter.unitOptions = [.providedUnit]
+        let miles = distance / 1.609
+        let distance = Measurement(value: miles, unit: UnitLength.miles)
+        formatter.unitStyle = .short
+        return formatter.string(from: (distance))
+    }
+    
     static func kmDistance(_ distance: Double) -> String {
         let formatter = MeasurementFormatter()
         formatter.unitOptions = [.providedUnit]
         let distanceKm = Measurement(value: distance, unit: UnitLength.kilometers)
         formatter.unitStyle = .short
-        return formatter.string(from: (distanceKm/1000))
+        return formatter.string(from: (distanceKm))
     }
     
     static func distanceInKm(_ distance: Measurement<UnitLength>) -> String {
@@ -44,20 +53,53 @@ struct FormatDisplay {
         return formatter.string(from: TimeInterval(seconds))!
     }
     
-    static func pace(distance: Measurement<UnitLength>, seconds: Int, outputUnit: UnitSpeed) -> String {
+    static func pacePerMile(distance: Measurement<UnitLength>, seconds: Int, outputUnit: UnitSpeed) -> String {
         let formatter = MeasurementFormatter()
         formatter.unitOptions = [.providedUnit]
-        let speedMagnitude = seconds != 0 ? distance.value / Double(seconds) : 0
-        let speed = Measurement(value: speedMagnitude, unit: UnitSpeed.metersPerSecond)
+        let speedMagnitude = seconds != 0 ? Double(seconds / 60) / distance.value : 0
+        let speed = Measurement(value: speedMagnitude, unit: UnitSpeed.minutesPerMile)
         return formatter.string(from: speed.converted(to: outputUnit))
     }
     
-    static func speed(distance: Double, seconds: Int16, outputUnit: UnitSpeed) -> String {
+    static func pacePerKm(distance: Measurement<UnitLength>, seconds: Int, outputUnit: UnitSpeed) -> String {
         let formatter = MeasurementFormatter()
         formatter.unitOptions = [.providedUnit]
-        let speedMagnitude = seconds != 0 ? distance / Double(seconds) : 0
-        let speed = Measurement(value: speedMagnitude, unit: UnitSpeed.metersPerSecond)
+        let speedMagnitude = seconds != 0 ? Double(seconds / 60) / distance.value : 0
+        let speed = Measurement(value: speedMagnitude, unit: UnitSpeed.minutesPerKilometer)
         return formatter.string(from: speed.converted(to: outputUnit))
+    }
+    
+    static func speedMph(distance: Double, seconds: Int16, outputUnit: UnitSpeed) -> String {
+        let formatter = MeasurementFormatter()
+        formatter.unitOptions = [.providedUnit]
+        let hourTime = Double(seconds) / 3600
+        let speedMagnitude = seconds != 0 ? distance / Double(hourTime) : 0
+        let speed = Measurement(value: speedMagnitude, unit: UnitSpeed.milesPerHour)
+        return formatter.string(from: speed)
+    }
+    
+    static func speedKmph(distance: Double, seconds: Int16, outputUnit: UnitSpeed) -> String {
+        let formatter = MeasurementFormatter()
+        formatter.unitOptions = [.providedUnit]
+        let hourTime = Double(seconds) / 3600
+        let speedMagnitude = seconds != 0 ? distance / Double(hourTime) : 0
+        let speed = Measurement(value: speedMagnitude, unit: UnitSpeed.kilometersPerHour)
+        return formatter.string(from: speed)
+    }
+    
+    static func pacePerMileDble(distance: Double, seconds: Int16, outputUnit: UnitSpeed) -> String {
+        let formatter = MeasurementFormatter()
+        formatter.unitOptions = [.providedUnit]
+        let speedMagnitude = seconds != 0 ? Double(seconds/60) / distance : 0
+        let speed = Measurement(value: speedMagnitude, unit: UnitSpeed.minutesPerMile)
+        return formatter.string(from: speed)
+    }
+    static func pacePerKmDble(distance: Double, seconds: Int16, outputUnit: UnitSpeed) -> String {
+        let formatter = MeasurementFormatter()
+        formatter.unitOptions = [.providedUnit]
+        let speedMagnitude = seconds != 0 ? Double(seconds/60) / distance : 0
+        let speed = Measurement(value: speedMagnitude, unit: UnitSpeed.minutesPerKilometer)
+        return formatter.string(from: speed)
     }
     
     

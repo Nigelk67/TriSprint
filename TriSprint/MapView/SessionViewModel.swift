@@ -23,6 +23,7 @@ class SessionViewModel: ObservableObject {
     let userDefaults = UserDefaults.standard
     @State private var ride: Ride?
     @State private var run: Run?
+    @State private var swim: Swim?
     
     func sesssionStopped() {
         locationManager.stopLocationUpdates()
@@ -39,14 +40,14 @@ class SessionViewModel: ObservableObject {
         if self.measure == "Kilometers" {
             let formattedDistance = FormatDisplay.distanceInKm(locationManager.distance)
             let formattedTime = FormatDisplay.time(secs)
-            let formattedPace = FormatDisplay.pace(distance: locationManager.distance, seconds: secs, outputUnit: UnitSpeed.minutesPerKilometer)
+            let formattedPace = FormatDisplay.pacePerKm(distance: locationManager.distance, seconds: secs, outputUnit: UnitSpeed.minutesPerKilometer)
             distanceText = "\(formattedDistance)"
             timeText = "\(formattedTime)"
             paceText = "\(formattedPace)"
         } else {
             let formattedDistance = FormatDisplay.distance(locationManager.distance)
             let formattedTime = FormatDisplay.time(secs)
-            let formattedPace = FormatDisplay.pace(distance: locationManager.distance, seconds: secs, outputUnit: UnitSpeed.minutesPerMile)
+            let formattedPace = FormatDisplay.pacePerMile(distance: locationManager.distance, seconds: secs, outputUnit: UnitSpeed.minutesPerMile)
             distanceText = "\(formattedDistance)"
             timeText = "\(formattedTime)"
             paceText = "\(formattedPace)"
@@ -94,52 +95,131 @@ class SessionViewModel: ObservableObject {
         }
     }
     
-    func saveSession(session: String, measure: String) {
+    private func saveRideToCoreData(distance: Double, secs: Int16) {
+        let context = PersistenceController.shared.container.viewContext
+        let newRide = Ride(context: context)
+        newRide.distance = distance
+        newRide.duration = secs
+        newRide.timestamp = Date()
+        do {
+            try context.save()
+        } catch {
+            print("Error saving ride to CoreData", error)
+        }
+        ride = newRide
+    }
+    
+    private func saveRunToCoreData(distance: Double, secs: Int16) {
+        let context = PersistenceController.shared.container.viewContext
+        let newRun = Run(context: context)
+        newRun.distance = distance
+        newRun.duration = secs
+        newRun.timestamp = Date()
+        do {
+            try context.save()
+        } catch {
+            print("Error saving ride to CoreData", error)
+        }
+        run = newRun
+    }
+    
+    private func saveSwimToCoreData(distance: Double, secs: Int16) {
+        let context = PersistenceController.shared.container.viewContext
+        let newSwim = Swim(context: context)
+        newSwim.distance = distance
+        newSwim.duration = secs
+        newSwim.timestamp = Date()
+        do {
+            try context.save()
+        } catch {
+            print("Error saving ride to CoreData", error)
+        }
+        swim = newSwim
+    }
+    
+    func saveManualSession(session: String, measure: String, distance: String, duration: String) {
+        
         showSpinner()
         
-        let context = PersistenceController.shared.container.viewContext
-        
+        guard let distanceDbl = Double(distance) else { return }
+        let distanceInKm: Double
+        if measure == Measure.kilometers.rawValue {
+            distanceInKm = distanceDbl
+        } else {
+            distanceInKm = (distanceDbl * 1.609)
+        }
+        guard let durationDbl = Double(duration) else { return }
+        let durationInt = Int16(durationDbl)
+        let secs = durationInt * 60
+       
         if session == Sessions.ride.rawValue {
-            let newRide = Ride(context: context)
-            if measure == "Kilometers" {
-                newRide.distance = locationManager.distance.value
-            } else {
-                newRide.distance = locationManager.distance.value * 1.609
-            }
-            newRide.duration = Int16(secs)
-            newRide.timestamp = Date()
-            for location in locationManager.locationList {
-                let locationObject = Location(context: context)
-                locationObject.timestamp = location.timestamp
-                locationObject.latitude = location.coordinate.latitude
-                locationObject.longitude = location.coordinate.longitude
-                newRide.addToLocations(locationObject)
-            }
-            do {
-                try context.save()
-            } catch {
-                print("Error saving ride to CoreData", error)
-            }
-            ride = newRide
+            saveRideToCoreData(distance: distanceInKm, secs: secs)
+        } else if session == Sessions.run.rawValue {
+            saveRunToCoreData(distance: distanceInKm, secs: secs)
+        } else if session == Sessions.swim.rawValue {
+            saveSwimToCoreData(distance: distanceInKm, secs: secs)
+        }
+    }
+    
+    private func saveRideWithLocationsToCoreData() {
+        let context = PersistenceController.shared.container.viewContext
+        let newRide = Ride(context: context)
+        if measure == Measure.kilometers.rawValue {
+            newRide.distance = locationManager.distance.value
+        } else {
+            newRide.distance = (locationManager.distance.value * 1.609)
+        }
+        newRide.duration = Int16(secs)
+        newRide.timestamp = Date()
+        for location in locationManager.locationList {
+            let locationObject = Location(context: context)
+            locationObject.timestamp = location.timestamp
+            locationObject.latitude = location.coordinate.latitude
+            locationObject.longitude = location.coordinate.longitude
+            newRide.addToLocations(locationObject)
+        }
+        do {
+            try context.save()
+        } catch {
+            print("Error saving ride to CoreData", error)
+        }
+        ride = newRide
+    }
+    
+    private func saveRunWithLocationsToCoreData() {
+        let context = PersistenceController.shared.container.viewContext
+        let newRun = Run(context: context)
+        if measure == Measure.kilometers.rawValue {
+            newRun.distance = locationManager.distance.value
+        } else {
+            newRun.distance = (locationManager.distance.value * 1.609)
+        }
+        newRun.duration = Int16(secs)
+        newRun.timestamp = Date()
+        for location in locationManager.locationList {
+            let locationObject = Location(context: context)
+            locationObject.timestamp = location.timestamp
+            locationObject.latitude = location.coordinate.latitude
+            locationObject.longitude = location.coordinate.longitude
+            newRun.addToLocations(locationObject)
+        }
+        do {
+            try context.save()
+        } catch {
+            print("Error saving run to CoreData", error)
+        }
+        run = newRun
+    }
+    
+    func saveSession(session: String, measure: String) {
+        
+        showSpinner()
+       
+        if session == Sessions.ride.rawValue {
+            saveRideWithLocationsToCoreData()
 
         } else if session == Sessions.run.rawValue {
-            let newRun = Run(context: context)
-            newRun.distance = locationManager.distance.value
-            newRun.duration = Int16(secs)
-            newRun.timestamp = Date()
-            for location in locationManager.locationList {
-                let locationObject = Location(context: context)
-                locationObject.timestamp = location.timestamp
-                locationObject.latitude = location.coordinate.latitude
-                locationObject.longitude = location.coordinate.longitude
-                newRun.addToLocations(locationObject)
-            }
-            do {
-                try context.save()
-            } catch {
-                print("Error saving run to CoreData", error)
-            }
-            run = newRun
+            saveRunWithLocationsToCoreData()
         }
 
     }

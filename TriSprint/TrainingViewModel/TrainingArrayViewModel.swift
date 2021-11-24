@@ -23,7 +23,6 @@ class TrainingPlanArrayViewModel: ObservableObject {
     }
     
     func savePlanToCoreData(trainingPlan: [Dictionary<String, Any>]) {
-        print("Nige: Save to CoreData func")
         for dict in trainingPlan {
             
             let training = TrainingPlan(dictionary: dict)

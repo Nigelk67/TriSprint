@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoadingView: View {
-    
+    var loadingText: String
     var body: some View {
         ZStack {
             Color("MainText")
@@ -20,7 +20,7 @@ struct LoadingView: View {
                     .progressViewStyle(CircularProgressViewStyle(tint: Color.mainButton))
                     .scaleEffect(3)
                 
-                Text("Saving....")
+                Text(loadingText)
                     .foregroundColor(Color.mainButton)
                     .font(.title3)
                     .padding(.top,30)
@@ -34,6 +34,6 @@ struct LoadingView: View {
 
 struct LoadingView_Previews: PreviewProvider {
     static var previews: some View {
-        LoadingView()
+        LoadingView(loadingText: "")
     }
 }

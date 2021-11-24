@@ -29,6 +29,7 @@ struct RidesView: View {
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Time: \(activityVm.rideTimeText)")
                         Text("Distance: \(activityVm.rideDistanceText)")
+                        Text("Speed: \(activityVm.rideSpeedText)")
                         Text("Pace: \(activityVm.ridePaceText)")
                     }
                     .padding()

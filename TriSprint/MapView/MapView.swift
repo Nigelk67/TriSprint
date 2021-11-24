@@ -68,7 +68,7 @@ struct MapView: View {
 
             if sessionVm.isSaving {
                 withAnimation {
-                    LoadingView()
+                    LoadingView(loadingText: "Saving..")
                 }
             }
                 
