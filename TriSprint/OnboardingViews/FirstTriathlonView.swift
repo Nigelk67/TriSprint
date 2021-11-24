@@ -11,8 +11,7 @@ struct FirstTriathlonView: View {
     
     @State private var selection: String? = ""
     @State private var nextScreen = false
-    //@Environment(\.presentationMode) private var presentationMode
-    
+   
     var body: some View {
         
         NavigationView {
@@ -28,20 +27,16 @@ struct FirstTriathlonView: View {
                     selectionView
                     Spacer()
                     Spacer()
-                        //.navigationBarBackButtonHidden(true)
                         .navigationTitle("")
                         .navigationBarTitleDisplayMode(.inline)
-//                                .toolbar {
-//                                    ToolbarItem(placement: .navigationBarLeading) {
-//                                        CancelButton(presentationMode: presentationMode)
-//                                    }
-//                                }
                 }
-                
             }
         }
     }
     
+}
+
+extension FirstTriathlonView {
     private var selectionView: some View {
         VStack {
             Text("Is This Your First Triathlon?")
@@ -74,7 +69,7 @@ struct FirstTriathlonView: View {
             }
             .modifier(GreenButton())
             .padding(.horizontal,10)
-
+            
             Button {
                 UserDefaults.standard.set(false, forKey: UserDefaults.Keys.first.rawValue)
                 nextScreen.toggle()
@@ -86,7 +81,7 @@ struct FirstTriathlonView: View {
             }
             .modifier(GreenButton())
             .padding(.horizontal,10)
-    
+            
         }
         .padding()
         

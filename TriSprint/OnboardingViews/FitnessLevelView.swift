@@ -12,7 +12,6 @@ struct FitnessLevelView: View {
     let fitnessLevels = ["Good","Average","Non-existent"]
     @State private var fitnessLevel = ""
     @State private var nextScreen = false
-    //@Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
         ZStack {
@@ -27,18 +26,15 @@ struct FitnessLevelView: View {
                 selectionView
                 Spacer()
                 Spacer()
-                    //.navigationBarBackButtonHidden(true)
                     .navigationTitle("")
                     .navigationBarTitleDisplayMode(.inline)
-//                            .toolbar {
-//                                ToolbarItem(placement: .navigationBarLeading) {
-//                                    CancelButton(presentationMode: presentationMode)
-//                                }
-//                            }
             }
         }
     }
     
+}
+
+extension FitnessLevelView {
     private var selectionView: some View {
         VStack {
             Text("What's your general level of fitness?")
@@ -49,7 +45,6 @@ struct FitnessLevelView: View {
                 .padding()
             
             buttonsView
-            
         }
         .background(Color.white)
         .opacity(0.7)
@@ -61,18 +56,18 @@ struct FitnessLevelView: View {
         VStack {
             ForEach(fitnessLevels, id: \.self) { level in
                 NavigationLink(destination: MetricView(), isActive: $nextScreen) {
-                Button {
-                    fitnessLevel = level
-                    UserDefaults.standard.set(level, forKey: UserDefaults.Keys.fitnessLevel.rawValue)
-                    nextScreen.toggle()
-                } label: {
-                    Text(level)
-                        .foregroundColor(Color.mainText)
-                        .font(.system(.title, design: .rounded))
-                        .frame(maxWidth: .infinity)
-                }
-                .modifier(GreenButton())
-                .padding(.horizontal, 10)
+                    Button {
+                        fitnessLevel = level
+                        UserDefaults.standard.set(level, forKey: UserDefaults.Keys.fitnessLevel.rawValue)
+                        nextScreen.toggle()
+                    } label: {
+                        Text(level)
+                            .foregroundColor(Color.mainText)
+                            .font(.system(.title, design: .rounded))
+                            .frame(maxWidth: .infinity)
+                    }
+                    .modifier(GreenButton())
+                    .padding(.horizontal, 10)
                 }
             }
             .padding()

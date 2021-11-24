@@ -11,7 +11,6 @@ struct MetricView: View {
     
     @State private var measurements = ["Kilometers","Miles"]
     @State private var nextScreen = false
-    //@Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
         ZStack {
@@ -26,19 +25,15 @@ struct MetricView: View {
                 selectionView
                 Spacer()
                 Spacer()
-                    //.navigationBarBackButtonHidden(true)
                     .navigationTitle("")
                     .navigationBarTitleDisplayMode(.inline)
-//                            .toolbar {
-//                                ToolbarItem(placement: .navigationBarLeading) {
-//                                    CancelButton(presentationMode: presentationMode)
-//                                }
-//                            }
             }
         }
-       
     }
     
+}
+
+extension MetricView {
     private var selectionView: some View {
         VStack {
             Text("What do you prefer to work in?")
@@ -61,17 +56,17 @@ struct MetricView: View {
         VStack {
             ForEach(measurements, id: \.self) { measure in
                 NavigationLink(destination: TrainingDaysView(), isActive: $nextScreen) {
-                Button {
-                    UserDefaults.standard.set(measure, forKey: UserDefaults.Keys.measure.rawValue)
-                    nextScreen.toggle()
-                } label: {
-                    Text(measure)
-                        .foregroundColor(Color.mainText)
-                        .font(.system(.title, design: .rounded))
-                        .frame(maxWidth: .infinity)
-                }
-                .modifier(GreenButton())
-                .padding(.horizontal, 10)
+                    Button {
+                        UserDefaults.standard.set(measure, forKey: UserDefaults.Keys.measure.rawValue)
+                        nextScreen.toggle()
+                    } label: {
+                        Text(measure)
+                            .foregroundColor(Color.mainText)
+                            .font(.system(.title, design: .rounded))
+                            .frame(maxWidth: .infinity)
+                    }
+                    .modifier(GreenButton())
+                    .padding(.horizontal, 10)
                 }
             }
             .padding()

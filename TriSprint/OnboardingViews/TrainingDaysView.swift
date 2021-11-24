@@ -14,8 +14,7 @@ struct TrainingDaysView: View {
     @State private var nextScreen = false
     @ObservedObject var trainingPlanVm = TrainingPlanArrayViewModel()
     @State private var showConfirmationPopup: Bool = false
-    //@Environment(\.presentationMode) private var presentationMode
-    
+ 
     var body: some View {
         
         ZStack {
@@ -30,26 +29,19 @@ struct TrainingDaysView: View {
                 selectionView
                 Spacer()
                 Spacer()
-                    //.navigationBarBackButtonHidden(true)   
                     .navigationTitle("")
                     .navigationBarTitleDisplayMode(.inline)
-//                    .toolbar {
-//                        ToolbarItem(placement: .navigationBarLeading) {
-//                            CancelButton(presentationMode: presentationMode)
-//                        }
-//                    }
             }
             .alert(isPresented: $showConfirmationPopup) {
-                Alert(title: Text("SAVED!"), message: Text("We've personalised your plan!\nYou'll see it in your Schedule"), dismissButton: .default(Text("OK"), action: {
-                    UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
-                }))
+                planSavedAlert
             }
             
         }
-        
-        
     }
     
+}
+
+extension TrainingDaysView {
     private var selectionView: some View {
         VStack {
             Text("How many days per week can you train?")
@@ -85,14 +77,17 @@ struct TrainingDaysView: View {
                 .modifier(GreenButton())
                 .padding(.leading, 10)
                 .padding(.trailing, 10)
-                }
             }
-            .padding()
-        //}
+        }
+        .padding()
     }
     
+    private var planSavedAlert: Alert {
+        Alert(title: Text("SAVED!"), message: Text("We've personalised your plan!\nYou'll see it in your Schedule"), dismissButton: .default(Text("OK"), action: {
+            UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+        }))
+    }
 }
-
 
 struct PersonaliseView_Previews: PreviewProvider {
     static var previews: some View {

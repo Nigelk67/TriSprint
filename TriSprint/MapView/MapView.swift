@@ -15,7 +15,6 @@ struct MapView: View {
     @State var targetRpe = ""
     @State var targetDesc = ""
     @State var session = ""
-    
     @StateObject private var mapVm = MapViewModel()
     @StateObject private var sessionVm = SessionViewModel()
     @ObservedObject private var scheduleVm = ScheduleViewModel()
@@ -25,7 +24,7 @@ struct MapView: View {
     @State private var showDrillsPopup = false
     @State private var drills: String = "No drills"
     let measure = UserDefaults.standard.string(forKey: UserDefaults.Keys.measure.rawValue)
-
+    
     var body: some View {
         
         ZStack {
@@ -33,12 +32,12 @@ struct MapView: View {
             
             VStack {
                 TargetStack(plan: $plan, targetTime: $targetTime, targetRpe: $targetRpe, showDrillsPopup: $showDrillsPopup)
-            
+                
                 Map(coordinateRegion: $mapVm.region, interactionModes: .all, showsUserLocation: true, userTrackingMode: nil)
                     .accentColor(Color.mainButton)
                 
                 trackingMeasures
-
+                
                 trackingButtons
             }
             
@@ -48,30 +47,25 @@ struct MapView: View {
                 }
             }.animation(.default)
             
-            .alert(isPresented: $sessionVm.showConfirmationPopup) {
-                Alert(title: Text("SAVED!"), message: Text("This session has been saved"), dismissButton: .default(Text("OK"), action: {
-                    sessionVm.markPlanComplete(plan: plan)
-                    UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
-                }))
-            }
-            .navigationBarBackButtonHidden(true)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Day: \(plan.day ?? "")")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    CancelButton(presentationMode: presentationMode)
+                .alert(isPresented: $sessionVm.showConfirmationPopup) {
+                    saveSessionAlert
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    ShowDrillsButton(showDrillsPopup: $showDrillsPopup)
+                .navigationBarBackButtonHidden(true)
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("Day: \(plan.day ?? "")")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        CancelButton(presentationMode: presentationMode)
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        ShowDrillsButton(showDrillsPopup: $showDrillsPopup)
+                    }
                 }
-            }
-
             if sessionVm.isSaving {
                 withAnimation {
                     LoadingView(loadingText: "Saving..")
                 }
             }
-                
         }
         .onAppear {
             mapVm.checkIfLocationServicesIsEnabled()
@@ -79,8 +73,9 @@ struct MapView: View {
         }
     }
     
-    
-    //MARK: SubViews
+}
+
+extension MapView {
     private var trackingMeasures: some View {
         VStack {
             HStack {
@@ -122,7 +117,6 @@ struct MapView: View {
                     .background(hasStarted ? Color.accentButton : Color.gray)
                     .foregroundColor(Color.mainText)
                     .cornerRadius(5)
-                //.padding(.leading,30)
             }
             .disabled(hasStarted ? false : true)
             Spacer()
@@ -149,36 +143,44 @@ struct MapView: View {
                     .foregroundColor(Color.mainText)
                     .cornerRadius(5)
                     .disabled(hasStarted ? false : true)
-                //.padding(.trailing,30)
             }
             .actionSheet(isPresented: $shouldShowStopActions) {
-                .init(title: Text("\(self.plan.session ?? "") STOPPED!"),
-                      message: Text("You can"),
-                      buttons: [
-                        .default(Text("Finish & Save This Session"), action: {
-                            if plan.session == Sessions.rideRun.rawValue {
-                                session = session
-                            } else {
-                                session = plan.session ?? ""
-                            }
-                            hasStarted = false
-                            sessionVm.sesssionStopped()
-                            sessionVm.saveSession(session: session, measure: measure ?? "")
-//                            self.performSegue(withIdentifier: "toRideDetailsVC", sender: nil)
-                        }),
-                        .destructive(Text("Discard This Session"),
-                                     action: {
-                                         hasStarted = false
-                                         sessionVm.sesssionStopped()
-                                     }),
-                        .cancel(Text("Carry On!"))
-                      ]
-                )
+                stopActionSheet
             }
         }
         .frame(width: 350)
         .padding(.vertical, 30)
         
+        
+    }
+    
+    private var stopActionSheet: ActionSheet {
+        ActionSheet(title: Text("\(self.plan.session ?? "") STOPPED!"), message: Text("You can"), buttons: [
+            .default(Text("Finish & Save This Session"), action: {
+                if plan.session == Sessions.rideRun.rawValue {
+                    session = session
+                } else {
+                    session = plan.session ?? ""
+                }
+                hasStarted = false
+                sessionVm.sesssionStopped()
+                sessionVm.saveSession(session: session, measure: measure ?? "")
+                
+            }),
+            .destructive(Text("Discard This Session"),
+                         action: {
+                             hasStarted = false
+                             sessionVm.sesssionStopped()
+                         }),
+            .cancel(Text("Carry On!"))
+        ])
+    }
+    
+    private var saveSessionAlert: Alert {
+        Alert(title: Text("SAVED!"), message: Text("This session has been saved"), dismissButton: .default(Text("OK"), action: {
+            sessionVm.markPlanComplete(plan: plan)
+            UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+        }))
     }
     
     //MARK: Functions:
@@ -201,6 +203,7 @@ struct MapView: View {
         })
     }
 }
+
 
 struct ShowDrillsButton: View {
     @Binding var showDrillsPopup: Bool

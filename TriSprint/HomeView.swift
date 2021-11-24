@@ -45,10 +45,6 @@ struct HomeView: View {
                     FirstTriathlonView()
                 }
         }
-        .onAppear {
-            print("Nige: measure = \(UserDefaults.standard.string(forKey: UserDefaults.Keys.measure.rawValue) ?? "No measure")")
-        }
-       
     }
 }
 

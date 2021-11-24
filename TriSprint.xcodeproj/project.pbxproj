@@ -171,7 +171,6 @@
 				9BFC7B00274A9A3A003C942B /* MapViewModel */,
 				9BE3C08427465EEB009E1ED3 /* MapView.swift */,
 				9BE3C09A2747BDF7009E1ED3 /* LocationManager.swift */,
-				9BFC7AFB2748F7BE003C942B /* SessionViewModel.swift */,
 				9BFC7AFD274A7225003C942B /* DrillsView.swift */,
 			);
 			path = MapView;
@@ -203,6 +202,7 @@
 				9B28676E273EB37B00E856F0 /* OnboardingViews */,
 				9B286775273FC3A100E856F0 /* TrainingViewModel */,
 				9BC943072743B21500D57EF5 /* Schedule */,
+				9BFC7B21274EA569003C942B /* SessionViewModel */,
 				9BFC7B1A274D15EC003C942B /* ManualAdd */,
 				9BE3C08327465ECB009E1ED3 /* MapView */,
 				9BFC7B01274A9BF0003C942B /* Activity */,
@@ -270,8 +270,8 @@
 		9BFC7B01274A9BF0003C942B /* Activity */ = {
 			isa = PBXGroup;
 			children = (
+				9BFC7B22274EA5AC003C942B /* ActivityViewModel */,
 				9BFC7B02274A9C6F003C942B /* ActivityView.swift */,
-				9BFC7B04274A9CB9003C942B /* ActivityViewModel.swift */,
 				9BFC7B14274CF7C2003C942B /* RidesView.swift */,
 				9BFC7B16274CF826003C942B /* RunsView.swift */,
 				9BFC7B18274CF876003C942B /* SwimsView.swift */,
@@ -285,6 +285,22 @@
 				9BFC7B1B274D1610003C942B /* EnterManualView.swift */,
 			);
 			path = ManualAdd;
+			sourceTree = "<group>";
+		};
+		9BFC7B21274EA569003C942B /* SessionViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9BFC7AFB2748F7BE003C942B /* SessionViewModel.swift */,
+			);
+			path = SessionViewModel;
+			sourceTree = "<group>";
+		};
+		9BFC7B22274EA5AC003C942B /* ActivityViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9BFC7B04274A9CB9003C942B /* ActivityViewModel.swift */,
+			);
+			path = ActivityViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

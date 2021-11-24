@@ -20,7 +20,7 @@ struct WeekView: View {
     @State private var showRunDetailView = false
     
     var body: some View {
-       
+        
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 ForEach(plans) { plan in
@@ -60,8 +60,11 @@ struct WeekView: View {
             }
         }
         .padding(.leading, 10)
-        
     }
+    
+}
+
+extension WeekView {
     private func setDetailView(session: String) {
         if session == Sessions.rideRun.rawValue {
             showBrickDetailView = true
@@ -88,6 +91,7 @@ struct WeekView: View {
         }
       
     }
+    
 }
 
 

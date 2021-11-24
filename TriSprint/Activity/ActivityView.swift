@@ -52,8 +52,10 @@ struct ActivityView: View {
             }
         }
     }
-    
-    
+}
+
+
+extension ActivityView {
     private var scrollView: some View {
         GeometryReader { fullView in
             ScrollView() {
@@ -100,8 +102,6 @@ struct ActivityView: View {
         }
     }
 }
-
-
 
 struct ActivityView_Previews: PreviewProvider {
     static var previews: some View {
