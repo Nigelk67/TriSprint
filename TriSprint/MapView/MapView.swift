@@ -24,7 +24,7 @@ struct MapView: View {
     @State private var showDrillsPopup = false
     @State private var drills: String = "No drills"
     let measure = UserDefaults.standard.string(forKey: UserDefaults.Keys.measure.rawValue)
-
+    
     var body: some View {
         
         ZStack {
@@ -32,12 +32,12 @@ struct MapView: View {
             
             VStack {
                 TargetStack(plan: $plan, targetTime: $targetTime, targetRpe: $targetRpe, showDrillsPopup: $showDrillsPopup)
-            
+                
                 Map(coordinateRegion: $mapVm.region, interactionModes: .all, showsUserLocation: true, userTrackingMode: nil)
                     .accentColor(Color.mainButton)
                 
                 trackingMeasures
-
+                
                 trackingButtons
             }
             
@@ -47,20 +47,20 @@ struct MapView: View {
                 }
             }.animation(.default)
             
-            .alert(isPresented: $sessionVm.showConfirmationPopup) {
-                saveSessionAlert
-            }
-            .navigationBarBackButtonHidden(true)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Day: \(plan.day ?? "")")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    CancelButton(presentationMode: presentationMode)
+                .alert(isPresented: $sessionVm.showConfirmationPopup) {
+                    saveSessionAlert
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    ShowDrillsButton(showDrillsPopup: $showDrillsPopup)
+                .navigationBarBackButtonHidden(true)
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("Day: \(plan.day ?? "")")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        CancelButton(presentationMode: presentationMode)
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        ShowDrillsButton(showDrillsPopup: $showDrillsPopup)
+                    }
                 }
-            }
             if sessionVm.isSaving {
                 withAnimation {
                     LoadingView(loadingText: "Saving..")
@@ -73,9 +73,9 @@ struct MapView: View {
         }
     }
     
-    
-    //MARK: SubViews
-   
+}
+
+extension MapView {
     private var trackingMeasures: some View {
         VStack {
             HStack {
@@ -183,8 +183,6 @@ struct MapView: View {
         }))
     }
     
-   
-    
     //MARK: Functions:
     
     private func setDrillsText() {
@@ -205,6 +203,7 @@ struct MapView: View {
         })
     }
 }
+
 
 struct ShowDrillsButton: View {
     @Binding var showDrillsPopup: Bool

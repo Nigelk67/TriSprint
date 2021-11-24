@@ -22,7 +22,7 @@ struct EnterManualView: View {
     @State private var shouldShowBrickActions = false
     @State private var pace = ""
     @Environment(\.presentationMode) private var presentationMode
-   
+    
     var body: some View {
         
         GeometryReader { geo in
@@ -64,12 +64,11 @@ struct EnterManualView: View {
             }
             .alert(isPresented: $sessionVm.showConfirmationPopup) {
                 savedConfirmationAlert
-
+                
             }
             .actionSheet(isPresented: $shouldShowBrickActions) {
                 actionSheet
             }
-           
         }
         .onAppear {
             setTarget()
@@ -81,7 +80,9 @@ struct EnterManualView: View {
         }
     }
     
-    
+}
+
+extension EnterManualView {
     private var savedConfirmationAlert: Alert {
         Alert(title: Text("SAVED!"), message: Text("This session has been saved"), dismissButton: .default(Text("OK"), action: {
             if isBrick {
@@ -188,7 +189,7 @@ struct EnterManualView: View {
         .padding(.horizontal, 40)
         .padding(.top, 40)
     }
-
+    
     private var saveButton: some View {
         Button {
             sessionVm.saveManualSession(session: plan.session ?? "", measure: isKilometres ? Measure.kilometers.rawValue : Measure.miles.rawValue, distance: actualDistance.value, duration: actualTime.value)
