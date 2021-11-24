@@ -62,7 +62,7 @@ struct RideStack: View {
             
             DescriptionView(description: plan.rideDescription ?? "")
             
-            NavigationLink(destination: EnterManualView(plan: $plan), isActive: $showManualEntryView) { EmptyView() }
+            NavigationLink(destination: EnterManualView(plan: $plan, targetTime: plan.rideTime ?? ""), isActive: $showManualEntryView) { EmptyView() }
             
             NavigationLink(destination: MapView(plan: $plan, targetTime: plan.rideTime ?? "", targetRpe: plan.rideRpe ?? "", targetDesc: plan.rideDescription ?? "", session: "Ride"), isActive: $showMapView) { EmptyView()}
             
@@ -104,7 +104,8 @@ struct RunStack: View {
             
             DescriptionView(description: plan.runDescription ?? "")
             
-            NavigationLink(destination: EnterManualView(plan: $plan), isActive: $showManualEntryView) { EmptyView() }             
+            NavigationLink(destination: EnterManualView(plan: $plan, targetTime: plan.runTime ?? ""), isActive: $showManualEntryView) { EmptyView() }
+            
             NavigationLink(destination: MapView(plan: $plan, targetTime: plan.runTime ?? "", targetRpe: plan.runRpe ?? "", targetDesc: plan.runDescription ?? "", session: "Run"), isActive: $showMapView) { EmptyView()}
             
             if plan.session == Sessions.swim.rawValue {

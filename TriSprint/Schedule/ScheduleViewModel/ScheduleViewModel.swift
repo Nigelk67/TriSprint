@@ -19,14 +19,12 @@ class ScheduleViewModel: ObservableObject {
             } else {
                 imageName = TrainingImageNames.trainingSwim.rawValue
             }
-            
         case .ride:
             if completed == 1 {
                 imageName = TrainingImageNames.trainingRideCompleted.rawValue
             } else {
                 imageName = TrainingImageNames.trainingRide.rawValue
             }
-            imageName = TrainingImageNames.trainingRide.rawValue
         case .run:
             if completed == 1 {
                 imageName = TrainingImageNames.trainingRunCompleted.rawValue

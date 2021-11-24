@@ -27,7 +27,7 @@ struct ReallySmallGreenButton: ViewModifier {
             .padding(EdgeInsets(top: 4, leading: 6, bottom: 4, trailing: 6))
             .foregroundColor(Color.white)
             .background(Color.accentButton)
-            .cornerRadius(40)
+            .cornerRadius(10)
     }
 }
 
@@ -38,7 +38,7 @@ struct SmallGreenButton: ViewModifier {
             .padding(EdgeInsets(top: 4, leading: 6, bottom: 4, trailing: 6))
             .foregroundColor(Color.white)
             .background(Color.accentButton)
-            .cornerRadius(40)
+            .cornerRadius(10)
     }
 }
 
@@ -50,7 +50,7 @@ struct RedButton: ViewModifier {
             .padding(EdgeInsets(top: 4, leading: 6, bottom: 4, trailing: 6))
             .foregroundColor(Color.white)
             .background(isSwim ? Color.gray.opacity(0.3) : Color.mainButton)
-            .cornerRadius(20)
+            .cornerRadius(10)
     }
 }
 

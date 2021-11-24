@@ -12,14 +12,17 @@ struct EnterManualView: View {
     
     @Binding var plan: Plan
     @State private var session: Activity = .swim
-    @State private var targetTime = ""
+    @State var targetTime = ""
     @ObservedObject private var actualTime = NumbersOnly()
     @ObservedObject private var actualDistance = NumbersOnly()
     @StateObject private var sessionVm = SessionViewModel()
     @State private var isKilometres = true
     @State private var isTyping = false
+    @State private var isBrick = false
+    @State private var shouldShowBrickActions = false
     @State private var pace = ""
-    
+    @Environment(\.presentationMode) private var presentationMode
+   
     var body: some View {
         
         GeometryReader { geo in
@@ -60,20 +63,48 @@ struct EnterManualView: View {
                 dismissKeyboard()
             }
             .alert(isPresented: $sessionVm.showConfirmationPopup) {
-                Alert(title: Text("SAVED!"), message: Text("This session has been saved"), dismissButton: .default(Text("OK"), action: {
-                    sessionVm.markPlanComplete(plan: plan)
-                    UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
-                }))
+                savedConfirmationAlert
+
             }
+            .actionSheet(isPresented: $shouldShowBrickActions) {
+                actionSheet
+            }
+           
         }
         .onAppear {
             setTarget()
-            if UserDefaults.standard.string(forKey: UserDefaults.Keys.measure.rawValue) == "Kilometers" {
+            if UserDefaults.standard.string(forKey: UserDefaults.Keys.measure.rawValue) == Measure.kilometers.rawValue {
                 isKilometres = true
             } else {
                 isKilometres = false
             }
         }
+    }
+    
+    
+    private var savedConfirmationAlert: Alert {
+        Alert(title: Text("SAVED!"), message: Text("This session has been saved"), dismissButton: .default(Text("OK"), action: {
+            if isBrick {
+                shouldShowBrickActions.toggle()
+            } else {
+                sessionVm.markPlanComplete(plan: plan)
+                UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+            }
+            
+        }))
+    }
+    
+    private var actionSheet: ActionSheet {
+        ActionSheet(title: Text("FINISHED?"), message: Text("Have you completed both your activities for this BRICK session"), buttons: [
+            .default(Text("YES!"), action: {
+                sessionVm.markPlanComplete(plan: plan)
+                UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+            }),
+            .destructive(Text("NO!"),
+                         action: {
+                             presentationMode.wrappedValue.dismiss()
+                         })
+        ])
     }
     
     private var targetView: some View {
@@ -183,9 +214,12 @@ struct EnterManualView: View {
         } else if plan.session == Sessions.ride.rawValue {
             targetTime = plan.rideTime ?? ""
             session = .ride
-        } else {
+        } else if plan.session == Sessions.run.rawValue {
             targetTime = plan.runTime ?? ""
             session = .run
+        } else if plan.session == Sessions.rideRun.rawValue {
+            isBrick = true
+            targetTime = targetTime
         }
     }
 }

@@ -24,6 +24,7 @@ struct WeekView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 ForEach(plans) { plan in
+                    
                     if plan.week == week {
                         VStack {
                             HStack {
