@@ -15,7 +15,7 @@ struct NoActivityView: View {
             .font(.title2)
             .multilineTextAlignment(.center)
             .padding()
-            .background(Color.accentButton)
+            .background(Color.accentButton.opacity(0.5))
             .cornerRadius(18)
             
         }.padding()

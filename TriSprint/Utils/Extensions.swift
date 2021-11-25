@@ -73,6 +73,12 @@ enum TrainingImageNames: String {
     case fullCompleted = "Training_Full_Complete"
 }
 
+enum IconImageNames: String {
+    case runIcon = "Icon_run"
+    case rideIcon = "Icon_bike"
+    case swimIcon = "Icon_swimF"
+}
+
 enum Sessions: String {
     case swim = "Swim"
     case ride = "Ride"

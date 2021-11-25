@@ -24,6 +24,10 @@ struct MainView: View {
         TabView {
             HomeView()
                 .tabItem {
+                    Text("Progress")
+                }
+            HomeNavView()
+                .tabItem {
                     Text("Home")
                 }
             TrainingScheduleView()
