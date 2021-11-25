@@ -55,6 +55,8 @@
 		9BFC7B1C274D1610003C942B /* EnterManualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B1B274D1610003C942B /* EnterManualView.swift */; };
 		9BFC7B1E274D3EAA003C942B /* NumbersValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B1D274D3EAA003C942B /* NumbersValidation.swift */; };
 		9BFC7B20274D45FF003C942B /* MetricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B1F274D45FF003C942B /* MetricView.swift */; };
+		9BFC7B24274F7F22003C942B /* TriBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B23274F7F22003C942B /* TriBackground.swift */; };
+		9BFC7B26274F8000003C942B /* NoActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B25274F8000003C942B /* NoActivityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +109,8 @@
 		9BFC7B1B274D1610003C942B /* EnterManualView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterManualView.swift; sourceTree = "<group>"; };
 		9BFC7B1D274D3EAA003C942B /* NumbersValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersValidation.swift; sourceTree = "<group>"; };
 		9BFC7B1F274D45FF003C942B /* MetricView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricView.swift; sourceTree = "<group>"; };
+		9BFC7B23274F7F22003C942B /* TriBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriBackground.swift; sourceTree = "<group>"; };
+		9BFC7B25274F8000003C942B /* NoActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoActivityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +235,7 @@
 				9BF12FF4273E6D1500A94588 /* SwimBackground.swift */,
 				9BF12FF6273E702400A94588 /* RunBackground.swift */,
 				9BF12FF8273E705000A94588 /* BikeBackground.swift */,
+				9BFC7B23274F7F22003C942B /* TriBackground.swift */,
 			);
 			path = BackgroundViews;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 				9BFC7B14274CF7C2003C942B /* RidesView.swift */,
 				9BFC7B16274CF826003C942B /* RunsView.swift */,
 				9BFC7B18274CF876003C942B /* SwimsView.swift */,
+				9BFC7B25274F8000003C942B /* NoActivityView.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -377,6 +383,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BFC7B17274CF826003C942B /* RunsView.swift in Sources */,
+				9BFC7B24274F7F22003C942B /* TriBackground.swift in Sources */,
+				9BFC7B26274F8000003C942B /* NoActivityView.swift in Sources */,
 				9BF12FE6273D725A00A94588 /* Persistence.swift in Sources */,
 				9BFC7B11274CF630003C942B /* Run.swift in Sources */,
 				9BF12FF2273D819900A94588 /* Extensions.swift in Sources */,

@@ -42,6 +42,7 @@ extension Image {
     static var trainingSwim: Image {
         Image("Training_Swim")
     }
+    
 }
 
 extension UserDefaults {
