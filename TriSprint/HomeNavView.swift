@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  HomeNavView.swift
 //  TriSprint
 //
 //  Created by Nigel Karan on 12.11.21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct HomeNavView: View {
     @State private var nextScreen = false
     //@ObservedObject var trainingVm = TrainingPlanArrayViewModel()
     @Environment(\.managedObjectContext) private var viewContext
@@ -48,8 +48,8 @@ struct HomeView: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
+struct HomeNavView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeNavView()
     }
 }

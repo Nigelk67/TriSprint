@@ -95,7 +95,9 @@ extension ActivityView {
                 } else {
                     Spacer()
                     VStack {
-                        Text("No Activity yet")
+                        Spacer()
+                        NoActivityView()
+                        Spacer()
                     }
                 }
             }

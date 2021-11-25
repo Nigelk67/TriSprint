@@ -18,7 +18,7 @@ struct TrainingDaysView: View {
     var body: some View {
         
         ZStack {
-            RunBackground()
+            TriBackground()
             VStack {
                 Spacer()
                 Text("Personalise Your Plan")

@@ -24,6 +24,7 @@ extension Color {
     static var mainText: Color {
         Color("MainText")
     }
+    
 }
 
 extension View {
@@ -42,6 +43,7 @@ extension Image {
     static var trainingSwim: Image {
         Image("Training_Swim")
     }
+    
 }
 
 extension UserDefaults {
@@ -70,6 +72,12 @@ enum TrainingImageNames: String {
     case swimRunCompleted = "Brick_SwimRun_Complete"
     case trainingFull = "Training_Full"
     case fullCompleted = "Training_Full_Complete"
+}
+
+enum IconImageNames: String {
+    case runIcon = "Icon_run"
+    case rideIcon = "Icon_bike"
+    case swimIcon = "Icon_swimF"
 }
 
 enum Sessions: String {

@@ -35,8 +35,11 @@ struct TrainingScheduleView: View {
                                 }
                             }
                         } else {
-                            Spacer()
-                            NoPlansView()
+                            VStack {
+                                Spacer()
+                                NoPlansView()
+                                Spacer()
+                            }
                         }
                     }
                 }

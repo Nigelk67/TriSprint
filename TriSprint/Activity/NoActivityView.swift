@@ -1,18 +1,16 @@
 //
-//  NoPlansView.swift
+//  NoActivityView.swift
 //  TriSprint
 //
-//  Created by Nigel Karan on 16.11.21.
+//  Created by Nigel Karan on 25.11.21.
 //
 
 import SwiftUI
 
-struct NoPlansView: View {
-    
+struct NoActivityView: View {
     var body: some View {
-        
         VStack {
-        Text("You have no training schedule :-(\n\nHead to 'Settings' to set up a new plan!")
+        Text("You have no activities. Time to start!")
             .foregroundColor(Color.mainText)
             .font(.title2)
             .multilineTextAlignment(.center)
@@ -21,12 +19,11 @@ struct NoPlansView: View {
             .cornerRadius(18)
             
         }.padding()
-        
     }
 }
 
-struct NoPlansView_Previews: PreviewProvider {
+struct NoActivityView_Previews: PreviewProvider {
     static var previews: some View {
-        NoPlansView()
+        NoActivityView()
     }
 }
