@@ -24,6 +24,7 @@ extension Color {
     static var mainText: Color {
         Color("MainText")
     }
+    
 }
 
 extension View {

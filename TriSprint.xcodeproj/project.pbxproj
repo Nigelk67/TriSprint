@@ -59,6 +59,7 @@
 		9BFC7B26274F8000003C942B /* NoActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B25274F8000003C942B /* NoActivityView.swift */; };
 		9BFC7B29274F820C003C942B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B28274F820C003C942B /* HomeView.swift */; };
 		9BFC7B2B274F9A1D003C942B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B2A274F9A1D003C942B /* HomeViewModel.swift */; };
+		9BFC7B50274FEC82003C942B /* PieChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B4F274FEC82003C942B /* PieChartModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +116,7 @@
 		9BFC7B25274F8000003C942B /* NoActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoActivityView.swift; sourceTree = "<group>"; };
 		9BFC7B28274F820C003C942B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9BFC7B2A274F9A1D003C942B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		9BFC7B4F274FEC82003C942B /* PieChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,18 +319,19 @@
 		9BFC7B27274F81ED003C942B /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
-				9BFC7B2C274F9A26003C942B /* HomeViewModel */,
+				9BFC7B2C274F9A26003C942B /* ViewModels */,
 				9BFC7B28274F820C003C942B /* HomeView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
 		};
-		9BFC7B2C274F9A26003C942B /* HomeViewModel */ = {
+		9BFC7B2C274F9A26003C942B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				9BFC7B2A274F9A1D003C942B /* HomeViewModel.swift */,
+				9BFC7B4F274FEC82003C942B /* PieChartModel.swift */,
 			);
-			path = HomeViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,6 +414,7 @@
 				9BFC7B11274CF630003C942B /* Run.swift in Sources */,
 				9BF12FF2273D819900A94588 /* Extensions.swift in Sources */,
 				9BE3C09B2747BDF7009E1ED3 /* LocationManager.swift in Sources */,
+				9BFC7B50274FEC82003C942B /* PieChartModel.swift in Sources */,
 				9BF12FF9273E705000A94588 /* BikeBackground.swift in Sources */,
 				9BE3C07A2744ED15009E1ED3 /* DetailContentView.swift in Sources */,
 				9BE3C0782744169C009E1ED3 /* WeekView.swift in Sources */,

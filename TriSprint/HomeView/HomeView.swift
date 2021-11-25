@@ -35,10 +35,15 @@ struct HomeView: View {
         ZStack {
             TriBackground()
             VStack {
-                Text("Total plans completed = \(proportionPlanComplete)%")
+                Text("Totals = \(homeVm.proportionCompleted)%")
+                PieChartModel([(Color.accentButton.opacity(0.6), 100),(Color.mainBackground.opacity(0.6),homeVm.proportionCompleted)])
+                    .frame(width: 100, height: 100, alignment: .center)
+                
+                
+                
             }
             .onAppear {
-                setPlans()
+                homeVm.calculateTotals(plans: plans, swims: swims, rides: rides, runs: runs)
             }
         }
     }
@@ -47,13 +52,7 @@ struct HomeView: View {
 
 extension HomeView {
     
-    func setPlans() {
-        totalPlans = homeVm.calculateTotalNumberOfPlans(plans: plans)
-        totalSwims = homeVm.calculateTotalNumberOfSwims(swims: swims)
-        totalRides = homeVm.calculateTotalNumberOfRides(rides: rides)
-        totalRuns = homeVm.calculateTotalNumberOfRuns(runs: runs)
-        proportionPlanComplete = homeVm.calculatePlansCompleted(plans: totalPlans, swims: totalSwims, rides: totalRides, runs: totalRuns)
-    }
+    
 }
 
 struct HomeView_Previews: PreviewProvider {
