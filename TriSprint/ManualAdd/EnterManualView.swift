@@ -72,7 +72,8 @@ struct EnterManualView: View {
         }
         .onAppear {
             setTarget()
-            if CustomUserDefaults.shared.get(key: .measure) as! String == Measure.kilometers.rawValue {
+            guard let measure = CustomUserDefaults.shared.get(key: .measure) as? String else { return }
+            if measure == Measure.kilometers.rawValue {
                 isKilometres = true
             } else {
                 isKilometres = false

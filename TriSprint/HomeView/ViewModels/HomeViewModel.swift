@@ -9,7 +9,7 @@ import SwiftUI
 
 
 class HomeViewModel: ObservableObject {
-    @Published var measure: String = CustomUserDefaults.shared.get(key: .measure) as! String
+    @Published var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
     @Published var totalNumberofPlans = 0.0
     @Published var plansCompleted = ""
     @Published var swimPlansTotal = 0.0
@@ -19,6 +19,10 @@ class HomeViewModel: ObservableObject {
     @Published var runPlansTotal = 0.0
     @Published var runPlansCompleted = 0.0
     @Published var proportionCompleted = 0.0
+    @Published var currentProgress: CGFloat = 0.0
+    @Published var swimProgress: CGFloat = 0.45
+    @Published var rideProgress: CGFloat = 0.32
+    @Published var runProgress: CGFloat = 0.56
     @Published var swimSpeedLatest = ""
     @Published var swimSpeedFastest = ""
     @Published var rideSpeedLatest = ""
@@ -46,6 +50,7 @@ class HomeViewModel: ObservableObject {
         proportionCompleted = plansCompleteProportion
     }
     
+
    
   
     

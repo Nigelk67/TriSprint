@@ -61,6 +61,7 @@
 		9BFC7B2B274F9A1D003C942B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B2A274F9A1D003C942B /* HomeViewModel.swift */; };
 		9BFC7B50274FEC82003C942B /* PieChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B4F274FEC82003C942B /* PieChartModel.swift */; };
 		9BFC7B542750CEDF003C942B /* CustomUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B532750CEDF003C942B /* CustomUserDefaults.swift */; };
+		9BFC7B562750D5D9003C942B /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B552750D5D9003C942B /* ProgressBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +120,7 @@
 		9BFC7B2A274F9A1D003C942B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		9BFC7B4F274FEC82003C942B /* PieChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartModel.swift; sourceTree = "<group>"; };
 		9BFC7B532750CEDF003C942B /* CustomUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserDefaults.swift; sourceTree = "<group>"; };
+		9BFC7B552750D5D9003C942B /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,8 +324,8 @@
 		9BFC7B27274F81ED003C942B /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
-				9BFC7B2C274F9A26003C942B /* ViewModels */,
 				9BFC7B28274F820C003C942B /* HomeView.swift */,
+				9BFC7B2C274F9A26003C942B /* ViewModels */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -333,6 +335,7 @@
 			children = (
 				9BFC7B2A274F9A1D003C942B /* HomeViewModel.swift */,
 				9BFC7B4F274FEC82003C942B /* PieChartModel.swift */,
+				9BFC7B552750D5D9003C942B /* ProgressBarView.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				9BFC7B542750CEDF003C942B /* CustomUserDefaults.swift in Sources */,
 				9BFC7B13274CF64B003C942B /* Swim.swift in Sources */,
 				9B28677F273FDCCE00E856F0 /* TrainingScheduleView.swift in Sources */,
+				9BFC7B562750D5D9003C942B /* ProgressBarView.swift in Sources */,
 				9BFC7B19274CF876003C942B /* SwimsView.swift in Sources */,
 				9BE3C09D27480F72009E1ED3 /* LoadingView.swift in Sources */,
 				9BFC7B20274D45FF003C942B /* MetricView.swift in Sources */,
