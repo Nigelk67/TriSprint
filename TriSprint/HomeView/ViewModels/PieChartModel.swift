@@ -28,12 +28,12 @@ struct PieChartModel: View {
                         path.addArc(center: center, radius: radius, startAngle: slice.start, endAngle: slice.end, clockwise: false)
                     }
                     .fill(slice.color)
-                    .scaleEffect(self.show ? 1 : 0)
-                    .animation(Animation.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.3))
+//                    .scaleEffect(self.show ? 1 : 0)
+//                    .animation(Animation.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.3).delay(0.03))
                 }
-                .onAppear {
-                    self.show = true
-                }
+//                .onAppear {
+//                    self.show = true
+//                }
             }
         }
     }

@@ -65,7 +65,7 @@ extension TrainingDaysView {
             ForEach(numberOfDays, id: \.self) { num in
                 Button {
                     daysSelected = num
-                    UserDefaults.standard.set(num, forKey: UserDefaults.Keys.trainingDays.rawValue)
+                    CustomUserDefaults.shared.set(num, key: .trainingDays)
                     trainingPlanVm.fetchPlanArray(name: num)
                     showConfirmationPopup = true
                 } label: {

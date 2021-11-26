@@ -9,7 +9,7 @@ import SwiftUI
 
 
 class HomeViewModel: ObservableObject {
-    @Published var measure: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.measure.rawValue) ?? ""
+    @Published var measure: String = CustomUserDefaults.shared.get(key: .measure) as! String
     @Published var totalNumberofPlans = 0.0
     @Published var plansCompleted = ""
     @Published var swimPlansTotal = 0.0

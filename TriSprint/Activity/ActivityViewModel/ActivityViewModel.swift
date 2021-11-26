@@ -8,7 +8,8 @@
 import SwiftUI
 
 class ActivityViewModel: ObservableObject {
-    @Published var measure: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.measure.rawValue) ?? ""
+    @Published var measure: String = CustomUserDefaults.shared.get(key: .measure) as! String
+//    @Published var measure: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.measure.rawValue) ?? ""
     @Published var rideDistanceText = "0.00"
     @Published var rideTimeText = "0.00"
     @Published var ridePaceText = "0.00"

@@ -23,7 +23,8 @@ struct MapView: View {
     @State private var shouldShowStopActions = false
     @State private var showDrillsPopup = false
     @State private var drills: String = "No drills"
-    let measure = UserDefaults.standard.string(forKey: UserDefaults.Keys.measure.rawValue)
+    let measure = CustomUserDefaults.shared.get(key: .measure)
+    //let measure = UserDefaults.standard.string(forKey: UserDefaults.Keys.measure.rawValue)
     
     var body: some View {
         
@@ -164,7 +165,7 @@ extension MapView {
                 }
                 hasStarted = false
                 sessionVm.sesssionStopped()
-                sessionVm.saveSession(session: session, measure: measure ?? "")
+                sessionVm.saveSession(session: session, measure: measure as! String)
                 
             }),
             .destructive(Text("Discard This Session"),

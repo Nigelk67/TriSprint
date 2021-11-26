@@ -60,6 +60,7 @@
 		9BFC7B29274F820C003C942B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B28274F820C003C942B /* HomeView.swift */; };
 		9BFC7B2B274F9A1D003C942B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B2A274F9A1D003C942B /* HomeViewModel.swift */; };
 		9BFC7B50274FEC82003C942B /* PieChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B4F274FEC82003C942B /* PieChartModel.swift */; };
+		9BFC7B542750CEDF003C942B /* CustomUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC7B532750CEDF003C942B /* CustomUserDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +118,7 @@
 		9BFC7B28274F820C003C942B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9BFC7B2A274F9A1D003C942B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		9BFC7B4F274FEC82003C942B /* PieChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartModel.swift; sourceTree = "<group>"; };
+		9BFC7B532750CEDF003C942B /* CustomUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +261,7 @@
 				9BE3C0942746B1DE009E1ED3 /* FormatDisplay.swift */,
 				9BE3C0962746B872009E1ED3 /* UnitConverter.swift */,
 				9BFC7B1D274D3EAA003C942B /* NumbersValidation.swift */,
+				9BFC7B532750CEDF003C942B /* CustomUserDefaults.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				9BFC7B05274A9CB9003C942B /* ActivityViewModel.swift in Sources */,
 				9BF12FDD273D725900A94588 /* TriSprintApp.swift in Sources */,
 				9B3DA3252742B403009AB522 /* ScheduleViewModel.swift in Sources */,
+				9BFC7B542750CEDF003C942B /* CustomUserDefaults.swift in Sources */,
 				9BFC7B13274CF64B003C942B /* Swim.swift in Sources */,
 				9B28677F273FDCCE00E856F0 /* TrainingScheduleView.swift in Sources */,
 				9BFC7B19274CF876003C942B /* SwimsView.swift in Sources */,

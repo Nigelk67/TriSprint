@@ -59,7 +59,7 @@ extension FirstTriathlonView {
         VStack {
             NavigationLink(destination: FitnessLevelView(), isActive: $nextScreen) { EmptyView() }
             Button {
-                UserDefaults.standard.set(true, forKey: UserDefaults.Keys.first.rawValue)
+                CustomUserDefaults.shared.set(true, key: .first)
                 nextScreen.toggle()
             } label: {
                 Text("Yes")
@@ -71,7 +71,7 @@ extension FirstTriathlonView {
             .padding(.horizontal,10)
             
             Button {
-                UserDefaults.standard.set(false, forKey: UserDefaults.Keys.first.rawValue)
+                CustomUserDefaults.shared.set(false, key: .first)
                 nextScreen.toggle()
             } label: {
                 Text("No")

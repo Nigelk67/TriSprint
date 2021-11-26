@@ -72,7 +72,7 @@ struct EnterManualView: View {
         }
         .onAppear {
             setTarget()
-            if UserDefaults.standard.string(forKey: UserDefaults.Keys.measure.rawValue) == Measure.kilometers.rawValue {
+            if CustomUserDefaults.shared.get(key: .measure) as! String == Measure.kilometers.rawValue {
                 isKilometres = true
             } else {
                 isKilometres = false

@@ -15,6 +15,7 @@ struct HomeView: View {
     @State private var totalRides = 0.0
     @State private var totalRuns = 0.0
     @State private var proportionPlanComplete = "Zero"
+    @State private var bounce = false
     
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -35,14 +36,17 @@ struct HomeView: View {
         ZStack {
             TriBackground()
             VStack {
-                Text("Totals = \(homeVm.proportionCompleted)%")
+                Text("Plans complete so far")
                 PieChartModel([(Color.accentButton.opacity(0.6), 100),(Color.mainBackground.opacity(0.6),homeVm.proportionCompleted)])
                     .frame(width: 100, height: 100, alignment: .center)
+                    .scaleEffect(bounce ? 1 : 0)
+                    .animation(Animation.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.3).delay(0.05))
                 
                 
                 
             }
             .onAppear {
+                bounce = true
                 homeVm.calculateTotals(plans: plans, swims: swims, rides: rides, runs: runs)
             }
         }

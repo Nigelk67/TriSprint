@@ -58,7 +58,7 @@ extension FitnessLevelView {
                 NavigationLink(destination: MetricView(), isActive: $nextScreen) {
                     Button {
                         fitnessLevel = level
-                        UserDefaults.standard.set(level, forKey: UserDefaults.Keys.fitnessLevel.rawValue)
+                        CustomUserDefaults.shared.set(level, key: .fitnessLevel)
                         nextScreen.toggle()
                     } label: {
                         Text(level)
