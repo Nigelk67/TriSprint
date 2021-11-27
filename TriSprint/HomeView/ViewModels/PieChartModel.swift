@@ -22,17 +22,18 @@ struct PieChartModel: View {
             let radius = min(halfWidth, halfHeight)
             let center = CGPoint(x: halfWidth, y: halfHeight)
             ZStack(alignment: .center) {
-                if !slices.isEmpty {
-                    ForEach(slices, id: \.self) { slice in
-                        Path { path in
-                            path.move(to: center)
-                            path.addArc(center: center, radius: radius, startAngle: slice.start, endAngle: slice.end, clockwise: false)
-                        }
-                        .fill(slice.color)
+                ForEach(slices, id: \.self) { slice in
+                    Path { path in
+                        path.move(to: center)
+                        path.addArc(center: center, radius: radius, startAngle: slice.start, endAngle: slice.end, clockwise: false)
                     }
-                } else {
-                    
+                    .fill(slice.color)
+//                    .scaleEffect(self.show ? 1 : 0)
+//                    .animation(Animation.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.3).delay(0.03))
                 }
+//                .onAppear {
+//                    self.show = true
+//                }
             }
         }
     }

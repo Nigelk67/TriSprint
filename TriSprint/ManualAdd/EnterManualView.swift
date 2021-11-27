@@ -16,7 +16,6 @@ struct EnterManualView: View {
     @ObservedObject private var actualTime = NumbersOnly()
     @ObservedObject private var actualDistance = NumbersOnly()
     @StateObject private var sessionVm = SessionViewModel()
-    @StateObject var coreDataVm = CoreDataViewModel()
     @State private var isKilometres = true
     @State private var isTyping = false
     @State private var isBrick = false
@@ -90,7 +89,7 @@ extension EnterManualView {
             if isBrick {
                 shouldShowBrickActions.toggle()
             } else {
-                coreDataVm.markPlanComplete(plan: plan)
+                sessionVm.markPlanComplete(plan: plan)
                 UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
             }
             
@@ -100,7 +99,7 @@ extension EnterManualView {
     private var actionSheet: ActionSheet {
         ActionSheet(title: Text("FINISHED?"), message: Text("Have you completed both your activities for this BRICK session"), buttons: [
             .default(Text("YES!"), action: {
-                coreDataVm.markPlanComplete(plan: plan)
+                sessionVm.markPlanComplete(plan: plan)
                 UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
             }),
             .destructive(Text("NO!"),

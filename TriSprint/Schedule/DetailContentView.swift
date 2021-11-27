@@ -21,7 +21,7 @@ struct DetailContentView: View {
                 VStack {
                     DayView(day: plan.day ?? "")
                         .padding(.vertical, 30)
-                    Text("Plan complete: \(plan.completed)")
+                    
                     ScrollView {
                         VStack {
                             HStack {

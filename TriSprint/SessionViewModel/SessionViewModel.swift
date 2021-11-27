@@ -85,15 +85,15 @@ class SessionViewModel: ObservableObject {
         }
     }
     
-//    func markPlanComplete(plan: Plan) {
-//        let context = PersistenceController.shared.container.viewContext
-//        plan.completed = 1
-//        do {
-//            try context.save()
-//        } catch {
-//            print("Error saving plan completed", error)
-//        }
-//    }
+    func markPlanComplete(plan: Plan) {
+        let context = PersistenceController.shared.container.viewContext
+        plan.completed = 1
+        do {
+            try context.save()
+        } catch {
+            print("Error saving plan completed", error)
+        }
+    }
     
     private func saveRideToCoreData(distance: Double, secs: Int16) {
         let context = PersistenceController.shared.container.viewContext

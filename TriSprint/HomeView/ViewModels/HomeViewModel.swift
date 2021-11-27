@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreData
 
 
 class HomeViewModel: ObservableObject {
@@ -37,7 +36,7 @@ class HomeViewModel: ObservableObject {
     @Published var runPaceLatest = ""
     @Published var runPaceFastest = ""
     
-    func calculateTotals(plans: [Plan],swims: [Swim],rides: [Ride],runs: [Run]) {
+    func calculateTotals(plans: FetchedResults<Plan>,swims: FetchedResults<Swim>,rides: FetchedResults<Ride>,runs: FetchedResults<Run>) {
         let plansCount = plans.count
         totalNumberofPlans = Double(plansCount)
         let swimCount = swims.count
@@ -48,12 +47,7 @@ class HomeViewModel: ObservableObject {
         runPlansCompleted = Double(runTotal)
         let activityTotal = Double(swimCount + rideTotal + runTotal)
         let plansCompleteProportion = (activityTotal / Double(plansCount)) * 100
-        if Double(plansCount) < activityTotal {
-            proportionCompleted = 0
-        } else {
-            proportionCompleted = plansCompleteProportion
-        }
-        
+        proportionCompleted = plansCompleteProportion
     }
     
 
@@ -61,6 +55,4 @@ class HomeViewModel: ObservableObject {
   
     
 }
-
-
 
