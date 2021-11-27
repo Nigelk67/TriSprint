@@ -66,7 +66,7 @@ extension TrainingDaysView {
                 Button {
                     daysSelected = num
                     CustomUserDefaults.shared.set(num, key: .trainingDays)
-                    trainingPlanVm.fetchPlanArray(name: num)
+                    trainingPlanVm.fetchAndSavePlanArray(name: num)
                     showConfirmationPopup = true
                 } label: {
                     Text(num)

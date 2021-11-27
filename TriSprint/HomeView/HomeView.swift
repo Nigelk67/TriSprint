@@ -18,31 +18,22 @@ struct HomeView: View {
     @State private var bounce = false
     @State private var startProgressBars = false
  
-    
-    
-    @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Ride.timestamp, ascending: true)], animation: .default)
-    private var rides: FetchedResults<Ride>
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Run.timestamp, ascending: true)], animation: .default)
-    private var runs: FetchedResults<Run>
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Swim.timestamp, ascending: true)], animation: .default)
-    private var swims: FetchedResults<Swim>
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Plan.day, ascending: true)], animation: .default)
-    private var plans: FetchedResults<Plan>
+    @StateObject var coreDataVm = CoreDataViewModel()
     
     var body: some View {
         ZStack {
             TriBackground()
             VStack {
+                
                 completedSoFar
+                
+                
+                
+                
             }
             .onAppear {
                 bounce = true
-                homeVm.calculateTotals(plans: plans, swims: swims, rides: rides, runs: runs)
+                homeVm.calculateTotals(plans: coreDataVm.savedPlans, swims: coreDataVm.completedSwims, rides: coreDataVm.completedRides, runs: coreDataVm.completedRuns)
                 
             }
         }
@@ -76,7 +67,6 @@ extension HomeView {
             .frame(width: 100, height: 100, alignment: .center)
             .scaleEffect(bounce ? 1 : 0)
             .animation(Animation.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.3).delay(0.05))
-            
     }
     
     private var progressStack: some View {

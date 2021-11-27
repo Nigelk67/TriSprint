@@ -9,14 +9,9 @@ import SwiftUI
 
 struct TrainingScheduleView: View {
     
-    @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Plan.week, ascending: true)], animation: .default)
-    private var plans: FetchedResults<Plan>
+    @ObservedObject var coreDataVm = CoreDataViewModel()
     let weeks = [1,2,3,4,5,6,7,8,9,10,11,12,13]
     @State private var showDetailView = false
-    
-    
     
     var body: some View {
         
@@ -25,12 +20,12 @@ struct TrainingScheduleView: View {
                 SwimBackground()
                 VStack {
                     ScrollView() {
-                        if !plans.isEmpty {
+                        if !coreDataVm.savedPlans.isEmpty {
                             LazyVStack {
                                 Spacer()
                                 ForEach(weeks, id: \.self) { week in
                                     Section(header: SectionHeaderView(week: Int16(week))) {
-                                        WeekView(plans: plans, week: week)
+                                        WeekView(plans: coreDataVm.savedPlans, week: week)
                                     }
                                 }
                             }

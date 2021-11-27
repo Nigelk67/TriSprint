@@ -11,18 +11,8 @@ struct ActivityView: View {
     
     @ObservedObject var activityVm = ActivityViewModel()
     @State private var session: Activity = .swim
-    
-    @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Ride.timestamp, ascending: true)], animation: .default)
-    private var rides: FetchedResults<Ride>
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Run.timestamp, ascending: true)], animation: .default)
-    private var runs: FetchedResults<Run>
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Swim.timestamp, ascending: true)], animation: .default)
-    private var swims: FetchedResults<Swim>
-    
+    @StateObject var coreDataVm = CoreDataViewModel()
+
     var body: some View {
         
         ZStack {
@@ -59,12 +49,12 @@ extension ActivityView {
     private var scrollView: some View {
         GeometryReader { fullView in
             ScrollView() {
-                if !rides.isEmpty || !swims.isEmpty || !runs.isEmpty {
+                if !coreDataVm.completedRides.isEmpty || !coreDataVm.completedSwims.isEmpty || !coreDataVm.completedRuns.isEmpty {
                     switch session {
                     case .swim:
                         LazyVStack {
                             Spacer()
-                            ForEach(swims) { swim in
+                            ForEach(coreDataVm.completedSwims) { swim in
                                 SwimsView(swim: swim)
                                     .frame(width: fullView.size.width - 40, height: 200, alignment: .center)
                                     .padding(.bottom,20)
@@ -74,7 +64,7 @@ extension ActivityView {
                     case .ride:
                         LazyVStack {
                             Spacer()
-                            ForEach(rides) { ride in
+                            ForEach(coreDataVm.completedRides) { ride in
                                 RidesView(ride: ride)
                                     .frame(width: fullView.size.width - 40, height: 200, alignment: .center)
                                     .padding(.bottom,20)
@@ -84,7 +74,7 @@ extension ActivityView {
                     case .run:
                         LazyVStack {
                             Spacer()
-                            ForEach(runs) { run in
+                            ForEach(coreDataVm.completedRuns) { run in
                                 RunsView(run: run)
                                     .frame(width: fullView.size.width - 40, height: 200, alignment: .center)
                                     .padding(.bottom,20)

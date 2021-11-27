@@ -8,12 +8,9 @@
 import SwiftUI
 
 struct HomeNavView: View {
+    
     @State private var nextScreen = false
-    //@ObservedObject var trainingVm = TrainingPlanArrayViewModel()
-    @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Plan.week, ascending: true)], animation: .default)
-    private var plans: FetchedResults<Plan>
+    @StateObject var coreDataVm = CoreDataViewModel()
     
     var body: some View {
         
@@ -28,13 +25,8 @@ struct HomeNavView: View {
             Spacer()
             
             Button {
-                plans.forEach { plan in
-                    viewContext.delete(plan)
-                }
-                do {
-                    try viewContext.save()
-                } catch {
-                    print("Failed to delete all plans", error)
+                for plan in coreDataVm.savedPlans {
+                    coreDataVm.deletePlan(plan: plan)
                 }
             } label: {
                 Text("Delete All Plans")

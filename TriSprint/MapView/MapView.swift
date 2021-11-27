@@ -17,6 +17,7 @@ struct MapView: View {
     @State var session = ""
     @StateObject private var mapVm = MapViewModel()
     @StateObject private var sessionVm = SessionViewModel()
+    @StateObject private var coreDataVm = CoreDataViewModel()
     @ObservedObject private var scheduleVm = ScheduleViewModel()
     @Environment(\.presentationMode) private var presentationMode
     @State private var hasStarted: Bool = false
@@ -69,7 +70,7 @@ struct MapView: View {
             }
         }
         .onAppear {
-            print("Measure = \(measure)")
+            //print("Measure = \(measure)")
             mapVm.checkIfLocationServicesIsEnabled()
             setDrillsText()
         }
@@ -180,7 +181,7 @@ extension MapView {
     
     private var saveSessionAlert: Alert {
         Alert(title: Text("SAVED!"), message: Text("This session has been saved"), dismissButton: .default(Text("OK"), action: {
-            sessionVm.markPlanComplete(plan: plan)
+            coreDataVm.markPlanComplete(plan: plan)
             UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
         }))
     }

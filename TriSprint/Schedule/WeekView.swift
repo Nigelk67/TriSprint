@@ -9,11 +9,11 @@ import SwiftUI
 
 struct WeekView: View {
     
-    var plans: FetchedResults<Plan>
+    var plans: [Plan]
     var week: Int
     @State private var showDetailView = false
     @ObservedObject var scheduleVm = ScheduleViewModel()
-    @State private var selectedPlan = Plan(entity: Plan.entity(), insertInto: nil)
+    @State private var selectedPlan = Plan()
     @State private var showBrickDetailView = false
     @State private var showSwimDetailView = false
     @State private var showRideDetailView = false
@@ -32,7 +32,7 @@ struct WeekView: View {
                             }
                             .foregroundColor(Color.mainText)
                             .font(.subheadline)
-                            
+
                             Button {
                                 selectedPlan = plan
                                 setDetailView(session: plan.session ?? "")
