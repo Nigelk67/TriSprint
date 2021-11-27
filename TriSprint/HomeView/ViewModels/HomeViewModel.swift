@@ -47,7 +47,12 @@ class HomeViewModel: ObservableObject {
         runPlansCompleted = Double(runTotal)
         let activityTotal = Double(swimCount + rideTotal + runTotal)
         let plansCompleteProportion = (activityTotal / Double(plansCount)) * 100
-        proportionCompleted = plansCompleteProportion
+        if Double(plansCount) < activityTotal {
+            proportionCompleted = 0.0
+        } else {
+            proportionCompleted = plansCompleteProportion
+        }
+       
     }
     
 

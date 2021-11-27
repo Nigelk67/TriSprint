@@ -62,7 +62,15 @@ extension HomeView {
                     Text("Total")
                         .foregroundColor(Color.mainText)
                         .font(.system(size: 11, weight: .light, design: .rounded))
-                    pieChart
+                    
+                    if homeVm.proportionCompleted == 0.0 {
+                       
+                    } else {
+                        pieChart
+                    }
+                        
+                    
+                    
                 }.padding()
                 
                 progressStack
@@ -72,12 +80,14 @@ extension HomeView {
     }
     
     private var pieChart: some View {
+        
         PieChartModel([(Color.accentButton.opacity(0.6), 100),(Color.accentButton.opacity(0.2),homeVm.proportionCompleted)])
             .frame(width: 100, height: 100, alignment: .center)
             .scaleEffect(bounce ? 1 : 0)
             .animation(Animation.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.3).delay(0.05))
-            
-    }
+        }
+        
+    
     
     private var progressStack: some View {
         VStack(alignment: .leading) {
