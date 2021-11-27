@@ -46,17 +46,6 @@ extension Image {
     
 }
 
-extension UserDefaults {
-    enum Keys: String, CaseIterable {
-        case pList = "Plist"
-        case first = "First"
-        case fitnessLevel = "FitnessLevel"
-        case trainingDays = "TrainingDays"
-        case measure = "Measure"
-    }
-    
-}
-
 enum TrainingImageNames: String {
     case trainingSwim = "Training_Swim"
     case trainingSwimCompleted = "Training_Swim_Complete"

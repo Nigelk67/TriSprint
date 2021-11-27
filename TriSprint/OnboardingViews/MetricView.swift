@@ -57,7 +57,7 @@ extension MetricView {
             ForEach(measurements, id: \.self) { measure in
                 NavigationLink(destination: TrainingDaysView(), isActive: $nextScreen) {
                     Button {
-                        UserDefaults.standard.set(measure, forKey: UserDefaults.Keys.measure.rawValue)
+                        CustomUserDefaults.shared.set(measure, key: .measure)
                         nextScreen.toggle()
                     } label: {
                         Text(measure)

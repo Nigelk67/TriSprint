@@ -16,7 +16,7 @@ class SessionViewModel: ObservableObject {
     @Published var timeText: String = "00:00:00"
     @Published var distanceText: String = "0.00"
     @Published var paceText: String = "0.00"
-    @Published var measure: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.measure.rawValue) ?? ""
+    @Published var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
     @Published var isPaused: Bool = false
     @Published var isSaving: Bool = false
     @Published var showConfirmationPopup: Bool = false
