@@ -10,11 +10,11 @@ import SwiftUI
 struct HomeView: View {
     
     @StateObject var homeVm = HomeViewModel()
-    @State private var totalPlans = 0.0
-    @State private var totalSwims = 0.0
-    @State private var totalRides = 0.0
-    @State private var totalRuns = 0.0
-    @State private var proportionPlanComplete = "Zero"
+//    @State private var totalPlans = 0.0
+//    @State private var totalSwims = 0.0
+//    @State private var totalRides = 0.0
+//    @State private var totalRuns = 0.0
+//    @State private var proportionPlanComplete = "Zero"
     @State private var bounce = false
     @State private var startProgressBars = false
  
@@ -22,13 +22,13 @@ struct HomeView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Ride.timestamp, ascending: true)], animation: .default)
+        sortDescriptors: [NSSortDescriptor(keyPath: \Ride.timestamp, ascending: false)], animation: .default)
     private var rides: FetchedResults<Ride>
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Run.timestamp, ascending: true)], animation: .default)
+        sortDescriptors: [NSSortDescriptor(keyPath: \Run.timestamp, ascending: false)], animation: .default)
     private var runs: FetchedResults<Run>
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Swim.timestamp, ascending: true)], animation: .default)
+        sortDescriptors: [NSSortDescriptor(keyPath: \Swim.timestamp, ascending: false)], animation: .default)
     private var swims: FetchedResults<Swim>
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Plan.day, ascending: true)], animation: .default)
@@ -43,7 +43,7 @@ struct HomeView: View {
             .onAppear {
                 bounce = true
                 homeVm.calculateTotals(plans: plans, swims: swims, rides: rides, runs: runs)
-                
+                homeVm.calculateFastest(swims: swims, rides: rides, runs: runs)
             }
         }
     }
@@ -63,11 +63,11 @@ extension HomeView {
                         .foregroundColor(Color.mainText)
                         .font(.system(size: 11, weight: .light, design: .rounded))
                     
-                    if homeVm.proportionCompleted == 0.0 {
-                       
-                    } else {
+//                    if homeVm.proportionCompleted == 0.0 {
+//
+//                    } else {
                         pieChart
-                    }
+//                    }
                         
                     
                     

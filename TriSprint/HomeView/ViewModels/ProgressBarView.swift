@@ -30,6 +30,7 @@ struct ProgressBarView: View {
         }
         .onAppear {
             startLoading()
+            
         }
     }
     func startLoading() {

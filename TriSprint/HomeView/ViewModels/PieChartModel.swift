@@ -40,7 +40,6 @@ struct PieChartModel: View {
     }
     
     private func calculateSlices(from inputValues: [(color: Color, value: Double)]) -> [PieSlice] {
-        print("Nige: input vals = \(inputValues)")
         let sumOfAllValues = inputValues.reduce(0) { $0 + $1.value }
         
         guard sumOfAllValues > 0 else { return [] }
