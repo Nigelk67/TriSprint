@@ -25,12 +25,12 @@ class HomeViewModel: ObservableObject {
     @Published var swimProgress: CGFloat = 0.0
     @Published var rideProgress: CGFloat = 0.0
     @Published var runProgress: CGFloat = 0.0
-    @Published var swimSpeedLatest = ""
-    @Published var swimSpeedFastest = ""
-    @Published var rideSpeedLatest = ""
-    @Published var rideSpeedFastest = ""
-    @Published var runSpeedLatest = ""
-    @Published var runSpeedFastest = ""
+    @Published var swimSpeedLatest = "0"
+    @Published var swimSpeedFastest = "0"
+    @Published var rideSpeedLatest = "15.5"
+    @Published var rideSpeedFastest = "14.3"
+    @Published var runSpeedLatest = "4.5"
+    @Published var runSpeedFastest = "4.2"
     @Published var swimPaceLatest = ""
     @Published var swimPaceFastest = ""
     @Published var ridePaceLatest = ""
@@ -90,18 +90,39 @@ class HomeViewModel: ObservableObject {
     }
     
     func calculateFastest(swims: FetchedResults<Swim>,rides: FetchedResults<Ride>,runs: FetchedResults<Run>) {
+        calcSwimSpeed(swims: swims)
+    }
+    
+    
+    func calcSwimSpeed(swims: FetchedResults<Swim>) {
         var swimSpeedArray = [Double]()
         guard let latestSwim = swims.first else { return }
-        let latestSwimDistance = latestSwim.distance / 1.609
+        var latestSwimDistance = Double()
+        var swimDistance = Double()
+        if measure == Measure.kilometers.rawValue {
+            latestSwimDistance = latestSwim.distance
+        } else {
+            latestSwimDistance = latestSwim.distance / 1.609
+        }
+        let latestSwimDuration = Double(latestSwim.duration) / 3600
+        let latestSwimSpeed = latestSwimDistance / latestSwimDuration
+        swimSpeedLatest = String(format: "%.2f",latestSwimSpeed)
+        
         for swim in swims {
-            let swimDistance = swim.distance
+            if measure == Measure.kilometers.rawValue {
+                swimDistance = swim.distance
+            } else {
+                swimDistance = swim.distance / 1.609
+            }
             let swimDuration = swim.duration
-            let swimSpeed = (swimDistance / 1.609) / (Double(swimDuration) / 3600)
+            let swimSpeed = swimDistance / (Double(swimDuration) / 3600)
             swimSpeedArray.append(swimSpeed)
         }
         guard let fastestSwim = swimSpeedArray.max() else { return }
-        print("Nige: fastest swim = \(fastestSwim), latest swim distance = \(latestSwimDistance)")
+        swimSpeedFastest = String(format: "%.2f",fastestSwim)
     }
+    
+    
     
 
    
