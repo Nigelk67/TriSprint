@@ -10,25 +10,31 @@ import SwiftUI
 struct HomeView: View {
     
     @StateObject var homeVm = HomeViewModel()
-    @State private var totalPlans = 0.0
-    @State private var totalSwims = 0.0
-    @State private var totalRides = 0.0
-    @State private var totalRuns = 0.0
-    @State private var proportionPlanComplete = "Zero"
+//    @State private var totalPlans = 0.0
+//    @State private var totalSwims = 0.0
+//    @State private var totalRides = 0.0
+//    @State private var totalRuns = 0.0
+//    @State private var proportionPlanComplete = "Zero"
     @State private var bounce = false
     @State private var startProgressBars = false
+    @State private var swimProgressBinding: CGFloat = 0
+    @State private var rideProgressBinding: CGFloat = 0
+    @State private var runProgressBinding: CGFloat = 0
+    @State private var currentSwimProgressBinding: CGFloat = 0
+    @State private var currentRideProgressBinding: CGFloat = 0
+    @State private var currentRunProgressBinding: CGFloat = 0
  
     
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Ride.timestamp, ascending: true)], animation: .default)
+        sortDescriptors: [NSSortDescriptor(keyPath: \Ride.timestamp, ascending: false)], animation: .default)
     private var rides: FetchedResults<Ride>
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Run.timestamp, ascending: true)], animation: .default)
+        sortDescriptors: [NSSortDescriptor(keyPath: \Run.timestamp, ascending: false)], animation: .default)
     private var runs: FetchedResults<Run>
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Swim.timestamp, ascending: true)], animation: .default)
+        sortDescriptors: [NSSortDescriptor(keyPath: \Swim.timestamp, ascending: false)], animation: .default)
     private var swims: FetchedResults<Swim>
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Plan.day, ascending: true)], animation: .default)
@@ -43,6 +49,13 @@ struct HomeView: View {
             .onAppear {
                 bounce = true
                 homeVm.calculateTotals(plans: plans, swims: swims, rides: rides, runs: runs)
+                homeVm.calculateFastest(swims: swims, rides: rides, runs: runs)
+                swimProgressBinding = homeVm.swimProgress
+                rideProgressBinding = homeVm.rideProgress
+                runProgressBinding = homeVm.runProgress
+                currentSwimProgressBinding = homeVm.currentSwimProgress
+                currentRideProgressBinding = homeVm.currentRideProgress
+                currentRunProgressBinding = homeVm.currentRunProgress
                 
             }
         }
@@ -63,11 +76,11 @@ extension HomeView {
                         .foregroundColor(Color.mainText)
                         .font(.system(size: 11, weight: .light, design: .rounded))
                     
-                    if homeVm.proportionCompleted == 0.0 {
-                       
-                    } else {
+//                    if homeVm.proportionCompleted == 0.0 {
+//
+//                    } else {
                         pieChart
-                    }
+//                    }
                         
                     
                     
@@ -96,27 +109,30 @@ extension HomeView {
                     .foregroundColor(Color.mainText)
                     .font(.system(size: 12, weight: .regular, design: .rounded))
                 
-                ProgressBarView(currentProgress: homeVm.currentProgress, endProgress: homeVm.swimProgress, barColor: Color.accentButton, barOpacity: 0.1, progressBarColor: Color.accentButton, progressBarOpacity: 0.8)
+                ProgressBarView(currentProgress: $currentSwimProgressBinding, endProgress: $swimProgressBinding, barColor: Color.accentButton, barOpacity: 0.1, progressBarColor: Color.accentButton, progressBarOpacity: 0.8)
+                    
             }
             VStack(alignment: .leading) {
                 Text("Ride")
                     .foregroundColor(Color.mainText)
                     .font(.system(size: 12, weight: .regular, design: .rounded))
-                ProgressBarView(currentProgress: homeVm.currentProgress, endProgress: homeVm.rideProgress, barColor: Color.accentButton, barOpacity: 0.1, progressBarColor: Color.accentButton, progressBarOpacity: 0.8)
+                ProgressBarView(currentProgress: $currentRideProgressBinding, endProgress: $rideProgressBinding, barColor: Color.accentButton, barOpacity: 0.1, progressBarColor: Color.accentButton, progressBarOpacity: 0.8)
+                    
             }
             VStack(alignment: .leading) {
                 Text("Run")
                     .foregroundColor(Color.mainText)
                     .font(.system(size: 12, weight: .regular, design: .rounded))
-                ProgressBarView(currentProgress: homeVm.currentProgress, endProgress: homeVm.runProgress, barColor: Color.accentButton, barOpacity: 0.1, progressBarColor: Color.accentButton, progressBarOpacity: 0.8)
+                ProgressBarView(currentProgress: $currentRunProgressBinding, endProgress: $runProgressBinding, barColor: Color.accentButton, barOpacity: 0.1, progressBarColor: Color.accentButton, progressBarOpacity: 0.8)
+                   
             }
         }
     }
     
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
-}
+//struct HomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HomeView()
+//    }
+//}
