@@ -25,12 +25,12 @@ class HomeViewModel: ObservableObject {
     @Published var swimProgress: CGFloat = 0.0
     @Published var rideProgress: CGFloat = 0.0
     @Published var runProgress: CGFloat = 0.0
-    @Published var swimSpeedLatest = ""
-    @Published var swimSpeedFastest = ""
-    @Published var rideSpeedLatest = ""
-    @Published var rideSpeedFastest = ""
-    @Published var runSpeedLatest = ""
-    @Published var runSpeedFastest = ""
+    @Published var swimSpeedLatest = "0"
+    @Published var swimSpeedFastest = "0"
+    @Published var rideSpeedLatest = "0"
+    @Published var rideSpeedFastest = "0"
+    @Published var runSpeedLatest = "0"
+    @Published var runSpeedFastest = "0"
     @Published var swimPaceLatest = ""
     @Published var swimPaceFastest = ""
     @Published var ridePaceLatest = ""
@@ -90,18 +90,97 @@ class HomeViewModel: ObservableObject {
     }
     
     func calculateFastest(swims: FetchedResults<Swim>,rides: FetchedResults<Ride>,runs: FetchedResults<Run>) {
-        var swimSpeedArray = [Double]()
-        guard let latestSwim = swims.first else { return }
-        let latestSwimDistance = latestSwim.distance / 1.609
-        for swim in swims {
-            let swimDistance = swim.distance
-            let swimDuration = swim.duration
-            let swimSpeed = (swimDistance / 1.609) / (Double(swimDuration) / 3600)
-            swimSpeedArray.append(swimSpeed)
-        }
-        guard let fastestSwim = swimSpeedArray.max() else { return }
-        print("Nige: fastest swim = \(fastestSwim), latest swim distance = \(latestSwimDistance)")
+        calcSwimSpeed(swims: swims)
+        calcRideSpeed(rides: rides)
+        calcRunSpeed(runs: runs)
     }
+    
+    
+    func calcSwimSpeed(swims: FetchedResults<Swim>) {
+        var speedArray = [Double]()
+        guard let latest = swims.first else { return }
+        var latestDistance = Double()
+        var distance = Double()
+        if measure == Measure.kilometers.rawValue {
+            latestDistance = latest.distance
+        } else {
+            latestDistance = latest.distance / 1.609
+        }
+        let latestDuration = Double(latest.duration) / 3600
+        let latestSpeed = latestDistance / latestDuration
+        swimSpeedLatest = String(format: "%.2f",latestSpeed)
+        
+        for each in swims {
+            if measure == Measure.kilometers.rawValue {
+                distance = each.distance
+            } else {
+                distance = each.distance / 1.609
+            }
+            let duration = each.duration
+            let speed = distance / (Double(duration) / 3600)
+            speedArray.append(speed)
+        }
+        guard let fastest = speedArray.max() else { return }
+        swimSpeedFastest = String(format: "%.2f",fastest)
+    }
+    
+    func calcRideSpeed(rides: FetchedResults<Ride>) {
+        var speedArray = [Double]()
+        guard let latest = rides.first else { return }
+        var latestDistance = Double()
+        var distance = Double()
+        if measure == Measure.kilometers.rawValue {
+            latestDistance = latest.distance
+        } else {
+            latestDistance = latest.distance / 1.609
+        }
+        let latestDuration = Double(latest.duration) / 3600
+        let latestSpeed = latestDistance / latestDuration
+        rideSpeedLatest = String(format: "%.2f",latestSpeed)
+        
+        for each in rides {
+            if measure == Measure.kilometers.rawValue {
+                distance = each.distance
+            } else {
+                distance = each.distance / 1.609
+            }
+            let duration = each.duration
+            let speed = distance / (Double(duration) / 3600)
+            speedArray.append(speed)
+        }
+        guard let fastest = speedArray.max() else { return }
+        rideSpeedFastest = String(format: "%.2f",fastest)
+    }
+    
+    func calcRunSpeed(runs: FetchedResults<Run>) {
+        var speedArray = [Double]()
+        guard let latest = runs.first else { return }
+        var latestDistance = Double()
+        var distance = Double()
+        if measure == Measure.kilometers.rawValue {
+            latestDistance = latest.distance
+        } else {
+            latestDistance = latest.distance / 1.609
+        }
+        let latestDuration = Double(latest.duration) / 3600
+        let latestSpeed = latestDistance / latestDuration
+        runSpeedLatest = String(format: "%.2f",latestSpeed)
+        
+        for each in runs {
+            if measure == Measure.kilometers.rawValue {
+                distance = each.distance
+            } else {
+                distance = each.distance / 1.609
+            }
+            let duration = each.duration
+            let speed = distance / (Double(duration) / 3600)
+            speedArray.append(speed)
+        }
+        guard let fastest = speedArray.max() else { return }
+        runSpeedFastest = String(format: "%.2f",fastest)
+    }
+    
+    
     
 
    

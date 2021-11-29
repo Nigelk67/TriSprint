@@ -10,11 +10,6 @@ import SwiftUI
 struct HomeView: View {
     
     @StateObject var homeVm = HomeViewModel()
-//    @State private var totalPlans = 0.0
-//    @State private var totalSwims = 0.0
-//    @State private var totalRides = 0.0
-//    @State private var totalRuns = 0.0
-//    @State private var proportionPlanComplete = "Zero"
     @State private var bounce = false
     @State private var startProgressBars = false
     @State private var swimProgressBinding: CGFloat = 0
@@ -23,6 +18,13 @@ struct HomeView: View {
     @State private var currentSwimProgressBinding: CGFloat = 0
     @State private var currentRideProgressBinding: CGFloat = 0
     @State private var currentRunProgressBinding: CGFloat = 0
+    @State private var swimFastestBinding = ""
+    @State private var swimSpeedLatestBinding = ""
+    @State private var rideFastestBinding = ""
+    @State private var rideSpeedLatestBinding = ""
+    @State private var runFastestBinding = ""
+    @State private var runSpeedLatestBinding = ""
+    
  
     
     
@@ -43,8 +45,12 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             TriBackground()
-            VStack {
+            VStack(spacing: 20) {
                 completedSoFar
+                speedStack
+                
+                
+                
             }
             .onAppear {
                 bounce = true
@@ -56,7 +62,12 @@ struct HomeView: View {
                 currentSwimProgressBinding = homeVm.currentSwimProgress
                 currentRideProgressBinding = homeVm.currentRideProgress
                 currentRunProgressBinding = homeVm.currentRunProgress
-                
+                swimFastestBinding = homeVm.swimSpeedFastest
+                swimSpeedLatestBinding = homeVm.swimSpeedLatest
+                rideFastestBinding = homeVm.rideSpeedFastest
+                rideSpeedLatestBinding = homeVm.rideSpeedLatest
+                runFastestBinding = homeVm.runSpeedFastest
+                runSpeedLatestBinding = homeVm.runSpeedLatest
             }
         }
     }
@@ -77,18 +88,15 @@ extension HomeView {
                         .font(.system(size: 11, weight: .light, design: .rounded))
                     
 //                    if homeVm.proportionCompleted == 0.0 {
-//
 //                    } else {
-                        pieChart
+                    pieChart
 //                    }
-                        
-                    
-                    
-                }.padding()
+                }
+                .padding(.trailing,20)
                 
                 progressStack
-                
-            }.padding()
+                    .padding(.leading,50)
+            }
         }
     }
     
@@ -127,6 +135,10 @@ extension HomeView {
                    
             }
         }
+    }
+    
+    private var speedStack: some View {
+        ComparisonView(swimLatest: $swimSpeedLatestBinding, swimFastest: $swimFastestBinding, rideLatest: $rideSpeedLatestBinding, rideFastest: $rideFastestBinding, runLatest: $runSpeedLatestBinding, runFastest: $runFastestBinding)
     }
     
 }
