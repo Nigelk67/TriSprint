@@ -22,7 +22,7 @@ struct TrainingScheduleView: View {
         
         //NavigationView {
             ZStack {
-                SwimBackground()
+                TriBackground()
                 VStack {
                     ScrollView() {
                         if !plans.isEmpty {
