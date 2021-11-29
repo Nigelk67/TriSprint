@@ -33,10 +33,8 @@ struct HomeView: View {
             ScrollView {
                 VStack(spacing: 20) {
                     completedSoFar
-                   
                     speedStack
                     paceStack
-                    
                 }
             }
             .onAppear {
