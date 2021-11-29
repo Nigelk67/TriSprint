@@ -14,10 +14,10 @@ struct ComparisonView: View {
     var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
     @Binding var swimLatest: String
     @Binding var swimFastest: String
-    @State var rideLatest: String
-    @State var rideFastest: String
-    @State var runLatest: String
-    @State var runFastest: String
+    @Binding var rideLatest: String
+    @Binding var rideFastest: String
+    @Binding var runLatest: String
+    @Binding var runFastest: String
     @State private var swimVariance: String = "0"
     @State private var rideVariance: String = "0"
     @State private var runVariance: String = "0"

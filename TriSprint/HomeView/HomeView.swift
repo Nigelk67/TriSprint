@@ -20,6 +20,10 @@ struct HomeView: View {
     @State private var currentRunProgressBinding: CGFloat = 0
     @State private var swimFastestBinding = ""
     @State private var swimSpeedLatestBinding = ""
+    @State private var rideFastestBinding = ""
+    @State private var rideSpeedLatestBinding = ""
+    @State private var runFastestBinding = ""
+    @State private var runSpeedLatestBinding = ""
     
  
     
@@ -60,6 +64,10 @@ struct HomeView: View {
                 currentRunProgressBinding = homeVm.currentRunProgress
                 swimFastestBinding = homeVm.swimSpeedFastest
                 swimSpeedLatestBinding = homeVm.swimSpeedLatest
+                rideFastestBinding = homeVm.rideSpeedFastest
+                rideSpeedLatestBinding = homeVm.rideSpeedLatest
+                runFastestBinding = homeVm.runSpeedFastest
+                runSpeedLatestBinding = homeVm.runSpeedLatest
             }
         }
     }
@@ -130,7 +138,7 @@ extension HomeView {
     }
     
     private var speedStack: some View {
-        ComparisonView(swimLatest: $swimSpeedLatestBinding, swimFastest: $swimFastestBinding, rideLatest: homeVm.rideSpeedLatest, rideFastest: homeVm.rideSpeedFastest, runLatest: homeVm.runSpeedLatest, runFastest: homeVm.runSpeedFastest)
+        ComparisonView(swimLatest: $swimSpeedLatestBinding, swimFastest: $swimFastestBinding, rideLatest: $rideSpeedLatestBinding, rideFastest: $rideFastestBinding, runLatest: $runSpeedLatestBinding, runFastest: $runFastestBinding)
     }
     
 }
