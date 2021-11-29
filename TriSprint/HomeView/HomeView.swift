@@ -12,27 +12,6 @@ struct HomeView: View {
     @StateObject var homeVm = HomeViewModel()
     @State private var bounce = false
     @State private var startProgressBars = false
-    @State private var swimProgressBinding: CGFloat = 0
-    @State private var rideProgressBinding: CGFloat = 0
-    @State private var runProgressBinding: CGFloat = 0
-    @State private var currentSwimProgressBinding: CGFloat = 0
-    @State private var currentRideProgressBinding: CGFloat = 0
-    @State private var currentRunProgressBinding: CGFloat = 0
-    @State private var swimFastestBinding = ""
-    @State private var swimSpeedLatestBinding = ""
-    @State private var rideFastestBinding = ""
-    @State private var rideSpeedLatestBinding = ""
-    @State private var runFastestBinding = ""
-    @State private var runSpeedLatestBinding = ""
-    @State private var swimVariance = ""
-    @State private var rideVariance = ""
-    @State private var runVariance = ""
-    @State private var isSwimNegative: Bool = false
-    @State private var isRideNegative: Bool = false
-    @State private var isRunNegative: Bool = false
-    
- 
-    
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
@@ -59,22 +38,7 @@ struct HomeView: View {
                 
             }
             .onAppear {
-                bounce = true
-                homeVm.calculateTotals(plans: plans, swims: swims, rides: rides, runs: runs)
-                homeVm.calculateFastest(swims: swims, rides: rides, runs: runs)
-                swimProgressBinding = homeVm.swimProgress
-                rideProgressBinding = homeVm.rideProgress
-                runProgressBinding = homeVm.runProgress
-                currentSwimProgressBinding = homeVm.currentSwimProgress
-                currentRideProgressBinding = homeVm.currentRideProgress
-                currentRunProgressBinding = homeVm.currentRunProgress
-                swimFastestBinding = homeVm.swimSpeedFastest
-                swimSpeedLatestBinding = homeVm.swimSpeedLatest
-                rideFastestBinding = homeVm.rideSpeedFastest
-                rideSpeedLatestBinding = homeVm.rideSpeedLatest
-                runFastestBinding = homeVm.runSpeedFastest
-                runSpeedLatestBinding = homeVm.runSpeedLatest
-                calculateInitialVariances()
+                setValuesOnAppear()
             }
         }
     }
@@ -82,6 +46,12 @@ struct HomeView: View {
 
 
 extension HomeView {
+    
+    private func setValuesOnAppear() {
+        bounce = true
+        homeVm.calculateTotals(plans: plans, swims: swims, rides: rides, runs: runs)
+        homeVm.calculateFastest(swims: swims, rides: rides, runs: runs)
+    }
     
     private var completedSoFar: some View {
         VStack {
@@ -123,54 +93,30 @@ extension HomeView {
                 Text("Swim")
                     .foregroundColor(Color.mainText)
                     .font(.system(size: 12, weight: .regular, design: .rounded))
-                
-                ProgressBarView(currentProgress: $currentSwimProgressBinding, endProgress: $swimProgressBinding, barColor: Color.accentButton, barOpacity: 0.1, progressBarColor: Color.accentButton, progressBarOpacity: 0.8)
-                    
+                ProgressBarView(currentProgress: $homeVm.currentSwimProgress, endProgress: $homeVm.swimProgress, barColor: Color.accentButton, barOpacity: 0.1, progressBarColor: Color.accentButton, progressBarOpacity: 0.8)
             }
             VStack(alignment: .leading) {
                 Text("Ride")
                     .foregroundColor(Color.mainText)
                     .font(.system(size: 12, weight: .regular, design: .rounded))
-                ProgressBarView(currentProgress: $currentRideProgressBinding, endProgress: $rideProgressBinding, barColor: Color.accentButton, barOpacity: 0.1, progressBarColor: Color.accentButton, progressBarOpacity: 0.8)
-                    
+                ProgressBarView(currentProgress: $homeVm.currentRideProgress, endProgress: $homeVm.rideProgress, barColor: Color.accentButton, barOpacity: 0.1, progressBarColor: Color.accentButton, progressBarOpacity: 0.8)
             }
             VStack(alignment: .leading) {
                 Text("Run")
                     .foregroundColor(Color.mainText)
                     .font(.system(size: 12, weight: .regular, design: .rounded))
-                ProgressBarView(currentProgress: $currentRunProgressBinding, endProgress: $runProgressBinding, barColor: Color.accentButton, barOpacity: 0.1, progressBarColor: Color.accentButton, progressBarOpacity: 0.8)
+                ProgressBarView(currentProgress: $homeVm.currentRunProgress, endProgress: $homeVm.runProgress, barColor: Color.accentButton, barOpacity: 0.1, progressBarColor: Color.accentButton, progressBarOpacity: 0.8)
                    
             }
         }
     }
     
     private var speedStack: some View {
-        ComparisonView(header: "Speed", swimLatest: $swimSpeedLatestBinding, swimFastest: $swimFastestBinding, rideLatest: $rideSpeedLatestBinding, rideFastest: $rideFastestBinding, runLatest: $runSpeedLatestBinding, runFastest: $runFastestBinding, swimVariance: $swimVariance, rideVariance: $rideVariance, runVariance: $runVariance, isSwimNegative: $isSwimNegative, isRideNegative: $isRideNegative, isRunNegative: $isRunNegative)
+        ComparisonView(header: "Speed", swimLatest: $homeVm.swimSpeedLatest, swimFastest: $homeVm.swimSpeedFastest, rideLatest: $homeVm.rideSpeedLatest, rideFastest: $homeVm.rideSpeedFastest, runLatest: $homeVm.runSpeedLatest, runFastest: $homeVm.runSpeedFastest, swimVariance: $homeVm.swimSpeedVariance, rideVariance: $homeVm.rideSpeedVariance, runVariance: $homeVm.runSpeedVariance, isSwimNegative: $homeVm.isSwimSpeedNegative, isRideNegative: $homeVm.isRideSpeedNegative, isRunNegative: $homeVm.isRunSpeedNegative)
 
     }
     
-    private func calculateInitialVariances() {
-        guard let swimLatestDble = Double(swimSpeedLatestBinding), let swimFastestDble = Double(swimFastestBinding) else { return }
-        let swimVarianceDble = ((swimLatestDble - swimFastestDble)/swimLatestDble) * 100
-        if swimVarianceDble < 0 {
-            isSwimNegative = true
-        }
-        swimVariance = String(format: "%.1f", swimVarianceDble)
-        
-        guard let rideLatestDble = Double(rideSpeedLatestBinding), let rideFastestDble = Double(rideFastestBinding) else { return }
-        let rideVarianceDble = ((rideLatestDble - rideFastestDble)/rideLatestDble) * 100
-        if rideVarianceDble < 0 {
-            isRideNegative = true
-        }
-        rideVariance = String(format: "%.1f", rideVarianceDble)
-        
-        guard let runLatestDble = Double(runSpeedLatestBinding), let runFastestDble = Double(runFastestBinding) else { return }
-        let runVarianceDble = ((runLatestDble - runFastestDble)/runLatestDble) * 100
-        if runVarianceDble < 0 {
-            isRunNegative = true
-        }
-        runVariance = String(format: "%.1f", runVarianceDble)
-    }
+    
 }
 
 //struct HomeView_Previews: PreviewProvider {
