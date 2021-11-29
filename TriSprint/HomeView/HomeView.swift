@@ -24,6 +24,12 @@ struct HomeView: View {
     @State private var rideSpeedLatestBinding = ""
     @State private var runFastestBinding = ""
     @State private var runSpeedLatestBinding = ""
+    @State private var swimVariance = ""
+    @State private var rideVariance = ""
+    @State private var runVariance = ""
+    @State private var isSwimNegative: Bool = false
+    @State private var isRideNegative: Bool = false
+    @State private var isRunNegative: Bool = false
     
  
     
@@ -68,6 +74,7 @@ struct HomeView: View {
                 rideSpeedLatestBinding = homeVm.rideSpeedLatest
                 runFastestBinding = homeVm.runSpeedFastest
                 runSpeedLatestBinding = homeVm.runSpeedLatest
+                calculateInitialVariances()
             }
         }
     }
@@ -138,9 +145,32 @@ extension HomeView {
     }
     
     private var speedStack: some View {
-        ComparisonView(swimLatest: $swimSpeedLatestBinding, swimFastest: $swimFastestBinding, rideLatest: $rideSpeedLatestBinding, rideFastest: $rideFastestBinding, runLatest: $runSpeedLatestBinding, runFastest: $runFastestBinding)
+        ComparisonView(header: "Speed", swimLatest: $swimSpeedLatestBinding, swimFastest: $swimFastestBinding, rideLatest: $rideSpeedLatestBinding, rideFastest: $rideFastestBinding, runLatest: $runSpeedLatestBinding, runFastest: $runFastestBinding, swimVariance: $swimVariance, rideVariance: $rideVariance, runVariance: $runVariance, isSwimNegative: $isSwimNegative, isRideNegative: $isRideNegative, isRunNegative: $isRunNegative)
+
     }
     
+    private func calculateInitialVariances() {
+        guard let swimLatestDble = Double(swimSpeedLatestBinding), let swimFastestDble = Double(swimFastestBinding) else { return }
+        let swimVarianceDble = ((swimLatestDble - swimFastestDble)/swimLatestDble) * 100
+        if swimVarianceDble < 0 {
+            isSwimNegative = true
+        }
+        swimVariance = String(format: "%.1f", swimVarianceDble)
+        
+        guard let rideLatestDble = Double(rideSpeedLatestBinding), let rideFastestDble = Double(rideFastestBinding) else { return }
+        let rideVarianceDble = ((rideLatestDble - rideFastestDble)/rideLatestDble) * 100
+        if rideVarianceDble < 0 {
+            isRideNegative = true
+        }
+        rideVariance = String(format: "%.1f", rideVarianceDble)
+        
+        guard let runLatestDble = Double(runSpeedLatestBinding), let runFastestDble = Double(runFastestBinding) else { return }
+        let runVarianceDble = ((runLatestDble - runFastestDble)/runLatestDble) * 100
+        if runVarianceDble < 0 {
+            isRunNegative = true
+        }
+        runVariance = String(format: "%.1f", runVarianceDble)
+    }
 }
 
 //struct HomeView_Previews: PreviewProvider {

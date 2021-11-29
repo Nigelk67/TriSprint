@@ -12,30 +12,35 @@ struct ComparisonView: View {
     let textSizeForComparisonBlocks: CGFloat = 18
     let textSizeForComparisonBlockPercentages: CGFloat = 12
     var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
+    @State var header: String
     @Binding var swimLatest: String
     @Binding var swimFastest: String
     @Binding var rideLatest: String
     @Binding var rideFastest: String
     @Binding var runLatest: String
     @Binding var runFastest: String
-    @State private var swimVariance: String = "0"
-    @State private var rideVariance: String = "0"
-    @State private var runVariance: String = "0"
-    @State private var isSwimNegative: Bool = false
-    @State private var isRideNegative: Bool = false
-    @State private var isRunNegative: Bool = false
+    @Binding var swimVariance: String
+    @Binding var rideVariance: String
+    @Binding var runVariance: String
+//    @State private var swimVariance: String = "0"
+//    @State private var rideVariance: String = "0"
+//    @State private var runVariance: String = "0"
+    @Binding var isSwimNegative: Bool
+    @Binding var isRideNegative: Bool
+    @Binding var isRunNegative: Bool
     
     
     var body: some View {
         
         GeometryReader { geo in
             VStack {
-                Text(measure == Measure.kilometers.rawValue ? "Speed Km/hr" : "Speed Mi/hr")
-                    .foregroundColor(Color.mainText)
-                    .font(.system(size: 18, weight: .regular, design: .rounded))
+
                 HStack {
                     VStack(spacing: 10) {
-                        Spacer()
+                        Text(measure == Measure.kilometers.rawValue ? "\(header) Km/hr" : "\(header) Mi/hr")
+                            .foregroundColor(Color.mainText)
+                            .font(.system(size: 18, weight: .semibold, design: .rounded))
+                            Spacer()
                         Text("Latest")
                             .foregroundColor(Color.mainText)
                             .font(.system(size: textSizeForComparisonBlocks, weight: .regular, design: .rounded))
@@ -98,36 +103,34 @@ struct ComparisonView: View {
             .cornerRadius(20)
             .offset(x: 20, y: 0)
         }
-        .onAppear {
-            calculateVariances()
-        }
+
     }
     
     
-    private func calculateVariances() {
-        guard let swimLatestDble = Double(swimLatest), let swimFastestDble = Double(swimFastest) else { return }
-        let swimVarianceDble = ((swimLatestDble - swimFastestDble)/swimLatestDble) * 100
-        if swimVarianceDble < 0 {
-            isSwimNegative = true
-        }
-        swimVariance = String(format: "%.1f", swimVarianceDble)
-        
-        guard let rideLatestDble = Double(rideLatest), let rideFastestDble = Double(rideFastest) else { return }
-        let rideVarianceDble = ((rideLatestDble - rideFastestDble)/rideLatestDble) * 100
-        if rideVarianceDble < 0 {
-            isRideNegative = true
-        }
-        rideVariance = String(format: "%.1f", rideVarianceDble)
-        
-        guard let runLatestDble = Double(runLatest), let runFastestDble = Double(runFastest) else { return }
-        let runVarianceDble = ((runLatestDble - runFastestDble)/runLatestDble) * 100
-        if runVarianceDble < 0 {
-            isRunNegative = true
-        }
-        
-        runVariance = String(format: "%.1f", runVarianceDble)
-        
-    }
+//    private func calculateVariances() {
+//        guard let swimLatestDble = Double(swimLatest), let swimFastestDble = Double(swimFastest) else { return }
+//        let swimVarianceDble = ((swimLatestDble - swimFastestDble)/swimLatestDble) * 100
+//        if swimVarianceDble < 0 {
+//            isSwimNegative = true
+//        }
+//        swimVariance = String(format: "%.1f", swimVarianceDble)
+//
+//        guard let rideLatestDble = Double(rideLatest), let rideFastestDble = Double(rideFastest) else { return }
+//        let rideVarianceDble = ((rideLatestDble - rideFastestDble)/rideLatestDble) * 100
+//        if rideVarianceDble < 0 {
+//            isRideNegative = true
+//        }
+//        rideVariance = String(format: "%.1f", rideVarianceDble)
+//
+//        guard let runLatestDble = Double(runLatest), let runFastestDble = Double(runFastest) else { return }
+//        let runVarianceDble = ((runLatestDble - runFastestDble)/runLatestDble) * 100
+//        if runVarianceDble < 0 {
+//            isRunNegative = true
+//        }
+//
+//        runVariance = String(format: "%.1f", runVarianceDble)
+//
+//    }
 }
 
 //struct ComparisonView_Previews: PreviewProvider {
