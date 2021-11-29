@@ -19,7 +19,9 @@ class HomeViewModel: ObservableObject {
     @Published var runPlansTotal = 0.0
     @Published var runPlansCompleted = 0.0
     @Published var proportionCompleted = 0.0
-    @Published var currentProgress: CGFloat = 0.0
+    @Published var currentSwimProgress: CGFloat = 0.0
+    @Published var currentRideProgress: CGFloat = 0.0
+    @Published var currentRunProgress: CGFloat = 0.0
     @Published var swimProgress: CGFloat = 0.0
     @Published var rideProgress: CGFloat = 0.0
     @Published var runProgress: CGFloat = 0.0
@@ -58,22 +60,33 @@ class HomeViewModel: ObservableObject {
     }
     
     func calculateProgress(swimsCompleted: Double, ridesCompleted: Double, runsCompleted: Double, plans: FetchedResults<Plan>) {
+        resetProgress()
         for plan in plans {
             if plan.session == Sessions.swim.rawValue {
-                swimPlansTotal += 1
+                self.swimPlansTotal += 1
             } else if plan.session == Sessions.ride.rawValue {
-                ridePlansTotal += 1
+                self.ridePlansTotal += 1
             } else if plan.session == Sessions.run.rawValue {
-                runPlansTotal += 1
+                self.runPlansTotal += 1
             } else if plan.session == Sessions.rideRun.rawValue {
-                ridePlansTotal += 1
-                runPlansTotal += 1
+                self.ridePlansTotal += 1
+                self.runPlansTotal += 1
             }
         }
-        swimProgress = swimsCompleted / swimPlansTotal
-        rideProgress = ridesCompleted / ridePlansTotal
-        runProgress = runsCompleted / runPlansTotal
-        print("Nige: progress swim = \(swimProgress), ride = \(rideProgress), run = \(rideProgress)")
+        
+        self.swimProgress = swimsCompleted / self.swimPlansTotal
+        self.rideProgress = ridesCompleted / self.ridePlansTotal
+        self.runProgress = runsCompleted / self.runPlansTotal
+        
+    }
+    
+    private func resetProgress() {
+        swimPlansTotal = 0
+        ridePlansTotal = 0
+        runPlansTotal = 0
+        currentSwimProgress = 0
+        currentRideProgress = 0
+        currentRunProgress = 0
     }
     
     func calculateFastest(swims: FetchedResults<Swim>,rides: FetchedResults<Ride>,runs: FetchedResults<Run>) {
