@@ -30,12 +30,14 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             TriBackground()
-            VStack(spacing: 20) {
-                completedSoFar
-                speedStack
-                
-                
-                
+            ScrollView {
+                VStack(spacing: 20) {
+                    completedSoFar
+                   
+                    speedStack
+                    paceStack
+                    
+                }
             }
             .onAppear {
                 setValuesOnAppear()
@@ -112,10 +114,16 @@ extension HomeView {
     }
     
     private var speedStack: some View {
+  
         ComparisonView(header: "Speed", swimLatest: $homeVm.swimSpeedLatest, swimFastest: $homeVm.swimSpeedFastest, rideLatest: $homeVm.rideSpeedLatest, rideFastest: $homeVm.rideSpeedFastest, runLatest: $homeVm.runSpeedLatest, runFastest: $homeVm.runSpeedFastest, swimVariance: $homeVm.swimSpeedVariance, rideVariance: $homeVm.rideSpeedVariance, runVariance: $homeVm.runSpeedVariance, isSwimNegative: $homeVm.isSwimSpeedNegative, isRideNegative: $homeVm.isRideSpeedNegative, isRunNegative: $homeVm.isRunSpeedNegative)
-
+        
     }
     
+    private var paceStack: some View {
+      
+        ComparisonView(header: "Pace", swimLatest: $homeVm.swimPaceLatest, swimFastest: $homeVm.swimPaceFastest, rideLatest: $homeVm.ridePaceLatest, rideFastest: $homeVm.ridePaceFastest, runLatest: $homeVm.runPaceLatest, runFastest: $homeVm.runPaceFastest, swimVariance: $homeVm.swimPaceVariance, rideVariance: $homeVm.ridePaceVariance, runVariance: $homeVm.runPaceVariance, isSwimNegative: $homeVm.isSwimPaceNegative, isRideNegative: $homeVm.isRidePaceNegative, isRunNegative: $homeVm.isRunPaceNegative)
+    
+    }
     
 }
 

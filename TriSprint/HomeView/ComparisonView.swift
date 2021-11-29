@@ -37,10 +37,16 @@ struct ComparisonView: View {
 
                 HStack {
                     VStack(spacing: 10) {
-                        Text(measure == Measure.kilometers.rawValue ? "\(header) Km/hr" : "\(header) Mi/hr")
-                            .foregroundColor(Color.mainText)
-                            .font(.system(size: 18, weight: .semibold, design: .rounded))
-                            Spacer()
+                        if header == "Speed" {
+                            Text(measure == Measure.kilometers.rawValue ? "\(header) (km/hr)" : "\(header) (mi/hr)")
+                                .foregroundColor(Color.mainText)
+                                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                        } else {
+                            Text(measure == Measure.kilometers.rawValue ? "\(header) (mins/km)" : "\(header) (mins/mi)")
+                                .foregroundColor(Color.mainText)
+                                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                        }
+                        Spacer()
                         Text("Latest")
                             .foregroundColor(Color.mainText)
                             .font(.system(size: textSizeForComparisonBlocks, weight: .regular, design: .rounded))
