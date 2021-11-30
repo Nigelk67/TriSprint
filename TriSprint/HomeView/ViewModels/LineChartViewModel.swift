@@ -31,7 +31,10 @@ class LineChartViewModel: ObservableObject {
     
     func calculateSwim(swims: FetchedResults<Swim>) {
         var distance = Double()
-        var array = [Double]()
+        var distArray = [Double]()
+        var durationArray = [Double]()
+        var speedArray = [Double]()
+        var paceArray = [Double]()
         for each in swims {
             if measure == Measure.kilometers.rawValue {
                 distance = each.distance
@@ -40,14 +43,20 @@ class LineChartViewModel: ObservableObject {
             }
             let durationInSecs = Double(each.duration)
             let durationInMins = durationInSecs/60
-            swimDurationArray.append(durationInMins)
-            array.append(distance)
-            swimDistanceArrayReversed = array.reversed()
+            
+            durationArray.append(durationInMins)
+            swimDurationArray = durationArray.reversed()
+            
+            distArray.append(distance)
+            swimDistanceArrayReversed = distArray.reversed()
             
             let speed = distance / (durationInSecs/3600)
-            swimSpeedArray.append(speed)
+            speedArray.append(speed)
+            swimSpeedArray = speedArray.reversed()
+            
             let pace = durationInMins / distance
-            swimPaceArray.append(pace)
+            paceArray.append(pace)
+            swimPaceArray = paceArray.reversed()
             
           
         }

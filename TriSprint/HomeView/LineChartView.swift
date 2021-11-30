@@ -9,25 +9,32 @@ import SwiftUI
 
 struct LineChartView: View {
     let arrayForLine: [Double]
+    let header: String
     private let maxY: Double
     private let minY: Double
     @State private var percentageAnimate: CGFloat = 0
+    private let chartHeight: Double = 80
+    private let chartWidth: Double = 150
     
-    init(dataForArray: [Double]) {
+    init(dataForArray: [Double], chartHeader: String) {
         arrayForLine = dataForArray
+        header = chartHeader
         maxY = arrayForLine.max() ?? 0
         minY = arrayForLine.min() ?? 0
     }
     
     var body: some View {
+        
         VStack {
+            Text(header)
+                .foregroundColor(Color.mainText)
+                .font(.system(size: 14, weight: .regular, design: .rounded))
             chartView
-                .frame(height: 100)
+                .frame(width: chartWidth, height: chartHeight)
                 .background(chartBackground)
                 .overlay(chartYAxis,alignment: .leading)
-                
-                
         }
+        
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 withAnimation(.linear(duration: 2.0)) {
@@ -35,17 +42,21 @@ struct LineChartView: View {
                 }
             }
         }
+        .frame(height: chartHeight * 2)
+        .background(Color.mainBackground.opacity(0.7))
+        .cornerRadius(10)
     }
     
 }
 
 
 extension LineChartView {
+    
     private var chartView: some View {
         GeometryReader { geometry in
             Path { path in
                 for index in arrayForLine.indices {
-                    let xPosition = (geometry.size.width / 3) / CGFloat(arrayForLine.count) * CGFloat(index + 1)
+                    let xPosition = (geometry.size.width / 1) / CGFloat(arrayForLine.count) * CGFloat(index + 1)
                     let yAxis = maxY - minY
                     let yPosition = (1 - CGFloat((arrayForLine[index] - minY) / yAxis)) * geometry.size.height
                     if index == 0 {
@@ -55,12 +66,12 @@ extension LineChartView {
                 }
             }
             .trim(from: 0, to: percentageAnimate)
-            .stroke(Color.red, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
-            .shadow(color: Color.red, radius: 3, x: 2, y: 4)
-            .shadow(color: Color.red.opacity(0.3), radius: 3, x: 2, y: 8)
+            .stroke(Color.accentButton, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+            .shadow(color: Color.accentButton, radius: 3, x: 2, y: 4)
+            .shadow(color: Color.accentButton.opacity(0.3), radius: 3, x: 2, y: 8)
 
         }
-        .padding(.leading,20)
+        .padding()
         
        
     }
@@ -95,6 +106,6 @@ extension LineChartView {
 
 struct LineChartView_Previews: PreviewProvider {
     static var previews: some View {
-        LineChartView(dataForArray: [0])
+        LineChartView(dataForArray: [0], chartHeader: "")
     }
 }

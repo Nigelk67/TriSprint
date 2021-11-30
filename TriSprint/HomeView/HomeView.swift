@@ -13,6 +13,8 @@ struct HomeView: View {
     @StateObject var lineChartVm = LineChartViewModel()
     @State private var bounce = false
     @State private var startProgressBars = false
+    let chartBlockHeight: Double = 400
+    let chartBlockWidth: Double = 350
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
@@ -31,12 +33,13 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             TriBackground()
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
                     completedSoFar
                     speedStack
                     paceStack
-                    LineChartView(dataForArray: lineChartVm.swimDistanceArrayReversed)
+                    swimCharts
+                    
                 }
             }
             .onAppear {
@@ -124,6 +127,28 @@ extension HomeView {
       
         ComparisonView(header: "Pace", swimLatest: $homeVm.swimPaceLatest, swimFastest: $homeVm.swimPaceFastest, rideLatest: $homeVm.ridePaceLatest, rideFastest: $homeVm.ridePaceFastest, runLatest: $homeVm.runPaceLatest, runFastest: $homeVm.runPaceFastest, swimVariance: $homeVm.swimPaceVariance, rideVariance: $homeVm.ridePaceVariance, runVariance: $homeVm.runPaceVariance, isSwimNegative: $homeVm.isSwimPaceNegative, isRideNegative: $homeVm.isRidePaceNegative, isRunNegative: $homeVm.isRunPaceNegative)
     
+    }
+    
+    private var swimCharts: some View {
+        VStack {
+            HStack {
+            Image(IconImageNames.swimIcon.rawValue)
+                .resizable()
+                .scaledToFit()
+                Spacer()
+            }
+            HStack {
+                LineChartView(dataForArray: lineChartVm.swimDistanceArrayReversed, chartHeader: "Distance")
+                LineChartView(dataForArray: lineChartVm.swimDurationArray, chartHeader: "Time")
+            }
+            HStack {
+                LineChartView(dataForArray: lineChartVm.swimSpeedArray, chartHeader: "Speed")
+                LineChartView(dataForArray: lineChartVm.swimPaceArray, chartHeader: "Pace")
+            }
+        }
+        .frame(width: chartBlockWidth, height: chartBlockHeight)
+        .background(Color.accentButton.opacity(0.3))
+        .cornerRadius(20)
     }
     
 }
