@@ -25,8 +25,8 @@ class LineChartViewModel: ObservableObject {
     
     func createArraysForChart(swims: FetchedResults<Swim>, rides: FetchedResults<Ride>, runs: FetchedResults<Run>) {
         calculateSwim(swims: swims)
-        calculateRuns(runs: runs)
-        calculateRides(rides: rides)
+        calculateRun(runs: runs)
+        calculateRide(rides: rides)
     }
     
     func calculateSwim(swims: FetchedResults<Swim>) {
@@ -57,14 +57,15 @@ class LineChartViewModel: ObservableObject {
             let pace = durationInMins / distance
             paceArray.append(pace)
             swimPaceArray = paceArray.reversed()
-            
-          
         }
-        
     }
     
-    func calculateRides(rides: FetchedResults<Ride>) {
+    func calculateRide(rides: FetchedResults<Ride>) {
         var distance = Double()
+        var distArray = [Double]()
+        var durationArray = [Double]()
+        var speedArray = [Double]()
+        var paceArray = [Double]()
         for each in rides {
             if measure == Measure.kilometers.rawValue {
                 distance = each.distance
@@ -73,20 +74,29 @@ class LineChartViewModel: ObservableObject {
             }
             let durationInSecs = Double(each.duration)
             let durationInMins = durationInSecs/60
-            rideDurationArray.append(durationInMins)
-            rideDistanceArray.append(distance)
+            
+            durationArray.append(durationInMins)
+            rideDurationArray = durationArray.reversed()
+            
+            distArray.append(distance)
+            rideDistanceArray = distArray.reversed()
             
             let speed = distance / (durationInSecs/3600)
-            rideSpeedArray.append(speed)
+            speedArray.append(speed)
+            rideSpeedArray = speedArray.reversed()
+            
             let pace = durationInMins / distance
-            ridePaceArray.append(pace)
+            paceArray.append(pace)
+            ridePaceArray = paceArray.reversed()
         }
-       
     }
     
-    
-    func calculateRuns(runs: FetchedResults<Run>) {
+    func calculateRun(runs: FetchedResults<Run>) {
         var distance = Double()
+        var distArray = [Double]()
+        var durationArray = [Double]()
+        var speedArray = [Double]()
+        var paceArray = [Double]()
         for each in runs {
             if measure == Measure.kilometers.rawValue {
                 distance = each.distance
@@ -95,14 +105,20 @@ class LineChartViewModel: ObservableObject {
             }
             let durationInSecs = Double(each.duration)
             let durationInMins = durationInSecs/60
-            runDurationArray.append(durationInMins)
-            runDistanceArray.append(distance)
+            
+            durationArray.append(durationInMins)
+            runDurationArray = durationArray.reversed()
+            
+            distArray.append(distance)
+            runDistanceArray = distArray.reversed()
             
             let speed = distance / (durationInSecs/3600)
-            runSpeedArray.append(speed)
+            speedArray.append(speed)
+            runSpeedArray = speedArray.reversed()
+            
             let pace = durationInMins / distance
-            runPaceArray.append(pace)
+            paceArray.append(pace)
+            runPaceArray = paceArray.reversed()
         }
-       
     }
 }

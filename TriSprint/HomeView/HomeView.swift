@@ -31,17 +31,34 @@ struct HomeView: View {
     private var plans: FetchedResults<Plan>
     
     var body: some View {
+    
         ZStack {
             TriBackground()
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 20) {
-                    completedSoFar
-                    speedStack
-                    paceStack
-                    swimCharts
-                    
+            VStack {
+                Text("Progress")
+                    .foregroundColor(Color.mainText)
+                    .font(.system(size: 32, weight: .medium, design: .rounded))
+                    .padding(.vertical)
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 20) {
+                        completedSoFar
+                        HStack {
+                        Text("Actuals")
+                            .foregroundColor(Color.mainText)
+                            .font(.system(size: 18, weight: .medium, design: .rounded))
+                            .padding(.leading,40)
+                            Spacer()
+                        }
+                        swimCharts
+                        rideCharts
+                        runCharts
+                        speedStack
+                        paceStack
+                        
+                    }
                 }
             }
+            
             .onAppear {
                 setValuesOnAppear()
             }
@@ -61,9 +78,13 @@ extension HomeView {
     
     private var completedSoFar: some View {
         VStack {
-            Text("Completed So Far")
+            HStack {
+            Text("Plans Completed So Far")
                 .foregroundColor(Color.mainText)
                 .font(.system(size: 18, weight: .medium, design: .rounded))
+                .padding(.leading,40)
+                Spacer()
+            }
             HStack {
                 VStack {
                     Text("Total")
@@ -151,6 +172,49 @@ extension HomeView {
         .cornerRadius(20)
     }
     
+    private var rideCharts: some View {
+        VStack {
+            HStack {
+            Image(IconImageNames.rideIcon.rawValue)
+                .resizable()
+                .scaledToFit()
+                Spacer()
+            }
+            HStack {
+                LineChartView(dataForArray: lineChartVm.rideDistanceArray, chartHeader: "Distance")
+                LineChartView(dataForArray: lineChartVm.rideDurationArray, chartHeader: "Time")
+            }
+            HStack {
+                LineChartView(dataForArray: lineChartVm.rideSpeedArray, chartHeader: "Speed")
+                LineChartView(dataForArray: lineChartVm.ridePaceArray, chartHeader: "Pace")
+            }
+        }
+        .frame(width: chartBlockWidth, height: chartBlockHeight)
+        .background(Color.accentButton.opacity(0.3))
+        .cornerRadius(20)
+    }
+    
+    private var runCharts: some View {
+        VStack {
+            HStack {
+            Image(IconImageNames.runIcon.rawValue)
+                .resizable()
+                .scaledToFit()
+                Spacer()
+            }
+            HStack {
+                LineChartView(dataForArray: lineChartVm.runDistanceArray, chartHeader: "Distance")
+                LineChartView(dataForArray: lineChartVm.runDurationArray, chartHeader: "Time")
+            }
+            HStack {
+                LineChartView(dataForArray: lineChartVm.runSpeedArray, chartHeader: "Speed")
+                LineChartView(dataForArray: lineChartVm.runPaceArray, chartHeader: "Pace")
+            }
+        }
+        .frame(width: chartBlockWidth, height: chartBlockHeight)
+        .background(Color.accentButton.opacity(0.3))
+        .cornerRadius(20)
+    }
 }
 
 //struct HomeView_Previews: PreviewProvider {
