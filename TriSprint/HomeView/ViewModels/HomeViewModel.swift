@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 class HomeViewModel: ObservableObject {
     @Published var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
     @Published var totalNumberofPlans = 0.0
@@ -63,7 +62,7 @@ class HomeViewModel: ObservableObject {
         let activityTotal = Double(swimCount + rideTotal + runTotal)
         let plansCompleteProportion = (activityTotal / Double(plansCount)) * 100
         if Double(plansCount) < activityTotal {
-            proportionCompleted = 0.0
+            proportionCompleted = 0.1
         } else {
             proportionCompleted = plansCompleteProportion
         }
@@ -86,10 +85,21 @@ class HomeViewModel: ObservableObject {
                 self.runPlansTotal += 1
             }
         }
-        
-        self.swimProgress = swimsCompleted / self.swimPlansTotal
-        self.rideProgress = ridesCompleted / self.ridePlansTotal
-        self.runProgress = runsCompleted / self.runPlansTotal
+        if swimsCompleted > self.swimPlansTotal {
+            swimProgress = 0
+        } else {
+            self.swimProgress = swimsCompleted / self.swimPlansTotal
+        }
+        if ridesCompleted > self.ridePlansTotal {
+            self.rideProgress = 0
+        } else {
+            self.rideProgress = ridesCompleted / self.ridePlansTotal
+        }
+        if runsCompleted > runPlansTotal {
+            self.runProgress = 0
+        } else {
+            self.runProgress = runsCompleted / self.runPlansTotal
+        }
         
     }
     

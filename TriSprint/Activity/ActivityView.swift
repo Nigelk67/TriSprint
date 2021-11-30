@@ -69,7 +69,7 @@ extension ActivityView {
                                     .frame(width: fullView.size.width - 40, height: 200, alignment: .center)
                                     .padding(.bottom,20)
                                     .shadow(color: .gray, radius: 4, x: 5, y: 5)
-                            }
+                            }.onDelete(perform: removeRow)
                         }
                     case .ride:
                         LazyVStack {
@@ -102,6 +102,10 @@ extension ActivityView {
                 }
             }
         }
+    }
+    
+    private func removeRow(at offsets: IndexSet) {
+        print("Delete Swim")
     }
 }
 

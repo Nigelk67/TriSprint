@@ -15,7 +15,7 @@ struct MainView: View {
     
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.mainButton)
-        UISegmentedControl.appearance().backgroundColor = UIColor(Color.accentButton)
+        UISegmentedControl.appearance().backgroundColor = UIColor(Color.accentButton.opacity(0.5))
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
         
     }
@@ -37,6 +37,10 @@ struct MainView: View {
             ActivityView()
                 .tabItem {
                     Text("Activity")
+                }
+            SettingsView()
+                .tabItem {
+                    Text("Settings")
                 }
         }.accentColor(Color.mainButton)
             
