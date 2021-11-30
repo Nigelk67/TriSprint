@@ -42,6 +42,17 @@ struct SmallGreenButton: ViewModifier {
     }
 }
 
+struct SmallGreyButton: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.footnote)
+            .padding(EdgeInsets(top: 4, leading: 6, bottom: 4, trailing: 6))
+            .foregroundColor(Color.white)
+            .background(Color.gray)
+            .cornerRadius(10)
+    }
+}
+
 struct RedButton: ViewModifier {
     @Binding var isSwim: Bool
     func body(content: Content) -> some View {

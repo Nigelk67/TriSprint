@@ -12,6 +12,7 @@ struct NoPlansView: View {
     var body: some View {
         
         VStack {
+           
         Text("You have no training schedule :-(\n\nHead to 'Settings' to set up a new plan!")
             .foregroundColor(Color.mainText)
             .font(.title2)
@@ -19,7 +20,7 @@ struct NoPlansView: View {
             .padding()
             .background(Color.accentButton.opacity(0.5))
             .cornerRadius(18)
-            
+           
         }.padding()
         
     }

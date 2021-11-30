@@ -35,10 +35,7 @@ struct TrainingScheduleView: View {
                                 }
                             }
                         } else {
-                            VStack {
-                                Spacer()
                                 NoPlansView()
-                                Spacer()
                             }
                         }
                     }
@@ -48,7 +45,7 @@ struct TrainingScheduleView: View {
                 .navigationBarHidden(false)
             }
         //}
-    }
+    //}
     
 }
 
