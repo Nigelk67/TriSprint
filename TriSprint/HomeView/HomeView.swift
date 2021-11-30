@@ -10,8 +10,11 @@ import SwiftUI
 struct HomeView: View {
     
     @StateObject var homeVm = HomeViewModel()
+    @StateObject var lineChartVm = LineChartViewModel()
     @State private var bounce = false
     @State private var startProgressBars = false
+    let chartBlockHeight: Double = 400
+    let chartBlockWidth: Double = 350
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
@@ -28,15 +31,34 @@ struct HomeView: View {
     private var plans: FetchedResults<Plan>
     
     var body: some View {
+    
         ZStack {
             TriBackground()
-            ScrollView {
-                VStack(spacing: 20) {
-                    completedSoFar
-                    speedStack
-                    paceStack
+            VStack {
+                Text("Progress")
+                    .foregroundColor(Color.mainText)
+                    .font(.system(size: 32, weight: .medium, design: .rounded))
+                    .padding(.vertical)
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 20) {
+                        completedSoFar
+                        HStack {
+                        Text("Actuals")
+                            .foregroundColor(Color.mainText)
+                            .font(.system(size: 18, weight: .medium, design: .rounded))
+                            .padding(.leading,40)
+                            Spacer()
+                        }
+                        swimCharts
+                        rideCharts
+                        runCharts
+                        speedStack
+                        paceStack
+                        
+                    }
                 }
             }
+            
             .onAppear {
                 setValuesOnAppear()
             }
@@ -51,13 +73,18 @@ extension HomeView {
         bounce = true
         homeVm.calculateTotals(plans: plans, swims: swims, rides: rides, runs: runs)
         homeVm.calculateFastest(swims: swims, rides: rides, runs: runs)
+        lineChartVm.createArraysForChart(swims: swims, rides: rides, runs: runs) 
     }
     
     private var completedSoFar: some View {
         VStack {
-            Text("Completed So Far")
+            HStack {
+            Text("Plans Completed So Far")
                 .foregroundColor(Color.mainText)
                 .font(.system(size: 18, weight: .medium, design: .rounded))
+                .padding(.leading,40)
+                Spacer()
+            }
             HStack {
                 VStack {
                     Text("Total")
@@ -123,6 +150,71 @@ extension HomeView {
     
     }
     
+    private var swimCharts: some View {
+        VStack {
+            HStack {
+            Image(IconImageNames.swimIcon.rawValue)
+                .resizable()
+                .scaledToFit()
+                Spacer()
+            }
+            HStack {
+                LineChartView(dataForArray: lineChartVm.swimDistanceArrayReversed, chartHeader: "Distance")
+                LineChartView(dataForArray: lineChartVm.swimDurationArray, chartHeader: "Time")
+            }
+            HStack {
+                LineChartView(dataForArray: lineChartVm.swimSpeedArray, chartHeader: "Speed")
+                LineChartView(dataForArray: lineChartVm.swimPaceArray, chartHeader: "Pace")
+            }
+        }
+        .frame(width: chartBlockWidth, height: chartBlockHeight)
+        .background(Color.accentButton.opacity(0.3))
+        .cornerRadius(20)
+    }
+    
+    private var rideCharts: some View {
+        VStack {
+            HStack {
+            Image(IconImageNames.rideIcon.rawValue)
+                .resizable()
+                .scaledToFit()
+                Spacer()
+            }
+            HStack {
+                LineChartView(dataForArray: lineChartVm.rideDistanceArray, chartHeader: "Distance")
+                LineChartView(dataForArray: lineChartVm.rideDurationArray, chartHeader: "Time")
+            }
+            HStack {
+                LineChartView(dataForArray: lineChartVm.rideSpeedArray, chartHeader: "Speed")
+                LineChartView(dataForArray: lineChartVm.ridePaceArray, chartHeader: "Pace")
+            }
+        }
+        .frame(width: chartBlockWidth, height: chartBlockHeight)
+        .background(Color.accentButton.opacity(0.3))
+        .cornerRadius(20)
+    }
+    
+    private var runCharts: some View {
+        VStack {
+            HStack {
+            Image(IconImageNames.runIcon.rawValue)
+                .resizable()
+                .scaledToFit()
+                Spacer()
+            }
+            HStack {
+                LineChartView(dataForArray: lineChartVm.runDistanceArray, chartHeader: "Distance")
+                LineChartView(dataForArray: lineChartVm.runDurationArray, chartHeader: "Time")
+            }
+            HStack {
+                LineChartView(dataForArray: lineChartVm.runSpeedArray, chartHeader: "Speed")
+                LineChartView(dataForArray: lineChartVm.runPaceArray, chartHeader: "Pace")
+            }
+        }
+        .frame(width: chartBlockWidth, height: chartBlockHeight)
+        .background(Color.accentButton.opacity(0.3))
+        .cornerRadius(20)
+    }
 }
 
 //struct HomeView_Previews: PreviewProvider {

@@ -38,10 +38,12 @@ struct ComparisonView: View {
                             Text(measure == Measure.kilometers.rawValue ? "\(header) (km/hr)" : "\(header) (mi/hr)")
                                 .foregroundColor(Color.mainText)
                                 .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                .padding(.leading, 10)
                         } else {
                             Text(measure == Measure.kilometers.rawValue ? "\(header) (mins/km)" : "\(header) (mins/mi)")
                                 .foregroundColor(Color.mainText)
                                 .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                .padding(.leading, 10)
                         }
                         Spacer()
                         Text("Latest")
@@ -112,30 +114,6 @@ struct ComparisonView: View {
     }
     
     
-//    private func calculateVariances() {
-//        guard let swimLatestDble = Double(swimLatest), let swimFastestDble = Double(swimFastest) else { return }
-//        let swimVarianceDble = ((swimLatestDble - swimFastestDble)/swimLatestDble) * 100
-//        if swimVarianceDble < 0 {
-//            isSwimNegative = true
-//        }
-//        swimVariance = String(format: "%.1f", swimVarianceDble)
-//
-//        guard let rideLatestDble = Double(rideLatest), let rideFastestDble = Double(rideFastest) else { return }
-//        let rideVarianceDble = ((rideLatestDble - rideFastestDble)/rideLatestDble) * 100
-//        if rideVarianceDble < 0 {
-//            isRideNegative = true
-//        }
-//        rideVariance = String(format: "%.1f", rideVarianceDble)
-//
-//        guard let runLatestDble = Double(runLatest), let runFastestDble = Double(runFastest) else { return }
-//        let runVarianceDble = ((runLatestDble - runFastestDble)/runLatestDble) * 100
-//        if runVarianceDble < 0 {
-//            isRunNegative = true
-//        }
-//
-//        runVariance = String(format: "%.1f", runVarianceDble)
-//
-//    }
 }
 
 //struct ComparisonView_Previews: PreviewProvider {

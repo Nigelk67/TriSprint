@@ -11,6 +11,8 @@
 		9B0A08D42741516F0051B02E /* 3Day.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B0A08D12741516F0051B02E /* 3Day.plist */; };
 		9B0A08D52741516F0051B02E /* 5Day.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B0A08D22741516F0051B02E /* 5Day.plist */; };
 		9B0C63FF2754E0CC00257DF1 /* ComparisonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C63FE2754E0CC00257DF1 /* ComparisonView.swift */; };
+		9B0C640127561BA600257DF1 /* LineChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C640027561BA600257DF1 /* LineChartViewModel.swift */; };
+		9B0C640327561F9500257DF1 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C640227561F9500257DF1 /* LineChartView.swift */; };
 		9B286777273FC3BD00E856F0 /* TrainingArrayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B286776273FC3BD00E856F0 /* TrainingArrayViewModel.swift */; };
 		9B28677B273FD7F300E856F0 /* TrainingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B28677A273FD7F300E856F0 /* TrainingPlan.swift */; };
 		9B28677D273FDC7100E856F0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B28677C273FDC7100E856F0 /* MainView.swift */; };
@@ -70,6 +72,8 @@
 		9B0A08D12741516F0051B02E /* 3Day.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 3Day.plist; sourceTree = "<group>"; };
 		9B0A08D22741516F0051B02E /* 5Day.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 5Day.plist; sourceTree = "<group>"; };
 		9B0C63FE2754E0CC00257DF1 /* ComparisonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparisonView.swift; sourceTree = "<group>"; };
+		9B0C640027561BA600257DF1 /* LineChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartViewModel.swift; sourceTree = "<group>"; };
+		9B0C640227561F9500257DF1 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
 		9B286776273FC3BD00E856F0 /* TrainingArrayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingArrayViewModel.swift; sourceTree = "<group>"; };
 		9B28677A273FD7F300E856F0 /* TrainingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlan.swift; sourceTree = "<group>"; };
 		9B28677C273FDC7100E856F0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -328,6 +332,7 @@
 			children = (
 				9BFC7B28274F820C003C942B /* HomeView.swift */,
 				9B0C63FE2754E0CC00257DF1 /* ComparisonView.swift */,
+				9B0C640227561F9500257DF1 /* LineChartView.swift */,
 				9BFC7B2C274F9A26003C942B /* ViewModels */,
 			);
 			path = HomeView;
@@ -337,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				9BFC7B2A274F9A1D003C942B /* HomeViewModel.swift */,
+				9B0C640027561BA600257DF1 /* LineChartViewModel.swift */,
 				9BFC7B4F274FEC82003C942B /* PieChartModel.swift */,
 				9BFC7B552750D5D9003C942B /* ProgressBarView.swift */,
 			);
@@ -425,6 +431,7 @@
 				9BE3C09B2747BDF7009E1ED3 /* LocationManager.swift in Sources */,
 				9BFC7B50274FEC82003C942B /* PieChartModel.swift in Sources */,
 				9BF12FF9273E705000A94588 /* BikeBackground.swift in Sources */,
+				9B0C640127561BA600257DF1 /* LineChartViewModel.swift in Sources */,
 				9BE3C07A2744ED15009E1ED3 /* DetailContentView.swift in Sources */,
 				9BE3C0782744169C009E1ED3 /* WeekView.swift in Sources */,
 				9BF13002273EA6C500A94588 /* FitnessLevelView.swift in Sources */,
@@ -457,6 +464,7 @@
 				9B28677F273FDCCE00E856F0 /* TrainingScheduleView.swift in Sources */,
 				9BFC7B562750D5D9003C942B /* ProgressBarView.swift in Sources */,
 				9B0C63FF2754E0CC00257DF1 /* ComparisonView.swift in Sources */,
+				9B0C640327561F9500257DF1 /* LineChartView.swift in Sources */,
 				9BFC7B19274CF876003C942B /* SwimsView.swift in Sources */,
 				9BE3C09D27480F72009E1ED3 /* LoadingView.swift in Sources */,
 				9BFC7B20274D45FF003C942B /* MetricView.swift in Sources */,
