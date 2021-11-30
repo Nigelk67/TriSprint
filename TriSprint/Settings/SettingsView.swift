@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    let measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
+    @State private var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
     @State private var isKilometers: Bool = false
     
     var body: some View {
@@ -21,7 +21,9 @@ struct SettingsView: View {
                     .foregroundColor(Color.mainText)
                     .font(.system(size: 32, weight: .medium, design: .rounded))
                 Spacer()
+                
                 VStack {
+                    
                     metricsButton
                     
                 Button {
@@ -37,6 +39,7 @@ struct SettingsView: View {
             }
         }
         .onAppear {
+            print("Nige: measure in Settings = \(measure)")
             if measure == Measure.kilometers.rawValue {
                 isKilometers = true
             } else {
@@ -54,7 +57,8 @@ extension SettingsView {
                 HStack {
                     Button {
                         isKilometers = true
-                        print("Save measure as Km")
+                        measure = Measure.kilometers.rawValue
+                        CustomUserDefaults.shared.set(Measure.kilometers.rawValue, key: .measure)
                     } label: {
                         Text("Km")
                             .foregroundColor(Color.mainText)
@@ -67,7 +71,8 @@ extension SettingsView {
                     
                     Button {
                         isKilometers = false
-                        print("Save measure as miles")
+                        measure = Measure.miles.rawValue
+                        CustomUserDefaults.shared.set(Measure.miles.rawValue, key: .measure)
                     } label: {
                         Text("Mi")
                             .foregroundColor(Color.mainText)
@@ -81,8 +86,9 @@ extension SettingsView {
             } else {
                 HStack {
                     Button {
-                        isKilometers.toggle()
-                        print("Save measure as Km")
+                        isKilometers = true
+                        measure = Measure.kilometers.rawValue
+                        CustomUserDefaults.shared.set(Measure.kilometers.rawValue, key: .measure)
                     } label: {
                         Text("Km")
                             .foregroundColor(Color.mainText)
@@ -94,8 +100,9 @@ extension SettingsView {
                     
                     
                     Button {
-                        isKilometers.toggle()
-                        print("Save measure as miles")
+                        isKilometers = false
+                        measure = Measure.miles.rawValue
+                        CustomUserDefaults.shared.set(Measure.miles.rawValue, key: .measure)
                     } label: {
                         Text("Mi")
                             .foregroundColor(Color.mainText)
