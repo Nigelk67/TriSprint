@@ -8,7 +8,9 @@
 import SwiftUI
 
 class HomeViewModel: ObservableObject {
-    @Published var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
+    //var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
+    //@Published var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
+    @AppStorage("measure") var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? Measure.kilometers.rawValue
     @Published var totalNumberofPlans = 0.0
     @Published var plansCompleted = ""
     @Published var swimPlansTotal = 0.0
@@ -120,6 +122,7 @@ class HomeViewModel: ObservableObject {
     }
     //MARK: Speed Functions
     private func calcSwimSpeed(swims: FetchedResults<Swim>) {
+        print("Nige: measure in HomeVm = \(measure)")
         var speedArray = [Double]()
         var paceArray = [Double]()
         guard let latest = swims.first else { return }

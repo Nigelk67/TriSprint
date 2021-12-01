@@ -9,8 +9,9 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @State private var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
+    //@State private var measureUserDef: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
     @State private var isKilometers: Bool = false
+    @AppStorage("measure") var measure: String?
     
     var body: some View {
         
@@ -39,7 +40,7 @@ struct SettingsView: View {
             }
         }
         .onAppear {
-            print("Nige: measure in Settings = \(measure)")
+            print("Nige: measure in Settings = \(measure ?? "No measure")")
             if measure == Measure.kilometers.rawValue {
                 isKilometers = true
             } else {

@@ -13,6 +13,7 @@ struct HomeView: View {
     @StateObject var lineChartVm = LineChartViewModel()
     @State private var bounce = false
     @State private var startProgressBars = false
+    //var measure = CustomUserDefaults.shared.get(key: .measure)
     let chartBlockHeight: Double = 400
     let chartBlockWidth: Double = 350
     
@@ -60,6 +61,7 @@ struct HomeView: View {
             }
             
             .onAppear {
+                //print("Nige: HomeView measure = \(measure ?? "")")
                 setValuesOnAppear()
             }
         }
