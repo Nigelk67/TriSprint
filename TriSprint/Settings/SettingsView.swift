@@ -17,24 +17,26 @@ struct SettingsView: View {
         ZStack {
             TriBackground()
             VStack {
+                ScrollView {
                 Text("Settings")
                     .foregroundColor(Color.mainText)
                     .font(.system(size: 32, weight: .medium, design: .rounded))
-                Spacer()
+                    .padding(.vertical,40)
                 
-                VStack {
-                    
-                    metricsButton
-                    
-                Button {
-                    print("Nige: Show Alert")
-                } label: {
-                    Text("Reset Activities")
-                        .foregroundColor(Color.mainText)
-                        .font(.system(size: 24, weight: .regular, design: .rounded))
-                }
-
-                Spacer()
+                    VStack(spacing: 20) {
+                        
+                        metricsButton
+                        changeEmailButton
+                        changePasswordButton
+                        resetPlansButton
+                        resetActivitiesButton
+                        resetEverythingButton
+                        deleteAccountButton
+                        logoutButton
+                        
+                        
+                        Spacer()
+                    }
                 }
             }
         }
@@ -114,6 +116,72 @@ extension SettingsView {
                 }
                 .frame(width: 300, height: 60)
             }
+        }
+    }
+    
+    private var resetActivitiesButton: some View {
+        
+            Button {
+                print("Nige: Show Alert")
+            } label: {
+                Text("Reset Activities")
+                    .modifier(SettingsButtons())
+            }
+    }
+    
+    private var resetPlansButton: some View {
+        Button {
+            print("Nige: Show Alert")
+        } label: {
+            Text("Reset Plans")
+                .modifier(SettingsButtons())
+                
+                
+        }
+    }
+    
+    private var resetEverythingButton: some View {
+        Button {
+            print("Nige: Show Alert")
+        } label: {
+            Text("Reset Everything")
+                .modifier(SettingsButtons())
+        }
+    }
+    
+    private var changeEmailButton: some View {
+        Button {
+            print("Nige: Show Alert")
+        } label: {
+            Text("Change Email")
+                .modifier(SettingsButtons())
+        }
+    }
+    
+    private var changePasswordButton: some View {
+        Button {
+            print("Nige: Show Alert")
+        } label: {
+            Text("Change Password")
+                .modifier(SettingsButtons())
+        }
+    }
+    
+    private var deleteAccountButton: some View {
+        Button {
+            print("Nige: Show Alert")
+        } label: {
+            Text("Delete Account")
+                .modifier(SettingsButtons())
+        }
+    }
+    
+    private var logoutButton: some View {
+        Button {
+            print("Nige: Show Alert")
+        } label: {
+            Text("Log Out")
+                .modifier(SettingsButtons())
         }
     }
     
