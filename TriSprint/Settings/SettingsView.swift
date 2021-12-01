@@ -42,8 +42,12 @@ struct SettingsView: View {
                     .font(.system(size: 32, weight: .medium, design: .rounded))
                     .padding(.vertical,40)
                 
+                    if self.isSaving {
+                        withAnimation {
+                            LoadingView(loadingText: "Processing..")
+                        }
+                    }
                     VStack(spacing: 20) {
-                        
                         metricsButton
                         changeEmailButton
                         changePasswordButton
@@ -52,16 +56,8 @@ struct SettingsView: View {
                         resetEverythingButton
                         deleteAccountButton
                         logoutButton
-                        
                         Spacer()
                     }
-                    
-                    if self.isSaving {
-                        withAnimation {
-                            LoadingView(loadingText: "Processing..")
-                        }
-                    }
-                    
                 }
             }
             .alert(isPresented: $confirmed) {

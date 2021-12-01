@@ -238,11 +238,12 @@ extension SettingsView {
     }
     
     func showSpinner() {
-        isSaving = true
+       isSaving = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            isSaving = false
+           isSaving = false
             self.confirmed = true
         }
+       
     }
 }
 
