@@ -11,7 +11,7 @@ struct ComparisonView: View {
     
     let textSizeForComparisonBlocks: CGFloat = 18
     let textSizeForComparisonBlockPercentages: CGFloat = 12
-    var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
+    @AppStorage("measure") var measure: String?
     @State var header: String
     @Binding var swimLatest: String
     @Binding var swimFastest: String
@@ -29,7 +29,6 @@ struct ComparisonView: View {
     
     var body: some View {
         
-        //GeometryReader { geo in
             VStack {
 
                 HStack {
@@ -37,12 +36,12 @@ struct ComparisonView: View {
                         if header == "Speed" {
                             Text(measure == Measure.kilometers.rawValue ? "\(header) (km/hr)" : "\(header) (mi/hr)")
                                 .foregroundColor(Color.mainText)
-                                .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                .font(.system(size: 14, weight: .semibold, design: .rounded))
                                 .padding(.leading, 10)
                         } else {
-                            Text(measure == Measure.kilometers.rawValue ? "\(header) (mins/km)" : "\(header) (mins/mi)")
+                            Text(measure == Measure.kilometers.rawValue ? "\(header) (mn/km)" : "\(header) (mn/mi)")
                                 .foregroundColor(Color.mainText)
-                                .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                .font(.system(size: 14, weight: .semibold, design: .rounded))
                                 .padding(.leading, 10)
                         }
                         Spacer()
@@ -101,16 +100,12 @@ struct ComparisonView: View {
                     }
                 }
                 .frame(width: 350, height: 150, alignment: .center)
-                //.frame(width:geo.size.width / 1.1, height: 150, alignment: .center)
-                //.padding(.horizontal)
+             
             }
             .frame(width: 350, height: 200, alignment: .center)
-            //.frame(width: geo.size.width / 1.1, height: 200, alignment: .center)
             .background(Color.white.opacity(0.5))
             .cornerRadius(20)
-            //.offset(x: 20, y: 0)
-        //}
-
+         
     }
     
     

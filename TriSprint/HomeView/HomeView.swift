@@ -13,6 +13,7 @@ struct HomeView: View {
     @StateObject var lineChartVm = LineChartViewModel()
     @State private var bounce = false
     @State private var startProgressBars = false
+  
     let chartBlockHeight: Double = 400
     let chartBlockWidth: Double = 350
     
@@ -91,10 +92,8 @@ extension HomeView {
                         .foregroundColor(Color.mainText)
                         .font(.system(size: 11, weight: .light, design: .rounded))
                     
-//                    if homeVm.proportionCompleted == 0.0 {
-//                    } else {
                     pieChart
-//                    }
+
                 }
                 .padding(.trailing,20)
                 

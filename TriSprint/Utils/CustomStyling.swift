@@ -76,4 +76,15 @@ struct GreenButton: ViewModifier {
     }
 }
 
+struct SettingsButtons: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(Color.mainText)
+            .font(.system(size: 24, weight: .regular, design: .rounded))
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(Color.accentButton.opacity(0.1))
+    }
+}
+
 

@@ -69,7 +69,7 @@ struct MapView: View {
             }
         }
         .onAppear {
-            print("Measure = \(measure)")
+            print("Measure = \(measure ?? "")")
             mapVm.checkIfLocationServicesIsEnabled()
             setDrillsText()
         }

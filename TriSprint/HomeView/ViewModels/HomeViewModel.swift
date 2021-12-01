@@ -8,7 +8,8 @@
 import SwiftUI
 
 class HomeViewModel: ObservableObject {
-    @Published var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
+   
+    @AppStorage("measure") var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? Measure.kilometers.rawValue
     @Published var totalNumberofPlans = 0.0
     @Published var plansCompleted = ""
     @Published var swimPlansTotal = 0.0
@@ -30,12 +31,12 @@ class HomeViewModel: ObservableObject {
     @Published var rideSpeedFastest = "0"
     @Published var runSpeedLatest = "0"
     @Published var runSpeedFastest = "0"
-    @Published var swimPaceLatest = ""
-    @Published var swimPaceFastest = ""
-    @Published var ridePaceLatest = ""
-    @Published var ridePaceFastest = ""
-    @Published var runPaceLatest = ""
-    @Published var runPaceFastest = ""
+    @Published var swimPaceLatest = "0"
+    @Published var swimPaceFastest = "0"
+    @Published var ridePaceLatest = "0"
+    @Published var ridePaceFastest = "0"
+    @Published var runPaceLatest = "0"
+    @Published var runPaceFastest = "0"
     @Published var swimSpeedVariance = ""
     @Published var rideSpeedVariance = ""
     @Published var runSpeedVariance = ""
@@ -85,17 +86,17 @@ class HomeViewModel: ObservableObject {
                 self.runPlansTotal += 1
             }
         }
-        if swimsCompleted > self.swimPlansTotal {
+        if swimsCompleted > self.swimPlansTotal || swimsCompleted == 0 {
             swimProgress = 0
         } else {
             self.swimProgress = swimsCompleted / self.swimPlansTotal
         }
-        if ridesCompleted > self.ridePlansTotal {
+        if ridesCompleted > self.ridePlansTotal || ridesCompleted == 0 {
             self.rideProgress = 0
         } else {
             self.rideProgress = ridesCompleted / self.ridePlansTotal
         }
-        if runsCompleted > runPlansTotal {
+        if runsCompleted > runPlansTotal || runsCompleted == 0 {
             self.runProgress = 0
         } else {
             self.runProgress = runsCompleted / self.runPlansTotal

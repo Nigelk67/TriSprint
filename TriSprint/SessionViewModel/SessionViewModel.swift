@@ -79,7 +79,7 @@ class SessionViewModel: ObservableObject {
     
     func showSpinner() {
         self.isSaving = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.isSaving = false
             self.showConfirmationPopup = true
         }

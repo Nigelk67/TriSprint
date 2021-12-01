@@ -9,37 +9,62 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @State private var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
-    @State private var isKilometers: Bool = false
+    @State var isKilometers: Bool = false
+    @State var showResetPlansWarning: Bool = false
+    @State var showResetActivitiesWarning: Bool = false
+    @State var showResetEverythingWarning: Bool = false
+    @State var noPlansWarning: Bool = false
+    @State var confirmed: Bool = false
+    @State var isSaving: Bool = false
+    
+    @AppStorage("measure") var measure: String?
+    @Environment(\.managedObjectContext) var viewContext
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Ride.timestamp, ascending: false)], animation: .default)
+    var rides: FetchedResults<Ride>
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Run.timestamp, ascending: false)], animation: .default)
+    var runs: FetchedResults<Run>
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Swim.timestamp, ascending: false)], animation: .default)
+    var swims: FetchedResults<Swim>
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Plan.day, ascending: true)], animation: .default)
+    var plans: FetchedResults<Plan>
     
     var body: some View {
-        
         ZStack {
             TriBackground()
             VStack {
+                ScrollView {
                 Text("Settings")
                     .foregroundColor(Color.mainText)
                     .font(.system(size: 32, weight: .medium, design: .rounded))
-                Spacer()
+                    .padding(.vertical,40)
                 
-                VStack {
-                    
-                    metricsButton
-                    
-                Button {
-                    print("Nige: Show Alert")
-                } label: {
-                    Text("Reset Activities")
-                        .foregroundColor(Color.mainText)
-                        .font(.system(size: 24, weight: .regular, design: .rounded))
+                    if self.isSaving {
+                        withAnimation {
+                            LoadingView(loadingText: "Processing..")
+                        }
+                    }
+                    VStack(spacing: 20) {
+                        metricsButton
+                        changeEmailButton
+                        changePasswordButton
+                        resetPlansButton
+                        resetActivitiesButton
+                        resetEverythingButton
+                        deleteAccountButton
+                        logoutButton
+                        Spacer()
+                    }
                 }
-
-                Spacer()
-                }
+            }
+            .alert(isPresented: $confirmed) {
+                confirmationAlert
             }
         }
         .onAppear {
-            print("Nige: measure in Settings = \(measure)")
             if measure == Measure.kilometers.rawValue {
                 isKilometers = true
             } else {
@@ -49,75 +74,6 @@ struct SettingsView: View {
     }
 }
 
-extension SettingsView {
-    private var metricsButton: some View {
-        VStack {
-            Text("Kilometers Or Miles?")
-            if isKilometers {
-                HStack {
-                    Button {
-                        isKilometers = true
-                        measure = Measure.kilometers.rawValue
-                        CustomUserDefaults.shared.set(Measure.kilometers.rawValue, key: .measure)
-                    } label: {
-                        Text("Km")
-                            .foregroundColor(Color.mainText)
-                            .font(.system(.title, design: .rounded))
-                            .frame(maxWidth: .infinity)
-                    }
-                    .modifier(SmallGreenButton())
-                    .padding()
-                    
-                    
-                    Button {
-                        isKilometers = false
-                        measure = Measure.miles.rawValue
-                        CustomUserDefaults.shared.set(Measure.miles.rawValue, key: .measure)
-                    } label: {
-                        Text("Mi")
-                            .foregroundColor(Color.mainText)
-                            .font(.system(.title, design: .rounded))
-                            .frame(maxWidth: .infinity)
-                    }
-                    .modifier(SmallGreyButton())
-                    .padding()
-                }
-                .frame(width: 300, height: 60)
-            } else {
-                HStack {
-                    Button {
-                        isKilometers = true
-                        measure = Measure.kilometers.rawValue
-                        CustomUserDefaults.shared.set(Measure.kilometers.rawValue, key: .measure)
-                    } label: {
-                        Text("Km")
-                            .foregroundColor(Color.mainText)
-                            .font(.system(.title, design: .rounded))
-                            .frame(maxWidth: .infinity)
-                    }
-                    .modifier(SmallGreyButton())
-                    .padding()
-                    
-                    
-                    Button {
-                        isKilometers = false
-                        measure = Measure.miles.rawValue
-                        CustomUserDefaults.shared.set(Measure.miles.rawValue, key: .measure)
-                    } label: {
-                        Text("Mi")
-                            .foregroundColor(Color.mainText)
-                            .font(.system(.title, design: .rounded))
-                            .frame(maxWidth: .infinity)
-                    }
-                    .modifier(SmallGreenButton())
-                    .padding()
-                }
-                .frame(width: 300, height: 60)
-            }
-        }
-    }
-    
-}
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
