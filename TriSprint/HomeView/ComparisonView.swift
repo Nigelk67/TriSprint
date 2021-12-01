@@ -36,12 +36,12 @@ struct ComparisonView: View {
                         if header == "Speed" {
                             Text(measure == Measure.kilometers.rawValue ? "\(header) (km/hr)" : "\(header) (mi/hr)")
                                 .foregroundColor(Color.mainText)
-                                .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                .font(.system(size: 14, weight: .semibold, design: .rounded))
                                 .padding(.leading, 10)
                         } else {
-                            Text(measure == Measure.kilometers.rawValue ? "\(header) (mins/km)" : "\(header) (mins/mi)")
+                            Text(measure == Measure.kilometers.rawValue ? "\(header) (mn/km)" : "\(header) (mn/mi)")
                                 .foregroundColor(Color.mainText)
-                                .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                .font(.system(size: 14, weight: .semibold, design: .rounded))
                                 .padding(.leading, 10)
                         }
                         Spacer()

@@ -92,10 +92,8 @@ extension HomeView {
                         .foregroundColor(Color.mainText)
                         .font(.system(size: 11, weight: .light, design: .rounded))
                     
-//                    if homeVm.proportionCompleted == 0.0 {
-//                    } else {
                     pieChart
-//                    }
+
                 }
                 .padding(.trailing,20)
                 
