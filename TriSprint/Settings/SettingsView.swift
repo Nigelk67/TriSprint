@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    //@State private var measureUserDef: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
     @State private var isKilometers: Bool = false
     @AppStorage("measure") var measure: String?
     

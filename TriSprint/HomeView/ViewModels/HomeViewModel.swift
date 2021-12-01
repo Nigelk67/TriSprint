@@ -8,8 +8,7 @@
 import SwiftUI
 
 class HomeViewModel: ObservableObject {
-    //var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
-    //@Published var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? ""
+   
     @AppStorage("measure") var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? Measure.kilometers.rawValue
     @Published var totalNumberofPlans = 0.0
     @Published var plansCompleted = ""

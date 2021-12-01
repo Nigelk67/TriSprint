@@ -9,8 +9,9 @@ import SwiftUI
 
 struct MetricView: View {
     
-    @State private var measurements = ["Kilometers","Miles"]
+    @State private var measurements = [Measure.kilometers.rawValue,Measure.miles.rawValue]
     @State private var nextScreen = false
+    @AppStorage("measure") var measure: String?
     
     var body: some View {
         ZStack {
@@ -54,13 +55,14 @@ extension MetricView {
     
     private var buttonsView: some View {
         VStack {
-            ForEach(measurements, id: \.self) { measure in
+            ForEach(measurements, id: \.self) { metric in
                 NavigationLink(destination: TrainingDaysView(), isActive: $nextScreen) {
                     Button {
-                        CustomUserDefaults.shared.set(measure, key: .measure)
+                        measure = metric
+                        CustomUserDefaults.shared.set(metric, key: .measure)
                         nextScreen.toggle()
                     } label: {
-                        Text(measure)
+                        Text(metric)
                             .foregroundColor(Color.mainText)
                             .font(.system(.title, design: .rounded))
                             .frame(maxWidth: .infinity)
