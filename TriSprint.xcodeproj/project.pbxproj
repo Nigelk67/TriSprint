@@ -20,6 +20,8 @@
 		9B0C640F2757D2FC00257DF1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9B0C640E2757D2FC00257DF1 /* FirebaseAuth */; };
 		9B0C64112757D2FC00257DF1 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9B0C64102757D2FC00257DF1 /* FirebaseCrashlytics */; };
 		9B0C64132757D2FC00257DF1 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 9B0C64122757D2FC00257DF1 /* FirebaseDatabase */; };
+		9B0C64162757DCE000257DF1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C64152757DCE000257DF1 /* LoginView.swift */; };
+		9B0C64182758C7A200257DF1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C64172758C7A200257DF1 /* LoginViewModel.swift */; };
 		9B286777273FC3BD00E856F0 /* TrainingArrayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B286776273FC3BD00E856F0 /* TrainingArrayViewModel.swift */; };
 		9B28677B273FD7F300E856F0 /* TrainingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B28677A273FD7F300E856F0 /* TrainingPlan.swift */; };
 		9B28677D273FDC7100E856F0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B28677C273FDC7100E856F0 /* MainView.swift */; };
@@ -84,6 +86,8 @@
 		9B0C64052756750A00257DF1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9B0C64072757B4A700257DF1 /* SettingsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsExtension.swift; sourceTree = "<group>"; };
 		9B0C64092757D14400257DF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9B0C64152757DCE000257DF1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		9B0C64172758C7A200257DF1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		9B286776273FC3BD00E856F0 /* TrainingArrayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingArrayViewModel.swift; sourceTree = "<group>"; };
 		9B28677A273FD7F300E856F0 /* TrainingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlan.swift; sourceTree = "<group>"; };
 		9B28677C273FDC7100E856F0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -161,6 +165,15 @@
 				9B0C64072757B4A700257DF1 /* SettingsExtension.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		9B0C64142757DCC300257DF1 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				9B0C64152757DCE000257DF1 /* LoginView.swift */,
+				9B0C64172758C7A200257DF1 /* LoginViewModel.swift */,
+			);
+			path = LoginView;
 			sourceTree = "<group>";
 		};
 		9B28676E273EB37B00E856F0 /* OnboardingViews */ = {
@@ -242,6 +255,7 @@
 				9B28677C273FDC7100E856F0 /* MainView.swift */,
 				9BF12FFA273E787B00A94588 /* HomeNavView.swift */,
 				9BF12FF3273E6CF600A94588 /* BackgroundViews */,
+				9B0C64142757DCC300257DF1 /* LoginView */,
 				9B28676E273EB37B00E856F0 /* OnboardingViews */,
 				9B286775273FC3A100E856F0 /* TrainingViewModel */,
 				9BFC7B27274F81ED003C942B /* HomeView */,
@@ -474,11 +488,13 @@
 				9BFC7AFC2748F7BE003C942B /* SessionViewModel.swift in Sources */,
 				9BC943062743B0C400D57EF5 /* NoPlansView.swift in Sources */,
 				9BF12FFB273E787B00A94588 /* HomeNavView.swift in Sources */,
+				9B0C64182758C7A200257DF1 /* LoginViewModel.swift in Sources */,
 				9BF12FE9273D725A00A94588 /* TriSprint.xcdatamodeld in Sources */,
 				9BFC7B03274A9C6F003C942B /* ActivityView.swift in Sources */,
 				9BF12FF7273E702400A94588 /* RunBackground.swift in Sources */,
 				9BFC7B0F274BDBC6003C942B /* Ride.swift in Sources */,
 				9B0C64062756750A00257DF1 /* SettingsView.swift in Sources */,
+				9B0C64162757DCE000257DF1 /* LoginView.swift in Sources */,
 				9BF12FDF273D725900A94588 /* ContentView.swift in Sources */,
 				9BFC7B1E274D3EAA003C942B /* NumbersValidation.swift in Sources */,
 				9BE3C082274546EA009E1ED3 /* BrickDetailContentView.swift in Sources */,

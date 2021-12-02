@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeNavView: View {
     @State private var nextScreen = false
+    @State private var toLogin = false
     //@ObservedObject var trainingVm = TrainingPlanArrayViewModel()
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
@@ -18,6 +19,13 @@ struct HomeNavView: View {
     var body: some View {
         
         VStack {
+            Spacer()
+            Button {
+                toLogin.toggle()
+            } label: {
+                Text("Login Screen")
+                    .font(.system(size: 32, weight: .semibold, design: .rounded))
+            }
             Spacer()
             Button {
                 nextScreen.toggle()
@@ -43,6 +51,9 @@ struct HomeNavView: View {
             Spacer()
                 .fullScreenCover(isPresented: $nextScreen) {
                     FirstTriathlonView()
+                }
+                .fullScreenCover(isPresented: $toLogin) {
+                    LoginView()
                 }
         }
     }

@@ -13,6 +13,8 @@ struct HomeView: View {
     @StateObject var lineChartVm = LineChartViewModel()
     @State private var bounce = false
     @State private var startProgressBars = false
+    @AppStorage("signedIn") var signedIn: Bool?
+    @State private var showLoginScreen: Bool = true
   
     let chartBlockHeight: Double = 400
     let chartBlockWidth: Double = 350
@@ -58,8 +60,10 @@ struct HomeView: View {
                         
                     }
                 }
+                .fullScreenCover(isPresented: $showLoginScreen) {
+                    LoginView()
+                }
             }
-            
             .onAppear {
                 setValuesOnAppear()
             }
@@ -74,7 +78,14 @@ extension HomeView {
         bounce = true
         homeVm.calculateTotals(plans: plans, swims: swims, rides: rides, runs: runs)
         homeVm.calculateFastest(swims: swims, rides: rides, runs: runs)
-        lineChartVm.createArraysForChart(swims: swims, rides: rides, runs: runs) 
+        lineChartVm.createArraysForChart(swims: swims, rides: rides, runs: runs)
+        if let isSignedIn = signedIn {
+            if isSignedIn == true {
+               showLoginScreen = false
+            } else {
+                showLoginScreen = true
+            }
+        }
     }
     
     private var completedSoFar: some View {

@@ -44,7 +44,6 @@ struct MainView: View {
                 }
         }.accentColor(Color.mainButton)
             
-    
     }
 }
 
