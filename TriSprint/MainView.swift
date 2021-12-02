@@ -19,7 +19,7 @@ struct MainView: View {
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
         
     }
-    
+    @AppStorage("signedIn") var isSignedIn = false
     var body: some View {
         TabView {
             HomeView()
@@ -42,6 +42,7 @@ struct MainView: View {
                 .tabItem {
                     Text("Settings")
                 }
+                
         }.accentColor(Color.mainButton)
             
     }

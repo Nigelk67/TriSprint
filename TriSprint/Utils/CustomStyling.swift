@@ -87,4 +87,14 @@ struct SettingsButtons: ViewModifier {
     }
 }
 
+struct RegisterButtons: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(Color.white)
+            .frame(width: 100, height: 40)
+            .background(Color.mainButton)
+            .cornerRadius(8)
+    }
+}
+
 
