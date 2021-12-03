@@ -17,6 +17,7 @@ struct SettingsView: View {
     @State var noPlansWarning: Bool = false
     @State var confirmed: Bool = false
     @State var isSaving: Bool = false
+    @EnvironmentObject var loginVm: LoginViewModel
     
     @AppStorage(AppStor.measure.rawValue) var measure: String?
     @AppStorage(AppStor.signedIn.rawValue) var signedIn: Bool?

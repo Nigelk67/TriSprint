@@ -13,15 +13,10 @@ class LoginViewModel: ObservableObject {
     
     let auth = Auth.auth()
     
-//    var isSignedIn: Bool {
-//        return auth.currentUser != nil
-//    }
-    
     @Published var isNotValidSignUp: Bool = false
     @Published var isNotValidLogin: Bool = false
     @AppStorage(AppStor.signedIn.rawValue) var signedIn: Bool = false
-    //@EnvironmentObject var loginState: LoginState
-    //@StateObject var loginState = LoginState()
+  
     
     func login(email: String, password: String) {
         
@@ -37,8 +32,6 @@ class LoginViewModel: ObservableObject {
             } else {
                 print("Nige: login email creds = \(email), successful sign in")
                 self.signedIn = true
-                //self.loginState.loggedIn = true
-                UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
             }
             
         }

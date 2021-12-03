@@ -16,10 +16,13 @@ struct TriSprintApp: App {
         FirebaseApp.configure()
     }
     
+    @StateObject var loginViewModel: LoginViewModel = LoginViewModel()
+    
     var body: some Scene {
         WindowGroup {
             MainView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(loginViewModel)
         }
     }
 }

@@ -61,9 +61,6 @@ struct HomeView: View {
                         
                     }
                 }
-                .fullScreenCover(isPresented: $showLoginScreen) {
-                    LoginView()
-                }
             }
             .onAppear {
                 setValuesOnAppear()
@@ -80,11 +77,7 @@ extension HomeView {
         homeVm.calculateTotals(plans: plans, swims: swims, rides: rides, runs: runs)
         homeVm.calculateFastest(swims: swims, rides: rides, runs: runs)
         lineChartVm.createArraysForChart(swims: swims, rides: rides, runs: runs)
-        if signedIn == true {
-            showLoginScreen = false
-        } else {
-            showLoginScreen = true
-        }
+
     }
     
     private var completedSoFar: some View {

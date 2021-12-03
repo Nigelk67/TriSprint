@@ -24,9 +24,9 @@ struct LoginView: View {
     @State private var signUpPassword = ""
     @State private var userName = ""
     //@State private var reset: Bool = false
-    @StateObject var loginVm = LoginViewModel()
+    @EnvironmentObject var loginVm: LoginViewModel 
     @State private var showCreateAccount: Bool = false
-    @AppStorage(AppStor.signedIn.rawValue) var signedIn: Bool = false
+    //@AppStorage(AppStor.signedIn.rawValue) var signedIn: Bool = false
     //@StateObject var loginState = LoginState()
     
     var body: some View {

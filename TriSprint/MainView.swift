@@ -20,10 +20,11 @@ struct MainView: View {
         
     }
     @AppStorage(AppStor.signedIn.rawValue) var isSignedIn = false
-    //@EnvironmentObject var loginState: LoginState
-    
+    @EnvironmentObject var loginVm: LoginViewModel
+   
     var body: some View {
         
+        if loginVm.signedIn {
             TabView {
                 HomeView()
                     .tabItem {
@@ -45,9 +46,12 @@ struct MainView: View {
                     .tabItem {
                         Text("Settings")
                     }
-                    
-            }.accentColor(Color.mainButton)
                 
+            }.accentColor(Color.mainButton)
+            
+        } else {
+            LoginView()
+        }
     }
        
 }
