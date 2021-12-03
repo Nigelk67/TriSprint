@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct LoginView: View {
-    let imageWidth: CGFloat = 120
+    let auth = Auth.auth()
+    let imageWidth: CGFloat = 80
     let imagePadding: CGFloat = 30
     let imageOpacity: Double = 0.8
     let textFieldPadding: CGFloat = 8
@@ -23,8 +25,9 @@ struct LoginView: View {
     @State private var userName = ""
     //@State private var reset: Bool = false
     @StateObject var loginVm = LoginViewModel()
-    @State private var showCreateAccount: Bool = true
-    
+    @State private var showCreateAccount: Bool = false
+    @AppStorage(AppStor.signedIn.rawValue) var signedIn: Bool = false
+    //@StateObject var loginState = LoginState()
     
     var body: some View {
         
@@ -39,18 +42,9 @@ struct LoginView: View {
                     
                     if showCreateAccount {
                         signUpStack
-                            .animation(.easeInOut)
                     } else {
                         loginStack
-                            .animation(.easeInOut)
                     }
-//                    loginStack
-//                        .opacity(showCreateAccount ? 0 : 1)
-//                        .animation(.easeInOut)
-//
-//                    signUpStack
-//                        .opacity(showCreateAccount ? 1 : 0)
-//                        .animation(.easeInOut)
                     
                     Spacer()
                     Button(action: {
@@ -61,16 +55,11 @@ struct LoginView: View {
                             .foregroundColor(Color.mainText)
                     })
                     Spacer()
-                    //signUpStack
-                    //Navigation To Onboarding Set Up
-                    
-                        .onAppear {
-                            loginVm.checkLogin()
-                        }
                 }
             }
             .navigationBarHidden(true)
         }
+        
     }
 }
 
@@ -119,7 +108,6 @@ extension LoginView {
                         .padding(textFieldPadding)
                         .background(Color.accentButton.opacity(textFieldOpacity))
                         .cornerRadius(textFieldCornerRadius)
-                    
                 }
                 Button {
                     loginVm.login(email: email, password: password)
@@ -128,6 +116,9 @@ extension LoginView {
                 } label: {
                     Text("Log In")
                         .modifier(RegisterButtons())
+                }
+                .alert(isPresented: $loginVm.isNotValidLogin) {
+                    Alert(title: Text("HHmmm?"), message: Text("Something's not quite right with your email or password. Try typing them in again"), dismissButton: .default(Text("Ok")))
                 }
             }
             .padding(.leading,30)
@@ -141,6 +132,8 @@ extension LoginView {
         
         }
     }
+    
+   
     
     private var signUpStack: some View {
         HStack {

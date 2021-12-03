@@ -145,10 +145,23 @@ extension SettingsView {
     
     var logoutButton: some View {
         Button {
-            print("Nige: Show Alert")
+            //print("Nige: showLogoutWarning = \(showLogoutWarning), signedIn = \(signedIn)")
+            showLogoutWarning.toggle()
         } label: {
             Text("Log Out")
                 .modifier(SettingsButtons())
+        }
+        .actionSheet(isPresented: $showLogoutWarning) {
+            ActionSheet(title: Text("Logout?"), message: Text("Are you sure?"), buttons: [
+                .destructive(Text("Yes"), action: {
+                    signedIn = false
+                }),
+                .cancel()
+            ])
+//            Alert(title: Text("Logout?"), message: Text("Are you sure you want to logout?"), primaryButton: .destructive(Text("Yes"), action: {
+//                signedIn = false
+//            }), secondaryButton: .cancel())
+            
         }
     }
     

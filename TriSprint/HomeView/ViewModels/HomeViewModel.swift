@@ -8,8 +8,7 @@
 import SwiftUI
 
 class HomeViewModel: ObservableObject {
-   
-    @AppStorage("measure") var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? Measure.kilometers.rawValue
+    @AppStorage(AppStor.measure.rawValue) var measure: String = CustomUserDefaults.shared.get(key: .measure) as? String ?? Measure.kilometers.rawValue
     @Published var totalNumberofPlans = 0.0
     @Published var plansCompleted = ""
     @Published var swimPlansTotal = 0.0
@@ -67,9 +66,9 @@ class HomeViewModel: ObservableObject {
         } else {
             proportionCompleted = plansCompleteProportion
         }
-    
+        
         calculateProgress(swimsCompleted: swimPlansCompleted, ridesCompleted: ridePlansCompleted, runsCompleted: runPlansCompleted, plans: plans)
-      
+        
     }
     
     func calculateProgress(swimsCompleted: Double, ridesCompleted: Double, runsCompleted: Double, plans: FetchedResults<Plan>) {
@@ -272,7 +271,7 @@ class HomeViewModel: ObservableObject {
         }
         runPaceVariance = String(format: "%.1f", runPaceVarianceDble)
     }
-
+    
     
 }
 

@@ -13,19 +13,34 @@ class LoginViewModel: ObservableObject {
     
     let auth = Auth.auth()
     
-    var isSignedIn: Bool {
-        return auth.currentUser != nil
-    }
+//    var isSignedIn: Bool {
+//        return auth.currentUser != nil
+//    }
+    
     @Published var isNotValidSignUp: Bool = false
     @Published var isNotValidLogin: Bool = false
-    @AppStorage("signedIn") var signedIn: Bool = false
+    @AppStorage(AppStor.signedIn.rawValue) var signedIn: Bool = false
+    //@EnvironmentObject var loginState: LoginState
+    //@StateObject var loginState = LoginState()
     
     func login(email: String, password: String) {
-        auth.signIn(withEmail: email, password: password) { result, error in
+        
+        auth.signIn(withEmail: email, password: password) { user, error in
             if error != nil {
+                print("Error signing in",error?.localizedDescription ?? "")
                 self.isNotValidLogin = true
+                self.signedIn = false
+                print("Nige: isNotValidLogin \(self.isNotValidLogin)")
+            } else if user == nil {
+                self.signedIn = false
+                self.isNotValidLogin = true
+            } else {
+                print("Nige: login email creds = \(email), successful sign in")
+                self.signedIn = true
+                //self.loginState.loggedIn = true
+                UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
             }
-            self.signedIn = true
+            
         }
     }
     
@@ -56,16 +71,18 @@ class LoginViewModel: ObservableObject {
         }
     }
     
-    func checkLogin() {
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user != nil {
-                //GO TO HOMEVIEW
-            } else {
-                //STAY ON LOGIN SCREEN
-                print("NIGE func checkLogIn: No User Signed In")
-            }
-        }
-    }
+//    func checkLogin() {
+//        Auth.auth().addStateDidChangeListener { (auth, user) in
+//
+//            if user != nil {
+//                print("Nige: user in checkLogin =\(user)")
+//                //GO TO HOMEVIEW
+//            } else {
+//                //STAY ON LOGIN SCREEN
+//                print("NIGE func checkLogIn: No User Signed In")
+//            }
+//        }
+//    }
     
     
     func isValidEmail(email:String?) -> Bool {

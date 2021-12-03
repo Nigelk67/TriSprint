@@ -11,7 +11,7 @@ struct MetricView: View {
     
     @State private var measurements = [Measure.kilometers.rawValue,Measure.miles.rawValue]
     @State private var nextScreen = false
-    @AppStorage("measure") var measure: String?
+    @AppStorage(AppStor.measure.rawValue) var measure: String?
     
     var body: some View {
         ZStack {

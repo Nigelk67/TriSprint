@@ -90,6 +90,11 @@ enum Measure: String, CaseIterable {
     case miles = "Miles"
 }
 
+enum AppStor: String, CaseIterable {
+    case signedIn = "signedIn"
+    case measure = "measure"
+}
+
 extension HorizontalAlignment {
     private enum HCenterAlignment: AlignmentID {
         static func defaultValue(in dimensions: ViewDimensions) -> CGFloat {
