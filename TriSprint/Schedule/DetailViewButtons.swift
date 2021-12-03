@@ -71,8 +71,8 @@ struct CancelButton: View {
             })
             Spacer()
         }
-        .padding(.leading,10)
-        .padding(.bottom,20)
+        .padding(.leading,20)
+        .padding(.bottom,10)
         .padding(.top,20)
     }
     

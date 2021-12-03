@@ -42,9 +42,9 @@ struct SettingsView: View {
             VStack {
                 ScrollView {
                 Text("Settings")
-                    .foregroundColor(Color.mainText)
+                    .foregroundColor(Color.accentButton)
                     .font(.system(size: 32, weight: .medium, design: .rounded))
-                    .padding(.vertical,40)
+                    .padding(.vertical)
                 
                     if self.isSaving {
                         withAnimation {

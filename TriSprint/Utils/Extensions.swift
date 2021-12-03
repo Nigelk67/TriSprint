@@ -93,6 +93,7 @@ enum Measure: String, CaseIterable {
 enum AppStor: String, CaseIterable {
     case signedIn = "signedIn"
     case measure = "measure"
+    case onboarded = "onboarded"
 }
 
 extension HorizontalAlignment {

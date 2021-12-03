@@ -24,7 +24,6 @@ struct MapView: View {
     @State private var showDrillsPopup = false
     @State private var drills: String = "No drills"
     let measure = CustomUserDefaults.shared.get(key: .measure)
-    //let measure = UserDefaults.standard.string(forKey: UserDefaults.Keys.measure.rawValue)
     
     var body: some View {
         
@@ -32,6 +31,12 @@ struct MapView: View {
             BackgroundView(plan: $plan)
             
             VStack {
+                headerStack
+            
+                Text(("Day: \(plan.day ?? "")"))
+                    .foregroundColor(Color.accentButton)
+                    .font(.system(size: 26, weight: .medium, design: .rounded))
+                    
                 TargetStack(plan: $plan, targetTime: $targetTime, targetRpe: $targetRpe, showDrillsPopup: $showDrillsPopup)
                 
                 Map(coordinateRegion: $mapVm.region, interactionModes: .all, showsUserLocation: true, userTrackingMode: nil)
@@ -51,17 +56,8 @@ struct MapView: View {
                 .alert(isPresented: $sessionVm.showConfirmationPopup) {
                     saveSessionAlert
                 }
-                .navigationBarBackButtonHidden(true)
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationTitle("Day: \(plan.day ?? "")")
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        CancelButton(presentationMode: presentationMode)
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        ShowDrillsButton(showDrillsPopup: $showDrillsPopup)
-                    }
-                }
+                .navigationBarHidden(true)
+
             if sessionVm.isSaving {
                 withAnimation {
                     LoadingView(loadingText: "Saving..")
@@ -69,7 +65,6 @@ struct MapView: View {
             }
         }
         .onAppear {
-            print("Measure = \(measure ?? "")")
             mapVm.checkIfLocationServicesIsEnabled()
             setDrillsText()
         }
@@ -78,6 +73,21 @@ struct MapView: View {
 }
 
 extension MapView {
+    
+    private var headerStack: some View {
+        HStack(alignment: .firstTextBaseline) {
+            CancelButton(presentationMode: presentationMode)
+                .padding(.leading,10)
+            Spacer()
+            ShowDrillsButton(showDrillsPopup: $showDrillsPopup)
+                .padding(.trailing,30)
+               
+            
+        }
+        //.frame(width: 350)
+        
+    }
+    
     private var trackingMeasures: some View {
         VStack {
             HStack {

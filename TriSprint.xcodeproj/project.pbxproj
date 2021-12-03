@@ -22,6 +22,7 @@
 		9B0C64132757D2FC00257DF1 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 9B0C64122757D2FC00257DF1 /* FirebaseDatabase */; };
 		9B0C64162757DCE000257DF1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C64152757DCE000257DF1 /* LoginView.swift */; };
 		9B0C64182758C7A200257DF1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C64172758C7A200257DF1 /* LoginViewModel.swift */; };
+		9B0C641C275A681500257DF1 /* PersonaliseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C641B275A681500257DF1 /* PersonaliseView.swift */; };
 		9B286777273FC3BD00E856F0 /* TrainingArrayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B286776273FC3BD00E856F0 /* TrainingArrayViewModel.swift */; };
 		9B28677B273FD7F300E856F0 /* TrainingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B28677A273FD7F300E856F0 /* TrainingPlan.swift */; };
 		9B28677D273FDC7100E856F0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B28677C273FDC7100E856F0 /* MainView.swift */; };
@@ -88,6 +89,7 @@
 		9B0C64092757D14400257DF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9B0C64152757DCE000257DF1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		9B0C64172758C7A200257DF1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		9B0C641B275A681500257DF1 /* PersonaliseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonaliseView.swift; sourceTree = "<group>"; };
 		9B286776273FC3BD00E856F0 /* TrainingArrayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingArrayViewModel.swift; sourceTree = "<group>"; };
 		9B28677A273FD7F300E856F0 /* TrainingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlan.swift; sourceTree = "<group>"; };
 		9B28677C273FDC7100E856F0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -170,15 +172,24 @@
 		9B0C64142757DCC300257DF1 /* LoginView */ = {
 			isa = PBXGroup;
 			children = (
+				9B0C641D275A715400257DF1 /* LoginViewModel */,
 				9B0C64152757DCE000257DF1 /* LoginView.swift */,
-				9B0C64172758C7A200257DF1 /* LoginViewModel.swift */,
 			);
 			path = LoginView;
+			sourceTree = "<group>";
+		};
+		9B0C641D275A715400257DF1 /* LoginViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9B0C64172758C7A200257DF1 /* LoginViewModel.swift */,
+			);
+			path = LoginViewModel;
 			sourceTree = "<group>";
 		};
 		9B28676E273EB37B00E856F0 /* OnboardingViews */ = {
 			isa = PBXGroup;
 			children = (
+				9B0C641B275A681500257DF1 /* PersonaliseView.swift */,
 				9BF12FFC273E7A6300A94588 /* FirstTriathlonView.swift */,
 				9BF13001273EA6C500A94588 /* FitnessLevelView.swift */,
 				9BFC7B1F274D45FF003C942B /* MetricView.swift */,
@@ -497,6 +508,7 @@
 				9B0C64162757DCE000257DF1 /* LoginView.swift in Sources */,
 				9BF12FDF273D725900A94588 /* ContentView.swift in Sources */,
 				9BFC7B1E274D3EAA003C942B /* NumbersValidation.swift in Sources */,
+				9B0C641C275A681500257DF1 /* PersonaliseView.swift in Sources */,
 				9BE3C082274546EA009E1ED3 /* BrickDetailContentView.swift in Sources */,
 				9BFC7B29274F820C003C942B /* HomeView.swift in Sources */,
 				9BE3C08527465EEC009E1ED3 /* MapView.swift in Sources */,

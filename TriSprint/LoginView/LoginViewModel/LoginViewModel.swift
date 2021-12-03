@@ -15,7 +15,9 @@ class LoginViewModel: ObservableObject {
     
     @Published var isNotValidSignUp: Bool = false
     @Published var isNotValidLogin: Bool = false
+    //@Published var hasSeenOnboarding: Bool = false
     @AppStorage(AppStor.signedIn.rawValue) var signedIn: Bool = false
+    @AppStorage(AppStor.onboarded.rawValue) var onBoarded: Bool = false
   
     
     func login(email: String, password: String) {
@@ -43,6 +45,7 @@ class LoginViewModel: ObservableObject {
                 guard result != nil, error == nil else { return }
                 self.addUserToFirebase(name: name, email: email)
                 self.signedIn = true
+                self.onBoarded = false
             }
         } else {
             isNotValidSignUp = true
@@ -59,7 +62,7 @@ class LoginViewModel: ObservableObject {
             if err != nil {
                 print("Error registering user details",err as Any)
             }
-            print("Nige: User details registered successfully")
+            print("User details registered successfully")
         }
     }
     
