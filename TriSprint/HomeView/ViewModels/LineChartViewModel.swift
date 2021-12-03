@@ -9,7 +9,7 @@ import SwiftUI
 
 class LineChartViewModel: ObservableObject {
     
-    @AppStorage("measure") var measure: String?
+    @AppStorage(AppStor.measure.rawValue) var measure: String?
     @Published var swimDistanceArrayReversed: [Double] = []
     @Published var swimDurationArray: [Double] = []
     @Published var swimSpeedArray: [Double] = []

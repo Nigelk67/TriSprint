@@ -13,11 +13,15 @@ struct SettingsView: View {
     @State var showResetPlansWarning: Bool = false
     @State var showResetActivitiesWarning: Bool = false
     @State var showResetEverythingWarning: Bool = false
+    @State var showLogoutWarning: Bool = false
     @State var noPlansWarning: Bool = false
     @State var confirmed: Bool = false
     @State var isSaving: Bool = false
+    @EnvironmentObject var loginVm: LoginViewModel
     
-    @AppStorage("measure") var measure: String?
+    @AppStorage(AppStor.measure.rawValue) var measure: String?
+    @AppStorage(AppStor.signedIn.rawValue) var signedIn: Bool?
+    
     @Environment(\.managedObjectContext) var viewContext
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Ride.timestamp, ascending: false)], animation: .default)

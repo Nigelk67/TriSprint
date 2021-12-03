@@ -19,33 +19,41 @@ struct MainView: View {
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
         
     }
-    
+    @AppStorage(AppStor.signedIn.rawValue) var isSignedIn = false
+    @EnvironmentObject var loginVm: LoginViewModel
+   
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Text("Progress")
-                }
-            HomeNavView()
-                .tabItem {
-                    Text("Home")
-                }
-            TrainingScheduleView()
-                .tabItem {
-                    Text("Schedule")
-                }
-            ActivityView()
-                .tabItem {
-                    Text("Activity")
-                }
-            SettingsView()
-                .tabItem {
-                    Text("Settings")
-                }
-        }.accentColor(Color.mainButton)
+        
+        if loginVm.signedIn {
+            TabView {
+                HomeView()
+                    .tabItem {
+                        Text("Progress")
+                    }
+                HomeNavView()
+                    .tabItem {
+                        Text("Home")
+                    }
+                TrainingScheduleView()
+                    .tabItem {
+                        Text("Schedule")
+                    }
+                ActivityView()
+                    .tabItem {
+                        Text("Activity")
+                    }
+                SettingsView()
+                    .tabItem {
+                        Text("Settings")
+                    }
+                
+            }.accentColor(Color.mainButton)
             
-    
+        } else {
+            LoginView()
+        }
     }
+       
 }
 
 struct MainView_Previews: PreviewProvider {

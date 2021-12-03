@@ -145,14 +145,28 @@ extension SettingsView {
     
     var logoutButton: some View {
         Button {
-            print("Nige: Show Alert")
+            showLogoutWarning.toggle()
         } label: {
             Text("Log Out")
                 .modifier(SettingsButtons())
         }
+        .actionSheet(isPresented: $showLogoutWarning) {
+            logoutAction
+
+        }
     }
     
     //MARK: ActionSheets
+    private var logoutAction: ActionSheet {
+        ActionSheet(title: Text("Logout?"), message: Text("Are you sure?"), buttons: [
+            .destructive(Text("Yes 👍🏽"), action: {
+                //signedIn = false
+                loginVm.signedIn = false
+            }),
+            .cancel()
+        ])
+    }
+    
     private var resetPlansAction: ActionSheet {
         ActionSheet(title: Text("NOTE: THIS WILL DELETE ALL CURRENT PLANS"), message: Text("Do you want to continue with the reset?"), buttons: [
             .destructive(Text("YES!"), action: {

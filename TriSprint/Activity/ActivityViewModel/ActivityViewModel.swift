@@ -8,7 +8,7 @@
 import SwiftUI
 
 class ActivityViewModel: ObservableObject {
-    @AppStorage("measure") var measure: String?
+    @AppStorage(AppStor.measure.rawValue) var measure: String?
     @Published var rideDistanceText = "0.00"
     @Published var rideTimeText = "0.00"
     @Published var ridePaceText = "0.00"

@@ -11,7 +11,7 @@ struct ComparisonView: View {
     
     let textSizeForComparisonBlocks: CGFloat = 18
     let textSizeForComparisonBlockPercentages: CGFloat = 12
-    @AppStorage("measure") var measure: String?
+    @AppStorage(AppStor.measure.rawValue) var measure: String?
     @State var header: String
     @Binding var swimLatest: String
     @Binding var swimFastest: String
