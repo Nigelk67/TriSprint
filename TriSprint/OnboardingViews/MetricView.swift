@@ -20,7 +20,7 @@ struct MetricView: View {
                 Spacer()
                 Text("Personalise Your Plan")
                     .foregroundColor(Color.accentButton)
-                    .font(.system(.largeTitle, design: .rounded))
+                    .font(.system(size: 32, weight: .medium, design: .rounded))
                     .padding(.vertical)
                 Spacer()
                 selectionView

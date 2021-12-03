@@ -14,14 +14,14 @@ struct FirstTriathlonView: View {
    
     var body: some View {
         
-        NavigationView {
+        //NavigationView {
             ZStack {
                 SwimBackground()
                 VStack {
                     Spacer()
                     Text("Personalise Your Plan")
                         .foregroundColor(Color.accentButton)
-                        .font(.system(.largeTitle, design: .rounded))
+                        .font(.system(size: 32, weight: .medium, design: .rounded))
                         .padding(.vertical)
                     Spacer()
                     selectionView
@@ -31,7 +31,7 @@ struct FirstTriathlonView: View {
                         .navigationBarTitleDisplayMode(.inline)
                 }
             }
-        }
+        //}
     }
     
 }

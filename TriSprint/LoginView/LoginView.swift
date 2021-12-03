@@ -10,8 +10,8 @@ import FirebaseAuth
 
 struct LoginView: View {
     let auth = Auth.auth()
-    let imageWidth: CGFloat = 80
-    let imagePadding: CGFloat = 30
+    let imageWidth: CGFloat = 100
+    let imagePadding: CGFloat = 0
     let imageOpacity: Double = 0.8
     let textFieldPadding: CGFloat = 8
     let textFieldCornerRadius: CGFloat = 10
@@ -23,23 +23,20 @@ struct LoginView: View {
     @State private var signUpEmail = ""
     @State private var signUpPassword = ""
     @State private var userName = ""
-    //@State private var reset: Bool = false
     @EnvironmentObject var loginVm: LoginViewModel 
-    @State private var showCreateAccount: Bool = false
-    //@AppStorage(AppStor.signedIn.rawValue) var signedIn: Bool = false
-    //@StateObject var loginState = LoginState()
-    
+    @State private var showCreateAccount: Bool = true
+   
     var body: some View {
         
         NavigationView {
             ZStack {
                 TriBackground()
                 VStack {
-                    Spacer()
+                    
                     headerStack
-                    
+                    Spacer()
                     centerImage
-                    
+                    Spacer()
                     if showCreateAccount {
                         signUpStack
                     } else {
@@ -68,47 +65,52 @@ extension LoginView {
     
     private var headerStack: some View {
         HStack {
-        Image(TrainingImageNames.trainingSwim.rawValue)
-            .resizable()
-            .scaledToFit()
-            .frame(width: imageWidth)
-            .padding(.leading, imagePadding)
-            .opacity(imageOpacity)
-            Spacer()
         Text("TriSprint")
-                .foregroundColor(Color.mainText)
+                .foregroundColor(Color.accentButton)
                 .font(.system(size: 32, weight: .semibold, design: .rounded))
                 .padding()
-            Spacer()
         }
     }
     
     private var centerImage: some View {
-        Image(TrainingImageNames.trainingRide.rawValue)
-            .resizable()
-            .scaledToFit()
-            .frame(width: imageWidth)
-            .padding(imagePadding)
-            .opacity(imageOpacity)
+        HStack {
+            Image(TrainingImageNames.trainingSwim.rawValue)
+                .resizable()
+                .scaledToFit()
+                .frame(width: imageWidth)
+                .padding(.leading, imagePadding)
+                .opacity(imageOpacity)
+            Image(TrainingImageNames.trainingRide.rawValue)
+                .resizable()
+                .scaledToFit()
+                .frame(width: imageWidth)
+                .padding(imagePadding)
+                .opacity(imageOpacity)
+            Image(TrainingImageNames.trainingRun.rawValue)
+                .resizable()
+                .scaledToFit()
+                .frame(width: imageWidth)
+                .padding(imagePadding)
+                .opacity(imageOpacity)
+        }
     }
     
     private var loginStack: some View {
         HStack {
-            VStack(alignment: .trailing) {
-                HStack {
-                    Spacer()
-                    TextField("Email address", text: $email)
-                        .padding(textFieldPadding)
-                        .background(Color.accentButton.opacity(textFieldOpacity))
-                        .cornerRadius(textFieldCornerRadius)
-                }
-                HStack {
-                    Spacer()
-                    SecureField("Password", text: $password)
-                        .padding(textFieldPadding)
-                        .background(Color.accentButton.opacity(textFieldOpacity))
-                        .cornerRadius(textFieldCornerRadius)
-                }
+            VStack(alignment: .center) {
+                
+                TextField("Email address", text: $email)
+                    .frame(width: 250)
+                    .padding(textFieldPadding)
+                    .background(Color.accentButton.opacity(textFieldOpacity))
+                    .cornerRadius(textFieldCornerRadius)
+                
+                SecureField("Password", text: $password)
+                    .frame(width: 250)
+                    .padding(textFieldPadding)
+                    .background(Color.accentButton.opacity(textFieldOpacity))
+                    .cornerRadius(textFieldCornerRadius)
+                
                 Button {
                     loginVm.login(email: email, password: password)
                     email = ""
@@ -121,15 +123,9 @@ extension LoginView {
                     Alert(title: Text("HHmmm?"), message: Text("Something's not quite right with your email or password. Try typing them in again"), dismissButton: .default(Text("Ok")))
                 }
             }
-            .padding(.leading,30)
+            .padding()
             
-            Image(TrainingImageNames.trainingRun.rawValue)
-                .resizable()
-                .scaledToFit()
-                .frame(width: imageWidth)
-                .padding(imagePadding)
-                .opacity(imageOpacity)
-        
+           
         }
     }
     
@@ -137,28 +133,26 @@ extension LoginView {
     
     private var signUpStack: some View {
         HStack {
-            VStack(alignment: .trailing) {
-                HStack {
-                    Spacer()
-                    TextField("Username", text: $userName)
-                        .padding(textFieldPadding)
-                        .background(Color.accentButton.opacity(textFieldOpacity))
-                        .cornerRadius(textFieldCornerRadius)
-                }
-                HStack {
-                    Spacer()
+            VStack(alignment: .center) {
+                
+                TextField("Username", text: $userName)
+                    .frame(width: 250)
+                    .padding(textFieldPadding)
+                    .background(Color.accentButton.opacity(textFieldOpacity))
+                    .cornerRadius(textFieldCornerRadius)
+                
                 TextField("Email address", text: $signUpEmail)
+                    .frame(width: 250)
                     .padding(textFieldPadding)
                     .background(Color.accentButton.opacity(textFieldOpacity))
                     .cornerRadius(textFieldCornerRadius)
-                }
-                HStack {
-                    Spacer()
+                
                 SecureField("Password", text: $signUpPassword)
+                    .frame(width: 250)
                     .padding(textFieldPadding)
                     .background(Color.accentButton.opacity(textFieldOpacity))
                     .cornerRadius(textFieldCornerRadius)
-                }
+                
                 Button {
                     loginVm.signUp(name: userName, email: signUpEmail, password: signUpPassword)
                     userName = ""
@@ -171,16 +165,16 @@ extension LoginView {
                 .alert(isPresented: $loginVm.isNotValidSignUp) {
                     Alert(title: Text("Uh?"), message: Text("Something is not right with your credentials. Try typing them in again"), dismissButton: .default(Text("Ok")))
                 }
-              
+                
             }
-            .padding(.leading,30)
+            .padding()
             
-            Image(TrainingImageNames.trainingRun.rawValue)
-                .resizable()
-                .scaledToFit()
-                .frame(width: imageWidth)
-                .padding(imagePadding)
-                .opacity(imageOpacity)
+//            Image(TrainingImageNames.trainingRun.rawValue)
+//                .resizable()
+//                .scaledToFit()
+//                .frame(width: imageWidth)
+//                .padding(imagePadding)
+//                .opacity(imageOpacity)
                 
         }
     }

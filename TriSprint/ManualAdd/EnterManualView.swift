@@ -25,7 +25,7 @@ struct EnterManualView: View {
     
     var body: some View {
         
-        GeometryReader { geo in
+        //GeometryReader { geo in
             
             ZStack {
                 switch session {
@@ -38,9 +38,12 @@ struct EnterManualView: View {
                 }
                 
                 VStack {
+                    CancelButton(presentationMode: presentationMode)
+                        .padding(.leading,20)
+                    
                     Text("Day: \(plan.day ?? "")")
-                        .foregroundColor(Color.mainText)
-                        .font(.title)
+                        .foregroundColor(Color.accentButton)
+                        .font(.system(size: 26, weight: .medium, design: .rounded))
                         .padding()
                     Spacer()
                     
@@ -53,6 +56,8 @@ struct EnterManualView: View {
                         Spacer()
                     }
                 }
+                .navigationBarHidden(true)
+                
                 if sessionVm.isSaving {
                     withAnimation {
                         LoadingView(loadingText: "Saving..")
@@ -69,7 +74,7 @@ struct EnterManualView: View {
             .actionSheet(isPresented: $shouldShowBrickActions) {
                 actionSheet
             }
-        }
+        //}
         .onAppear {
             setTarget()
             guard let measure = CustomUserDefaults.shared.get(key: .measure) as? String else { return }
@@ -79,6 +84,7 @@ struct EnterManualView: View {
                 isKilometres = false
             }
         }
+        
     }
     
 }

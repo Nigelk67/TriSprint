@@ -25,6 +25,10 @@ struct TrainingScheduleView: View {
                 TriBackground()
                 VStack {
                     ScrollView() {
+                        Text("Training Schedule")
+                            .foregroundColor(Color.accentButton)
+                            .font(.system(size: 32, weight: .medium, design: .rounded))
+                            .padding(.vertical)
                         if !plans.isEmpty {
                             LazyVStack {
                                 Spacer()

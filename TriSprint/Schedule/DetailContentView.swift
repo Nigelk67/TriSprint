@@ -19,6 +19,9 @@ struct DetailContentView: View {
             ZStack {
                 BackgroundView(plan: $plan)
                 VStack {
+                    CancelButton(presentationMode: presentationMode)
+                        .padding(.leading,30)
+                    
                     DayView(day: plan.day ?? "")
                         .padding(.vertical, 30)
                     
@@ -58,6 +61,7 @@ struct DetailContentView: View {
                     }
                 }
             }
+            .navigationBarHidden(true)
             .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

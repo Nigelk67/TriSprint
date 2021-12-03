@@ -14,7 +14,8 @@ struct TrainingDaysView: View {
     @State private var nextScreen = false
     @ObservedObject var trainingPlanVm = TrainingPlanArrayViewModel()
     @State private var showConfirmationPopup: Bool = false
- 
+    @EnvironmentObject var loginVm: LoginViewModel
+    
     var body: some View {
         
         ZStack {
@@ -23,7 +24,7 @@ struct TrainingDaysView: View {
                 Spacer()
                 Text("Personalise Your Plan")
                     .foregroundColor(Color.accentButton)
-                    .font(.system(.largeTitle, design: .rounded))
+                    .font(.system(size: 32, weight: .medium, design: .rounded))
                     .padding(.vertical)
                 Spacer()
                 selectionView
@@ -83,13 +84,14 @@ extension TrainingDaysView {
     }
     
     private var planSavedAlert: Alert {
-        Alert(title: Text("SAVED!"), message: Text("We've personalised your plan!\nYou'll see it in your Schedule"), dismissButton: .default(Text("OK"), action: {
-            UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+        Alert(title: Text("SAVED!"), message: Text("We've personalised your plan!\nYou'll see it in your Schedule"), dismissButton: .default(Text("I'm READY! 🏊🏼🚴🏼‍♀️🏃🏾"), action: {
+            loginVm.onBoarded = true
+          
         }))
     }
 }
 
-struct PersonaliseView_Previews: PreviewProvider {
+struct TrainingDaysView_Previews: PreviewProvider {
     static var previews: some View {
         TrainingDaysView()
     }

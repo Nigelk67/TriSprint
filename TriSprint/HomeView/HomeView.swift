@@ -14,7 +14,6 @@ struct HomeView: View {
     @State private var bounce = false
     @State private var startProgressBars = false
     @AppStorage(AppStor.signedIn.rawValue) var signedIn: Bool?
-    //@EnvironmentObject var loginState: LoginState
     @State private var showLoginScreen: Bool = false
   
     let chartBlockHeight: Double = 400
@@ -40,7 +39,7 @@ struct HomeView: View {
             TriBackground()
             VStack {
                 Text("Progress")
-                    .foregroundColor(Color.mainText)
+                    .foregroundColor(Color.accentButton)
                     .font(.system(size: 32, weight: .medium, design: .rounded))
                     .padding(.vertical)
                 ScrollView(showsIndicators: false) {
@@ -87,6 +86,7 @@ extension HomeView {
                 .foregroundColor(Color.mainText)
                 .font(.system(size: 18, weight: .medium, design: .rounded))
                 .padding(.leading,40)
+                .padding(.bottom,8)
                 Spacer()
             }
             HStack {

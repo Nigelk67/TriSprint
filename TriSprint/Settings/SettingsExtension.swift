@@ -13,6 +13,8 @@ extension SettingsView {
     var metricsButton: some View {
         VStack {
             Text("Kilometers Or Miles?")
+                .foregroundColor(Color.mainText)
+                .font(.system(size: 24, weight: .regular, design: .rounded))
             if isKilometers {
                 HStack {
                     Button {
