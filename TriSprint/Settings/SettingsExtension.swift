@@ -45,6 +45,7 @@ extension SettingsView {
                     .padding()
                 }
                 .frame(width: 300, height: 60)
+                
             } else {
                 HStack {
                     Button {
@@ -76,7 +77,7 @@ extension SettingsView {
                 }
                 .frame(width: 300, height: 60)
             }
-        }
+        }.modifier(SettingsButtons())
     }
     
     var resetActivitiesButton: some View {
@@ -102,30 +103,9 @@ extension SettingsView {
             resetPlansAction
         }
         .halfSheet(showSheet: $noPlansWarning) {
-            ZStack {
-                Color.mainBackground
-                VStack {
-                    Text("You don't have any scheduled plans 😮!")
-                        .font(.system(size: 32, weight: .medium, design: .rounded))
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                    Button {
-                        loginVm.onBoarded = false
-                        noPlansWarning.toggle()
-                    } label: {
-                        Text("Take me to set up a plan immediately!")
-                            .foregroundColor(Color.mainButton)
-                            .font(.system(size: 24, weight: .regular, design: .rounded))
-                            .multilineTextAlignment(.center)
-                            .padding()
-                    }
-                    .padding()
-                }
-            }
-            .ignoresSafeArea()
+            noPlansHalfModal
         } onEnd: {
-            print("loginVm.onboarded = \(loginVm.onBoarded)")
+            print("Dismissed")
         }
     }
     
@@ -196,7 +176,7 @@ extension SettingsView {
         ActionSheet(title: Text("NOTE: THIS WILL DELETE ALL CURRENT PLANS"), message: Text("Do you want to continue with the reset?"), buttons: [
             .destructive(Text("YES!"), action: {
                 if !plans.isEmpty {
-                    deletePlans()
+                    settingsVm.deletePlans(plans: plans)
                 } else {
                     noPlansWarning = true
                 }
@@ -213,7 +193,7 @@ extension SettingsView {
     private var resetActivitiesAction: ActionSheet {
         ActionSheet(title: Text("NOTE: THIS WILL DELETE ALL YOUR ACTIVITIES"), message: Text("This is permanent. \nDo you want to continue?"), buttons: [
             .destructive(Text("YES!"), action: {
-                deleteActivities()
+                settingsVm.deleteActivities(swims: swims, rides: rides, runs: runs)
                 showResetActivitiesWarning = false
             }),
             .default(Text("Aarrghh - NO!"),
@@ -226,8 +206,8 @@ extension SettingsView {
     private var resetEverythingAction: ActionSheet {
         ActionSheet(title: Text("NOTE: THIS WILL DELETE ALL CURRENT PLANS AND ALL ACTIVITES"), message: Text("This is permanent.\nDo you want to continue?"), buttons: [
             .destructive(Text("YES!"), action: {
-                deletePlans()
-                deleteActivities()
+                settingsVm.deletePlans(plans: plans)
+                settingsVm.deleteActivities(swims: swims, rides: rides, runs: runs)
                 showResetEverythingWarning = false
             }),
             .default(Text("Oooppss - NO!"),
@@ -238,54 +218,37 @@ extension SettingsView {
     }
     
     //MARK: Alerts
-    private var noPlansAlert: Alert {
-        Alert(title: Text("No Plans"), message: Text("You don't have any scheduled training plans"), dismissButton: .default(Text("OK")))
+    private var noPlansHalfModal: some View {
+        ZStack {
+            Color.mainBackground.opacity(0.95)
+            VStack {
+                Text("You don't have any scheduled plans 😮!")
+                    .font(.system(size: 32, weight: .medium, design: .rounded))
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                Button {
+                    loginVm.onBoarded = false
+                    noPlansWarning.toggle()
+                } label: {
+                    Text("Take me to set up a plan immediately!")
+                        .foregroundColor(Color.mainButton)
+                        .font(.system(size: 24, weight: .regular, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .padding()
+                }
+                .padding()
+            }
+        }
+        .ignoresSafeArea()
     }
-    
+
     var confirmationAlert: Alert {
         Alert(title: Text("DONE!"), message: Text("Actions completed"), dismissButton: .default(Text("OK")))
     }
     
-    //MARK: Functions
-    private func deletePlans() {
-        showSpinner()
-        plans.forEach { plan in
-            viewContext.delete(plan)
-        }
-        do {
-            try viewContext.save()
-        } catch {
-            print("Failed to delete all plans", error)
-        }
-        goToOnboarding = true
-        
-    }
-    private func deleteActivities() {
-        showSpinner()
-        swims.forEach { swim in
-            viewContext.delete(swim)
-        }
-        rides.forEach { ride in
-            viewContext.delete(ride)
-        }
-        runs.forEach { run in
-            viewContext.delete(run)
-        }
-        do {
-            try viewContext.save()
-        } catch {
-            print("Failed to delete activities", error)
-        }
-    }
+   
     
-    func showSpinner() {
-       isSaving = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-           isSaving = false
-            self.confirmed = true
-        }
-       
-    }
 }
 
 

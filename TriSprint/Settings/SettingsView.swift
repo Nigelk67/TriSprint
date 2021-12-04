@@ -15,9 +15,10 @@ struct SettingsView: View {
     @State var showResetEverythingWarning: Bool = false
     @State var showLogoutWarning: Bool = false
     @State var noPlansWarning: Bool = false
-    @State var confirmed: Bool = false
-    @State var isSaving: Bool = false
-    @State var goToOnboarding: Bool = false
+//    @State var confirmed: Bool = false
+//    @State var isSaving: Bool = false
+//    @State var goToOnboarding: Bool = false
+    @StateObject var settingsVm = SettingsViewModel()
     @EnvironmentObject var loginVm: LoginViewModel
     
     @AppStorage(AppStor.measure.rawValue) var measure: String?
@@ -48,7 +49,7 @@ struct SettingsView: View {
                     .padding(.vertical)
                 
                     VStack {
-                        if self.isSaving {
+                        if settingsVm.isSaving {
                             withAnimation {
                                 LoadingView(loadingText: "Processing..")
                             }
@@ -69,7 +70,7 @@ struct SettingsView: View {
                 }
             }
             
-            .alert(isPresented: $confirmed) {
+            .alert(isPresented: $settingsVm.confirmed) {
                 confirmationAlert
             }
         }
