@@ -17,6 +17,7 @@ struct SettingsView: View {
     @State var noPlansWarning: Bool = false
     @State var confirmed: Bool = false
     @State var isSaving: Bool = false
+    @State var goToOnboarding: Bool = false
     @EnvironmentObject var loginVm: LoginViewModel
     
     @AppStorage(AppStor.measure.rawValue) var measure: String?
@@ -46,11 +47,14 @@ struct SettingsView: View {
                     .font(.system(size: 32, weight: .medium, design: .rounded))
                     .padding(.vertical)
                 
-                    if self.isSaving {
-                        withAnimation {
-                            LoadingView(loadingText: "Processing..")
+                    VStack {
+                        if self.isSaving {
+                            withAnimation {
+                                LoadingView(loadingText: "Processing..")
+                            }
                         }
                     }
+                   
                     VStack(spacing: 20) {
                         metricsButton
                         changeEmailButton
@@ -64,6 +68,7 @@ struct SettingsView: View {
                     }
                 }
             }
+            
             .alert(isPresented: $confirmed) {
                 confirmationAlert
             }

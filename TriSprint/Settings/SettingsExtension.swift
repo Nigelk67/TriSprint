@@ -101,8 +101,31 @@ extension SettingsView {
         .actionSheet(isPresented: $showResetPlansWarning) {
             resetPlansAction
         }
-        .alert(isPresented: $noPlansWarning) {
-            noPlansAlert
+        .halfSheet(showSheet: $noPlansWarning) {
+            ZStack {
+                Color.mainBackground
+                VStack {
+                    Text("You don't have any scheduled plans 😮!")
+                        .font(.system(size: 32, weight: .medium, design: .rounded))
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                    Button {
+                        loginVm.onBoarded = false
+                        noPlansWarning.toggle()
+                    } label: {
+                        Text("Take me to set up a plan immediately!")
+                            .foregroundColor(Color.mainButton)
+                            .font(.system(size: 24, weight: .regular, design: .rounded))
+                            .multilineTextAlignment(.center)
+                            .padding()
+                    }
+                    .padding()
+                }
+            }
+            .ignoresSafeArea()
+        } onEnd: {
+            print("loginVm.onboarded = \(loginVm.onBoarded)")
         }
     }
     
@@ -185,6 +208,7 @@ extension SettingsView {
                      })
         ])
     }
+        
     
     private var resetActivitiesAction: ActionSheet {
         ActionSheet(title: Text("NOTE: THIS WILL DELETE ALL YOUR ACTIVITIES"), message: Text("This is permanent. \nDo you want to continue?"), buttons: [
@@ -233,6 +257,7 @@ extension SettingsView {
         } catch {
             print("Failed to delete all plans", error)
         }
+        goToOnboarding = true
         
     }
     private func deleteActivities() {
