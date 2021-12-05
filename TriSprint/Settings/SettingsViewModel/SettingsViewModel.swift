@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseAuth
+import FirebaseDatabase
 
 class SettingsViewModel: ObservableObject {
     
@@ -14,7 +15,9 @@ class SettingsViewModel: ObservableObject {
     //@Published var confirmed: Bool = false
     @Published var confirmDeletedPlans = false
     @Published var confirmDeletedActivities = false
+    @Published var accountDeletedConfirmation = false
     @Published var goToOnboarding: Bool = false
+    
     let viewContext = PersistenceController.shared.container.viewContext
     
     func showDeletePlansSpinner() {
@@ -29,6 +32,14 @@ class SettingsViewModel: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.isSaving = false
             self.confirmDeletedActivities = true
+        }
+    }
+    
+    func showDeleteAccountSpinner() {
+        self.isSaving = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.isSaving = false
+            self.accountDeletedConfirmation = true
         }
     }
     
@@ -74,4 +85,21 @@ class SettingsViewModel: ObservableObject {
         }
     }
     
+    func deleteUser() {
+        showDeleteAccountSpinner()
+        let user = Auth.auth().currentUser
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let userRef = Database.database().reference().child("users").child(uid)
+        userRef.updateChildValues(["account":"DELETED"])
+        user?.delete(completion: { (error) in
+            if let err = error {
+                print("Unable to delete user - error \(err)")
+            } else {
+                //CONFIRM ACCOUNT HAS BEEN DELETED. BACK TO ONBOARDING
+            }
+            
+        })
+    }
+    
+
 }

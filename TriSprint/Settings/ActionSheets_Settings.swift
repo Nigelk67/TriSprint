@@ -9,6 +9,16 @@ import SwiftUI
 
 extension SettingsView {
     
+    var deleteAccountAction: ActionSheet {
+        ActionSheet(title: Text("DELETE YOUR ACCOUNT"), message: Text("Are you sure you want to permanently delete your account?"), buttons: [
+            .destructive(Text("Yes 👍🏽"), action: {
+                settingsVm.deleteUser()
+        
+            }),
+            .cancel()
+        ])
+    }
+    
     var logoutAction: ActionSheet {
         ActionSheet(title: Text("Logout?"), message: Text("Are you sure?"), buttons: [
             .destructive(Text("Yes 👍🏽"), action: {

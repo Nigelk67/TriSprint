@@ -14,8 +14,10 @@ struct SettingsView: View {
     @State var showResetActivitiesWarning: Bool = false
     @State var showResetEverythingWarning: Bool = false
     @State var showLogoutWarning: Bool = false
+    @State var showDeleteAccountWarning: Bool = false
     @State var noPlansWarning: Bool = false
     @State var plansDeletedConfirmation: Bool = false
+    @State var accountDeletedConfirmation: Bool = false
 //    @State var confirmed: Bool = false
 //    @State var isSaving: Bool = false
 //    @State var goToOnboarding: Bool = false
@@ -59,13 +61,14 @@ struct SettingsView: View {
                             } onEnd: {
                                 print("Dismissed")
                             }
-
                         resetActivitiesButton
                         resetEverythingButton
                         deleteAccountButton
+
                         logoutButton
                         Spacer()
                     }
+//                    
                 }
             }
             VStack {

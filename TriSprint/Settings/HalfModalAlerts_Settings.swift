@@ -67,4 +67,28 @@ extension SettingsView {
         }
         .ignoresSafeArea()
     }
+    
+    var confirmAccountDeletedHalfModal: some View {
+        ZStack {
+            Color.mainBackground.opacity(0.98)
+            VStack {
+                Text("Your account has been deleted successfully.\n\n Sorry to see you go 😔")
+                    .font(.system(size: 32, weight: .medium, design: .rounded))
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                Button {
+                    loginVm.signedIn = false
+                } label: {
+                    Text("Dismiss")
+                        .foregroundColor(Color.mainButton)
+                        .font(.system(size: 24, weight: .regular, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .padding()
+                }
+                .padding()
+            }
+        }
+        .ignoresSafeArea()
+    }
 }

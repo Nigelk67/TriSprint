@@ -143,11 +143,25 @@ extension SettingsView {
     
     var deleteAccountButton: some View {
         Button {
-            print("Nige: Show Alert")
+            showDeleteAccountWarning.toggle()
         } label: {
             Text("Delete Account")
                 .modifier(SettingsButtons())
         }
+        .actionSheet(isPresented: $showDeleteAccountWarning) {
+            deleteAccountAction
+        }
+        .alert(isPresented: $settingsVm.accountDeletedConfirmation) {
+            Alert(title: Text("Deleted"), message: Text("Your account has been deleted"), dismissButton: .destructive(Text("OK"), action: {
+                loginVm.signedIn = false
+            }))
+        }
+//        .halfSheet(showSheet: $settingsVm.accountDeletedConfirmation) {
+//            confirmAccountDeletedHalfModal
+//        } onEnd: {
+//            print("Dismissed")
+//        }
+        
     }
     
     var logoutButton: some View {
