@@ -10,20 +10,29 @@ import SwiftUI
 class SettingsViewModel: ObservableObject {
     
     @Published var isSaving: Bool = false
-    @Published var confirmed: Bool = false
+    //@Published var confirmed: Bool = false
+    @Published var confirmDeletedPlans = false
+    @Published var confirmDeletedActivities = false
     @Published var goToOnboarding: Bool = false
     let viewContext = PersistenceController.shared.container.viewContext
     
-    func showSpinner() {
+    func showDeletePlansSpinner() {
         self.isSaving = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.isSaving = false
-            self.confirmed = true
+            //self.confirmDeletedPlans = true
+        }
+    }
+    func showDeleteActivitiesSpinner() {
+        self.isSaving = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.isSaving = false
+            self.confirmDeletedActivities = true
         }
     }
     
     func deleteActivities(swims: FetchedResults<Swim>, rides: FetchedResults<Ride>, runs: FetchedResults<Run>) {
-        showSpinner()
+        showDeleteActivitiesSpinner()
         swims.forEach { swim in
             self.viewContext.delete(swim)
         }
@@ -41,7 +50,7 @@ class SettingsViewModel: ObservableObject {
     }
     
     func deletePlans(plans: FetchedResults<Plan>) {
-        showSpinner()
+        showDeletePlansSpinner()
         plans.forEach { plan in
             self.viewContext.delete(plan)
         }

@@ -74,6 +74,7 @@ extension SettingsView {
                     }
                     .modifier(SmallGreenButton())
                     .padding()
+
                 }
                 .frame(width: 300, height: 60)
             }
@@ -107,6 +108,12 @@ extension SettingsView {
         } onEnd: {
             print("Dismissed")
         }
+//        .halfSheet(showSheet: $plansDeletedConfirmation) {
+//            confirmPlansDeletedHalfModal
+//        } onEnd: {
+//            print("Dismissed")
+//        }
+
     }
     
     var resetEverythingButton: some View {
@@ -173,10 +180,16 @@ extension SettingsView {
     }
     
     private var resetPlansAction: ActionSheet {
+        
         ActionSheet(title: Text("NOTE: THIS WILL DELETE ALL CURRENT PLANS"), message: Text("Do you want to continue with the reset?"), buttons: [
             .destructive(Text("YES!"), action: {
                 if !plans.isEmpty {
+                    print("")
                     settingsVm.deletePlans(plans: plans)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        plansDeletedConfirmation = true
+                    }
+                    
                 } else {
                     noPlansWarning = true
                 }
@@ -187,6 +200,7 @@ extension SettingsView {
                          showResetPlansWarning = false
                      })
         ])
+            
     }
         
     
@@ -242,7 +256,42 @@ extension SettingsView {
         }
         .ignoresSafeArea()
     }
-
+       
+    var confirmPlansDeletedHalfModal: some View {
+        ZStack {
+            Color.mainBackground.opacity(0.95)
+            VStack {
+                Text("Your plans have been deleted successfully.\n What next?")
+                    .font(.system(size: 32, weight: .medium, design: .rounded))
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                Button {
+                    loginVm.onBoarded = false
+                } label: {
+                    Text("Take me to set up a new plan immediately!")
+                        .foregroundColor(Color.mainButton)
+                        .font(.system(size: 24, weight: .regular, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .padding()
+                }
+                .padding()
+                
+                Button {
+                    plansDeletedConfirmation.toggle()
+                } label: {
+                    Text("I'll come back to this later")
+                        .foregroundColor(Color.mainButton)
+                        .font(.system(size: 24, weight: .regular, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .padding()
+                }
+                .padding()
+            }
+        }
+        .ignoresSafeArea()
+    }
+    
     var confirmationAlert: Alert {
         Alert(title: Text("DONE!"), message: Text("Actions completed"), dismissButton: .default(Text("OK")))
     }
