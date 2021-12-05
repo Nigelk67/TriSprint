@@ -74,6 +74,7 @@ extension SettingsView {
                     }
                     .modifier(SmallGreenButton())
                     .padding()
+
                 }
                 .frame(width: 300, height: 60)
             }
@@ -90,6 +91,10 @@ extension SettingsView {
         .actionSheet(isPresented: $showResetActivitiesWarning) {
             resetActivitiesAction
         }
+        .alert(isPresented: $settingsVm.confirmDeletedActivities) {
+            Alert(title: Text("DONE!"), message: Text("Your activities have been reset"), dismissButton: .default(Text("OK Thanks")))
+        }
+
     }
     
     var resetPlansButton: some View {
@@ -107,6 +112,7 @@ extension SettingsView {
         } onEnd: {
             print("Dismissed")
         }
+
     }
     
     var resetEverythingButton: some View {
@@ -141,11 +147,25 @@ extension SettingsView {
     
     var deleteAccountButton: some View {
         Button {
-            print("Nige: Show Alert")
+            showDeleteAccountWarning.toggle()
         } label: {
             Text("Delete Account")
                 .modifier(SettingsButtons())
         }
+        .actionSheet(isPresented: $showDeleteAccountWarning) {
+            deleteAccountAction
+        }
+        .alert(isPresented: $settingsVm.accountDeletedConfirmation) {
+            Alert(title: Text("Deleted"), message: Text("Your account has been deleted"), dismissButton: .destructive(Text("OK"), action: {
+                loginVm.signedIn = false
+            }))
+        }
+//        .halfSheet(showSheet: $settingsVm.accountDeletedConfirmation) {
+//            confirmAccountDeletedHalfModal
+//        } onEnd: {
+//            print("Dismissed")
+//        }
+        
     }
     
     var logoutButton: some View {
@@ -161,91 +181,7 @@ extension SettingsView {
         }
     }
     
-    //MARK: ActionSheets
-    private var logoutAction: ActionSheet {
-        ActionSheet(title: Text("Logout?"), message: Text("Are you sure?"), buttons: [
-            .destructive(Text("Yes 👍🏽"), action: {
-                //signedIn = false
-                loginVm.signedIn = false
-            }),
-            .cancel()
-        ])
-    }
-    
-    private var resetPlansAction: ActionSheet {
-        ActionSheet(title: Text("NOTE: THIS WILL DELETE ALL CURRENT PLANS"), message: Text("Do you want to continue with the reset?"), buttons: [
-            .destructive(Text("YES!"), action: {
-                if !plans.isEmpty {
-                    settingsVm.deletePlans(plans: plans)
-                } else {
-                    noPlansWarning = true
-                }
-                showResetPlansWarning = false
-            }),
-            .default(Text("Oooppss - NO!"),
-                     action: {
-                         showResetPlansWarning = false
-                     })
-        ])
-    }
-        
-    
-    private var resetActivitiesAction: ActionSheet {
-        ActionSheet(title: Text("NOTE: THIS WILL DELETE ALL YOUR ACTIVITIES"), message: Text("This is permanent. \nDo you want to continue?"), buttons: [
-            .destructive(Text("YES!"), action: {
-                settingsVm.deleteActivities(swims: swims, rides: rides, runs: runs)
-                showResetActivitiesWarning = false
-            }),
-            .default(Text("Aarrghh - NO!"),
-                     action: {
-                         showResetActivitiesWarning = false
-                     })
-        ])
-    }
-    
-    private var resetEverythingAction: ActionSheet {
-        ActionSheet(title: Text("NOTE: THIS WILL DELETE ALL CURRENT PLANS AND ALL ACTIVITES"), message: Text("This is permanent.\nDo you want to continue?"), buttons: [
-            .destructive(Text("YES!"), action: {
-                settingsVm.deletePlans(plans: plans)
-                settingsVm.deleteActivities(swims: swims, rides: rides, runs: runs)
-                showResetEverythingWarning = false
-            }),
-            .default(Text("Oooppss - NO!"),
-                     action: {
-                         showResetEverythingWarning = false
-                     })
-        ])
-    }
-    
-    //MARK: Alerts
-    private var noPlansHalfModal: some View {
-        ZStack {
-            Color.mainBackground.opacity(0.95)
-            VStack {
-                Text("You don't have any scheduled plans 😮!")
-                    .font(.system(size: 32, weight: .medium, design: .rounded))
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                Button {
-                    loginVm.onBoarded = false
-                    noPlansWarning.toggle()
-                } label: {
-                    Text("Take me to set up a plan immediately!")
-                        .foregroundColor(Color.mainButton)
-                        .font(.system(size: 24, weight: .regular, design: .rounded))
-                        .multilineTextAlignment(.center)
-                        .padding()
-                }
-                .padding()
-            }
-        }
-        .ignoresSafeArea()
-    }
-
-    var confirmationAlert: Alert {
-        Alert(title: Text("DONE!"), message: Text("Actions completed"), dismissButton: .default(Text("OK")))
-    }
+ 
     
    
     

@@ -11,6 +11,8 @@ import Combine
 class TrainingPlanArrayViewModel: ObservableObject {
     
     @Published var trainingPlan = Array<Dictionary<String, Any>>()
+    @Published var isSaving: Bool = false
+    @Published var hasLoadedPlans: Bool = false
     
     func fetchPlanArray(name: String) {
         let resource = "\(name)Day"
@@ -52,6 +54,14 @@ class TrainingPlanArrayViewModel: ObservableObject {
         
         
 
+    }
+    
+    func showLoadingSpinner() {
+        self.isSaving = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.isSaving = false
+            self.hasLoadedPlans = true
+        }
     }
 }
 

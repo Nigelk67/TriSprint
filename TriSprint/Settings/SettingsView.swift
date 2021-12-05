@@ -14,7 +14,10 @@ struct SettingsView: View {
     @State var showResetActivitiesWarning: Bool = false
     @State var showResetEverythingWarning: Bool = false
     @State var showLogoutWarning: Bool = false
+    @State var showDeleteAccountWarning: Bool = false
     @State var noPlansWarning: Bool = false
+    @State var plansDeletedConfirmation: Bool = false
+    @State var accountDeletedConfirmation: Bool = false
 //    @State var confirmed: Bool = false
 //    @State var isSaving: Bool = false
 //    @State var goToOnboarding: Bool = false
@@ -48,31 +51,36 @@ struct SettingsView: View {
                     .font(.system(size: 32, weight: .medium, design: .rounded))
                     .padding(.vertical)
                 
-                    VStack {
-                        if settingsVm.isSaving {
-                            withAnimation {
-                                LoadingView(loadingText: "Processing..")
-                            }
-                        }
-                    }
-                   
                     VStack(spacing: 20) {
                         metricsButton
                         changeEmailButton
                         changePasswordButton
                         resetPlansButton
+                            .halfSheet(showSheet: $plansDeletedConfirmation) {
+                                confirmPlansDeletedHalfModal
+                            } onEnd: {
+                                print("Dismissed")
+                            }
                         resetActivitiesButton
                         resetEverythingButton
                         deleteAccountButton
+
                         logoutButton
                         Spacer()
                     }
+//                    
                 }
             }
-            
-            .alert(isPresented: $settingsVm.confirmed) {
-                confirmationAlert
+            VStack {
+                if settingsVm.isSaving {
+                    withAnimation {
+                        LoadingView(loadingText: "Processing..")
+                    }
+                }
             }
+//            .alert(isPresented: $settingsVm.confirmed) {
+//                confirmationAlert
+//            }
         }
         .onAppear {
             if measure == Measure.kilometers.rawValue {

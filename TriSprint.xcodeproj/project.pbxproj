@@ -32,6 +32,8 @@
 		9B28677D273FDC7100E856F0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B28677C273FDC7100E856F0 /* MainView.swift */; };
 		9B28677F273FDCCE00E856F0 /* TrainingScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B28677E273FDCCE00E856F0 /* TrainingScheduleView.swift */; };
 		9B3DA3252742B403009AB522 /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3DA3242742B403009AB522 /* ScheduleViewModel.swift */; };
+		9BC4CC87275D0A62003260AC /* HalfModalAlerts_Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC4CC86275D0A62003260AC /* HalfModalAlerts_Settings.swift */; };
+		9BC4CC89275D0B4D003260AC /* ActionSheets_Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC4CC88275D0B4D003260AC /* ActionSheets_Settings.swift */; };
 		9BC943062743B0C400D57EF5 /* NoPlansView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC943052743B0C400D57EF5 /* NoPlansView.swift */; };
 		9BE3C0782744169C009E1ED3 /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3C0772744169C009E1ED3 /* WeekView.swift */; };
 		9BE3C07A2744ED15009E1ED3 /* DetailContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3C0792744ED15009E1ED3 /* DetailContentView.swift */; };
@@ -103,6 +105,8 @@
 		9B28677C273FDC7100E856F0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		9B28677E273FDCCE00E856F0 /* TrainingScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingScheduleView.swift; sourceTree = "<group>"; };
 		9B3DA3242742B403009AB522 /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
+		9BC4CC86275D0A62003260AC /* HalfModalAlerts_Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalAlerts_Settings.swift; sourceTree = "<group>"; };
+		9BC4CC88275D0B4D003260AC /* ActionSheets_Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheets_Settings.swift; sourceTree = "<group>"; };
 		9BC943052743B0C400D57EF5 /* NoPlansView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPlansView.swift; sourceTree = "<group>"; };
 		9BE3C0772744169C009E1ED3 /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
 		9BE3C0792744ED15009E1ED3 /* DetailContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContentView.swift; sourceTree = "<group>"; };
@@ -171,9 +175,11 @@
 		9B0C6404275674EC00257DF1 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				9BC4CC85275D0A37003260AC /* SettingsViewModel */,
 				9B0C64052756750A00257DF1 /* SettingsView.swift */,
 				9B0C64072757B4A700257DF1 /* SettingsExtension.swift */,
-				9B148282275BD2B900F9CF6C /* SettingsViewModel.swift */,
+				9BC4CC86275D0A62003260AC /* HalfModalAlerts_Settings.swift */,
+				9BC4CC88275D0B4D003260AC /* ActionSheets_Settings.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -234,6 +240,14 @@
 				9BFC7B12274CF64B003C942B /* Swim.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9BC4CC85275D0A37003260AC /* SettingsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9B148282275BD2B900F9CF6C /* SettingsViewModel.swift */,
+			);
+			path = SettingsViewModel;
 			sourceTree = "<group>";
 		};
 		9BC943072743B21500D57EF5 /* Schedule */ = {
@@ -550,9 +564,11 @@
 				9B28677F273FDCCE00E856F0 /* TrainingScheduleView.swift in Sources */,
 				9BFC7B562750D5D9003C942B /* ProgressBarView.swift in Sources */,
 				9B0C63FF2754E0CC00257DF1 /* ComparisonView.swift in Sources */,
+				9BC4CC89275D0B4D003260AC /* ActionSheets_Settings.swift in Sources */,
 				9B14827C275BBCA900F9CF6C /* CustomHostingController.swift in Sources */,
 				9B148283275BD2B900F9CF6C /* SettingsViewModel.swift in Sources */,
 				9B0C640327561F9500257DF1 /* LineChartView.swift in Sources */,
+				9BC4CC87275D0A62003260AC /* HalfModalAlerts_Settings.swift in Sources */,
 				9BFC7B19274CF876003C942B /* SwimsView.swift in Sources */,
 				9BE3C09D27480F72009E1ED3 /* LoadingView.swift in Sources */,
 				9BFC7B20274D45FF003C942B /* MetricView.swift in Sources */,

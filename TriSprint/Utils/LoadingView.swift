@@ -14,7 +14,7 @@ struct LoadingView: View {
             Color("MainText")
                 .frame(width: 200, height: 200, alignment: .center)
                 .cornerRadius(20)
-                .opacity(0.5)
+                .opacity(0.8)
             VStack {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: Color.mainButton))
