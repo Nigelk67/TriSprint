@@ -68,11 +68,11 @@ extension SettingsView {
         .ignoresSafeArea()
     }
     
-    var confirmAccountDeletedHalfModal: some View {
+    var confirmResetActivitiesHalfModal: some View {
         ZStack {
             Color.mainBackground.opacity(0.98)
             VStack {
-                Text("Your account has been deleted successfully.\n\n Sorry to see you go 😔")
+                Text("Your activities have been reset. \n\n Onwards and upwards 💪🏽!!")
                     .font(.system(size: 32, weight: .medium, design: .rounded))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
@@ -80,7 +80,7 @@ extension SettingsView {
                 Button {
                     loginVm.signedIn = false
                 } label: {
-                    Text("Dismiss")
+                    Text("OK Thanks")
                         .foregroundColor(Color.mainButton)
                         .font(.system(size: 24, weight: .regular, design: .rounded))
                         .multilineTextAlignment(.center)

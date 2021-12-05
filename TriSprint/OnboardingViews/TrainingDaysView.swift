@@ -104,7 +104,7 @@ extension TrainingDaysView {
         ZStack {
             Color.mainBackground.opacity(0.98)
             VStack {
-                Text("BBOoooommmm!! You are on your way!\nGood Luck, you'll be amazing 😊")
+                Text("BBOoooommmm!! You are on your way!\n\nGood Luck, you'll be amazing 😊")
                     .font(.system(size: 32, weight: .medium, design: .rounded))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)

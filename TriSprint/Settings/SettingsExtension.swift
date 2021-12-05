@@ -91,6 +91,10 @@ extension SettingsView {
         .actionSheet(isPresented: $showResetActivitiesWarning) {
             resetActivitiesAction
         }
+        .alert(isPresented: $settingsVm.confirmDeletedActivities) {
+            Alert(title: Text("DONE!"), message: Text("Your activities have been reset"), dismissButton: .default(Text("OK Thanks")))
+        }
+
     }
     
     var resetPlansButton: some View {
