@@ -12,7 +12,7 @@ extension SettingsView {
     var logoutAction: ActionSheet {
         ActionSheet(title: Text("Logout?"), message: Text("Are you sure?"), buttons: [
             .destructive(Text("Yes 👍🏽"), action: {
-                //signedIn = false
+                settingsVm.logout()
                 loginVm.signedIn = false
             }),
             .cancel()

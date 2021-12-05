@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 class SettingsViewModel: ObservableObject {
     
@@ -61,6 +62,16 @@ class SettingsViewModel: ObservableObject {
         }
         self.goToOnboarding = true
         
+    }
+    
+    func logout() {
+        if Auth.auth().currentUser?.uid == nil {
+        }
+        do {
+            try Auth.auth().signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
     }
     
 }
