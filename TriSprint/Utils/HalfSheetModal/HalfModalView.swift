@@ -24,7 +24,7 @@ struct HalfModalView: View {
                     .multilineTextAlignment(.center)
                     .padding()
                 Button {
-                    boolForButton = boolState
+                    boolForButton.toggle()
                     print("Nige: boolForButton = \(boolForButton), boolState = \(boolState)")
                 } label: {
                     Text(buttonText)

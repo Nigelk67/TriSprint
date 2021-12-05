@@ -33,9 +33,23 @@ struct TrainingDaysView: View {
                     .navigationTitle("")
                     .navigationBarTitleDisplayMode(.inline)
             }
-            .alert(isPresented: $showConfirmationPopup) {
-                planSavedAlert
+            
+            VStack {
+                if trainingPlanVm.isSaving {
+                    withAnimation {
+                        LoadingView(loadingText: "Get ready...")
+                    }
+                }
             }
+            .halfSheet(showSheet: $trainingPlanVm.hasLoadedPlans) {
+                plansLoadedHalfModal
+            } onEnd: {
+                print("Dismissed")
+            }
+
+//            .alert(isPresented: $showConfirmationPopup) {
+//                planSavedAlert
+//            }
             
         }
     }
@@ -68,7 +82,8 @@ extension TrainingDaysView {
                     daysSelected = num
                     CustomUserDefaults.shared.set(num, key: .trainingDays)
                     trainingPlanVm.fetchPlanArray(name: num)
-                    showConfirmationPopup = true
+                    trainingPlanVm.showLoadingSpinner()
+                    //showConfirmationPopup = true
                 } label: {
                     Text(num)
                         .foregroundColor(Color.mainText)
@@ -83,12 +98,34 @@ extension TrainingDaysView {
         .padding()
     }
     
-    private var planSavedAlert: Alert {
-        Alert(title: Text("SAVED!"), message: Text("We've personalised your plan!\nYou'll see it in your Schedule"), dismissButton: .default(Text("I'm READY! 🏊🏼🚴🏼‍♀️🏃🏾"), action: {
-            loginVm.onBoarded = true
-          
-        }))
+
+    
+    private var plansLoadedHalfModal: some View {
+        ZStack {
+            Color.mainBackground.opacity(0.98)
+            VStack {
+                Text("BBOoooommmm!! You are on your way!\nGood Luck, you'll be amazing 😊")
+                    .font(.system(size: 32, weight: .medium, design: .rounded))
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                
+                Button {
+                    loginVm.onBoarded = true
+                    trainingPlanVm.hasLoadedPlans = false
+                } label: {
+                    Text("I'm READY! 🏊🏼🚴🏼‍♀️🏃🏾!")
+                        .foregroundColor(Color.mainButton)
+                        .font(.system(size: 24, weight: .regular, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .padding()
+                }
+                .padding()
+            }
+        }
+        .ignoresSafeArea()
     }
+    
 }
 
 struct TrainingDaysView_Previews: PreviewProvider {
