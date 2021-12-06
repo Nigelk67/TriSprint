@@ -28,7 +28,8 @@ struct DetailContentView: View {
                     ScrollView {
                         VStack {
                             HStack {
-                                SkipButton()
+                                //SkipButton()
+                                Spacer()
                                 EnterManuallyButton(showManualEnterView: $showManualEntryView)
                             }
                             HStack {

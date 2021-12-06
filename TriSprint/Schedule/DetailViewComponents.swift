@@ -41,8 +41,8 @@ struct DayView: View {
     @State var day: String
     var body: some View {
         Text("Day: \(day)")
-            .foregroundColor(Color.mainText)
-            .font(.title)
+            .foregroundColor(Color.accentButton)
+            .font(.system(size: 28, weight: .medium, design: .rounded))
     }
 }
 
@@ -52,17 +52,17 @@ struct TimeView: View {
         VStack {
             Text("Time")
                 .foregroundColor(Color.mainText)
-                .font(.title3)
+                .font(.system(size: 24, weight: .regular, design: .rounded))
                 .padding(.bottom,4)
             
             HStack(alignment: .firstTextBaseline) {
                 Text(minutes)
                     .foregroundColor(Color.mainText)
-                    .font(.largeTitle)
-                    .fontWeight(.semibold)
+                    .font(.system(size: 40, weight: .semibold, design: .rounded))
+                    
                 Text("mins")
                     .foregroundColor(Color.mainText)
-                    .font(.caption)
+                    .font(.system(size: 14, weight: .light, design: .rounded))
                     .padding(.horizontal,-6)
             }
         }
@@ -74,11 +74,11 @@ struct RpeView: View {
         VStack {
             Text("RPE")
                 .foregroundColor(Color.mainText)
-                .font(.title3)
+                .font(.system(size: 24, weight: .regular, design: .rounded))
                 .padding(.bottom,4)
             Text(rpe)
                 .foregroundColor(Color.mainText)
-                .font(.largeTitle)
+                .font(.system(size: 40, weight: .semibold, design: .rounded))
                 .fontWeight(.semibold)
         }
         .padding()
