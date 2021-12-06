@@ -140,7 +140,7 @@ extension SettingsView {
     
     var changePasswordButton: some View {
         Button {
-            print("Nige: Show Alert")
+            showUpdatePasswordView.toggle()
         } label: {
             Text("Change Password")
                 .modifier(SettingsButtons())

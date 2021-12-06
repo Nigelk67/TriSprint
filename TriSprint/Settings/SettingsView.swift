@@ -19,6 +19,7 @@ struct SettingsView: View {
     @State var plansDeletedConfirmation: Bool = false
     @State var accountDeletedConfirmation: Bool = false
     @State var showUpdateEmailView: Bool = false
+    @State var showUpdatePasswordView: Bool = false
     @StateObject var settingsVm = SettingsViewModel()
     @EnvironmentObject var loginVm: LoginViewModel
     
@@ -68,6 +69,7 @@ struct SettingsView: View {
                         }
                     }
                     NavigationLink(destination: EmailUpdateView(), isActive: $showUpdateEmailView) { EmptyView() }
+                    NavigationLink(destination: PasswordChangeView(), isActive: $showUpdatePasswordView) { EmptyView() }
                 }
                 VStack {
                     if settingsVm.isSaving {
