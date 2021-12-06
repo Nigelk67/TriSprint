@@ -20,6 +20,7 @@ struct SettingsView: View {
     @State var accountDeletedConfirmation: Bool = false
     @State var showUpdateEmailView: Bool = false
     @State var showUpdatePasswordView: Bool = false
+    @State var showGlossaryView: Bool = false
     @StateObject var settingsVm = SettingsViewModel()
     @EnvironmentObject var loginVm: LoginViewModel
     
@@ -55,6 +56,7 @@ struct SettingsView: View {
                             metricsButton
                             changeEmailButton
                             changePasswordButton
+                            glossaryButton
                             resetPlansButton
                                 .halfSheet(showSheet: $plansDeletedConfirmation) {
                                     confirmPlansDeletedHalfModal
@@ -70,6 +72,7 @@ struct SettingsView: View {
                     }
                     NavigationLink(destination: EmailUpdateView(), isActive: $showUpdateEmailView) { EmptyView() }
                     NavigationLink(destination: PasswordChangeView(), isActive: $showUpdatePasswordView) { EmptyView() }
+                    NavigationLink(destination: GlossaryView(), isActive: $showGlossaryView) { EmptyView() }
                 }
                 VStack {
                     if settingsVm.isSaving {
@@ -87,6 +90,7 @@ struct SettingsView: View {
                     isKilometers = false
                 }
             }
+            .navigationTitle("")
         }
     }
 }
