@@ -147,6 +147,16 @@ extension SettingsView {
         }
     }
     
+    var glossaryButton: some View {
+        Button {
+            showGlossaryView.toggle()
+        } label: {
+            Text("Glossary")
+                .modifier(SettingsButtons())
+        }
+
+    }
+    
     var deleteAccountButton: some View {
         Button {
             showDeleteAccountWarning.toggle()
