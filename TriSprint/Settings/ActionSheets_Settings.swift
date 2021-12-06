@@ -10,7 +10,7 @@ import SwiftUI
 extension SettingsView {
     
     var deleteAccountAction: ActionSheet {
-        ActionSheet(title: Text("DELETE YOUR ACCOUNT"), message: Text("Are you sure you want to permanently delete your account?"), buttons: [
+        ActionSheet(title: Text("DELETE YOUR ACCOUNT"), message: Text("Are you sure you want to permanently delete your account?\n\n(Please note: You need to have logged in recently in order to be able delete your account. So if you haven't logged in for ages, then please logout and log back in again.)"), buttons: [
             .destructive(Text("Yes 👍🏽"), action: {
                 settingsVm.deleteUser()
         

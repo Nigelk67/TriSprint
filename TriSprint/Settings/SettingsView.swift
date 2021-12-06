@@ -18,9 +18,7 @@ struct SettingsView: View {
     @State var noPlansWarning: Bool = false
     @State var plansDeletedConfirmation: Bool = false
     @State var accountDeletedConfirmation: Bool = false
-//    @State var confirmed: Bool = false
-//    @State var isSaving: Bool = false
-//    @State var goToOnboarding: Bool = false
+    @State var showUpdateEmailView: Bool = false
     @StateObject var settingsVm = SettingsViewModel()
     @EnvironmentObject var loginVm: LoginViewModel
     
@@ -42,51 +40,50 @@ struct SettingsView: View {
     var plans: FetchedResults<Plan>
     
     var body: some View {
-        ZStack {
-            TriBackground()
-            VStack {
-                ScrollView {
-                Text("Settings")
-                    .foregroundColor(Color.accentButton)
-                    .font(.system(size: 32, weight: .medium, design: .rounded))
-                    .padding(.vertical)
+        NavigationView {
+            ZStack {
+                TriBackground()
+                VStack {
+                    ScrollView {
+                        Text("Settings")
+                            .foregroundColor(Color.accentButton)
+                            .font(.system(size: 32, weight: .medium, design: .rounded))
+                            .padding(.vertical)
+                        
+                        VStack(spacing: 20) {
+                            metricsButton
+                            changeEmailButton
+                            changePasswordButton
+                            resetPlansButton
+                                .halfSheet(showSheet: $plansDeletedConfirmation) {
+                                    confirmPlansDeletedHalfModal
+                                } onEnd: {
+                                    print("Dismissed")
+                                }
+                            resetActivitiesButton
+                            resetEverythingButton
+                            logoutButton
+                            deleteAccountButton
+                            Spacer()
+                        }
+                    }
+                    NavigationLink(destination: EmailUpdateView(), isActive: $showUpdateEmailView) { EmptyView() }
+                }
+                VStack {
+                    if settingsVm.isSaving {
+                        withAnimation {
+                            LoadingView(loadingText: "Processing..")
+                        }
+                    }
+                }
                 
-                    VStack(spacing: 20) {
-                        metricsButton
-                        changeEmailButton
-                        changePasswordButton
-                        resetPlansButton
-                            .halfSheet(showSheet: $plansDeletedConfirmation) {
-                                confirmPlansDeletedHalfModal
-                            } onEnd: {
-                                print("Dismissed")
-                            }
-                        resetActivitiesButton
-                        resetEverythingButton
-                        deleteAccountButton
-
-                        logoutButton
-                        Spacer()
-                    }
-//                    
-                }
             }
-            VStack {
-                if settingsVm.isSaving {
-                    withAnimation {
-                        LoadingView(loadingText: "Processing..")
-                    }
+            .onAppear {
+                if measure == Measure.kilometers.rawValue {
+                    isKilometers = true
+                } else {
+                    isKilometers = false
                 }
-            }
-//            .alert(isPresented: $settingsVm.confirmed) {
-//                confirmationAlert
-//            }
-        }
-        .onAppear {
-            if measure == Measure.kilometers.rawValue {
-                isKilometers = true
-            } else {
-                isKilometers = false
             }
         }
     }

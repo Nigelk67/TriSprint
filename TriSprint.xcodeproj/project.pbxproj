@@ -32,6 +32,8 @@
 		9B28677D273FDC7100E856F0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B28677C273FDC7100E856F0 /* MainView.swift */; };
 		9B28677F273FDCCE00E856F0 /* TrainingScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B28677E273FDCCE00E856F0 /* TrainingScheduleView.swift */; };
 		9B3DA3252742B403009AB522 /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3DA3242742B403009AB522 /* ScheduleViewModel.swift */; };
+		9B9C6785275DF6AD00DF9804 /* ChangeEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C6784275DF6AD00DF9804 /* ChangeEmailView.swift */; };
+		9B9C6787275DFF0E00DF9804 /* EmailUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C6786275DFF0E00DF9804 /* EmailUpdateView.swift */; };
 		9BC4CC87275D0A62003260AC /* HalfModalAlerts_Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC4CC86275D0A62003260AC /* HalfModalAlerts_Settings.swift */; };
 		9BC4CC89275D0B4D003260AC /* ActionSheets_Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC4CC88275D0B4D003260AC /* ActionSheets_Settings.swift */; };
 		9BC943062743B0C400D57EF5 /* NoPlansView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC943052743B0C400D57EF5 /* NoPlansView.swift */; };
@@ -105,6 +107,8 @@
 		9B28677C273FDC7100E856F0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		9B28677E273FDCCE00E856F0 /* TrainingScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingScheduleView.swift; sourceTree = "<group>"; };
 		9B3DA3242742B403009AB522 /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
+		9B9C6784275DF6AD00DF9804 /* ChangeEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmailView.swift; sourceTree = "<group>"; };
+		9B9C6786275DFF0E00DF9804 /* EmailUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailUpdateView.swift; sourceTree = "<group>"; };
 		9BC4CC86275D0A62003260AC /* HalfModalAlerts_Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalAlerts_Settings.swift; sourceTree = "<group>"; };
 		9BC4CC88275D0B4D003260AC /* ActionSheets_Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheets_Settings.swift; sourceTree = "<group>"; };
 		9BC943052743B0C400D57EF5 /* NoPlansView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPlansView.swift; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 				9B0C64072757B4A700257DF1 /* SettingsExtension.swift */,
 				9BC4CC86275D0A62003260AC /* HalfModalAlerts_Settings.swift */,
 				9BC4CC88275D0B4D003260AC /* ActionSheets_Settings.swift */,
+				9B9C6784275DF6AD00DF9804 /* ChangeEmailView.swift */,
+				9B9C6786275DFF0E00DF9804 /* EmailUpdateView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -518,6 +524,7 @@
 			files = (
 				9BFC7B17274CF826003C942B /* RunsView.swift in Sources */,
 				9BFC7B24274F7F22003C942B /* TriBackground.swift in Sources */,
+				9B9C6787275DFF0E00DF9804 /* EmailUpdateView.swift in Sources */,
 				9BFC7B26274F8000003C942B /* NoActivityView.swift in Sources */,
 				9BF12FE6273D725A00A94588 /* Persistence.swift in Sources */,
 				9BFC7B11274CF630003C942B /* Run.swift in Sources */,
@@ -532,6 +539,7 @@
 				9BFC7B2B274F9A1D003C942B /* HomeViewModel.swift in Sources */,
 				9BFC7AFC2748F7BE003C942B /* SessionViewModel.swift in Sources */,
 				9BC943062743B0C400D57EF5 /* NoPlansView.swift in Sources */,
+				9B9C6785275DF6AD00DF9804 /* ChangeEmailView.swift in Sources */,
 				9BF12FFB273E787B00A94588 /* HomeNavView.swift in Sources */,
 				9B0C64182758C7A200257DF1 /* LoginViewModel.swift in Sources */,
 				9BF12FE9273D725A00A94588 /* TriSprint.xcdatamodeld in Sources */,

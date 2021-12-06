@@ -104,6 +104,7 @@ extension LoginView {
                     .padding(textFieldPadding)
                     .background(Color.accentButton.opacity(textFieldOpacity))
                     .cornerRadius(textFieldCornerRadius)
+                    .keyboardType(.emailAddress)
                 
                 SecureField("Password", text: $password)
                     .frame(width: 250)
@@ -146,6 +147,7 @@ extension LoginView {
                     .padding(textFieldPadding)
                     .background(Color.accentButton.opacity(textFieldOpacity))
                     .cornerRadius(textFieldCornerRadius)
+                    .keyboardType(.emailAddress)
                 
                 SecureField("Password", text: $signUpPassword)
                     .frame(width: 250)
