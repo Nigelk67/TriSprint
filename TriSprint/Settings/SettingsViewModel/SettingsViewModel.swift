@@ -17,8 +17,31 @@ class SettingsViewModel: ObservableObject {
     @Published var confirmDeletedActivities = false
     @Published var accountDeletedConfirmation = false
     @Published var goToOnboarding: Bool = false
+    @Published var emailUpdated: Bool = false
+    @Published var passwordUpdated: Bool = false
+    @Published var unableToUpdateEmail: Bool = false
+    @Published var unableToUpdatePassword: Bool = false
+    @Published var invalidPassword: Bool = false
+    @StateObject var lognVm = LoginViewModel()
     
     let viewContext = PersistenceController.shared.container.viewContext
+    
+    //MARK: Spinner functions
+    func showEmailUpdatedSpinner() {
+        self.isSaving = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.isSaving = false
+            self.emailUpdated = true
+        }
+    }
+    
+    func showPasswordUpdatedSpinner() {
+        self.isSaving = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.isSaving = false
+            self.passwordUpdated = true
+        }
+    }
     
     func showDeletePlansSpinner() {
         self.isSaving = true
@@ -40,6 +63,54 @@ class SettingsViewModel: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.isSaving = false
             self.accountDeletedConfirmation = true
+        }
+    }
+    
+    //MARK: Button functions
+    func changeEmail(currentEmail: String, password: String, newEmail: String) {
+        if lognVm.isValidEmail(email: newEmail) {
+        let credential = EmailAuthProvider.credential(withEmail: currentEmail, password: password)
+        Auth.auth().currentUser?.reauthenticate(with: credential, completion: { (user, error) in
+            if error == nil {
+                Auth.auth().currentUser?.updateEmail(to: newEmail, completion: { (error) in
+                    if error == nil {
+                        guard let uid = Auth.auth().currentUser?.uid else { return }
+                        let userRef = Database.database().reference().child("users").child(uid)
+                        userRef.updateChildValues(["email": newEmail])
+                        self.unableToUpdateEmail = false
+                        self.showEmailUpdatedSpinner()
+                    } else {
+                        self.unableToUpdateEmail = true
+                    }
+                })
+            } else {
+                self.unableToUpdateEmail = true
+            }
+        })
+        } else {
+            self.unableToUpdateEmail = true
+        }
+    }
+    
+    func changePassword(currentEmail: String, password: String, newPassword: String) {
+        if lognVm.isValidPassword(password: newPassword) {
+        let credential = EmailAuthProvider.credential(withEmail: currentEmail, password: password)
+        Auth.auth().currentUser?.reauthenticate(with: credential, completion: { (user, error) in
+            if error == nil {
+                Auth.auth().currentUser?.updatePassword(to: newPassword, completion: { error in
+                    if error == nil {
+                        self.showPasswordUpdatedSpinner()
+                        self.unableToUpdatePassword = false
+                    } else {
+                        self.unableToUpdatePassword = true
+                    }
+                })
+            } else {
+                self.unableToUpdatePassword = true
+            }
+        })
+        } else {
+            self.invalidPassword = true
         }
     }
     

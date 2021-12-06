@@ -129,16 +129,18 @@ extension SettingsView {
     
     var changeEmailButton: some View {
         Button {
-            print("Nige: Show Alert")
+            showUpdateEmailView.toggle()
         } label: {
             Text("Change Email")
                 .modifier(SettingsButtons())
         }
+        
+
     }
     
     var changePasswordButton: some View {
         Button {
-            print("Nige: Show Alert")
+            showUpdatePasswordView.toggle()
         } label: {
             Text("Change Password")
                 .modifier(SettingsButtons())
