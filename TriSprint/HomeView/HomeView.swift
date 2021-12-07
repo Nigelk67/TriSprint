@@ -111,7 +111,8 @@ extension HomeView {
         PieChartModel([(Color.accentButton.opacity(0.6), 100),(Color.accentButton.opacity(0.2),homeVm.proportionCompleted)])
             .frame(width: 100, height: 100, alignment: .center)
             .scaleEffect(bounce ? 1 : 0)
-            .animation(Animation.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.3).delay(0.05))
+            .animation(Animation.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.3).delay(0.05), value: bounce)
+            
         }
         
     

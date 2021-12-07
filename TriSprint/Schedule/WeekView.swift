@@ -44,12 +44,15 @@ struct WeekView: View {
                                 BrickDetailContentView(plan: $selectedPlan)
                             }
                             .fullScreenCover(isPresented: $showSwimDetailView) {
+                                //DetailContentView(plan: $selectedPlan)
                                 DetailContentView(plan: $selectedPlan)
                             }
                             .fullScreenCover(isPresented: $showRideDetailView) {
+                                //DetailContentView(plan: $selectedPlan)
                                 DetailContentView(plan: $selectedPlan)
                             }
                             .fullScreenCover(isPresented: $showRunDetailView) {
+                                //DetailContentView(plan: $selectedPlan)
                                 DetailContentView(plan: $selectedPlan)
                             }
                         }

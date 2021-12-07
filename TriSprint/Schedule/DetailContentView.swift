@@ -122,8 +122,8 @@ extension DetailContentView {
 }
 
 
-struct DetailContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailContentView(plan: .constant(Plan()))
-    }
-}
+//struct DetailContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DetailContentView(plan: .constant(Plan()))
+//    }
+//}
