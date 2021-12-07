@@ -22,6 +22,13 @@ struct EnterManualView: View {
     @State private var shouldShowBrickActions = false
     @State private var pace = ""
     @Environment(\.presentationMode) private var presentationMode
+   
+    let rootVC = UIApplication.shared.connectedScenes
+        .filter {$0.activationState == .foregroundActive }
+        .map { $0 as? UIWindowScene }
+        .compactMap { $0 }
+        .first?.windows
+        .filter({ $0.isKeyWindow }).first?.rootViewController
     
     var body: some View {
         
@@ -96,7 +103,7 @@ extension EnterManualView {
                 shouldShowBrickActions.toggle()
             } else {
                 sessionVm.markPlanComplete(plan: plan)
-                UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                rootVC?.dismiss(animated: true)
             }
             
         }))
@@ -106,7 +113,7 @@ extension EnterManualView {
         ActionSheet(title: Text("FINISHED?"), message: Text("Have you completed both your activities for this BRICK session"), buttons: [
             .default(Text("YES!"), action: {
                 sessionVm.markPlanComplete(plan: plan)
-                UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+                rootVC?.dismiss(animated: true)
             }),
             .destructive(Text("NO!"),
                          action: {
@@ -232,8 +239,8 @@ extension EnterManualView {
     }
 }
 
-struct EnterManualView_Previews: PreviewProvider {
-    static var previews: some View {
-        EnterManualView(plan: .constant(Plan()))
-    }
-}
+//struct EnterManualView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EnterManualView(plan: .constant(Plan()))
+//    }
+//}

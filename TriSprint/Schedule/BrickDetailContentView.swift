@@ -122,8 +122,8 @@ struct RunStack: View {
     }
 }
 
-struct BrickDetailContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        BrickDetailContentView(plan: .constant(Plan()))
-    }
-}
+//struct BrickDetailContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BrickDetailContentView(plan: .constant(Plan()))
+//    }
+//}

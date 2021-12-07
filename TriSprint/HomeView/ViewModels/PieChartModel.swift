@@ -30,7 +30,7 @@ struct PieChartModel: View {
                         }
                         .fill(slice.color)
                         .scaleEffect(self.show ? 1 : 0)
-                        .animation(Animation.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.3).delay(0.03))
+                        .animation(Animation.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.3).delay(0.03),value: self.show)
                     }
                     .onAppear {
                         self.show = true

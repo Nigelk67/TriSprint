@@ -14,6 +14,7 @@ struct TriSprintApp: App {
     
     init() {
         FirebaseApp.configure()
+        
     }
     
     @StateObject var loginViewModel: LoginViewModel = LoginViewModel()

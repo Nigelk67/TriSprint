@@ -24,6 +24,12 @@ struct MapView: View {
     @State private var showDrillsPopup = false
     @State private var drills: String = "No drills"
     let measure = CustomUserDefaults.shared.get(key: .measure)
+    let rootVC = UIApplication.shared.connectedScenes
+        .filter {$0.activationState == .foregroundActive }
+        .map { $0 as? UIWindowScene }
+        .compactMap { $0 }
+        .first?.windows
+        .filter({ $0.isKeyWindow }).first?.rootViewController
     
     var body: some View {
         
@@ -51,7 +57,7 @@ struct MapView: View {
                 if showDrillsPopup {
                     DrillsView(plan: $plan, targetDescription: $targetDesc)
                 }
-            }.animation(.default)
+            }.animation(.default, value: showDrillsPopup)
             
                 .alert(isPresented: $sessionVm.showConfirmationPopup) {
                     saveSessionAlert
@@ -191,7 +197,8 @@ extension MapView {
     private var saveSessionAlert: Alert {
         Alert(title: Text("SAVED!"), message: Text("This session has been saved"), dismissButton: .default(Text("OK"), action: {
             sessionVm.markPlanComplete(plan: plan)
-            UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true)
+            rootVC?.dismiss(animated: true)
+          
         }))
     }
     
@@ -297,8 +304,8 @@ struct TargetStack: View {
 
 
 
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapView(plan: .constant(Plan()))
-    }
-}
+//struct MapView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MapView(plan: .constant(Plan()))
+//    }
+//}
