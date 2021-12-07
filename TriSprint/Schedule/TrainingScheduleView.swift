@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct TrainingScheduleView: View {
-    
+    @ObservedObject var sessionVm = SessionViewModel()
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Plan.week, ascending: true)], animation: .default)
     private var plans: FetchedResults<Plan>
     let weeks = [1,2,3,4,5,6,7,8,9,10,11,12,13]
     @State private var showDetailView = false
-    
+    @State private var rating: Int = 0
     
     
     var body: some View {

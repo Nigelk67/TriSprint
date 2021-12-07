@@ -275,6 +275,7 @@
 				9BE3C0772744169C009E1ED3 /* WeekView.swift */,
 				9BC943052743B0C400D57EF5 /* NoPlansView.swift */,
 				9BE3C0792744ED15009E1ED3 /* DetailContentView.swift */,
+				9B62FC8C275F91E500C08771 /* RatingsView.swift */,
 				9BE3C07D27453132009E1ED3 /* DetailViewButtons.swift */,
 				9BE3C07F2745378E009E1ED3 /* DetailViewComponents.swift */,
 				9BE3C081274546EA009E1ED3 /* BrickDetailContentView.swift */,
@@ -435,7 +436,6 @@
 				9BFC7B28274F820C003C942B /* HomeView.swift */,
 				9B0C63FE2754E0CC00257DF1 /* ComparisonView.swift */,
 				9B0C640227561F9500257DF1 /* LineChartView.swift */,
-				9B62FC8C275F91E500C08771 /* RatingsView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";

@@ -20,6 +20,7 @@ class SessionViewModel: ObservableObject {
     @Published var isPaused: Bool = false
     @Published var isSaving: Bool = false
     @Published var showConfirmationPopup: Bool = false
+    @Published var showRatingsView = false
     let userDefaults = UserDefaults.standard
     @State private var ride: Ride?
     @State private var run: Run?
@@ -93,7 +94,15 @@ class SessionViewModel: ObservableObject {
         } catch {
             print("Error saving plan completed", error)
         }
-    }
+//        if let day = plan.day {
+//            if day == "12" && plan.completed == 1 {
+//                showRatingsView = true
+//            } else {
+//                showRatingsView = false
+//            }
+//            print("Nige: showRatingsView = \(showRatingsView)")
+//            }
+        }
     
     private func saveRideToCoreData(distance: Double, secs: Int16) {
         let context = PersistenceController.shared.container.viewContext
