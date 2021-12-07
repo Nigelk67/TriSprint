@@ -20,6 +20,7 @@ class SessionViewModel: ObservableObject {
     @Published var isPaused: Bool = false
     @Published var isSaving: Bool = false
     @Published var showConfirmationPopup: Bool = false
+    @Published var showRatingsView = false
     let userDefaults = UserDefaults.standard
     @State private var ride: Ride?
     @State private var run: Run?

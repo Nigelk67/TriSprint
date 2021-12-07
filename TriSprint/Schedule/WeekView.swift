@@ -13,11 +13,14 @@ struct WeekView: View {
     var week: Int
     @State private var showDetailView = false
     @ObservedObject var scheduleVm = ScheduleViewModel()
+    //@ObservedObject var sessionVm = SessionViewModel()
     @State private var selectedPlan = Plan(entity: Plan.entity(), insertInto: nil)
     @State private var showBrickDetailView = false
     @State private var showSwimDetailView = false
     @State private var showRideDetailView = false
     @State private var showRunDetailView = false
+    
+    
     
     var body: some View {
         
@@ -40,21 +43,20 @@ struct WeekView: View {
                                 let imageName = scheduleVm.setImageNames(session: plan.session ?? "", completed: plan.completed)
                                 Image(imageName)
                             }
+                            
                             .fullScreenCover(isPresented: $showBrickDetailView) {
                                 BrickDetailContentView(plan: $selectedPlan)
                             }
                             .fullScreenCover(isPresented: $showSwimDetailView) {
-                                //DetailContentView(plan: $selectedPlan)
                                 DetailContentView(plan: $selectedPlan)
                             }
                             .fullScreenCover(isPresented: $showRideDetailView) {
-                                //DetailContentView(plan: $selectedPlan)
                                 DetailContentView(plan: $selectedPlan)
                             }
                             .fullScreenCover(isPresented: $showRunDetailView) {
-                                //DetailContentView(plan: $selectedPlan)
                                 DetailContentView(plan: $selectedPlan)
                             }
+                            
                         }
                         .padding(.horizontal, 5)
                         .padding(.bottom, 30)

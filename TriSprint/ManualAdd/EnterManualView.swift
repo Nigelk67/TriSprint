@@ -20,6 +20,8 @@ struct EnterManualView: View {
     @State private var isTyping = false
     @State private var isBrick = false
     @State private var shouldShowBrickActions = false
+    @State private var showRatingsView = false
+    @State private var rating: Int = 0
     @State private var pace = ""
     @Environment(\.presentationMode) private var presentationMode
    
@@ -52,6 +54,12 @@ struct EnterManualView: View {
                         .foregroundColor(Color.accentButton)
                         .font(.system(size: 26, weight: .medium, design: .rounded))
                         .padding()
+                    Button {
+                        showRatingsView = true
+                    } label: {
+                        Text("TO RATINGS VIEW")
+                    }
+
                     Spacer()
                     
                     VStack {
@@ -64,6 +72,9 @@ struct EnterManualView: View {
                     }
                 }
                 .navigationBarHidden(true)
+                .navigationTitle("")
+                
+                NavigationLink(destination: RatingsView(rating: $rating), isActive: $showRatingsView) { EmptyView() }
                 
                 if sessionVm.isSaving {
                     withAnimation {
@@ -103,7 +114,13 @@ extension EnterManualView {
                 shouldShowBrickActions.toggle()
             } else {
                 sessionVm.markPlanComplete(plan: plan)
-                rootVC?.dismiss(animated: true)
+                guard let day = plan.day else { return }
+                if day == "13" {
+                    showRatingsView = true
+                } else {
+                    rootVC?.dismiss(animated: true)
+                }
+                
             }
             
         }))
