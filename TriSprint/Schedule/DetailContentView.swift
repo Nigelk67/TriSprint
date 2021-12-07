@@ -10,6 +10,7 @@ import SwiftUI
 struct DetailContentView: View {
     
     @Binding var plan: Plan
+    //@Binding var showRatingsView: Bool
     @State private var showMapView = false
     @State private var showManualEntryView = false
     @Environment(\.presentationMode) private var presentationMode

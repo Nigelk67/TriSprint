@@ -10,6 +10,7 @@ import SwiftUI
 struct BrickDetailContentView: View {
     
     @Binding var plan: Plan
+    //@Binding var showRatingsView: Bool
     @State private var showMapView: Bool = false
     @State private var showManualEntryView: Bool = false
     @Environment(\.presentationMode) private var presentationMode
@@ -43,6 +44,7 @@ struct RideStack: View {
     @Binding var plan: Plan
     @Binding var showMapView: Bool
     @Binding var showManualEntryView: Bool
+    //@Binding var showRatingsView: Bool
     var body: some View {
         VStack {
             HStack {
@@ -85,6 +87,7 @@ struct RunStack: View {
     @Binding var plan: Plan
     @State var showMapView: Bool
     @Binding var showManualEntryView: Bool
+    //@Binding var showRatingsView: Bool
     var body: some View {
         VStack {
             HStack {

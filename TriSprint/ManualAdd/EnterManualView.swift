@@ -11,6 +11,7 @@ import Combine
 struct EnterManualView: View {
     
     @Binding var plan: Plan
+    //@Binding var showRatingsView: Bool
     @State private var session: Activity = .swim
     @State var targetTime = ""
     @ObservedObject private var actualTime = NumbersOnly()
@@ -103,6 +104,9 @@ extension EnterManualView {
                 shouldShowBrickActions.toggle()
             } else {
                 sessionVm.markPlanComplete(plan: plan)
+                if plan.day == "" {
+                    //showRatingsView = true
+                }
                 rootVC?.dismiss(animated: true)
             }
             
@@ -113,6 +117,7 @@ extension EnterManualView {
         ActionSheet(title: Text("FINISHED?"), message: Text("Have you completed both your activities for this BRICK session"), buttons: [
             .default(Text("YES!"), action: {
                 sessionVm.markPlanComplete(plan: plan)
+               
                 rootVC?.dismiss(animated: true)
             }),
             .destructive(Text("NO!"),

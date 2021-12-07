@@ -34,6 +34,7 @@
 		9B3DA3252742B403009AB522 /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3DA3242742B403009AB522 /* ScheduleViewModel.swift */; };
 		9B62FC89275F60FC00C08771 /* Glossary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62FC88275F60FB00C08771 /* Glossary.swift */; };
 		9B62FC8B275F63B400C08771 /* GlossaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62FC8A275F63B400C08771 /* GlossaryViewModel.swift */; };
+		9B62FC8D275F91E500C08771 /* RatingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62FC8C275F91E500C08771 /* RatingsView.swift */; };
 		9B9C6787275DFF0E00DF9804 /* EmailUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C6786275DFF0E00DF9804 /* EmailUpdateView.swift */; };
 		9B9C6789275E147800DF9804 /* PasswordChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C6788275E147800DF9804 /* PasswordChangeView.swift */; };
 		9B9C678B275E7C3100DF9804 /* GlossaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C678A275E7C3100DF9804 /* GlossaryView.swift */; };
@@ -112,6 +113,7 @@
 		9B3DA3242742B403009AB522 /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
 		9B62FC88275F60FB00C08771 /* Glossary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glossary.swift; sourceTree = "<group>"; };
 		9B62FC8A275F63B400C08771 /* GlossaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryViewModel.swift; sourceTree = "<group>"; };
+		9B62FC8C275F91E500C08771 /* RatingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingsView.swift; sourceTree = "<group>"; };
 		9B9C6786275DFF0E00DF9804 /* EmailUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailUpdateView.swift; sourceTree = "<group>"; };
 		9B9C6788275E147800DF9804 /* PasswordChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeView.swift; sourceTree = "<group>"; };
 		9B9C678A275E7C3100DF9804 /* GlossaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryView.swift; sourceTree = "<group>"; };
@@ -429,10 +431,11 @@
 		9BFC7B27274F81ED003C942B /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
+				9BFC7B2C274F9A26003C942B /* ViewModels */,
 				9BFC7B28274F820C003C942B /* HomeView.swift */,
 				9B0C63FE2754E0CC00257DF1 /* ComparisonView.swift */,
 				9B0C640227561F9500257DF1 /* LineChartView.swift */,
-				9BFC7B2C274F9A26003C942B /* ViewModels */,
+				9B62FC8C275F91E500C08771 /* RatingsView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				9B148283275BD2B900F9CF6C /* SettingsViewModel.swift in Sources */,
 				9B0C640327561F9500257DF1 /* LineChartView.swift in Sources */,
 				9BC4CC87275D0A62003260AC /* HalfModalAlerts_Settings.swift in Sources */,
+				9B62FC8D275F91E500C08771 /* RatingsView.swift in Sources */,
 				9BFC7B19274CF876003C942B /* SwimsView.swift in Sources */,
 				9BE3C09D27480F72009E1ED3 /* LoadingView.swift in Sources */,
 				9BFC7B20274D45FF003C942B /* MetricView.swift in Sources */,
