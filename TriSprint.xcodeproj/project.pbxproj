@@ -274,6 +274,14 @@
 			path = MailView;
 			sourceTree = "<group>";
 		};
+		9BAAACE92760A9D300D0ECA7 /* Ratings */ = {
+			isa = PBXGroup;
+			children = (
+				9B62FC8C275F91E500C08771 /* RatingsView.swift */,
+			);
+			path = Ratings;
+			sourceTree = "<group>";
+		};
 		9BC4CC85275D0A37003260AC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,7 +299,6 @@
 				9BE3C0772744169C009E1ED3 /* WeekView.swift */,
 				9BC943052743B0C400D57EF5 /* NoPlansView.swift */,
 				9BE3C0792744ED15009E1ED3 /* DetailContentView.swift */,
-				9B62FC8C275F91E500C08771 /* RatingsView.swift */,
 				9BE3C07D27453132009E1ED3 /* DetailViewButtons.swift */,
 				9BE3C07F2745378E009E1ED3 /* DetailViewComponents.swift */,
 				9BE3C081274546EA009E1ED3 /* BrickDetailContentView.swift */,
@@ -340,6 +347,7 @@
 				9BC943072743B21500D57EF5 /* Schedule */,
 				9BFC7B1A274D15EC003C942B /* ManualAdd */,
 				9BE3C08327465ECB009E1ED3 /* MapView */,
+				9BAAACE92760A9D300D0ECA7 /* Ratings */,
 				9BFC7B21274EA569003C942B /* SessionViewModel */,
 				9BFC7B01274A9BF0003C942B /* Activity */,
 				9B0C6404275674EC00257DF1 /* Settings */,

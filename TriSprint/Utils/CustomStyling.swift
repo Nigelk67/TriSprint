@@ -31,6 +31,17 @@ struct ReallySmallGreenButton: ViewModifier {
     }
 }
 
+struct SmallGreenButtonWithBool: ViewModifier {
+    @Binding var isDisabled: Bool
+    func body(content: Content) -> some View {
+        content
+            .font(.footnote)
+            .padding(EdgeInsets(top: 4, leading: 6, bottom: 4, trailing: 6))
+            .foregroundColor(Color.white)
+            .background(isDisabled ? Color.gray.opacity(0.3) : Color.accentButton)
+            .cornerRadius(10)
+    }
+}
 struct SmallGreenButton: ViewModifier {
     func body(content: Content) -> some View {
         content

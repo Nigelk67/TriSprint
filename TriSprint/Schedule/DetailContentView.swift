@@ -13,6 +13,8 @@ struct DetailContentView: View {
     //@Binding var showRatingsView: Bool
     @State private var showMapView = false
     @State private var showManualEntryView = false
+    @State private var planComplete = false
+    @State private var isSwim = true
     @Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
@@ -31,7 +33,8 @@ struct DetailContentView: View {
                             HStack {
                                 //SkipButton()
                                 Spacer()
-                                EnterManuallyButton(showManualEnterView: $showManualEntryView)
+                                EnterManuallyButton(isDisabled: $planComplete, showManualEnterView: $showManualEntryView)
+//                                EnterManuallyButton(showManualEnterView: $showManualEntryView)
                             }
                             HStack {
                                 ImageDetailView(session: plan.session ?? "", completed: plan.completed)
@@ -50,10 +53,10 @@ struct DetailContentView: View {
                             NavigationLink(destination: MapView(plan: $plan), isActive: $showMapView) { EmptyView() }
                             
                             if plan.session == Sessions.swim.rawValue {
-                                LetsGoButton(isDisabled: true, showMapView: $showMapView)
+                                LetsGoButton(isDisabled: $isSwim, showMapView: $showMapView)
                                     .padding(.bottom)
                             } else {
-                                LetsGoButton(isDisabled: false, showMapView: $showMapView)
+                                LetsGoButton(isDisabled: $planComplete, showMapView: $showMapView)
                                     .padding(.bottom)
                             }
                         }
@@ -61,6 +64,9 @@ struct DetailContentView: View {
                         .background(Color.white.opacity(0.5))
                         .cornerRadius(20)
                     }
+                }
+                .onAppear {
+                    setUI()
                 }
             }
             .navigationBarHidden(true)
@@ -119,6 +125,13 @@ extension DetailContentView {
         return DescriptionView(description: "")
     }
     
+    private func setUI() {
+        if plan.completed == 1 {
+            planComplete = true
+        } else {
+            planComplete = false
+        }
+    }
    
 }
 

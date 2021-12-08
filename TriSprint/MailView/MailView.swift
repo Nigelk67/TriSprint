@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MailView: View {
-    @State private var mailData = ComposeMailData(subject: "TriSprint Review", recipients: ["team@trihardapps.com"], message: "Type your message here")
+    @State private var mailData = ComposeMailData(subject: "TriSprint Review", recipients: ["team@trihardapps.com"], message: "")
     @State private var showMailView = false
     
     var body: some View {

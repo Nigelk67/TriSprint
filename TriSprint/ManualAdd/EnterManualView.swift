@@ -20,6 +20,7 @@ struct EnterManualView: View {
     @State private var isTyping = false
     @State private var isBrick = false
     @State private var shouldShowBrickActions = false
+    @State private var planComplete = false
     @State private var showRatingsView = false
     @State private var rating: Int = 0
     @State private var pace = ""
@@ -94,13 +95,8 @@ struct EnterManualView: View {
             }
         //}
         .onAppear {
-            setTarget()
-            guard let measure = CustomUserDefaults.shared.get(key: .measure) as? String else { return }
-            if measure == Measure.kilometers.rawValue {
-                isKilometres = true
-            } else {
-                isKilometres = false
-            }
+            setUI()
+            
         }
         
     }
@@ -114,8 +110,9 @@ extension EnterManualView {
                 shouldShowBrickActions.toggle()
             } else {
                 sessionVm.markPlanComplete(plan: plan)
+                planComplete = true
                 guard let day = plan.day else { return }
-                if day == "13" {
+                if day == "14" {
                     showRatingsView = true
                 } else {
                     rootVC?.dismiss(animated: true)
@@ -225,17 +222,33 @@ extension EnterManualView {
         Button {
             sessionVm.saveManualSession(session: plan.session ?? "", measure: isKilometres ? Measure.kilometers.rawValue : Measure.miles.rawValue, distance: actualDistance.value, duration: actualTime.value)
         } label: {
-            Text("Save")
+            Text(planComplete ? "Saved" : "Save")
                 .foregroundColor(Color.mainText)
                 .font(.system(size: 35, weight: .medium, design: .rounded))
         }
         .modifier(GreenButton())
+        .disabled(planComplete ? true : false)
     }
     
     private func calculatePace(time: String, distance: String) -> String {
         let paceDble = (Double(time) ?? 0) / (Double(distance) ?? 0)
         let paceStr = String(format: "%.2f", paceDble)
         return paceStr
+    }
+    
+    private func setUI() {
+        setTarget()
+        guard let measure = CustomUserDefaults.shared.get(key: .measure) as? String else { return }
+        if measure == Measure.kilometers.rawValue {
+            isKilometres = true
+        } else {
+            isKilometres = false
+        }
+        if plan.completed == 1 {
+            planComplete = true
+        } else {
+            planComplete = false
+        }
     }
     
     private func setTarget() {

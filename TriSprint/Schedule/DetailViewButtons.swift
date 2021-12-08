@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EnterManuallyButton: View {
+    @Binding var isDisabled: Bool
     @Binding var showManualEnterView: Bool
     var body: some View {
         HStack {
@@ -16,8 +17,9 @@ struct EnterManuallyButton: View {
                 showManualEnterView.toggle()
             } label: {
                 Text("Enter Manually")
-                    .modifier(SmallGreenButton())
+                    .modifier(SmallGreenButtonWithBool(isDisabled: $isDisabled))
             }
+            .disabled(isDisabled ? true : false)
             .padding(.top)
             .padding(.trailing)
         }
@@ -40,7 +42,7 @@ struct SkipButton: View {
     }
 }
 struct LetsGoButton: View {
-    @State var isDisabled: Bool = true
+    @Binding var isDisabled: Bool
     @Binding var showMapView: Bool
     var body: some View {
         HStack {
