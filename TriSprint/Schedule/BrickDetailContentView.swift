@@ -10,9 +10,9 @@ import SwiftUI
 struct BrickDetailContentView: View {
     
     @Binding var plan: Plan
-    //@Binding var showRatingsView: Bool
     @State private var showMapView: Bool = false
     @State private var showManualEntryView: Bool = false
+    @State private var planComplete = false
     @Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
@@ -24,8 +24,8 @@ struct BrickDetailContentView: View {
                         .padding(.vertical, 30)
                     Spacer()
                     ScrollView {
-                        RideStack(plan: $plan, showMapView: $showMapView, showManualEntryView: $showManualEntryView)
-                        RunStack(plan: $plan, showMapView: showMapView, showManualEntryView: $showManualEntryView)
+                        RideStack(plan: $plan, showMapView: $showMapView, showManualEntryView: $showManualEntryView, planComplete: $planComplete)
+                        RunStack(plan: $plan, showMapView: showMapView, showManualEntryView: $showManualEntryView, planComplete: $planComplete)
                     }
                 }
             }
@@ -35,6 +35,14 @@ struct BrickDetailContentView: View {
                     CancelButton(presentationMode: presentationMode)
                 }
             }
+            .onAppear {
+                if plan.completed == 1 {
+                    planComplete = true
+                } else {
+                    planComplete = false
+                }
+            }
+        
         }
         
     }
@@ -44,12 +52,13 @@ struct RideStack: View {
     @Binding var plan: Plan
     @Binding var showMapView: Bool
     @Binding var showManualEntryView: Bool
+    @Binding var planComplete: Bool
+    @State private var isSwim = true
     //@Binding var showRatingsView: Bool
     var body: some View {
         VStack {
             HStack {
-                SkipButton()
-                EnterManuallyButton(showManualEnterView: $showManualEntryView)
+                EnterManuallyButton(isDisabled: $planComplete, showManualEnterView: $showManualEntryView)
             }
             HStack {
                 Image(TrainingImageNames.trainingRide.rawValue)
@@ -69,10 +78,10 @@ struct RideStack: View {
             NavigationLink(destination: MapView(plan: $plan, targetTime: plan.rideTime ?? "", targetRpe: plan.rideRpe ?? "", targetDesc: plan.rideDescription ?? "", session: "Ride"), isActive: $showMapView) { EmptyView()}
             
             if plan.session == Sessions.swim.rawValue {
-                LetsGoButton(isDisabled: true, showMapView: $showMapView)
+                LetsGoButton(isDisabled: $isSwim, showMapView: $showMapView)
                     .padding(.bottom)
             } else {
-                LetsGoButton(isDisabled: false, showMapView: $showMapView)
+                LetsGoButton(isDisabled: $planComplete, showMapView: $showMapView)
                     .padding(.bottom)
             }
     
@@ -87,12 +96,13 @@ struct RunStack: View {
     @Binding var plan: Plan
     @State var showMapView: Bool
     @Binding var showManualEntryView: Bool
+    @Binding var planComplete: Bool
+    @State private var isSwim = true
     //@Binding var showRatingsView: Bool
     var body: some View {
         VStack {
             HStack {
-                SkipButton()
-                EnterManuallyButton(showManualEnterView: $showManualEntryView)
+                EnterManuallyButton(isDisabled: $planComplete, showManualEnterView: $showManualEntryView)
             }
             HStack {
                 Image(TrainingImageNames.trainingRun.rawValue)
@@ -112,10 +122,10 @@ struct RunStack: View {
             NavigationLink(destination: MapView(plan: $plan, targetTime: plan.runTime ?? "", targetRpe: plan.runRpe ?? "", targetDesc: plan.runDescription ?? "", session: "Run"), isActive: $showMapView) { EmptyView()}
             
             if plan.session == Sessions.swim.rawValue {
-                LetsGoButton(isDisabled: true, showMapView: $showMapView)
+                LetsGoButton(isDisabled: $isSwim, showMapView: $showMapView)
                     .padding(.bottom)
             } else {
-                LetsGoButton(isDisabled: false, showMapView: $showMapView)
+                LetsGoButton(isDisabled: $planComplete, showMapView: $showMapView)
                     .padding(.bottom)
             }
         }

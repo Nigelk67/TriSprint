@@ -38,6 +38,9 @@
 		9B9C6787275DFF0E00DF9804 /* EmailUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C6786275DFF0E00DF9804 /* EmailUpdateView.swift */; };
 		9B9C6789275E147800DF9804 /* PasswordChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C6788275E147800DF9804 /* PasswordChangeView.swift */; };
 		9B9C678B275E7C3100DF9804 /* GlossaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C678A275E7C3100DF9804 /* GlossaryView.swift */; };
+		9BAAACE327609E5500D0ECA7 /* MailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAACE227609E5500D0ECA7 /* MailData.swift */; };
+		9BAAACE627609F1200D0ECA7 /* Mail_Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAACE527609F1200D0ECA7 /* Mail_Wrapper.swift */; };
+		9BAAACE82760A25500D0ECA7 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAACE72760A25500D0ECA7 /* MailView.swift */; };
 		9BC4CC87275D0A62003260AC /* HalfModalAlerts_Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC4CC86275D0A62003260AC /* HalfModalAlerts_Settings.swift */; };
 		9BC4CC89275D0B4D003260AC /* ActionSheets_Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC4CC88275D0B4D003260AC /* ActionSheets_Settings.swift */; };
 		9BC943062743B0C400D57EF5 /* NoPlansView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC943052743B0C400D57EF5 /* NoPlansView.swift */; };
@@ -117,6 +120,9 @@
 		9B9C6786275DFF0E00DF9804 /* EmailUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailUpdateView.swift; sourceTree = "<group>"; };
 		9B9C6788275E147800DF9804 /* PasswordChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeView.swift; sourceTree = "<group>"; };
 		9B9C678A275E7C3100DF9804 /* GlossaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryView.swift; sourceTree = "<group>"; };
+		9BAAACE227609E5500D0ECA7 /* MailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailData.swift; sourceTree = "<group>"; };
+		9BAAACE527609F1200D0ECA7 /* Mail_Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mail_Wrapper.swift; sourceTree = "<group>"; };
+		9BAAACE72760A25500D0ECA7 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		9BC4CC86275D0A62003260AC /* HalfModalAlerts_Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalAlerts_Settings.swift; sourceTree = "<group>"; };
 		9BC4CC88275D0B4D003260AC /* ActionSheets_Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheets_Settings.swift; sourceTree = "<group>"; };
 		9BC943052743B0C400D57EF5 /* NoPlansView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPlansView.swift; sourceTree = "<group>"; };
@@ -254,8 +260,26 @@
 				9BFC7B10274CF630003C942B /* Run.swift */,
 				9BFC7B12274CF64B003C942B /* Swim.swift */,
 				9B62FC88275F60FB00C08771 /* Glossary.swift */,
+				9BAAACE227609E5500D0ECA7 /* MailData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9BAAACE427609EB300D0ECA7 /* MailView */ = {
+			isa = PBXGroup;
+			children = (
+				9BAAACE72760A25500D0ECA7 /* MailView.swift */,
+				9BAAACE527609F1200D0ECA7 /* Mail_Wrapper.swift */,
+			);
+			path = MailView;
+			sourceTree = "<group>";
+		};
+		9BAAACE92760A9D300D0ECA7 /* Ratings */ = {
+			isa = PBXGroup;
+			children = (
+				9B62FC8C275F91E500C08771 /* RatingsView.swift */,
+			);
+			path = Ratings;
 			sourceTree = "<group>";
 		};
 		9BC4CC85275D0A37003260AC /* ViewModel */ = {
@@ -275,7 +299,6 @@
 				9BE3C0772744169C009E1ED3 /* WeekView.swift */,
 				9BC943052743B0C400D57EF5 /* NoPlansView.swift */,
 				9BE3C0792744ED15009E1ED3 /* DetailContentView.swift */,
-				9B62FC8C275F91E500C08771 /* RatingsView.swift */,
 				9BE3C07D27453132009E1ED3 /* DetailViewButtons.swift */,
 				9BE3C07F2745378E009E1ED3 /* DetailViewComponents.swift */,
 				9BE3C081274546EA009E1ED3 /* BrickDetailContentView.swift */,
@@ -324,9 +347,11 @@
 				9BC943072743B21500D57EF5 /* Schedule */,
 				9BFC7B1A274D15EC003C942B /* ManualAdd */,
 				9BE3C08327465ECB009E1ED3 /* MapView */,
+				9BAAACE92760A9D300D0ECA7 /* Ratings */,
 				9BFC7B21274EA569003C942B /* SessionViewModel */,
 				9BFC7B01274A9BF0003C942B /* Activity */,
 				9B0C6404275674EC00257DF1 /* Settings */,
+				9BAAACE427609EB300D0ECA7 /* MailView */,
 				9B286779273FD77100E856F0 /* Model */,
 				9BF12FFE273E7F0B00A94588 /* Utils */,
 				9BF12FE0273D725A00A94588 /* Assets.xcassets */,
@@ -539,9 +564,11 @@
 				9B9C6787275DFF0E00DF9804 /* EmailUpdateView.swift in Sources */,
 				9BFC7B26274F8000003C942B /* NoActivityView.swift in Sources */,
 				9BF12FE6273D725A00A94588 /* Persistence.swift in Sources */,
+				9BAAACE82760A25500D0ECA7 /* MailView.swift in Sources */,
 				9BFC7B11274CF630003C942B /* Run.swift in Sources */,
 				9BF12FF2273D819900A94588 /* Extensions.swift in Sources */,
 				9BE3C09B2747BDF7009E1ED3 /* LocationManager.swift in Sources */,
+				9BAAACE627609F1200D0ECA7 /* Mail_Wrapper.swift in Sources */,
 				9BFC7B50274FEC82003C942B /* PieChartModel.swift in Sources */,
 				9BF12FF9273E705000A94588 /* BikeBackground.swift in Sources */,
 				9B0C640127561BA600257DF1 /* LineChartViewModel.swift in Sources */,
@@ -581,6 +608,7 @@
 				9BF12FDD273D725900A94588 /* TriSprintApp.swift in Sources */,
 				9B62FC89275F60FC00C08771 /* Glossary.swift in Sources */,
 				9B3DA3252742B403009AB522 /* ScheduleViewModel.swift in Sources */,
+				9BAAACE327609E5500D0ECA7 /* MailData.swift in Sources */,
 				9BFC7B542750CEDF003C942B /* CustomUserDefaults.swift in Sources */,
 				9BFC7B13274CF64B003C942B /* Swim.swift in Sources */,
 				9B28677F273FDCCE00E856F0 /* TrainingScheduleView.swift in Sources */,
@@ -741,6 +769,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -772,6 +801,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
