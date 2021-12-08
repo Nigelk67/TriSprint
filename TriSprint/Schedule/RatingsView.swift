@@ -16,6 +16,7 @@ struct RatingsView: View {
     var offColor = Color.gray
     var onColor = Color.yellow
     let appStoreReviewUrl = "https://apps.apple.com/app/id*******?action=write-review"
+    @State private var showMailView = false
     @Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
@@ -41,16 +42,17 @@ struct RatingsView: View {
                     if rating == 4 || rating == 5 {
                         goToAppStoreReview()
                     } else {
-                        // Send an email me
+                        showMailView.toggle()
                     }
                 } label: {
                     Text("Submit")
                         .modifier(RegisterButtons())
                 }
-                
                 Spacer()
+                NavigationLink(destination: MailView(), isActive: $showMailView) { EmptyView() }
             }
             .navigationBarHidden(true)
+            .navigationTitle("")
         }
         .ignoresSafeArea()
     }
