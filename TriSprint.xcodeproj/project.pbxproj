@@ -43,6 +43,7 @@
 		9BAAACE82760A25500D0ECA7 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAACE72760A25500D0ECA7 /* MailView.swift */; };
 		9BAAACF52760D85700D0ECA7 /* TriSprint_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAACF42760D85700D0ECA7 /* TriSprint_Tests.swift */; };
 		9BAAACFC2760D95800D0ECA7 /* LoginViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAACFB2760D95700D0ECA7 /* LoginViewModel_Tests.swift */; };
+		9BAAACFE2760E60900D0ECA7 /* TrainingArrayViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAACFD2760E60900D0ECA7 /* TrainingArrayViewModel_Tests.swift */; };
 		9BC4CC87275D0A62003260AC /* HalfModalAlerts_Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC4CC86275D0A62003260AC /* HalfModalAlerts_Settings.swift */; };
 		9BC4CC89275D0B4D003260AC /* ActionSheets_Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC4CC88275D0B4D003260AC /* ActionSheets_Settings.swift */; };
 		9BC943062743B0C400D57EF5 /* NoPlansView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC943052743B0C400D57EF5 /* NoPlansView.swift */; };
@@ -138,6 +139,7 @@
 		9BAAACF22760D85700D0ECA7 /* TriSprint_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TriSprint_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BAAACF42760D85700D0ECA7 /* TriSprint_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriSprint_Tests.swift; sourceTree = "<group>"; };
 		9BAAACFB2760D95700D0ECA7 /* LoginViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel_Tests.swift; sourceTree = "<group>"; };
+		9BAAACFD2760E60900D0ECA7 /* TrainingArrayViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingArrayViewModel_Tests.swift; sourceTree = "<group>"; };
 		9BC4CC86275D0A62003260AC /* HalfModalAlerts_Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalAlerts_Settings.swift; sourceTree = "<group>"; };
 		9BC4CC88275D0B4D003260AC /* ActionSheets_Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheets_Settings.swift; sourceTree = "<group>"; };
 		9BC943052743B0C400D57EF5 /* NoPlansView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPlansView.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				9BAAACF42760D85700D0ECA7 /* TriSprint_Tests.swift */,
+				9BAAACFD2760E60900D0ECA7 /* TrainingArrayViewModel_Tests.swift */,
 				9BAAACFB2760D95700D0ECA7 /* LoginViewModel_Tests.swift */,
 			);
 			path = TriSprint_Tests;
@@ -624,6 +627,7 @@
 			files = (
 				9BAAACFC2760D95800D0ECA7 /* LoginViewModel_Tests.swift in Sources */,
 				9BAAACF52760D85700D0ECA7 /* TriSprint_Tests.swift in Sources */,
+				9BAAACFE2760E60900D0ECA7 /* TrainingArrayViewModel_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,6 +31,11 @@ extension View {
     func dismissKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
+    
+    func generateRandomString(stringLength: Int) -> String {
+        let letters = "abcdefghijklmnopqrstuvw1234567890"
+        return String((0..<stringLength).map{_ in letters.randomElement()! })
+    }
 }
     
 extension Image {

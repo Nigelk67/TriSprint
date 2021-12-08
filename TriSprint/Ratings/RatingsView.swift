@@ -81,7 +81,10 @@ struct RatingsView: View {
                     .frame(width: 40, height: 40)
                     .scaledToFit()
                     .onTapGesture {
-                        rating = number
+                        withAnimation(.easeInOut) {
+                            rating = number
+                        }
+                        
                     }
             }
         }

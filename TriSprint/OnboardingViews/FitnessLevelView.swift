@@ -10,6 +10,8 @@ import SwiftUI
 struct FitnessLevelView: View {
     
     let fitnessLevels = ["Better than good","Good","Not that good"]
+    let fitnessLevelHalfModelHeadertext = "Assess Your Fitness"
+    let fitnessLevelHalfModalMainText = "The following times (mins) show the fitness level for someone with a relatively good level of fitness running 2.5km (1.5mi).\n\nSelect your answer based on your running time for this distance."
     @State private var fitnessLevel = ""
     @State private var nextScreen = false
     @State private var showFitnessTestModal = false
@@ -94,12 +96,12 @@ extension FitnessLevelView {
         ZStack {
             Color.mainBackground.opacity(0.98)
             VStack {
-                Text("Assess Your Fitness")
+                Text(fitnessLevelHalfModelHeadertext)
                     .font(.system(size: 24, weight: .medium, design: .rounded))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .padding()
-                Text("The following times (mins) show the fitness level for someone with a relatively good level of fitness running 2.5km (1.5mi).\n\nSelect your answer based on your running time for this distance.")
+                Text(fitnessLevelHalfModalMainText)
                     .font(.system(size: 18, weight: .regular, design: .rounded))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
