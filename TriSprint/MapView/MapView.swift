@@ -62,7 +62,7 @@ struct MapView: View {
                 if shouldShowBrickView {
                     isBrickView
                 }
-            }
+            }.frame(width: 300, height: 400)
             
             VStack {
                 if showDrillsPopup {
@@ -120,7 +120,7 @@ extension MapView {
                 .padding()
             Text("Have you completed both your activities for this BRICK session")
                 .foregroundColor(Color.mainText)
-                .font(.system(size: 24, weight: .regular, design: .rounded))
+                .font(.system(size: 20, weight: .regular, design: .rounded))
                 .multilineTextAlignment(.center)
                 .padding()
             Spacer()
@@ -144,7 +144,7 @@ extension MapView {
             } label: {
                 Text("No")
                     .foregroundColor(Color.mainButton)
-                    .font(.system(size: 20, weight: .medium, design: .rounded))
+                    .font(.system(size: 24, weight: .medium, design: .rounded))
                     .padding()
             }
 

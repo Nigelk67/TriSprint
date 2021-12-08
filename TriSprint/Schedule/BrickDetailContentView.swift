@@ -10,7 +10,6 @@ import SwiftUI
 struct BrickDetailContentView: View {
     
     @Binding var plan: Plan
-    //@Binding var showRatingsView: Bool
     @State private var showMapView: Bool = false
     @State private var showManualEntryView: Bool = false
     @State private var planComplete = false
