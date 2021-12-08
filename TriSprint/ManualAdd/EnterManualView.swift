@@ -55,11 +55,11 @@ struct EnterManualView: View {
                         .foregroundColor(Color.accentButton)
                         .font(.system(size: 26, weight: .medium, design: .rounded))
                         .padding()
-                    Button {
-                        showRatingsView = true
-                    } label: {
-                        Text("TO RATINGS VIEW")
-                    }
+//                    Button {
+//                        showRatingsView = true
+//                    } label: {
+//                        Text("TO RATINGS VIEW")
+//                    }
 
                     Spacer()
                     
@@ -112,7 +112,7 @@ extension EnterManualView {
                 sessionVm.markPlanComplete(plan: plan)
                 planComplete = true
                 guard let day = plan.day else { return }
-                if day == "14" {
+                if day == ReviewDay.one.rawValue || day == ReviewDay.two.rawValue || day == ReviewDay.three.rawValue {
                     showRatingsView = true
                 } else {
                     rootVC?.dismiss(animated: true)

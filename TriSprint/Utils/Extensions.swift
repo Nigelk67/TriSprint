@@ -69,6 +69,11 @@ enum IconImageNames: String {
     case swimIcon = "Icon_swimF"
 }
 
+enum ReviewDay: String {
+    case one = "5"
+    case two = "15"
+    case three = "34"
+}
 enum Sessions: String {
     case swim = "Swim"
     case ride = "Ride"

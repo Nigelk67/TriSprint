@@ -13,6 +13,7 @@ struct BrickDetailContentView: View {
     //@Binding var showRatingsView: Bool
     @State private var showMapView: Bool = false
     @State private var showManualEntryView: Bool = false
+    @State private var planComplete = false
     @Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
@@ -24,8 +25,8 @@ struct BrickDetailContentView: View {
                         .padding(.vertical, 30)
                     Spacer()
                     ScrollView {
-                        RideStack(plan: $plan, showMapView: $showMapView, showManualEntryView: $showManualEntryView)
-                        RunStack(plan: $plan, showMapView: showMapView, showManualEntryView: $showManualEntryView)
+                        RideStack(plan: $plan, showMapView: $showMapView, showManualEntryView: $showManualEntryView, planComplete: $planComplete)
+                        RunStack(plan: $plan, showMapView: showMapView, showManualEntryView: $showManualEntryView, planComplete: $planComplete)
                     }
                 }
             }
@@ -35,6 +36,14 @@ struct BrickDetailContentView: View {
                     CancelButton(presentationMode: presentationMode)
                 }
             }
+            .onAppear {
+                if plan.completed == 1 {
+                    planComplete = true
+                } else {
+                    planComplete = false
+                }
+            }
+        
         }
         
     }
@@ -44,7 +53,7 @@ struct RideStack: View {
     @Binding var plan: Plan
     @Binding var showMapView: Bool
     @Binding var showManualEntryView: Bool
-    @State private var planComplete = false
+    @Binding var planComplete: Bool
     @State private var isSwim = true
     //@Binding var showRatingsView: Bool
     var body: some View {
@@ -88,13 +97,12 @@ struct RunStack: View {
     @Binding var plan: Plan
     @State var showMapView: Bool
     @Binding var showManualEntryView: Bool
-    @State private var planComplete = false
+    @Binding var planComplete: Bool
     @State private var isSwim = true
     //@Binding var showRatingsView: Bool
     var body: some View {
         VStack {
             HStack {
-             
                 EnterManuallyButton(isDisabled: $planComplete, showManualEnterView: $showManualEntryView)
             }
             HStack {

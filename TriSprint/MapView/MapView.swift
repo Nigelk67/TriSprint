@@ -23,6 +23,11 @@ struct MapView: View {
     @State private var shouldShowStopActions = false
     @State private var showDrillsPopup = false
     @State private var drills: String = "No drills"
+    @State private var isBrick = false
+    @State private var shouldShowBrickView = false
+    @State private var planComplete = false
+    @State private var showRatingsView = false
+    @State private var rating: Int = 0
     let measure = CustomUserDefaults.shared.get(key: .measure)
     let rootVC = UIApplication.shared.connectedScenes
         .filter {$0.activationState == .foregroundActive }
@@ -54,6 +59,12 @@ struct MapView: View {
             }
             
             VStack {
+                if shouldShowBrickView {
+                    isBrickView
+                }
+            }
+            
+            VStack {
                 if showDrillsPopup {
                     DrillsView(plan: $plan, targetDescription: $targetDesc)
                 }
@@ -69,10 +80,16 @@ struct MapView: View {
                     LoadingView(loadingText: "Saving..")
                 }
             }
+            NavigationLink(destination: RatingsView(rating: $rating), isActive: $showRatingsView) { EmptyView() }
         }
         .onAppear {
             mapVm.checkIfLocationServicesIsEnabled()
             setDrillsText()
+            if plan.session == Sessions.rideRun.rawValue {
+                isBrick = true
+            } else {
+                isBrick = false
+            }
         }
     }
     
@@ -92,6 +109,50 @@ extension MapView {
         }
         //.frame(width: 350)
         
+    }
+    
+    private var isBrickView: some View {
+        VStack {
+            Spacer()
+            Text("FINISHED?")
+                .foregroundColor(Color.mainText)
+                .font(.system(size: 24, weight: .medium, design: .rounded))
+                .padding()
+            Text("Have you completed both your activities for this BRICK session")
+                .foregroundColor(Color.mainText)
+                .font(.system(size: 24, weight: .regular, design: .rounded))
+                .multilineTextAlignment(.center)
+                .padding()
+            Spacer()
+            Button {
+                sessionVm.markPlanComplete(plan: plan)
+                planComplete = true
+                guard let day = plan.day else { return }
+                if day == ReviewDay.one.rawValue || day == ReviewDay.two.rawValue || day == ReviewDay.three.rawValue {
+                    showRatingsView = true
+                } else {
+                    rootVC?.dismiss(animated: true)
+                }
+            } label: {
+                Text("Yes")
+                    .modifier(RegisterButtons())
+            }
+            .padding()
+            
+            Button {
+                shouldShowBrickView = false
+            } label: {
+                Text("No")
+                    .foregroundColor(Color.mainButton)
+                    .font(.system(size: 20, weight: .medium, design: .rounded))
+                    .padding()
+            }
+
+        }
+        .padding()
+        .background(Color.accentButton)
+        .opacity(0.95)
+        .cornerRadius(10)
     }
     
     private var trackingMeasures: some View {
@@ -194,12 +255,42 @@ extension MapView {
         ])
     }
     
+    private var actionSheet: ActionSheet {
+        ActionSheet(title: Text("FINISHED?"), message: Text("Have you completed both your activities for this BRICK session"), buttons: [
+            .default(Text("YES!"), action: {
+                sessionVm.markPlanComplete(plan: plan)
+                rootVC?.dismiss(animated: true)
+            }),
+            .destructive(Text("NO!"),
+                         action: {
+                             presentationMode.wrappedValue.dismiss()
+                         })
+        ])
+    }
+    
     private var saveSessionAlert: Alert {
         Alert(title: Text("SAVED!"), message: Text("This session has been saved"), dismissButton: .default(Text("OK"), action: {
-            sessionVm.markPlanComplete(plan: plan)
-            rootVC?.dismiss(animated: true)
-          
+            if isBrick {
+                shouldShowBrickView.toggle()
+            } else {
+                sessionVm.markPlanComplete(plan: plan)
+                planComplete = true
+                guard let day = plan.day else { return }
+                if day == ReviewDay.one.rawValue || day == ReviewDay.two.rawValue || day == ReviewDay.three.rawValue {
+                    showRatingsView = true
+                } else {
+                    rootVC?.dismiss(animated: true)
+                }
+                
+            }
+            
         }))
+        
+//        Alert(title: Text("SAVED!"), message: Text("This session has been saved"), dismissButton: .default(Text("OK"), action: {
+//            sessionVm.markPlanComplete(plan: plan)
+//            rootVC?.dismiss(animated: true)
+//          
+//        }))
     }
     
     //MARK: Functions:
@@ -241,7 +332,6 @@ struct ShowDrillsButton: View {
 }
 
 struct TargetStack: View {
-    
     @Binding var plan: Plan
     @Binding var targetTime: String
     @Binding var targetRpe: String
