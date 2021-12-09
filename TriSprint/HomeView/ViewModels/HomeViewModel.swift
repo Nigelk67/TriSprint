@@ -122,12 +122,9 @@ class HomeViewModel: ObservableObject {
     }
     
     func calculateFastest(swims: FetchedResults<Swim>,rides: FetchedResults<Ride>,runs: FetchedResults<Run>) {
-        //setLatestSwim(swims: swims)
         setSwims(swims: swims)
         setRides(rides: rides)
         setRuns(runs: runs)
-//        calcRideSpeed(rides: rides)
-//        calcRunSpeed(runs: runs)
         calculateSwimSpeedVariances()
         calculateRideSpeedVariances()
         calculateRunSpeedVariances()
@@ -202,10 +199,12 @@ class HomeViewModel: ObservableObject {
         let latestPace = swimLatestDurationInMins / swimLatestDistance
         swimPaceLatest = String(format: "%.2f", latestPace)
     }
+    
     private func calcRidePaceLatest(rides: FetchedResults<Ride>) {
         let latestPace = rideLatestDurationInMins / rideLatestDistance
         ridePaceLatest = String(format: "%.2f", latestPace)
     }
+    
     private func calcRunPaceLatest(runs: FetchedResults<Run>) {
         let latestPace = runLatestDurationInMins / runLatestDistance
         runPaceLatest = String(format: "%.2f", latestPace)
@@ -216,10 +215,12 @@ class HomeViewModel: ObservableObject {
         let latestSpeed = swimLatestDistance / swimLatestDurationInHours
         swimSpeedLatest = String(format: "%.2f",latestSpeed)
     }
+    
     private func calcRideSpeedLatest(rides: FetchedResults<Ride>) {
         let latestSpeed = rideLatestDistance / rideLatestDurationInHours
         rideSpeedLatest = String(format: "%.2f",latestSpeed)
     }
+    
     private func calcRunSpeedLatest(runs: FetchedResults<Run>) {
         let latestSpeed = runLatestDistance / runLatestDurationInHours
         runSpeedLatest = String(format: "%.2f",latestSpeed)
@@ -345,47 +346,7 @@ class HomeViewModel: ObservableObject {
         runPaceVariance = String(format: "%.1f", runPaceVarianceDble)
     }
     
-//    private func calculateSpeedVariances() {
-//        guard let swimLatestDble = Double(swimSpeedLatest), let swimFastestDble = Double(swimSpeedFastest) else { return }
-//        let swimVarianceDble = ((swimLatestDble - swimFastestDble)/swimLatestDble) * 100
-//        if swimVarianceDble < 0 {
-//            isSwimSpeedNegative = true
-//        }
-//        swimSpeedVariance = String(format: "%.1f", swimVarianceDble)
-//        guard let swimPaceLatestDble = Double(swimPaceLatest), let swimPaceFastestDble = Double(swimPaceFastest) else { return }
-//        let swimPaceVarianceDble = ((swimPaceFastestDble - swimPaceLatestDble)/swimPaceFastestDble) * 100
-//        if swimPaceVarianceDble < 0 {
-//            isSwimPaceNegative = true
-//        }
-//        swimPaceVariance = String(format: "%.1f", swimPaceVarianceDble)
-        
-//        guard let rideLatestDble = Double(rideSpeedLatest), let rideFastestDble = Double(rideSpeedFastest) else { return }
-//        let rideVarianceDble = ((rideLatestDble - rideFastestDble)/rideLatestDble) * 100
-//        if rideVarianceDble < 0 {
-//            isRideSpeedNegative = true
-//        }
-//        rideSpeedVariance = String(format: "%.1f", rideVarianceDble)
-//        guard let ridePaceLatestDble = Double(ridePaceLatest), let ridePaceFastestDble = Double(ridePaceFastest) else { return }
-//        let ridePaceVarianceDble = ((ridePaceFastestDble - ridePaceLatestDble)/ridePaceFastestDble) * 100
-//        if ridePaceVarianceDble < 0 {
-//            isRidePaceNegative = true
-//        }
-//        ridePaceVariance = String(format: "%.1f", ridePaceVarianceDble)
-        
-//        guard let runLatestDble = Double(runSpeedLatest), let runFastestDble = Double(runSpeedFastest) else { return }
-//        let runVarianceDble = ((runLatestDble - runFastestDble)/runLatestDble) * 100
-//        if runVarianceDble < 0 {
-//            isRunSpeedNegative = true
-//        }
-//        runSpeedVariance = String(format: "%.1f", runVarianceDble)
-//
-//        guard let runPaceLatestDble = Double(runPaceLatest), let runPaceFastestDble = Double(runPaceFastest) else { return }
-//        let runPaceVarianceDble = ((runPaceFastestDble - runPaceLatestDble)/runPaceFastestDble) * 100
-//        if runPaceVarianceDble < 0 {
-//            isRunPaceNegative = true
-//        }
-//        runPaceVariance = String(format: "%.1f", runPaceVarianceDble)
-//    }
+
     
     
 }
