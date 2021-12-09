@@ -36,6 +36,25 @@ class ScheduleViewModel_Tests: XCTestCase {
         XCTAssertTrue(!imageName.isEmpty)
     }
     
+    func test_imageName_IsBlankIfNoSession() {
+        let vm = ScheduleViewModel()
+        let imageName = vm.setImageNames(session: "", completed: 0)
+        XCTAssertTrue(imageName.isEmpty)
+    }
+    
+    func test_imageName_IsNotEmptyIfCompletedNotDefined() {
+        let loopCount: Int = Int.random(in: 1..<50)
+        let vm = ScheduleViewModel()
+        var imageName = ""
+        let session = ["RideRun","Swim","Ride","Run","SwimRide","SwimRun","Full"]
+        let completed = [2,3,4,5,6,98]
+        for _ in 0..<loopCount {
+            guard let randomSession = session.randomElement() else {return}
+            guard let randomCompleted = completed.randomElement() else { return }
+            imageName = vm.setImageNames(session: randomSession, completed: Int16(randomCompleted))
+        }
+        XCTAssertTrue(!imageName.isEmpty)
+    }
     
 
 }

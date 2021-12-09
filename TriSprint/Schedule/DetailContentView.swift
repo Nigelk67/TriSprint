@@ -28,42 +28,8 @@ struct DetailContentView: View {
                     DayView(day: plan.day ?? "")
                         .padding(.vertical, 30)
                     
-                    ScrollView {
-                        VStack {
-                            HStack {
-                                //SkipButton()
-                                Spacer()
-                                EnterManuallyButton(isDisabled: $planComplete, showManualEnterView: $showManualEntryView)
-//                                EnterManuallyButton(showManualEnterView: $showManualEntryView)
-                            }
-                            HStack {
-                                ImageDetailView(session: plan.session ?? "", completed: plan.completed)
-                                Spacer()
-                                setTime()
-                                Spacer()
-                                setRpe()
-                            }
-                            .padding(.horizontal,0)
-                            .padding(.vertical,20)
-                            
-                            setDescription()
-                            
-                            NavigationLink(destination: EnterManualView(plan: $plan), isActive: $showManualEntryView) { EmptyView() }
-                            
-                            NavigationLink(destination: MapView(plan: $plan), isActive: $showMapView) { EmptyView() }
-                            
-                            if plan.session == Sessions.swim.rawValue {
-                                LetsGoButton(isDisabled: $isSwim, showMapView: $showMapView)
-                                    .padding(.bottom)
-                            } else {
-                                LetsGoButton(isDisabled: $planComplete, showMapView: $showMapView)
-                                    .padding(.bottom)
-                            }
-                        }
-                        .frame(width: 350)
-                        .background(Color.white.opacity(0.5))
-                        .cornerRadius(20)
-                    }
+                    scrollView
+
                 }
                 .onAppear {
                     setUI()
@@ -83,6 +49,44 @@ struct DetailContentView: View {
 }
 
 extension DetailContentView {
+    
+    private var scrollView: some View {
+        ScrollView {
+            VStack {
+                HStack {
+                    Spacer()
+                    EnterManuallyButton(isDisabled: $planComplete, showManualEnterView: $showManualEntryView)
+                }
+                HStack {
+                    ImageDetailView(session: plan.session ?? "", completed: plan.completed)
+                    Spacer()
+                    setTime()
+                    Spacer()
+                    setRpe()
+                }
+                .padding(.horizontal,0)
+                .padding(.vertical,20)
+                
+                setDescription()
+                
+                NavigationLink(destination: EnterManualView(plan: $plan), isActive: $showManualEntryView) { EmptyView() }
+                
+                NavigationLink(destination: MapView(plan: $plan), isActive: $showMapView) { EmptyView() }
+                
+                if plan.session == Sessions.swim.rawValue {
+                    LetsGoButton(isDisabled: $isSwim, showMapView: $showMapView)
+                        .padding(.bottom)
+                } else {
+                    LetsGoButton(isDisabled: $planComplete, showMapView: $showMapView)
+                        .padding(.bottom)
+                }
+            }
+            .frame(width: 350)
+            .background(Color.white.opacity(0.5))
+            .cornerRadius(20)
+        }
+    }
+    
     private func setTime() -> TimeView {
         if plan.session == Sessions.swim.rawValue {
             let time = plan.swimTime
@@ -132,7 +136,7 @@ extension DetailContentView {
             planComplete = false
         }
     }
-   
+    
 }
 
 
