@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct TrainingDaysView: View {
-    
-    let numberOfDays = ["3","4","5"]
+   
     @State private var daysSelected = ""
     @State private var nextScreen = false
     @ObservedObject var trainingPlanVm = TrainingPlanArrayViewModel()
@@ -47,10 +46,6 @@ struct TrainingDaysView: View {
                 print("Dismissed")
             }
 
-//            .alert(isPresented: $showConfirmationPopup) {
-//                planSavedAlert
-//            }
-            
         }
     }
     
@@ -77,7 +72,7 @@ extension TrainingDaysView {
     
     private var buttonsView: some View {
         VStack {
-            ForEach(numberOfDays, id: \.self) { num in
+            ForEach(trainingPlanVm.numberOfTrainingDaysArray, id: \.self) { num in
                 Button {
                     daysSelected = num
                     CustomUserDefaults.shared.set(num, key: .trainingDays)

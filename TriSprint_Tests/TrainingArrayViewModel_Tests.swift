@@ -33,26 +33,18 @@ class TrainingArrayViewModel_Tests: XCTestCase {
         XCTAssertFalse(vm.hasLoadedPlans)
     }
     
-    func test_trainingArray_addItemsfor3DayPlan() {
-        let daysPerWeek = "3"
+    func test_trainingArray_addItemsfromPlan_shouldNotBeEmpty() {
+        let loopCount: Int = Int.random(in: 1..<10)
         let vm = TrainingPlanArrayViewModel()
-        vm.fetchPlanArray(name: daysPerWeek)
-        XCTAssertTrue(!vm.trainingPlan.isEmpty)
+        for _ in 0..<loopCount {
+            guard let randomDay = vm.numberOfTrainingDaysArray.randomElement() else {return}
+            vm.fetchPlanArray(name: randomDay)
+            XCTAssertTrue(!vm.trainingPlan.isEmpty)
+        }
+        
+        
     }
     
-    func test_trainingArray_addItemsfor4DayPlan() {
-        let daysPerWeek = "4"
-        let vm = TrainingPlanArrayViewModel()
-        vm.fetchPlanArray(name: daysPerWeek)
-        XCTAssertTrue(!vm.trainingPlan.isEmpty)
-    }
-    
-    func test_trainingArray_addItemsfor5DayPlan() {
-        let daysPerWeek = "5"
-        let vm = TrainingPlanArrayViewModel()
-        vm.fetchPlanArray(name: daysPerWeek)
-        XCTAssertTrue(!vm.trainingPlan.isEmpty)
-    }
-    
+   
     
 }

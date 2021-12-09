@@ -13,6 +13,7 @@ class TrainingPlanArrayViewModel: ObservableObject {
     @Published var trainingPlan = Array<Dictionary<String, Any>>()
     @Published var isSaving: Bool = false
     @Published var hasLoadedPlans: Bool = false
+    @Published var numberOfTrainingDaysArray = ["3","4","5"]
     
     func fetchPlanArray(name: String) {
         let resource = "\(name)Day"
