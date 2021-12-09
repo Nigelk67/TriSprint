@@ -24,6 +24,9 @@ class HomeViewModel: ObservableObject {
     @Published var swimProgress: CGFloat = 0.0
     @Published var rideProgress: CGFloat = 0.0
     @Published var runProgress: CGFloat = 0.0
+    @Published var swimLatestDistance: Double = 0
+    @Published var swimLatestDurationInHours: Double = 0
+    @Published var swimLatestDurationInMins: Double = 0
     @Published var swimSpeedLatest = "0"
     @Published var swimSpeedFastest = "0"
     @Published var rideSpeedLatest = "0"
@@ -113,30 +116,52 @@ class HomeViewModel: ObservableObject {
     }
     
     func calculateFastest(swims: FetchedResults<Swim>,rides: FetchedResults<Ride>,runs: FetchedResults<Run>) {
-        calcSwimSpeed(swims: swims)
+        //setLatestSwim(swims: swims)
+        setSwims(swims: swims)
         calcRideSpeed(rides: rides)
         calcRunSpeed(runs: runs)
-        calculateSpeedVariances()
+        calculateSwimSpeedVariances()
+        calculateRideSpeedVariances()
+        calculateRunSpeedVariances()
     }
+    
+    
+    private func setSwims(swims: FetchedResults<Swim>) {
+        setLatestSwim(swims: swims)
+        calcSwimPaceLatest(swims: swims)
+        calcSwimSpeedLatest(swims: swims)
+        calcSwimFastest(swims: swims)
+    }
+    
+    private func setLatestSwim(swims: FetchedResults<Swim>) {
+        guard let latest = swims.first else { return }
+        let latestDist = latest.distance
+        let latestDuration = Double(latest.duration)
+        if measure == Measure.kilometers.rawValue {
+            swimLatestDistance = latestDist
+        } else {
+            swimLatestDistance = latestDist / 1.609
+        }
+        swimLatestDurationInHours = latestDuration / 3600
+        swimLatestDurationInMins = latestDuration / 60
+    }
+    
+    //MARK: Pace Functions
+    private func calcSwimPaceLatest(swims: FetchedResults<Swim>) {
+        let latestPace = swimLatestDurationInMins / swimLatestDistance
+        swimPaceLatest = String(format: "%.2f", latestPace)
+    }
+    
     //MARK: Speed Functions
-    private func calcSwimSpeed(swims: FetchedResults<Swim>) {
+    private func calcSwimSpeedLatest(swims: FetchedResults<Swim>) {
+        let latestSpeed = swimLatestDistance / swimLatestDurationInHours
+        swimSpeedLatest = String(format: "%.2f",latestSpeed)
+    }
+    
+    private func calcSwimFastest(swims: FetchedResults<Swim>) {
         var speedArray = [Double]()
         var paceArray = [Double]()
-        guard let latest = swims.first else { return }
-        var latestDistance = Double()
         var distance = Double()
-        if measure == Measure.kilometers.rawValue {
-            latestDistance = latest.distance
-        } else {
-            latestDistance = latest.distance / 1.609
-        }
-        let latestDuration = Double(latest.duration) / 3600
-        let latestDurationInMinutes = Double(latest.duration) / 60
-        let latestSpeed = latestDistance / latestDuration
-        let latestPace = latestDurationInMinutes / latestDistance
-        swimSpeedLatest = String(format: "%.2f",latestSpeed)
-        swimPaceLatest = String(format: "%.2f", latestPace)
-        
         for each in swims {
             if measure == Measure.kilometers.rawValue {
                 distance = each.distance
@@ -193,6 +218,7 @@ class HomeViewModel: ObservableObject {
         ridePaceFastest = String(format: "%.2f", fastestPace)
     }
     
+  
     private func calcRunSpeed(runs: FetchedResults<Run>) {
         var speedArray = [Double]()
         var paceArray = [Double]()
@@ -230,7 +256,7 @@ class HomeViewModel: ObservableObject {
         runPaceFastest = String(format: "%.2f", fastestPace)
     }
     
-    private func calculateSpeedVariances() {
+    private func calculateSwimSpeedVariances() {
         guard let swimLatestDble = Double(swimSpeedLatest), let swimFastestDble = Double(swimSpeedFastest) else { return }
         let swimVarianceDble = ((swimLatestDble - swimFastestDble)/swimLatestDble) * 100
         if swimVarianceDble < 0 {
@@ -243,7 +269,9 @@ class HomeViewModel: ObservableObject {
             isSwimPaceNegative = true
         }
         swimPaceVariance = String(format: "%.1f", swimPaceVarianceDble)
-        
+    }
+    
+    private func calculateRideSpeedVariances() {
         guard let rideLatestDble = Double(rideSpeedLatest), let rideFastestDble = Double(rideSpeedFastest) else { return }
         let rideVarianceDble = ((rideLatestDble - rideFastestDble)/rideLatestDble) * 100
         if rideVarianceDble < 0 {
@@ -256,7 +284,9 @@ class HomeViewModel: ObservableObject {
             isRidePaceNegative = true
         }
         ridePaceVariance = String(format: "%.1f", ridePaceVarianceDble)
-        
+    }
+    
+    private func calculateRunSpeedVariances() {
         guard let runLatestDble = Double(runSpeedLatest), let runFastestDble = Double(runSpeedFastest) else { return }
         let runVarianceDble = ((runLatestDble - runFastestDble)/runLatestDble) * 100
         if runVarianceDble < 0 {
@@ -271,6 +301,48 @@ class HomeViewModel: ObservableObject {
         }
         runPaceVariance = String(format: "%.1f", runPaceVarianceDble)
     }
+    
+//    private func calculateSpeedVariances() {
+//        guard let swimLatestDble = Double(swimSpeedLatest), let swimFastestDble = Double(swimSpeedFastest) else { return }
+//        let swimVarianceDble = ((swimLatestDble - swimFastestDble)/swimLatestDble) * 100
+//        if swimVarianceDble < 0 {
+//            isSwimSpeedNegative = true
+//        }
+//        swimSpeedVariance = String(format: "%.1f", swimVarianceDble)
+//        guard let swimPaceLatestDble = Double(swimPaceLatest), let swimPaceFastestDble = Double(swimPaceFastest) else { return }
+//        let swimPaceVarianceDble = ((swimPaceFastestDble - swimPaceLatestDble)/swimPaceFastestDble) * 100
+//        if swimPaceVarianceDble < 0 {
+//            isSwimPaceNegative = true
+//        }
+//        swimPaceVariance = String(format: "%.1f", swimPaceVarianceDble)
+        
+//        guard let rideLatestDble = Double(rideSpeedLatest), let rideFastestDble = Double(rideSpeedFastest) else { return }
+//        let rideVarianceDble = ((rideLatestDble - rideFastestDble)/rideLatestDble) * 100
+//        if rideVarianceDble < 0 {
+//            isRideSpeedNegative = true
+//        }
+//        rideSpeedVariance = String(format: "%.1f", rideVarianceDble)
+//        guard let ridePaceLatestDble = Double(ridePaceLatest), let ridePaceFastestDble = Double(ridePaceFastest) else { return }
+//        let ridePaceVarianceDble = ((ridePaceFastestDble - ridePaceLatestDble)/ridePaceFastestDble) * 100
+//        if ridePaceVarianceDble < 0 {
+//            isRidePaceNegative = true
+//        }
+//        ridePaceVariance = String(format: "%.1f", ridePaceVarianceDble)
+        
+//        guard let runLatestDble = Double(runSpeedLatest), let runFastestDble = Double(runSpeedFastest) else { return }
+//        let runVarianceDble = ((runLatestDble - runFastestDble)/runLatestDble) * 100
+//        if runVarianceDble < 0 {
+//            isRunSpeedNegative = true
+//        }
+//        runSpeedVariance = String(format: "%.1f", runVarianceDble)
+//
+//        guard let runPaceLatestDble = Double(runPaceLatest), let runPaceFastestDble = Double(runPaceFastest) else { return }
+//        let runPaceVarianceDble = ((runPaceFastestDble - runPaceLatestDble)/runPaceFastestDble) * 100
+//        if runPaceVarianceDble < 0 {
+//            isRunPaceNegative = true
+//        }
+//        runPaceVariance = String(format: "%.1f", runPaceVarianceDble)
+//    }
     
     
 }
