@@ -45,6 +45,7 @@
 		9BAAACFC2760D95800D0ECA7 /* LoginViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAACFB2760D95700D0ECA7 /* LoginViewModel_Tests.swift */; };
 		9BAAACFE2760E60900D0ECA7 /* TrainingArrayViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAACFD2760E60900D0ECA7 /* TrainingArrayViewModel_Tests.swift */; };
 		9BAAAD002762619300D0ECA7 /* ScheduleViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAACFF2762619300D0ECA7 /* ScheduleViewModel_Tests.swift */; };
+		9BAAAD022763439D00D0ECA7 /* SessionViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAAD012763439D00D0ECA7 /* SessionViewModel_Tests.swift */; };
 		9BC4CC87275D0A62003260AC /* HalfModalAlerts_Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC4CC86275D0A62003260AC /* HalfModalAlerts_Settings.swift */; };
 		9BC4CC89275D0B4D003260AC /* ActionSheets_Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC4CC88275D0B4D003260AC /* ActionSheets_Settings.swift */; };
 		9BC943062743B0C400D57EF5 /* NoPlansView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC943052743B0C400D57EF5 /* NoPlansView.swift */; };
@@ -142,6 +143,7 @@
 		9BAAACFB2760D95700D0ECA7 /* LoginViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel_Tests.swift; sourceTree = "<group>"; };
 		9BAAACFD2760E60900D0ECA7 /* TrainingArrayViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingArrayViewModel_Tests.swift; sourceTree = "<group>"; };
 		9BAAACFF2762619300D0ECA7 /* ScheduleViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel_Tests.swift; sourceTree = "<group>"; };
+		9BAAAD012763439D00D0ECA7 /* SessionViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel_Tests.swift; sourceTree = "<group>"; };
 		9BC4CC86275D0A62003260AC /* HalfModalAlerts_Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalAlerts_Settings.swift; sourceTree = "<group>"; };
 		9BC4CC88275D0B4D003260AC /* ActionSheets_Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheets_Settings.swift; sourceTree = "<group>"; };
 		9BC943052743B0C400D57EF5 /* NoPlansView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPlansView.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				9BAAACFD2760E60900D0ECA7 /* TrainingArrayViewModel_Tests.swift */,
 				9BAAACFB2760D95700D0ECA7 /* LoginViewModel_Tests.swift */,
 				9BAAACFF2762619300D0ECA7 /* ScheduleViewModel_Tests.swift */,
+				9BAAAD012763439D00D0ECA7 /* SessionViewModel_Tests.swift */,
 			);
 			path = TriSprint_Tests;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				9BAAACF52760D85700D0ECA7 /* TriSprint_Tests.swift in Sources */,
 				9BAAACFE2760E60900D0ECA7 /* TrainingArrayViewModel_Tests.swift in Sources */,
 				9BAAAD002762619300D0ECA7 /* ScheduleViewModel_Tests.swift in Sources */,
+				9BAAAD022763439D00D0ECA7 /* SessionViewModel_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
