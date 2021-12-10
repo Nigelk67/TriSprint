@@ -35,7 +35,6 @@ class SessionViewModel_Tests: XCTestCase {
         formatter.locale = Locale(identifier: "en_US")
         var formattedDistanceInMi = "milesbeforeformatting"
         var trimmedString = "miles"
-        
         for _ in 0..<loopCount {
             let kilometersRandom = Double.random(in: 20..<200)
             let kmDistance = Measurement(value: kilometersRandom, unit: UnitLength.kilometers)
@@ -47,6 +46,20 @@ class SessionViewModel_Tests: XCTestCase {
         
     }
   
+    func test_formatDisplayTime_shouldShowTime() {
+        let loopCount = Int.random(in: 1..<10)
+        //let secs = Int.random(in: 120..<10000)
+        for _ in 0..<loopCount {
+            let secs = Int.random(in: 120..<10000)
+            let hours = String(format: "%02d",(secs/3600))
+            let minutes = String(format: "%02d", ((secs % 3600) / 60))
+            let seconds = String(format: "%02d", ((secs % 3600) % 60))
+            let timeString = "\(hours):\(minutes):\(seconds)"
+            let formattedTime = FormatDisplay.time(secs)
+            XCTAssertEqual(timeString, formattedTime)
+        }
+        
+    }
     
 
 }
