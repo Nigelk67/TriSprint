@@ -13,9 +13,10 @@ struct MainView: View {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.mainButton)
         UISegmentedControl.appearance().backgroundColor = UIColor(Color.accentButton.opacity(0.5))
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
+        UITabBar.appearance().barTintColor = UIColor(Color.mainBackground)
         UITabBar.appearance().backgroundColor = UIColor(Color.mainBackground)
     }
-    //@AppStorage(AppStor.signedIn.rawValue) var isSignedIn = false
+
     @EnvironmentObject var loginVm: LoginViewModel
    
     var body: some View {

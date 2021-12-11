@@ -104,6 +104,8 @@ struct EnterManualView: View {
 }
 
 extension EnterManualView {
+    
+    //MARK: Views
     private var savedConfirmationAlert: Alert {
         Alert(title: Text("SAVED!"), message: Text("This session has been saved"), dismissButton: .default(Text("OK"), action: {
             if isBrick {
@@ -229,6 +231,8 @@ extension EnterManualView {
         .modifier(GreenButton())
         .disabled(planComplete ? true : false)
     }
+    
+    //MARK: Functions
     
     private func calculatePace(time: String, distance: String) -> String {
         let paceDble = (Double(time) ?? 0) / (Double(distance) ?? 0)
