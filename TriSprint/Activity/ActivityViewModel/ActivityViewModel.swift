@@ -26,32 +26,61 @@ class ActivityViewModel: ObservableObject {
     @Published var swimDateText = ""
     @Published var swimPaceText = "0.00"
     
+    func updateLabelsInKm(distance: Double, duration: Int16, timestamp: Date?, distanceLabel: inout String, timeLabel: inout String, speedLabel: inout String, paceLabel: inout String, dateLabel: inout String) {
+        let formattedDistance = FormatDisplay.kmDistance(distance)
+        let formattedTime = FormatDisplay.time(Int(duration))
+        let formattedPace = FormatDisplay.pacePerKmDble(distance: distance, seconds: duration, outputUnit: UnitSpeed.minutesPerKilometer)
+        let formattedSpeed = FormatDisplay.speedKmph(distance: distance, seconds: duration, outputUnit: UnitSpeed.kilometersPerHour)
+        let formattedDate = FormatDisplay.date(timestamp)
+        distanceLabel = "\(formattedDistance)"
+        timeLabel = "\(formattedTime)"
+        speedLabel = "\(formattedSpeed)"
+        paceLabel = "\(formattedPace)"
+        dateLabel = "\(formattedDate)"
+    }
+    
+    func updateLabelsInMiles(distance: Double, duration: Int16, timestamp: Date?, distanceLabel: inout String, timeLabel: inout String, speedLabel: inout String, paceLabel: inout String, dateLabel: inout String) {
+        let formattedDistance = FormatDisplay.distanceInMiles(distance)
+        let formattedTime = FormatDisplay.time(Int(duration))
+        let distanceInMiles = distance / 1.609
+        let formattedPace = FormatDisplay.pacePerMileDble(distance: distanceInMiles, seconds: duration, outputUnit: UnitSpeed.minutesPerMile)
+        let formattedSpeed = FormatDisplay.speedMph(distance: distanceInMiles, seconds: duration, outputUnit: UnitSpeed.milesPerHour)
+        let formattedDate = FormatDisplay.date(timestamp)
+        distanceLabel = "\(formattedDistance)"
+        timeLabel = "\(formattedTime)"
+        speedLabel = "\(formattedPace)"
+        paceLabel = "\(formattedSpeed)"
+        dateLabel = "\(formattedDate)"
+    }
     
     func updateRides(ride: Ride) {
         imageName = TrainingImageNames.trainingRide.rawValue
         if self.measure == Measure.kilometers.rawValue {
-            let formattedDistance = FormatDisplay.kmDistance(ride.distance)
-            let formattedTime = FormatDisplay.time(Int(ride.duration))
-            let formattedPace = FormatDisplay.pacePerKmDble(distance: ride.distance, seconds: ride.duration, outputUnit: UnitSpeed.minutesPerKilometer)
-            let formattedSpeed = FormatDisplay.speedKmph(distance: ride.distance, seconds: ride.duration, outputUnit: UnitSpeed.kilometersPerHour)
-            let formattedDate = FormatDisplay.date(ride.timestamp)
-            rideDistanceText = "\(formattedDistance)"
-            rideTimeText = "\(formattedTime)"
-            rideSpeedText = "\(formattedSpeed)"
-            ridePaceText = "\(formattedPace)"
-            rideDateText = "\(formattedDate)"
+            updateLabelsInKm(distance: ride.distance, duration: ride.duration, timestamp: ride.timestamp, distanceLabel: &rideDistanceText, timeLabel: &rideTimeText, speedLabel: &rideSpeedText, paceLabel: &ridePaceText, dateLabel: &rideDateText)
+            
+//            let formattedDistance = FormatDisplay.kmDistance(ride.distance)
+//            let formattedTime = FormatDisplay.time(Int(ride.duration))
+//            let formattedPace = FormatDisplay.pacePerKmDble(distance: ride.distance, seconds: ride.duration, outputUnit: UnitSpeed.minutesPerKilometer)
+//            let formattedSpeed = FormatDisplay.speedKmph(distance: ride.distance, seconds: ride.duration, outputUnit: UnitSpeed.kilometersPerHour)
+//            let formattedDate = FormatDisplay.date(ride.timestamp)
+//            rideDistanceText = "\(formattedDistance)"
+//            rideTimeText = "\(formattedTime)"
+//            rideSpeedText = "\(formattedSpeed)"
+//            ridePaceText = "\(formattedPace)"
+//            rideDateText = "\(formattedDate)"
         } else {
-            let formattedDistance = FormatDisplay.distanceInMiles(ride.distance)
-            let formattedTime = FormatDisplay.time(Int(ride.duration))
-            let distanceInMiles = ride.distance / 1.609
-            let formattedPace = FormatDisplay.pacePerMileDble(distance: distanceInMiles, seconds: ride.duration, outputUnit: UnitSpeed.minutesPerMile)
-            let formattedSpeed = FormatDisplay.speedMph(distance: distanceInMiles, seconds: ride.duration, outputUnit: UnitSpeed.milesPerHour)
-            let formattedDate = FormatDisplay.date(ride.timestamp)
-            rideDistanceText = "\(formattedDistance)"
-            rideTimeText = "\(formattedTime)"
-            ridePaceText = "\(formattedPace)"
-            rideSpeedText = "\(formattedSpeed)"
-            rideDateText = "\(formattedDate)"
+            updateLabelsInMiles(distance: ride.distance, duration: ride.duration, timestamp: ride.timestamp, distanceLabel: &rideDistanceText, timeLabel: &rideTimeText, speedLabel: &rideSpeedText, paceLabel: &ridePaceText, dateLabel: &rideDateText)
+//            let formattedDistance = FormatDisplay.distanceInMiles(ride.distance)
+//            let formattedTime = FormatDisplay.time(Int(ride.duration))
+//            let distanceInMiles = ride.distance / 1.609
+//            let formattedPace = FormatDisplay.pacePerMileDble(distance: distanceInMiles, seconds: ride.duration, outputUnit: UnitSpeed.minutesPerMile)
+//            let formattedSpeed = FormatDisplay.speedMph(distance: distanceInMiles, seconds: ride.duration, outputUnit: UnitSpeed.milesPerHour)
+//            let formattedDate = FormatDisplay.date(ride.timestamp)
+//            rideDistanceText = "\(formattedDistance)"
+//            rideTimeText = "\(formattedTime)"
+//            ridePaceText = "\(formattedPace)"
+//            rideSpeedText = "\(formattedSpeed)"
+//            rideDateText = "\(formattedDate)"
         }
     }
     
@@ -71,7 +100,8 @@ class ActivityViewModel: ObservableObject {
         } else {
             let formattedDistance = FormatDisplay.distanceInMiles(run.distance)
             let formattedTime = FormatDisplay.time(Int(run.duration))
-            let distanceInMiles = run.distance / 1.609
+            let distanceInKm = run.distance / 1000
+            let distanceInMiles = distanceInKm / 1.609
             let formattedSpeed = FormatDisplay.speedMph(distance: distanceInMiles, seconds: run.duration, outputUnit: UnitSpeed.milesPerHour)
             let formattedPace = FormatDisplay.pacePerMileDble(distance: distanceInMiles, seconds: run.duration, outputUnit: UnitSpeed.minutesPerMile)
             let formattedDate = FormatDisplay.date(run.timestamp)
@@ -99,7 +129,8 @@ class ActivityViewModel: ObservableObject {
         } else {
             let formattedDistance = FormatDisplay.distanceInMiles(swim.distance)
             let formattedTime = FormatDisplay.time(Int(swim.duration))
-            let distanceInMiles = swim.distance / 1.609
+            let distanceInKm = swim.distance / 1000
+            let distanceInMiles = distanceInKm / 1.609
             let formattedSpeed = FormatDisplay.speedMph(distance: distanceInMiles, seconds: swim.duration, outputUnit: UnitSpeed.milesPerHour)
             let formattedPace = FormatDisplay.pacePerMileDble(distance: distanceInMiles, seconds: swim.duration, outputUnit: UnitSpeed.minutesPerMile)
             let formattedDate = FormatDisplay.date(swim.timestamp)
