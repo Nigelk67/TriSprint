@@ -16,10 +16,10 @@ struct FormatDisplay {
     static func distanceInMiles(_ distance: Double) -> String {
         let formatter = MeasurementFormatter()
         formatter.unitOptions = [.providedUnit]
-        let miles = distance / 1.609
-        let distance = Measurement(value: miles, unit: UnitLength.miles)
+        let miles = (distance / 1000) / 1.609
+        let distanceInMiles = Measurement(value: miles, unit: UnitLength.miles)
         formatter.unitStyle = .short
-        return formatter.string(from: (distance))
+        return formatter.string(from: (distanceInMiles))
     }
     
     static func kmDistance(_ distance: Double) -> String {
@@ -27,7 +27,7 @@ struct FormatDisplay {
         formatter.unitOptions = [.providedUnit]
         let distanceKm = Measurement(value: distance, unit: UnitLength.kilometers)
         formatter.unitStyle = .short
-        return formatter.string(from: (distanceKm))
+        return formatter.string(from: (distanceKm/1000))
     }
     
     static func distanceInKm(_ distance: Measurement<UnitLength>) -> String {

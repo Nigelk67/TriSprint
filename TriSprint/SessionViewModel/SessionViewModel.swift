@@ -168,7 +168,7 @@ class SessionViewModel: ObservableObject {
         if measure == Measure.kilometers.rawValue {
             newRide.distance = locationManager.distance.value
         } else {
-            newRide.distance = (locationManager.distance.value * 1.609)
+            newRide.distance = (locationManager.distance.value / 1.609)
         }
         newRide.duration = Int16(secs)
         newRide.timestamp = Date()
@@ -193,7 +193,7 @@ class SessionViewModel: ObservableObject {
         if measure == Measure.kilometers.rawValue {
             newRun.distance = locationManager.distance.value
         } else {
-            newRun.distance = (locationManager.distance.value * 1.609)
+            newRun.distance = (locationManager.distance.value / 1.609)
         }
         newRun.duration = Int16(secs)
         newRun.timestamp = Date()
