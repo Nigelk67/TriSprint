@@ -55,11 +55,6 @@ struct EnterManualView: View {
                         .foregroundColor(Color.accentButton)
                         .font(.system(size: 26, weight: .medium, design: .rounded))
                         .padding()
-//                    Button {
-//                        showRatingsView = true
-//                    } label: {
-//                        Text("TO RATINGS VIEW")
-//                    }
 
                     Spacer()
                     

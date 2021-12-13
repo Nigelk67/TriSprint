@@ -143,22 +143,23 @@ class SessionViewModel: ObservableObject {
         showSpinner()
         
         guard let distanceDbl = Double(distance) else { return }
-        let distanceInKm: Double
+        let distanceInMtrs: Double
+
         if measure == Measure.kilometers.rawValue {
-            distanceInKm = distanceDbl
+            distanceInMtrs = distanceDbl * 1000
         } else {
-            distanceInKm = (distanceDbl * 1.609)
+            distanceInMtrs = (distanceDbl * 1609)
         }
         guard let durationDbl = Double(duration) else { return }
         let durationInt = Int16(durationDbl)
         let secs = durationInt * 60
        
         if session == Sessions.ride.rawValue {
-            saveRideToCoreData(distance: distanceInKm, secs: secs)
+            saveRideToCoreData(distance: distanceInMtrs, secs: secs)
         } else if session == Sessions.run.rawValue {
-            saveRunToCoreData(distance: distanceInKm, secs: secs)
+            saveRunToCoreData(distance: distanceInMtrs, secs: secs)
         } else if session == Sessions.swim.rawValue {
-            saveSwimToCoreData(distance: distanceInKm, secs: secs)
+            saveSwimToCoreData(distance: distanceInMtrs, secs: secs)
         }
     }
     
