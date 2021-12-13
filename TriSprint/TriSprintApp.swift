@@ -14,7 +14,11 @@ struct TriSprintApp: App {
     
     init() {
         FirebaseApp.configure()
-        
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.mainButton)
+        UISegmentedControl.appearance().backgroundColor = UIColor(Color.accentButton.opacity(0.5))
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
+        UITabBar.appearance().backgroundColor = UIColor(Color.mainBackground)
+        UITabBar.appearance().barTintColor = UIColor(Color.mainBackground)
     }
     
     @StateObject var loginViewModel: LoginViewModel = LoginViewModel()
