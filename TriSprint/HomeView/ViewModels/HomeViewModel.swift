@@ -158,9 +158,9 @@ class HomeViewModel: ObservableObject {
         let latestDist = latest.distance
         let latestDuration = Double(latest.duration)
         if measure == Measure.kilometers.rawValue {
-            swimLatestDistance = latestDist
+            swimLatestDistance = latestDist / 1000
         } else {
-            swimLatestDistance = latestDist / 1.609
+            swimLatestDistance = latestDist / 1609
         }
         swimLatestDurationInHours = latestDuration / 3600
         swimLatestDurationInMins = latestDuration / 60
@@ -171,9 +171,9 @@ class HomeViewModel: ObservableObject {
         let latestDist = latest.distance
         let latestDuration = Double(latest.duration)
         if measure == Measure.kilometers.rawValue {
-            rideLatestDistance = latestDist
+            rideLatestDistance = latestDist / 1000
         } else {
-            rideLatestDistance = latestDist / 1.609
+            rideLatestDistance = latestDist / 1609
         }
         rideLatestDurationInHours = latestDuration / 3600
         rideLatestDurationInMins = latestDuration / 60
@@ -184,9 +184,9 @@ class HomeViewModel: ObservableObject {
         let latestDist = latest.distance
         let latestDuration = Double(latest.duration)
         if measure == Measure.kilometers.rawValue {
-            runLatestDistance = latestDist
+            runLatestDistance = latestDist / 1000
         } else {
-            runLatestDistance = latestDist / 1.609
+            runLatestDistance = latestDist / 1609
         }
         runLatestDurationInHours = latestDuration / 3600
         runLatestDurationInMins = latestDuration / 60
@@ -233,9 +233,9 @@ class HomeViewModel: ObservableObject {
         var distance = Double()
         for each in swims {
             if measure == Measure.kilometers.rawValue {
-                distance = each.distance
+                distance = each.distance / 1000
             } else {
-                distance = each.distance / 1.609
+                distance = each.distance / 1609
             }
             let duration = each.duration
             let durationInMins = each.duration / 60
@@ -257,9 +257,9 @@ class HomeViewModel: ObservableObject {
        
         for each in rides {
             if measure == Measure.kilometers.rawValue {
-                distance = each.distance
+                distance = each.distance / 1000
             } else {
-                distance = each.distance / 1.609
+                distance = each.distance / 1609
             }
             let duration = each.duration
             let durationInMins = each.duration / 60
@@ -282,9 +282,9 @@ class HomeViewModel: ObservableObject {
     
         for each in runs {
             if measure == Measure.kilometers.rawValue {
-                distance = each.distance
+                distance = each.distance / 1000
             } else {
-                distance = each.distance / 1.609
+                distance = each.distance / 1609
             }
             let durationInMins = each.duration / 60
             let duration = each.duration

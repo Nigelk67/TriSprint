@@ -37,9 +37,9 @@ class LineChartViewModel: ObservableObject {
         var paceArray = [Double]()
         for each in swims {
             if measure == Measure.kilometers.rawValue {
-                distance = each.distance
+                distance = each.distance / 1000
             } else {
-                distance = each.distance / 1.609
+                distance = each.distance / 1609
             }
             let durationInSecs = Double(each.duration)
             let durationInMins = durationInSecs/60
@@ -68,9 +68,9 @@ class LineChartViewModel: ObservableObject {
         var paceArray = [Double]()
         for each in rides {
             if measure == Measure.kilometers.rawValue {
-                distance = each.distance
+                distance = each.distance / 1000
             } else {
-                distance = each.distance / 1.609
+                distance = each.distance / 1609
             }
             let durationInSecs = Double(each.duration)
             let durationInMins = durationInSecs/60
@@ -99,9 +99,9 @@ class LineChartViewModel: ObservableObject {
         var paceArray = [Double]()
         for each in runs {
             if measure == Measure.kilometers.rawValue {
-                distance = each.distance
+                distance = each.distance / 1000
             } else {
-                distance = each.distance / 1.609
+                distance = each.distance / 1609
             }
             let durationInSecs = Double(each.duration)
             let durationInMins = durationInSecs/60
