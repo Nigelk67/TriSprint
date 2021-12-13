@@ -174,7 +174,7 @@ extension MapView {
                     .font(Font.monospacedDigit(.title3)())
             }
             HStack {
-                Text("Speed:")
+                Text("Pace:")
                     .font(.body)
                     .foregroundColor(Color.mainText)
                 Text(sessionVm.paceText)

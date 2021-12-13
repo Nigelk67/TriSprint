@@ -40,8 +40,11 @@ struct FormatDisplay {
     // Shows distance as miles:-
     static func distance(_ distance: Measurement<UnitLength>) -> String {
         let formatter = MeasurementFormatter()
+        formatter.unitOptions = [.providedUnit]
+        let distanceMiles = Measurement(value: distance.value, unit: UnitLength.miles)
         formatter.unitStyle = .short
-        return formatter.string(from: distance)
+        //let distanceKm = distance / 1000
+        return formatter.string(from: distanceMiles/1609)
     }
     
     
@@ -56,7 +59,8 @@ struct FormatDisplay {
     static func pacePerMile(distance: Measurement<UnitLength>, seconds: Int, outputUnit: UnitSpeed) -> String {
         let formatter = MeasurementFormatter()
         formatter.unitOptions = [.providedUnit]
-        let speedMagnitude = seconds != 0 ? Double(seconds / 60) / distance.value : 0
+        let distanceMiles = distance.value/1609
+        let speedMagnitude = seconds != 0 ? Double(seconds / 60) / distanceMiles : 0
         let speed = Measurement(value: speedMagnitude, unit: UnitSpeed.minutesPerMile)
         return formatter.string(from: speed.converted(to: outputUnit))
     }
@@ -64,7 +68,8 @@ struct FormatDisplay {
     static func pacePerKm(distance: Measurement<UnitLength>, seconds: Int, outputUnit: UnitSpeed) -> String {
         let formatter = MeasurementFormatter()
         formatter.unitOptions = [.providedUnit]
-        let speedMagnitude = seconds != 0 ? Double(seconds / 60) / distance.value : 0
+        let distanceKm = distance.value / 1000
+        let speedMagnitude = seconds != 0 ? Double(seconds / 60) / distanceKm : 0
         let speed = Measurement(value: speedMagnitude, unit: UnitSpeed.minutesPerKilometer)
         return formatter.string(from: speed.converted(to: outputUnit))
     }
