@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     
+
     //@AppStorage(AppStor.signedIn.rawValue) var isSignedIn = false
     @EnvironmentObject var loginVm: LoginViewModel
    

@@ -13,7 +13,6 @@ struct WeekView: View {
     var week: Int
     @State private var showDetailView = false
     @ObservedObject var scheduleVm = ScheduleViewModel()
-    //@ObservedObject var sessionVm = SessionViewModel()
     @State private var selectedPlan = Plan(entity: Plan.entity(), insertInto: nil)
     @State private var showBrickDetailView = false
     @State private var showSwimDetailView = false
@@ -70,6 +69,7 @@ struct WeekView: View {
 }
 
 extension WeekView {
+    
     private func setDetailView(session: String) {
         if session == Sessions.rideRun.rawValue {
             showBrickDetailView = true
