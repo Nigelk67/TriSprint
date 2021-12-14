@@ -17,7 +17,8 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var location: CLLocation?
     @Published var distance = Measurement(value: 0, unit: UnitLength.meters)
     @Published var locationList: [CLLocation] = []
-    @State private var mapView = MKMapView()
+    //@State private var mapView = MKMapView()
+    
   //***********
     func checkIfLocationServicesIsEnabled() {
         if CLLocationManager.locationServicesEnabled() {

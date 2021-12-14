@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 import MapKit
+import SwiftUI
 
 class LocationManager: NSObject, ObservableObject {
     
@@ -16,7 +17,8 @@ class LocationManager: NSObject, ObservableObject {
     @Published var distance = Measurement(value: 0, unit: UnitLength.meters)
     @Published var locationList: [CLLocation] = []
     private let mapView = MKMapView()
-    
+    @ObservedObject var mapViewVm = MapViewModel()
+
     
     override init() {
         super.init()
@@ -53,19 +55,20 @@ extension LocationManager: CLLocationManagerDelegate {
             let coordinates = [lastLocation.coordinate, newLocation.coordinate]
               mapView.addOverlay(MKPolyline(coordinates: coordinates, count: 2))
               let region = MKCoordinateRegion(center: newLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
-            mapView.setRegion(region, animated: true)
+              mapView.setRegion(region, animated: true)
           }
           locationList.append(newLocation)
         }
         
     }
+   
 }
 
 extension LocationManager: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         guard let polyline = overlay as? MKPolyline else { return MKOverlayRenderer(overlay: overlay) }
         let renderer = MKPolylineRenderer(polyline: polyline)
-        renderer.strokeColor = .cyan
+        renderer.strokeColor = .green
         renderer.lineWidth = 3
         return renderer
     }
