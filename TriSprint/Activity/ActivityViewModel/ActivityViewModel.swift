@@ -73,7 +73,7 @@ class ActivityViewModel: ObservableObject {
         let formattedTime = FormatDisplay.time(duration)
         //let distanceInMiles = distance / 1.609
         let formattedPace = FormatDisplay.pacePerMileDble(distance: distanceInMtrs, seconds: duration, outputUnit: UnitSpeed.minutesPerMile)
-        let formattedSpeed = FormatDisplay.speedMph(distance: distanceInMtrs, seconds: duration, outputUnit: UnitSpeed.milesPerHour)
+        let formattedSpeed = FormatDisplay.speedMph(distance: distanceInMtrs, seconds: duration)
         let formattedDate = FormatDisplay.date(timestamp)
         distanceLabel = "\(formattedDistance)"
         timeLabel = "\(formattedTime)"
