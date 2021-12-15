@@ -117,7 +117,7 @@ extension HorizontalAlignment {
 
 enum MapDetails {
     static let startingLocation = CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054)
-    static let startingSpan = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+    static let startingSpan = MKCoordinateSpan(latitudeDelta: 8, longitudeDelta: 8)
 }
 
 
