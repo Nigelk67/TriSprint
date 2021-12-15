@@ -40,7 +40,7 @@ struct TriSprintApp: App {
             }
             if newScene == .active {
                 let diffInSecs = Date().timeIntervalSince(sessionVm.timeAtBackground)
-                let currentTime = sessionVm.secs + Int(diffInSecs)
+                let currentTime = sessionVm.secs + Double(diffInSecs)
                 if currentTime >= 0 {
                     withAnimation(.default) {
                         sessionVm.secs = currentTime
