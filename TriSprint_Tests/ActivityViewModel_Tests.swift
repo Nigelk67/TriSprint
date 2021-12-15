@@ -65,5 +65,22 @@ class ActivityViewModel_Tests: XCTestCase {
         }
         XCTAssertEqual(trimmedString, formattedPace)
     }
+    
+    func test_formatDisplayKmph_shouldShowKmSpeedString() {
+        let loopCount: Int = Int.random(in: 1..<20)
+        var formattedSpeed = ""
+        var trimmedString = ""
+        for _ in 0..<loopCount {
+            let mtrsRandom = Double.random(in: 1000..<50000)
+            let km = mtrsRandom / 1000
+            let seconds = Double.random(in: 1000..<5000)
+            let hour = seconds / 3600
+            let speedInKm = km / hour
+            let speedString = String(format: "%.3f", speedInKm)
+            trimmedString = speedString + " km/hr"
+            formattedSpeed = FormatDisplay.speedKmph(distance: mtrsRandom, seconds: seconds)
+        }
+        XCTAssertEqual(trimmedString, formattedSpeed)
+    }
 
 }

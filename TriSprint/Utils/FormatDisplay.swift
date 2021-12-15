@@ -85,7 +85,8 @@ struct FormatDisplay {
         return formatter.string(from: speed)
     }
     
-    static func speedKmph(distance: Double, seconds: Double, outputUnit: UnitSpeed) -> String {
+    static func speedKmph(distance: Double, seconds: Double) -> String {
+   // static func speedKmph(distance: Double, seconds: Double, outputUnit: UnitSpeed) -> String {
         let formatter = MeasurementFormatter()
         formatter.unitOptions = [.providedUnit]
         let hourTime = (seconds / 3600)
