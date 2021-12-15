@@ -21,6 +21,7 @@ class SessionViewModel: ObservableObject {
     @Published var isSaving: Bool = false
     @Published var showConfirmationPopup: Bool = false
     @Published var showRatingsView = false
+    @Published var timeAtBackground: Date = Date()
     let userDefaults = UserDefaults.standard
     @State private var ride: Ride?
     @State private var run: Run?
@@ -39,6 +40,7 @@ class SessionViewModel: ObservableObject {
     
     func updateDisplay() {
         if self.measure == "Kilometers" {
+            print("Nige: secs = \(secs)")
             let formattedDistance = FormatDisplay.distanceInKm(locationManager.distance)
             let formattedTime = FormatDisplay.time(secs)
             let formattedPace = FormatDisplay.pacePerKm(distance: locationManager.distance, seconds: secs, outputUnit: UnitSpeed.minutesPerKilometer)

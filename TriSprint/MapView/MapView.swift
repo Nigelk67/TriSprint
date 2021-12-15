@@ -18,6 +18,7 @@ struct MapView: View {
     @StateObject private var mapVm = MapViewModel()
     @StateObject private var sessionVm = SessionViewModel()
     @ObservedObject private var scheduleVm = ScheduleViewModel()
+    @ObservedObject private  var locationManager = LocationManager()
     @Environment(\.presentationMode) private var presentationMode
     @State private var hasStarted: Bool = false
     @State private var shouldShowStopActions = false
@@ -50,9 +51,8 @@ struct MapView: View {
                     .font(.system(size: 26, weight: .medium, design: .rounded))
                     
                 TargetStack(plan: $plan, targetTime: $targetTime, targetRpe: $targetRpe, showDrillsPopup: $showDrillsPopup)
-                
+                                
                 Map(coordinateRegion: $mapVm.region, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(.follow))
-                    .accentColor(Color.mainButton)
                 
                 trackingMeasures
                 

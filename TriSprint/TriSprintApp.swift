@@ -12,6 +12,10 @@ import Firebase
 struct TriSprintApp: App {
     let persistenceController = PersistenceController.shared
     
+    //For background identfication:
+    @StateObject var sessionVm = SessionViewModel()
+    @Environment(\.scenePhase) var scene
+    
     init() {
         FirebaseApp.configure()
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.mainButton)
@@ -28,6 +32,25 @@ struct TriSprintApp: App {
             MainView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(loginViewModel)
+                .environmentObject(sessionVm)
+        }
+        .onChange(of: scene) { newScene in
+            if newScene == .background {
+                sessionVm.timeAtBackground = Date()
+              
+                print("Nige: timeAtBg = \(sessionVm.timeAtBackground)")
+            }
+            if newScene == .active {
+                let diffInSecs = Date().timeIntervalSince(sessionVm.timeAtBackground)
+                let currentTime = sessionVm.secs + Int(diffInSecs)
+                if currentTime >= 0 {
+                    withAnimation(.default) {
+                        sessionVm.secs = currentTime
+                        print("Nige: currentTime = \(currentTime), secs = \(sessionVm.secs)")
+                        sessionVm.updateDisplay()
+                    }
+                }
+            }
         }
     }
 }

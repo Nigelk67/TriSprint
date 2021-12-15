@@ -16,6 +16,7 @@ class LocationManager: NSObject, ObservableObject {
     @Published var location: CLLocation?
     @Published var distance = Measurement(value: 0, unit: UnitLength.meters)
     @Published var locationList: [CLLocation] = []
+    @Published var lineCoordinates: [CLLocationCoordinate2D] = []
     private let mapView = MKMapView()
     @ObservedObject var mapViewVm = MapViewModel()
 
@@ -40,7 +41,6 @@ class LocationManager: NSObject, ObservableObject {
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         guard let location = locations.last else { return }
         DispatchQueue.main.async {
             self.location = location
@@ -52,8 +52,9 @@ extension LocationManager: CLLocationManagerDelegate {
           if let lastLocation = locationList.last {
             let delta = newLocation.distance(from: lastLocation)
             distance = distance + Measurement(value: delta, unit: UnitLength.meters)
-            let coordinates = [lastLocation.coordinate, newLocation.coordinate]
-              mapView.addOverlay(MKPolyline(coordinates: coordinates, count: 2))
+            //let coordinates = [lastLocation.coordinate, newLocation.coordinate]
+              lineCoordinates = [lastLocation.coordinate, newLocation.coordinate]
+              mapView.addOverlay(MKPolyline(coordinates: lineCoordinates, count: 2))
               let region = MKCoordinateRegion(center: newLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
               mapView.setRegion(region, animated: true)
           }
