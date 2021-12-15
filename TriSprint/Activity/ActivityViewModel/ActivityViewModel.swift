@@ -55,9 +55,9 @@ class ActivityViewModel: ObservableObject {
     }
     
     
-    func updateLabelsInKm(distanceInMtrs: Double, duration: Int16, timestamp: Date?, distanceLabel: inout String, timeLabel: inout String, speedLabel: inout String, paceLabel: inout String, dateLabel: inout String) {
+    func updateLabelsInKm(distanceInMtrs: Double, duration: Double, timestamp: Date?, distanceLabel: inout String, timeLabel: inout String, speedLabel: inout String, paceLabel: inout String, dateLabel: inout String) {
         let formattedDistance = FormatDisplay.kmDistance(distanceInMtrs)
-        let formattedTime = FormatDisplay.time(Int(duration))
+        let formattedTime = FormatDisplay.time(duration)
         let formattedPace = FormatDisplay.pacePerKmDble(distance: distanceInMtrs, seconds: duration, outputUnit: UnitSpeed.minutesPerKilometer)
         let formattedSpeed = FormatDisplay.speedKmph(distance: distanceInMtrs, seconds: duration, outputUnit: UnitSpeed.kilometersPerHour)
         let formattedDate = FormatDisplay.date(timestamp)
@@ -68,9 +68,9 @@ class ActivityViewModel: ObservableObject {
         dateLabel = "\(formattedDate)"
     }
     
-    func updateLabelsInMiles(distanceInMtrs: Double, duration: Int16, timestamp: Date?, distanceLabel: inout String, timeLabel: inout String, speedLabel: inout String, paceLabel: inout String, dateLabel: inout String) {
+    func updateLabelsInMiles(distanceInMtrs: Double, duration: Double, timestamp: Date?, distanceLabel: inout String, timeLabel: inout String, speedLabel: inout String, paceLabel: inout String, dateLabel: inout String) {
         let formattedDistance = FormatDisplay.distanceInMiles(distanceInMtrs)
-        let formattedTime = FormatDisplay.time(Int(duration))
+        let formattedTime = FormatDisplay.time(duration)
         //let distanceInMiles = distance / 1.609
         let formattedPace = FormatDisplay.pacePerMileDble(distance: distanceInMtrs, seconds: duration, outputUnit: UnitSpeed.minutesPerMile)
         let formattedSpeed = FormatDisplay.speedMph(distance: distanceInMtrs, seconds: duration, outputUnit: UnitSpeed.milesPerHour)

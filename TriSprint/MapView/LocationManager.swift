@@ -19,7 +19,6 @@ class LocationManager: NSObject, ObservableObject {
     @Published var lineCoordinates: [CLLocationCoordinate2D] = []
     private let mapView = MKMapView()
     @ObservedObject var mapViewVm = MapViewModel()
-
     
     override init() {
         super.init()
