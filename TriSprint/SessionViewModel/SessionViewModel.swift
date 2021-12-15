@@ -11,7 +11,7 @@ class SessionViewModel: ObservableObject {
     
     @StateObject private var mapVm = MapViewModel()
     @ObservedObject private var locationManager = LocationManager()
-    @Published var secs = 0
+    @Published var secs: Double = 0
     @Published var timer: Timer?
     @Published var timeText: String = "00:00:00"
     @Published var distanceText: String = "0.00"
@@ -21,6 +21,7 @@ class SessionViewModel: ObservableObject {
     @Published var isSaving: Bool = false
     @Published var showConfirmationPopup: Bool = false
     @Published var showRatingsView = false
+    @Published var timeAtBackground: Date = Date()
     let userDefaults = UserDefaults.standard
     @State private var ride: Ride?
     @State private var run: Run?
@@ -39,6 +40,7 @@ class SessionViewModel: ObservableObject {
     
     func updateDisplay() {
         if self.measure == "Kilometers" {
+            print("Nige: secs = \(secs)")
             let formattedDistance = FormatDisplay.distanceInKm(locationManager.distance)
             let formattedTime = FormatDisplay.time(secs)
             let formattedPace = FormatDisplay.pacePerKm(distance: locationManager.distance, seconds: secs, outputUnit: UnitSpeed.minutesPerKilometer)
@@ -143,33 +145,38 @@ class SessionViewModel: ObservableObject {
         showSpinner()
         
         guard let distanceDbl = Double(distance) else { return }
-        let distanceInKm: Double
+        let distanceInMtrs: Double
+
         if measure == Measure.kilometers.rawValue {
-            distanceInKm = distanceDbl
+            distanceInMtrs = distanceDbl * 1000
         } else {
-            distanceInKm = (distanceDbl * 1.609)
+            distanceInMtrs = (distanceDbl * 1609)
         }
         guard let durationDbl = Double(duration) else { return }
-        let durationInt = Int16(durationDbl)
-        let secs = durationInt * 60
+        //let durationInt = Int16(durationDbl)
+        let secs = durationDbl * 60
        
         if session == Sessions.ride.rawValue {
-            saveRideToCoreData(distance: distanceInKm, secs: secs)
+            saveRideToCoreData(distance: distanceInMtrs, secs: secs)
         } else if session == Sessions.run.rawValue {
-            saveRunToCoreData(distance: distanceInKm, secs: secs)
+            saveRunToCoreData(distance: distanceInMtrs, secs: secs)
         } else if session == Sessions.swim.rawValue {
-            saveSwimToCoreData(distance: distanceInKm, secs: secs)
+            saveSwimToCoreData(distance: distanceInMtrs, secs: secs)
         }
     }
     
     private func saveRideWithLocationsToCoreData() {
         let context = PersistenceController.shared.container.viewContext
         let newRide = Ride(context: context)
-        if measure == Measure.kilometers.rawValue {
-            newRide.distance = locationManager.distance.value
-        } else {
-            newRide.distance = (locationManager.distance.value * 1.609)
-        }
+
+  
+        newRide.distance = locationManager.distance.value
+//        if measure == Measure.kilometers.rawValue {
+//            newRide.distance = locationManager.distance.value
+//        } else {
+//            newRide.distance = (locationManager.distance.value / 1.609)
+//        }
+
         newRide.duration = secs
         newRide.timestamp = Date()
         for location in locationManager.locationList {
@@ -190,11 +197,14 @@ class SessionViewModel: ObservableObject {
     private func saveRunWithLocationsToCoreData() {
         let context = PersistenceController.shared.container.viewContext
         let newRun = Run(context: context)
-        if measure == Measure.kilometers.rawValue {
-            newRun.distance = locationManager.distance.value
-        } else {
-            newRun.distance = (locationManager.distance.value * 1.609)
-        }
+
+        newRun.distance = locationManager.distance.value
+//        if measure == Measure.kilometers.rawValue {
+//            newRun.distance = locationManager.distance.value
+//        } else {
+//            newRun.distance = (locationManager.distance.value / 1.609)
+//        }
+
         newRun.duration = secs
         newRun.timestamp = Date()
         for location in locationManager.locationList {

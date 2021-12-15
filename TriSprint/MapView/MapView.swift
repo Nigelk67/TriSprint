@@ -16,8 +16,10 @@ struct MapView: View {
     @State var targetDesc = ""
     @State var session = ""
     @StateObject private var mapVm = MapViewModel()
-    @StateObject private var sessionVm = SessionViewModel()
+    //@StateObject private var sessionVm = SessionViewModel()
+    @EnvironmentObject var sessionVm: SessionViewModel
     @ObservedObject private var scheduleVm = ScheduleViewModel()
+    @ObservedObject private  var locationManager = LocationManager()
     @Environment(\.presentationMode) private var presentationMode
     @State private var hasStarted: Bool = false
     @State private var shouldShowStopActions = false
@@ -28,6 +30,7 @@ struct MapView: View {
     @State private var planComplete = false
     @State private var showRatingsView = false
     @State private var rating: Int = 0
+    @State private var userTrackingMode: MapUserTrackingMode = .follow
     let measure = CustomUserDefaults.shared.get(key: .measure)
     let rootVC = UIApplication.shared.connectedScenes
         .filter {$0.activationState == .foregroundActive }
@@ -49,9 +52,8 @@ struct MapView: View {
                     .font(.system(size: 26, weight: .medium, design: .rounded))
                     
                 TargetStack(plan: $plan, targetTime: $targetTime, targetRpe: $targetRpe, showDrillsPopup: $showDrillsPopup)
-                
-                Map(coordinateRegion: $mapVm.region, interactionModes: .all, showsUserLocation: true, userTrackingMode: nil)
-                    .accentColor(Color.mainButton)
+                                
+                Map(coordinateRegion: $mapVm.region, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(.follow))
                 
                 trackingMeasures
                 
@@ -174,7 +176,7 @@ extension MapView {
                     .font(Font.monospacedDigit(.title3)())
             }
             HStack {
-                Text("Speed:")
+                Text("Pace:")
                     .font(.body)
                     .foregroundColor(Color.mainText)
                 Text(sessionVm.paceText)

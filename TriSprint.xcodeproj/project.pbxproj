@@ -46,6 +46,7 @@
 		9BAAACFE2760E60900D0ECA7 /* TrainingArrayViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAACFD2760E60900D0ECA7 /* TrainingArrayViewModel_Tests.swift */; };
 		9BAAAD002762619300D0ECA7 /* ScheduleViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAACFF2762619300D0ECA7 /* ScheduleViewModel_Tests.swift */; };
 		9BAAAD022763439D00D0ECA7 /* SessionViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAAD012763439D00D0ECA7 /* SessionViewModel_Tests.swift */; };
+		9BAAAD23276907CB00D0ECA7 /* MapKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAAD22276907CB00D0ECA7 /* MapKitView.swift */; };
 		9BC4CC87275D0A62003260AC /* HalfModalAlerts_Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC4CC86275D0A62003260AC /* HalfModalAlerts_Settings.swift */; };
 		9BC4CC89275D0B4D003260AC /* ActionSheets_Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC4CC88275D0B4D003260AC /* ActionSheets_Settings.swift */; };
 		9BC943062743B0C400D57EF5 /* NoPlansView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC943052743B0C400D57EF5 /* NoPlansView.swift */; };
@@ -144,6 +145,8 @@
 		9BAAACFD2760E60900D0ECA7 /* TrainingArrayViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingArrayViewModel_Tests.swift; sourceTree = "<group>"; };
 		9BAAACFF2762619300D0ECA7 /* ScheduleViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel_Tests.swift; sourceTree = "<group>"; };
 		9BAAAD012763439D00D0ECA7 /* SessionViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel_Tests.swift; sourceTree = "<group>"; };
+		9BAAAD212768D98700D0ECA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9BAAAD22276907CB00D0ECA7 /* MapKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitView.swift; sourceTree = "<group>"; };
 		9BC4CC86275D0A62003260AC /* HalfModalAlerts_Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalAlerts_Settings.swift; sourceTree = "<group>"; };
 		9BC4CC88275D0B4D003260AC /* ActionSheets_Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheets_Settings.swift; sourceTree = "<group>"; };
 		9BC943052743B0C400D57EF5 /* NoPlansView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPlansView.swift; sourceTree = "<group>"; };
@@ -353,6 +356,7 @@
 				9BE3C08427465EEB009E1ED3 /* MapView.swift */,
 				9BE3C09A2747BDF7009E1ED3 /* LocationManager.swift */,
 				9BFC7AFD274A7225003C942B /* DrillsView.swift */,
+				9BAAAD22276907CB00D0ECA7 /* MapKitView.swift */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -378,6 +382,7 @@
 		9BF12FDB273D725900A94588 /* TriSprint */ = {
 			isa = PBXGroup;
 			children = (
+				9BAAAD212768D98700D0ECA7 /* Info.plist */,
 				9BF12FDC273D725900A94588 /* TriSprintApp.swift */,
 				9B28677C273FDC7100E856F0 /* MainView.swift */,
 				9BF12FFA273E787B00A94588 /* HomeNavView.swift */,
@@ -653,6 +658,7 @@
 				9BF12FF2273D819900A94588 /* Extensions.swift in Sources */,
 				9BE3C09B2747BDF7009E1ED3 /* LocationManager.swift in Sources */,
 				9BAAACE627609F1200D0ECA7 /* Mail_Wrapper.swift in Sources */,
+				9BAAAD23276907CB00D0ECA7 /* MapKitView.swift in Sources */,
 				9BFC7B50274FEC82003C942B /* PieChartModel.swift in Sources */,
 				9BF12FF9273E705000A94588 /* BikeBackground.swift in Sources */,
 				9B0C640127561BA600257DF1 /* LineChartViewModel.swift in Sources */,
@@ -905,6 +911,7 @@
 				DEVELOPMENT_TEAM = 2FDNM75M67;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TriSprint/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need to track your location to determine your distance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -937,6 +944,7 @@
 				DEVELOPMENT_TEAM = 2FDNM75M67;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TriSprint/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need to track your location to determine your distance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
