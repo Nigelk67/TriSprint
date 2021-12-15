@@ -40,7 +40,6 @@ class SessionViewModel: ObservableObject {
     
     func updateDisplay() {
         if self.measure == "Kilometers" {
-            print("Nige: secs = \(secs)")
             let formattedDistance = FormatDisplay.distanceInKm(locationManager.distance)
             let formattedTime = FormatDisplay.time(secs)
             let formattedPace = FormatDisplay.pacePerKm(distance: locationManager.distance, seconds: secs, outputUnit: UnitSpeed.minutesPerKilometer)
@@ -153,7 +152,7 @@ class SessionViewModel: ObservableObject {
             distanceInMtrs = (distanceDbl * 1609)
         }
         guard let durationDbl = Double(duration) else { return }
-        //let durationInt = Int16(durationDbl)
+       
         let secs = durationDbl * 60
        
         if session == Sessions.ride.rawValue {
@@ -169,11 +168,6 @@ class SessionViewModel: ObservableObject {
         let context = PersistenceController.shared.container.viewContext
         let newRide = Ride(context: context)
         newRide.distance = locationManager.distance.value
-//        if measure == Measure.kilometers.rawValue {
-//            newRide.distance = locationManager.distance.value
-//        } else {
-//            newRide.distance = (locationManager.distance.value / 1.609)
-//        }
         newRide.duration = secs
         newRide.timestamp = Date()
         for location in locationManager.locationList {
@@ -195,11 +189,6 @@ class SessionViewModel: ObservableObject {
         let context = PersistenceController.shared.container.viewContext
         let newRun = Run(context: context)
         newRun.distance = locationManager.distance.value
-//        if measure == Measure.kilometers.rawValue {
-//            newRun.distance = locationManager.distance.value
-//        } else {
-//            newRun.distance = (locationManager.distance.value / 1.609)
-//        }
         newRun.duration = secs
         newRun.timestamp = Date()
         for location in locationManager.locationList {

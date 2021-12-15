@@ -38,7 +38,7 @@ class SessionViewModel_Tests: XCTestCase {
         for _ in 0..<loopCount {
             let kilometersRandom = Double.random(in: 20..<200)
             let kmDistance = Measurement(value: kilometersRandom, unit: UnitLength.kilometers)
-            let miString = formatter.string(from: kmDistance)
+            let miString = formatter.string(from: kmDistance/1000)
             trimmedString = miString.replacingOccurrences(of: " ", with: "")
             formattedDistanceInMi = FormatDisplay.distance(kmDistance)
         }
@@ -52,10 +52,11 @@ class SessionViewModel_Tests: XCTestCase {
         for _ in 0..<loopCount {
             let secs = Int.random(in: 120..<10000)
             let hours = String(format: "%02d",(secs/3600))
-            let minutes = String(format: "%02d", ((secs % 3600) / 60))
-            let seconds = String(format: "%02d", ((secs % 3600) % 60))
+            let minutes = String(format: "%02d", (secs % 3600) / 60)
+            let seconds = String(format: "%02d", ((secs % 60)))
             let timeString = "\(hours):\(minutes):\(seconds)"
-            let formattedTime = FormatDisplay.time(secs)
+            let formattedTime = FormatDisplay.time(Double(secs))
+    
             XCTAssertEqual(timeString, formattedTime)
         }
         
