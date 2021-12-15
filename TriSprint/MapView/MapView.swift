@@ -16,7 +16,8 @@ struct MapView: View {
     @State var targetDesc = ""
     @State var session = ""
     @StateObject private var mapVm = MapViewModel()
-    @StateObject private var sessionVm = SessionViewModel()
+    //@StateObject private var sessionVm = SessionViewModel()
+    @EnvironmentObject var sessionVm: SessionViewModel
     @ObservedObject private var scheduleVm = ScheduleViewModel()
     @ObservedObject private  var locationManager = LocationManager()
     @Environment(\.presentationMode) private var presentationMode
