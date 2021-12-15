@@ -96,7 +96,7 @@ class SessionViewModel: ObservableObject {
         }
     }
     
-    private func saveRideToCoreData(distance: Double, secs: Int16) {
+    private func saveRideToCoreData(distance: Double, secs: Double) {
         let context = PersistenceController.shared.container.viewContext
         let newRide = Ride(context: context)
         newRide.distance = distance
@@ -110,7 +110,7 @@ class SessionViewModel: ObservableObject {
         ride = newRide
     }
     
-    private func saveRunToCoreData(distance: Double, secs: Int16) {
+    private func saveRunToCoreData(distance: Double, secs: Double) {
         let context = PersistenceController.shared.container.viewContext
         let newRun = Run(context: context)
         newRun.distance = distance
@@ -124,7 +124,7 @@ class SessionViewModel: ObservableObject {
         run = newRun
     }
     
-    private func saveSwimToCoreData(distance: Double, secs: Int16) {
+    private func saveSwimToCoreData(distance: Double, secs: Double) {
         let context = PersistenceController.shared.container.viewContext
         let newSwim = Swim(context: context)
         newSwim.distance = distance
@@ -170,7 +170,7 @@ class SessionViewModel: ObservableObject {
         } else {
             newRide.distance = (locationManager.distance.value * 1.609)
         }
-        newRide.duration = Int16(secs)
+        newRide.duration = secs
         newRide.timestamp = Date()
         for location in locationManager.locationList {
             let locationObject = Location(context: context)
@@ -195,7 +195,7 @@ class SessionViewModel: ObservableObject {
         } else {
             newRun.distance = (locationManager.distance.value * 1.609)
         }
-        newRun.duration = Int16(secs)
+        newRun.duration = secs
         newRun.timestamp = Date()
         for location in locationManager.locationList {
             let locationObject = Location(context: context)
