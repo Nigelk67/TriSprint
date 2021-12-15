@@ -168,12 +168,15 @@ class SessionViewModel: ObservableObject {
     private func saveRideWithLocationsToCoreData() {
         let context = PersistenceController.shared.container.viewContext
         let newRide = Ride(context: context)
+
+  
         newRide.distance = locationManager.distance.value
 //        if measure == Measure.kilometers.rawValue {
 //            newRide.distance = locationManager.distance.value
 //        } else {
 //            newRide.distance = (locationManager.distance.value / 1.609)
 //        }
+
         newRide.duration = secs
         newRide.timestamp = Date()
         for location in locationManager.locationList {
@@ -194,12 +197,14 @@ class SessionViewModel: ObservableObject {
     private func saveRunWithLocationsToCoreData() {
         let context = PersistenceController.shared.container.viewContext
         let newRun = Run(context: context)
+
         newRun.distance = locationManager.distance.value
 //        if measure == Measure.kilometers.rawValue {
 //            newRun.distance = locationManager.distance.value
 //        } else {
 //            newRun.distance = (locationManager.distance.value / 1.609)
 //        }
+
         newRun.duration = secs
         newRun.timestamp = Date()
         for location in locationManager.locationList {
