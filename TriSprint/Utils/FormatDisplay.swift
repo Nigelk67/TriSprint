@@ -99,6 +99,7 @@ struct FormatDisplay {
         let formatter = MeasurementFormatter()
         formatter.unitOptions = [.providedUnit]
         let minutes = Double(seconds / 60)
+        
         let kmDistance = distance / 1000
         let mileDistance = kmDistance / 1.609
         let speedMagnitude = seconds != 0 ? minutes / mileDistance : 0
@@ -109,6 +110,7 @@ struct FormatDisplay {
         let formatter = MeasurementFormatter()
         formatter.unitOptions = [.providedUnit]
         let minutes = Double(seconds / 60)
+        print("Nige: km secs = \(seconds),  minutes = \(minutes)")
         let kmDistance = distance / 1000
         let speedMagnitude = seconds != 0 ? minutes / kmDistance : 0
         let speed = Measurement(value: speedMagnitude, unit: UnitSpeed.minutesPerKilometer)
