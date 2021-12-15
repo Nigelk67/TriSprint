@@ -39,16 +39,29 @@ class ActivityViewModel_Tests: XCTestCase {
         let loopCount: Int = Int.random(in: 1..<20)
         var formattedPace = ""
         var trimmedString = ""
-        let formatter = MeasurementFormatter()
-        formatter.locale = Locale(identifier: "en_DE")
         for _ in 0..<loopCount {
             let kmRandom = Double.random(in: 3..<100)
-            //let kmDistance = Measurement(value: kmRandom, unit: UnitLength.kilometers)
             let seconds = Double.random(in: 1000..<5000)
             let paceInKm = (seconds / 60) / kmRandom
             let paceString = String(format: "%.3f",paceInKm)
             trimmedString = paceString + " min/km"
             formattedPace = FormatDisplay.pacePerKmDble(distance: (kmRandom * 1000), seconds: seconds, outputUnit: UnitSpeed.minutesPerKilometer)
+        }
+        XCTAssertEqual(trimmedString, formattedPace)
+    }
+    
+    func test_formatDisplayPacePerMile_shouldShowPaceString() {
+        let loopCount: Int = Int.random(in: 1..<20)
+        var formattedPace = ""
+        var trimmedString = ""
+        for _ in 0..<loopCount {
+            let mtrsRandom = Double.random(in: 1000..<50000)
+            let miles = mtrsRandom / 1609
+            let seconds = Double.random(in: 1000..<5000)
+            let paceInMi = (seconds / 60) / miles
+            let paceString = String(format: "%.3f", paceInMi)
+            trimmedString = paceString + " min/mi"
+            formattedPace = FormatDisplay.pacePerMileDble(distance: mtrsRandom, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile)
         }
         XCTAssertEqual(trimmedString, formattedPace)
     }
