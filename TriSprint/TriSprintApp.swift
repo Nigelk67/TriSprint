@@ -37,8 +37,6 @@ struct TriSprintApp: App {
         .onChange(of: scene) { newScene in
             if newScene == .background {
                 sessionVm.timeAtBackground = Date()
-              
-                print("Nige: timeAtBg = \(sessionVm.timeAtBackground)")
             }
             if newScene == .active {
                 let diffInSecs = Date().timeIntervalSince(sessionVm.timeAtBackground)
@@ -46,7 +44,6 @@ struct TriSprintApp: App {
                 if currentTime >= 0 {
                     withAnimation(.default) {
                         sessionVm.secs = currentTime
-                        print("Nige: currentTime = \(currentTime), secs = \(sessionVm.secs)")
                         sessionVm.updateDisplay()
                     }
                 }
