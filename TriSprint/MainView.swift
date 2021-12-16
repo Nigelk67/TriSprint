@@ -20,18 +20,22 @@ struct MainView: View {
                 TabView {
                     HomeView()
                         .tabItem {
+                            Image(systemName: "waveform.path.ecg")
                             Text("Progress")
                         }
                     TrainingScheduleView()
                         .tabItem {
+                            Image(systemName: "square.and.pencil")
                             Text("Schedule")
                         }
                     ActivityView()
                         .tabItem {
+                            Image(systemName: "timer")
                             Text("Activity")
                         }
                     SettingsView()
                         .tabItem {
+                            Image(systemName: "slider.vertical.3")
                             Text("Settings")
                         }
                     
