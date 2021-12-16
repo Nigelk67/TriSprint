@@ -23,6 +23,7 @@ struct TriSprintApp: App {
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
         UITabBar.appearance().backgroundColor = UIColor(Color.mainBackground)
         UITabBar.appearance().barTintColor = UIColor(Color.mainBackground)
+        UITabBar.appearance().unselectedItemTintColor = UIColor(Color.accentButton)
     }
     
     @StateObject var loginViewModel: LoginViewModel = LoginViewModel()
