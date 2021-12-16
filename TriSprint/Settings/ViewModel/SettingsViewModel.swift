@@ -166,7 +166,7 @@ class SettingsViewModel: ObservableObject {
             if let err = error {
                 print("Unable to delete user - error \(err)")
             } else {
-                //CONFIRM ACCOUNT HAS BEEN DELETED. BACK TO ONBOARDING
+                //Alert shown in Settings Extension
             }
             
         })
