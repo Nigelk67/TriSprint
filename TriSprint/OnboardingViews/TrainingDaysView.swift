@@ -56,6 +56,7 @@ struct TrainingDaysView: View {
 
 extension TrainingDaysView {
     private var selectionView: some View {
+        ScrollView {
         VStack {
             Text("How many days per week can you train?")
                 .foregroundColor(Color.mainText)
@@ -63,9 +64,15 @@ extension TrainingDaysView {
                 .padding(.vertical)
                 .multilineTextAlignment(.center)
                 .padding()
+            Text("Note: All plans last for 13 weeks")
+                .foregroundColor(Color.mainText)
+                .font(.system(size: 20, weight: .regular, design: .rounded))
+                .padding(.vertical)
+                .multilineTextAlignment(.center)
+                .padding()
             Text("(Get ready - selecting the number of days will load the plan into your schedule)")
                 .foregroundColor(Color.mainText)
-                .font(.system(size: 16, weight: .light, design: .rounded))
+                .font(.system(size: 18, weight: .light, design: .rounded))
                 .padding(.vertical)
                 .multilineTextAlignment(.center)
                 .padding()
@@ -77,7 +84,7 @@ extension TrainingDaysView {
         .opacity(0.7)
         .cornerRadius(8)
         .padding(.horizontal,20)
-        
+        }
     }
     
     private var buttonsView: some View {
