@@ -21,9 +21,9 @@ struct TriSprintApp: App {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.mainButton)
         UISegmentedControl.appearance().backgroundColor = UIColor(Color.accentButton.opacity(0.5))
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
-        UITabBar.appearance().backgroundColor = UIColor(Color.mainBackground)
-        UITabBar.appearance().barTintColor = UIColor(Color.mainBackground)
-        UITabBar.appearance().unselectedItemTintColor = UIColor(Color.accentButton)
+        UITabBar.appearance().backgroundColor = UIColor(Color.accentButton)
+        UITabBar.appearance().barTintColor = UIColor(Color.accentButton)
+        UITabBar.appearance().unselectedItemTintColor = UIColor(Color.mainBackground)
     }
     
     @StateObject var loginViewModel: LoginViewModel = LoginViewModel()
