@@ -15,7 +15,7 @@ struct RatingsView: View {
     var onImage = Image(systemName: "star.fill")
     var offColor = Color.gray
     var onColor = Color.yellow
-    let appStoreReviewUrl = "https://apps.apple.com/app/id*******?action=write-review"
+    let appStoreReviewUrl = "https://apps.apple.com/app/id1600927404?action=write-review"
     @State private var showMailView = false
     @Environment(\.presentationMode) private var presentationMode
     
